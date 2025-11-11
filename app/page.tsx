@@ -1,8 +1,10 @@
+'use client';
+
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import {
-  Bot,
   TrendingUp,
   Users,
   Shield,
@@ -10,272 +12,340 @@ import {
   BarChart3,
   CheckCircle2,
   ArrowRight,
-  Star
+  Star,
+  X,
+  Gift,
+  Clock,
+  Target,
 } from 'lucide-react';
 
 export default function Home() {
+  const [showToast, setShowToast] = useState(false);
+  const [showFloatingCta, setShowFloatingCta] = useState(false);
+
+  useEffect(() => {
+    const toastSeen = sessionStorage.getItem('fokusToastSeen');
+
+    if (!toastSeen) {
+      const timer = setTimeout(() => {
+        setShowToast(true);
+        sessionStorage.setItem('fokusToastSeen', 'true');
+
+        // Auto-hide after 15 seconds
+        setTimeout(() => {
+          setShowToast(false);
+          setTimeout(() => setShowFloatingCta(true), 1000);
+        }, 15000);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    } else {
+      setShowFloatingCta(true);
+    }
+  }, []);
+
   const assistants = [
     {
       code: 'fokus001',
       name: 'FOKUS001',
-      title: 'Yönetici Sanal Asistanı',
-      description: 'Şirket yönetimini kolaylaştırın, kararlarınızı veri ile destekleyin.',
+      title: 'Yönetici Asistanı',
       icon: '👔',
     },
     {
       code: 'fokus216',
       name: 'FOKUS216',
-      title: 'Müşteri Hizmetleri Sanal Asistanı',
-      description: 'Müşteri memnuniyetini artırın, 7/24 hızlı destek sağlayın.',
+      title: 'Müşteri Hizmetleri',
       icon: '💬',
     },
     {
       code: 'fokus314',
       name: 'FOKUS314',
-      title: 'Veri Analisti Sanal Asistanı',
-      description: 'Verilerinizi anlamlandırın, stratejik kararlar alın.',
+      title: 'Veri Analisti',
       icon: '📊',
     },
     {
       code: 'fokus520',
       name: 'FOKUS520',
-      title: 'Pazarlama & Lead Takip',
-      description: 'Müşteri adaylarını yönetin, pazarlama kampanyalarını optimize edin.',
+      title: 'Pazarlama & Lead',
       icon: '🎯',
     },
     {
       code: 'fokus618',
       name: 'FOKUS618',
       title: 'Finans & Fatura',
-      description: 'Mali süreçlerinizi otomatikleştirin, nakit akışını kontrol edin.',
       icon: '💰',
     },
     {
       code: 'fokus707',
       name: 'FOKUS707',
       title: 'İnsan Kaynakları',
-      description: 'Personel yönetimini kolaylaştırın, işe alım süreçlerini hızlandırın.',
       icon: '👥',
     },
     {
       code: 'fokus717',
       name: 'FOKUS717',
       title: 'İçerik Tasarımı',
-      description: 'Yaratıcı içerikler oluşturun, markanızı öne çıkarın.',
       icon: '🎨',
     },
     {
       code: 'fokus808',
       name: 'FOKUS808',
       title: 'Sosyal Medya & İletişim',
-      description: 'Sosyal medya varlığınızı güçlendirin, kitlenizle etkileşim kurun.',
       icon: '📱',
     },
     {
       code: 'fokus999',
       name: 'FOKUS999',
-      title: 'Joker Sanal Asistan',
-      description: 'Tüm ihtiyaçlarınız için esnek, çok yönlü asistan.',
+      title: 'Joker Asistan',
       icon: '🃏',
     },
   ];
 
-  const features = [
+  const impactItems = [
     {
-      icon: <Bot className="w-12 h-12 text-[#860000]" />,
-      title: 'Yapay Zeka Gücü',
-      description: 'En son yapay zeka teknolojileriyle güçlendirilmiş 9 farklı uzman asistan.',
+      icon: <TrendingUp className="w-8 h-8" />,
+      title: 'Personel giderlerini azaltır',
+      description: 'Sanal asistanlar SSK, yemek, yol gibi yükleri ortadan kaldırır.',
     },
     {
-      icon: <Zap className="w-12 h-12 text-[#860000]" />,
-      title: 'Anında Yanıt',
-      description: '7/24 aktif asistanlar ile iş süreçlerinizde hız kazanın.',
+      icon: <Zap className="w-8 h-8" />,
+      title: 'Tekrarlayan işleri otomatikleştirir',
+      description: 'Randevu, form, raporlama, veri işleme gibi görevler otomasyona geçer.',
     },
     {
-      icon: <Shield className="w-12 h-12 text-[#860000]" />,
-      title: 'Güvenli & Gizli',
-      description: 'Verileriniz tamamen güvende, KVKK uyumlu altyapı.',
+      icon: <BarChart3 className="w-8 h-8" />,
+      title: 'Gelirleri artırır',
+      description: 'Kaçan fırsatları azaltır, hizmet ve satış süreçlerini hızlandırır.',
     },
     {
-      icon: <TrendingUp className="w-12 h-12 text-[#860000]" />,
-      title: 'Verimlilik Artışı',
-      description: 'İş süreçlerinizi optimize ederek %40\'a kadar verimlilik artışı.',
+      icon: <Clock className="w-8 h-8" />,
+      title: 'Zaman kazandırır',
+      description: 'Saatler sürecek işlerin dakikalar içinde tamamlanmasını sağlar.',
     },
     {
-      icon: <Users className="w-12 h-12 text-[#860000]" />,
-      title: 'Kolay Entegrasyon',
-      description: 'Google hesabınızla giriş yapın, hemen kullanmaya başlayın.',
+      icon: <Target className="w-8 h-8" />,
+      title: 'Kararları güçlendirir',
+      description: 'Veriye dayalı analizler, paneller ve otomatik raporlar sunar.',
     },
     {
-      icon: <BarChart3 className="w-12 h-12 text-[#860000]" />,
-      title: 'Detaylı Raporlama',
-      description: 'İş süreçlerinizi anlık olarak takip edin, raporlar alın.',
+      icon: <Users className="w-8 h-8" />,
+      title: 'Şirketinizin kârlılığını yükseltir',
+      description: 'Daha az giderle daha çok üretkenlik sağlar.',
     },
-  ];
-
-  const benefits = [
-    'Zaman Tasarrufu - Rutin işleri otomatikleştirin',
-    'Maliyet Düşürme - İnsan kaynağı maliyetlerini optimize edin',
-    'Hata Minimizasyonu - Yapay zeka ile daha az hata',
-    'Ölçeklenebilirlik - İşiniz büyüdükçe asistanlarınız da büyür',
-    '24/7 Erişilebilirlik - Her an her yerden erişim',
-    'Veri Odaklı Kararlar - Verilerle desteklenmiş stratejiler',
   ];
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
 
+      {/* Toast Notification */}
+      {showToast && (
+        <div className="fixed top-20 right-5 bg-gradient-to-r from-[#860000] to-[#a30000] text-white rounded-xl shadow-2xl p-5 max-w-sm z-50 animate-slideIn">
+          <div className="flex items-center justify-between mb-3">
+            <span className="bg-white/20 px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+              <Gift className="w-3 h-3" />
+              ÖZEL FIRSAT
+            </span>
+            <button onClick={() => setShowToast(false)} className="hover:bg-white/20 rounded-full p-1">
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+          <div className="flex gap-3">
+            <div className="w-16 h-16 bg-white rounded-full flex-shrink-0 overflow-hidden">
+              <div className="w-full h-full flex items-center justify-center text-3xl">💬</div>
+            </div>
+            <div className="flex-1">
+              <h3 className="font-bold mb-1">Randevu Sistemi İlk 1 Ay Ücretsiz!</h3>
+              <p className="text-sm opacity-90 mb-2">
+                Yapay zeka destekli randevu sistemi. Müşterileriniz 7/24 otomatik randevu alabilsin.
+              </p>
+              <div className="flex gap-2 text-xs mb-3">
+                <span className="flex items-center gap-1">✓ Hızlı Kurulum</span>
+                <span className="flex items-center gap-1">✓ 7/24 Aktif</span>
+              </div>
+              <a
+                href="https://asistan.fokusistatistik.com/fokusdemorandevusistemi/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-white text-[#860000] px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-100 transition"
+              >
+                Hemen Başla →
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Floating CTA */}
+      {showFloatingCta && (
+        <a
+          href="https://asistan.fokusistatistik.com/ucretsiz.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed top-20 left-8 bg-gradient-to-r from-[#860000] to-[#a30000] text-white px-5 py-3 rounded-full shadow-2xl hover:shadow-3xl transition flex items-center gap-2 z-50 animate-slideIn font-semibold text-sm"
+        >
+          <Gift className="w-5 h-5 animate-bounce" />
+          <span>1 Ay Ücretsiz Dene</span>
+        </a>
+      )}
+
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#860000] via-[#a50000] to-[#6b0000] text-white py-20 lg:py-32 overflow-hidden">
-          <div className="absolute inset-0 bg-black opacity-20"></div>
-
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
-                <Star className="w-4 h-4 mr-2 text-[#ffc107]" />
-                <span className="text-sm">Türkiye&apos;nin İlk Yapay Zeka Asistan Ekosistemi</span>
-              </div>
-
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-                9 Farklı Sanal Asistanla
-                <br />
-                <span className="text-[#ffc107]">İş Süreçlerinizi Optimize Edin</span>
-              </h1>
-
-              <p className="text-xl lg:text-2xl mb-8 text-gray-200">
-                Yapay zeka destekli asistanlarımızla verimliliğinizi artırın,
-                maliyetlerinizi düşürün, işinizi büyütün.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/giris"
-                  className="bg-[#ffc107] text-[#860000] px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition shadow-2xl hover:shadow-yellow-300/50 flex items-center justify-center group"
-                >
-                  Hemen Başlayın
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition" />
-                </Link>
-                <Link
-                  href="/sanalasistanlar"
-                  className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition"
-                >
-                  Asistanları Keşfedin
-                </Link>
-              </div>
-
-              <p className="mt-6 text-sm text-gray-300">
-                ✓ Kredi kartı gerekmez &nbsp; ✓ 14 gün ücretsiz deneme &nbsp; ✓ İptal ücretsiz
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="py-20 bg-gray-50">
+        {/* Assistants Section */}
+        <section className="py-12 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-5xl font-bold mb-4 text-gray-800">
-                Neden <span className="text-[#860000]">FOKUS</span>?
-              </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Yapay zeka teknolojisini iş süreçlerinize entegre ederek rekabet avantajı kazanın
-              </p>
-            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-center mb-12 text-gray-800">
+              FOKUS Ekosistemi | <span className="text-[#860000]">Modüler Sanal Asistanlar Çağı</span>
+            </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition group hover:-translate-y-2 duration-300"
-                >
-                  <div className="mb-4 group-hover:scale-110 transition">{feature.icon}</div>
-                  <h3 className="text-xl font-bold mb-3 text-gray-800">{feature.title}</h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Assistants Grid */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-5xl font-bold mb-4 text-gray-800">
-                9 Uzman <span className="text-[#860000]">Sanal Asistan</span>
-              </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Her iş ihtiyacınız için özel olarak eğitilmiş yapay zeka asistanları
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
               {assistants.map((assistant) => (
                 <Link
                   key={assistant.code}
                   href={`/sanalasistanlar/${assistant.code}`}
-                  className="bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 p-6 rounded-2xl hover:border-[#860000] hover:shadow-2xl transition group"
+                  className="flex flex-col items-center text-center group"
                 >
-                  <div className="text-5xl mb-4 group-hover:scale-110 transition">
+                  <div className="text-6xl mb-3 group-hover:scale-125 transition-transform duration-300">
                     {assistant.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-[#860000]">{assistant.name}</h3>
-                  <h4 className="text-lg font-semibold mb-3 text-gray-700">{assistant.title}</h4>
-                  <p className="text-gray-600 text-sm mb-4">{assistant.description}</p>
-                  <div className="flex items-center text-[#860000] font-semibold group-hover:translate-x-2 transition">
-                    Detaylı İncele <ArrowRight className="ml-2 w-4 h-4" />
-                  </div>
+                  <span className="font-semibold text-gray-700 group-hover:text-[#860000] transition">
+                    {assistant.title}
+                  </span>
+                  <span className="text-xs text-gray-500 italic mt-1">{assistant.name}</span>
                 </Link>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Benefits Section */}
-        <section className="py-20 bg-gradient-to-br from-[#860000] to-[#6b0000] text-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl lg:text-5xl font-bold mb-12 text-center">
-                İşletmenize Sağlayacağı <span className="text-[#ffc107]">Faydalar</span>
-              </h2>
+        {/* Hero Section */}
+        <section className="relative bg-gradient-to-br from-[#860000] via-[#a03333] to-[#6b0000] text-white py-16 lg:py-24 my-8 mx-4 lg:mx-auto max-w-7xl rounded-3xl shadow-2xl overflow-hidden">
+          <div className="absolute inset-0 bg-black/10"></div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start space-x-4">
-                    <CheckCircle2 className="w-6 h-6 text-[#ffc107] flex-shrink-0 mt-1" />
-                    <p className="text-lg">{benefit}</p>
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="max-w-5xl mx-auto text-center">
+              <h1 className="text-3xl lg:text-5xl font-bold mb-8 leading-tight">
+                Yapay Zekâ Dalgasına Katılın — FOKUS ile Dijitalleşin, Daha Hızlı, Daha Kârlı Olun
+              </h1>
+
+              <div className="flex flex-col md:flex-row gap-6 justify-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition shadow-xl flex-1 max-w-md">
+                  <Link
+                    href="/analiz"
+                    className="block bg-white text-[#860000] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition mb-3"
+                  >
+                    Ücretsiz İhtiyaç Analizi
+                  </Link>
+                  <p className="text-sm text-gray-200">
+                    Hangi sanal asistana ihtiyacınız olduğunu anında analiz edelim.
+                  </p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition shadow-xl flex-1 max-w-md">
+                  <a
+                    href="https://asistan.fokusistatistik.com/ucretsiz.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block bg-white text-[#860000] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition mb-3"
+                  >
+                    Ücretsiz Danışmanlık
+                  </a>
+                  <p className="text-sm text-gray-200">
+                    Formu doldurun, ücretsiz danışmanlık için randevu oluşturalım.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Impact Section */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-800">
+                  FOKUS Ekosistemi ile <span className="text-[#860000]">Verimliliği Arttırın, Maliyeti Azaltın</span>
+                </h2>
+                <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                  FOKUS Modüler Sanal Asistanları; tekrarlayan işleri otomatikleştirir, insan kaynağını stratejik alanlara yönlendirir ve işletmenizin dijitalleşmesini hızlandırır. Geleneksel maliyet kalemleri (SSK, yemek, yol, izin vb.) olmadan 7/24 çalışır, zaman ve bütçe kazandırır.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {impactItems.map((item, index) => (
+                  <div
+                    key={index}
+                    className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-[#860000] transition group"
+                  >
+                    <div className="text-[#860000] mb-4 group-hover:scale-110 transition">
+                      {item.icon}
+                    </div>
+                    <h3 className="font-bold text-lg mb-2 text-gray-800">{item.title}</h3>
+                    <p className="text-gray-600 text-sm">{item.description}</p>
                   </div>
                 ))}
+              </div>
+
+              <div className="mt-12 text-center">
+                <p className="text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                  <strong>İnsan + Yapay Zekâ iş birliğiyle</strong>, hem çalışan memnuniyetini hem de operasyonel verimliliği artırıyoruz. Bugün iki asistanla başlarsınız, yarın ekibinizi genişletebilirsiniz. Çünkü FOKUS, sizinle birlikte büyüyen bir ekosistemdir.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Video Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div className="relative" style={{ paddingBottom: '56.25%' }}>
+                  <iframe
+                    src="https://www.youtube.com/embed/SQ3hBK6ZVDw"
+                    title="FOKUS Ekosistemi Video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="absolute top-0 left-0 w-full h-full"
+                  ></iframe>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-white">
+        <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center bg-gradient-to-br from-gray-50 to-white border-2 border-[#860000] rounded-3xl p-12 shadow-2xl">
-              <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-gray-800">
-                Hazır mısınız?
+              <Star className="w-16 h-16 text-[#ffc107] mx-auto mb-6" />
+              <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-800">
+                Dijital Dönüşümü Başlatın
               </h2>
               <p className="text-xl text-gray-600 mb-8">
-                Bugün başlayın, işletmenizi yapay zeka ile güçlendirin.
+                FOKUS Sanal Asistanlar ile iş süreçlerinizi otomatikleştirin,
                 <br />
-                İlk 14 gün tamamen ücretsiz!
+                maliyetleri düşürün, verimliliği artırın.
               </p>
 
-              <Link
-                href="/giris"
-                className="inline-flex items-center bg-[#860000] text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-[#6b0000] transition shadow-2xl hover:shadow-[#860000]/50 group"
-              >
-                Ücretsiz Deneyin
-                <ArrowRight className="ml-3 group-hover:translate-x-2 transition" />
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/giris"
+                  className="inline-flex items-center bg-[#860000] text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-[#6b0000] transition shadow-2xl group"
+                >
+                  Hemen Başlayın
+                  <ArrowRight className="ml-3 group-hover:translate-x-2 transition" />
+                </Link>
+                <Link
+                  href="/sanalasistanlar"
+                  className="inline-flex items-center bg-white border-2 border-[#860000] text-[#860000] px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-50 transition"
+                >
+                  Asistanları Keşfedin
+                </Link>
+              </div>
 
               <p className="mt-6 text-gray-500 text-sm">
-                Kredi kartı bilgisi gerekmez • İstediğiniz zaman iptal edebilirsiniz
+                ✓ 14 gün ücretsiz deneme • ✓ Kredi kartı gerekmez • ✓ İstediğiniz zaman iptal
               </p>
             </div>
           </div>
