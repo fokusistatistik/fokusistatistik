@@ -33,7 +33,7 @@ export default function ChatWidget() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://n8n.fokusistatistik.com/webhook/f076cf2f-2705-4f1e-8f18-a9d0e5e28050', {
+      const response = await fetch('https://n8n.fokusistatistik.com/webhook/fokus216clasic250001', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
