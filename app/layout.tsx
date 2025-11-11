@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SessionProvider from "@/components/SessionProvider";
+import ChatWidget from "@/app/components/ChatWidget";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="tr">
       <body className="antialiased">
         <SessionProvider>{children}</SessionProvider>
+        <ChatWidget />
       </body>
     </html>
   );
