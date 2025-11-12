@@ -1780,16 +1780,3 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
   );
 }
 
-export async function generateStaticParams() {
-  return [
-    { id: 'fokus001' },
-    { id: 'fokus216' },
-    { id: 'fokus314' },
-    { id: 'fokus520' },
-    { id: 'fokus618' },
-    { id: 'fokus707' },
-    { id: 'fokus717' },
-    { id: 'fokus808' },
-    { id: 'fokus999' },
-  ];
-}

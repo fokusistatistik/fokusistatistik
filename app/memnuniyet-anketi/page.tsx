@@ -1,8 +1,11 @@
 'use client';
 
-import { useState, FormEvent, useEffect } from 'react';
+import { Suspense, useState, FormEvent, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 
+
+// Force dynamic rendering to avoid pre-render issues with useSearchParams
+export const dynamic = 'force-dynamic';
 interface SurveyPayload {
   sirket_id: string | null;
   kayit_id: string | null;
@@ -20,7 +23,7 @@ interface SurveyPayload {
   };
 }
 
-export default function MemnuniyetAnketi() {
+function SurveyContent() {
   const searchParams = useSearchParams();
   const [rating, setRating] = useState<number | null>(null);
   const [comments, setComments] = useState('');
@@ -233,5 +236,21 @@ export default function MemnuniyetAnketi() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Wrapper component with Suspense boundary
+export default function MemnuniyetAnketi() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#860000] mx-auto mb-4"></div>
+          <p className="text-gray-600">Yükleniyor...</p>
+        </div>
+      </div>
+    }>
+      <SurveyContent />
+    </Suspense>
   );
 }
