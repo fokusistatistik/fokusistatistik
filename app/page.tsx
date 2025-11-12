@@ -342,7 +342,7 @@ export default function Home() {
               </div>
 
               <p className="mt-6 text-gray-500 text-sm">
-                ✓ 14 gün ücretsiz deneme • ✓ Kredi kartı gerekmez • ✓ İstediğiniz zaman iptal
+                ✓ 1 ay ücretsiz deneme • ✓ Kredi kartı gerekmez • ✓ İstediğiniz zaman iptal
               </p>
             </div>
           </div>

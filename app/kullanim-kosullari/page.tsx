@@ -83,7 +83,7 @@ export default function KullanimKosullari() {
             <div className="bg-blue-50 p-6 rounded-lg">
               <h3 className="font-semibold text-gray-900 mb-3">Cayma Hakkı (Bireysel Kullanıcılar İçin):</h3>
               <ul className="list-disc list-inside space-y-2 ml-4 text-gray-700">
-                <li>Mesafeli Satış Sözleşmesi kapsamında 14 gün cayma hakkı bulunmaktadır</li>
+                <li>Mesafeli Satış Sözleşmesi kapsamında 1 ay cayma hakkı bulunmaktadır</li>
                 <li>Hizmetin ifasına başlanmışsa cayma hakkı kullanılamaz</li>
                 <li>Dijital içerik teslimi yapıldıysa iade mümkün değildir</li>
                 <li>İade talepleri info@fokusistatistik.com adresine bildirilmelidir</li>

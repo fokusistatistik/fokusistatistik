@@ -71,12 +71,12 @@ export default function Fiyatlandirma() {
               Size Uygun <span className="text-[#860000]">Planı</span> Seçin
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              14 gün boyunca ücretsiz deneyin. İstediğiniz zaman iptal edebilirsiniz.
+              1 ay boyunca ücretsiz deneyin. İstediğiniz zaman iptal edebilirsiniz.
             </p>
 
             <div className="inline-flex items-center bg-green-100 text-green-700 px-6 py-3 rounded-full font-semibold">
               <Check className="w-5 h-5 mr-2" />
-              Tüm planlarda 14 gün ücretsiz deneme
+              Tüm planlarda 1 ay ücretsiz deneme
             </div>
           </div>
         </section>
@@ -160,7 +160,7 @@ export default function Fiyatlandirma() {
                     <span className="group-open:rotate-180 transition">▼</span>
                   </summary>
                   <p className="mt-4 text-gray-600">
-                    14 günlük deneme süreniz bittiğinde, seçtiğiniz plana göre ücretlendirme başlar. İstediğiniz zaman
+                    1 aylık deneme süreniz bittiğinde, seçtiğiniz plana göre ücretlendirme başlar. İstediğiniz zaman
                     iptal edebilirsiniz.
                   </p>
                 </details>
@@ -207,7 +207,7 @@ export default function Fiyatlandirma() {
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl lg:text-5xl font-bold mb-6">Hemen Başlayın</h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              14 gün boyunca tüm özellikleri ücretsiz deneyin. Kredi kartı bilgisi gerekmez.
+              1 ay boyunca tüm özellikleri ücretsiz deneyin. Kredi kartı bilgisi gerekmez.
             </p>
 
             <Link

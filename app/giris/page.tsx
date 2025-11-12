@@ -83,9 +83,9 @@ export default function GirisPage() {
                   <ArrowRight className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg text-gray-800 mb-1">14 Gün Ücretsiz</h3>
+                  <h3 className="font-bold text-lg text-gray-800 mb-1">1 Ay Ücretsiz</h3>
                   <p className="text-gray-600">
-                    Tüm özellikleri 14 gün boyunca ücretsiz deneyin. Kredi kartı gerekmez.
+                    Tüm özellikleri 1 ay boyunca ücretsiz deneyin. Kredi kartı gerekmez.
                   </p>
                 </div>
               </div>
@@ -183,7 +183,7 @@ export default function GirisPage() {
 
             {/* Mobile Info */}
             <div className="lg:hidden mt-8 text-center text-gray-600 text-sm">
-              <p>✓ 14 gün ücretsiz deneme</p>
+              <p>✓ 1 ay ücretsiz deneme</p>
               <p>✓ Kredi kartı gerekmez</p>
               <p>✓ İstediğiniz zaman iptal</p>
             </div>
