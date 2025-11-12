@@ -119,6 +119,11 @@ export default function Footer() {
             <h3 className="font-bold text-[#ffc107] mb-3">Hizmetler</h3>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link href="/dijital" className="hover:text-[#ffc107] transition">
+                  Dijital Çözümler
+                </Link>
+              </li>
+              <li>
                 <Link href="/sanalasistanlar" className="hover:text-[#ffc107] transition">
                   Sanal Asistanlar
                 </Link>
@@ -136,11 +141,6 @@ export default function Footer() {
               <li>
                 <Link href="/analiz-formu" className="hover:text-[#ffc107] transition">
                   Ücretsiz Analiz
-                </Link>
-              </li>
-              <li>
-                <Link href="/dashboard" className="hover:text-[#ffc107] transition">
-                  Panel
                 </Link>
               </li>
             </ul>

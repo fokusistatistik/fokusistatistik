@@ -93,14 +93,14 @@ export default function Header() {
               )}
             </div>
 
+            <Link href="/dijital" className="hover:text-[#ffc107] transition">
+              Dijital Çözümler
+            </Link>
             <Link href="/yapay-zeka-danismanligi" className="hover:text-[#ffc107] transition">
               YZ Danışmanlığı
             </Link>
             <Link href="/fiyatlandirma" className="hover:text-[#ffc107] transition">
               Fiyatlandırma
-            </Link>
-            <Link href="/demo" className="hover:text-[#ffc107] transition">
-              Demo
             </Link>
             <Link href="/iletisim" className="hover:text-[#ffc107] transition">
               İletişim
@@ -190,14 +190,14 @@ export default function Header() {
                 </div>
               </details>
 
+              <Link href="/dijital" className="hover:text-[#ffc107] transition py-2">
+                Dijital Çözümler
+              </Link>
               <Link href="/yapay-zeka-danismanligi" className="hover:text-[#ffc107] transition py-2">
                 YZ Danışmanlığı
               </Link>
               <Link href="/fiyatlandirma" className="hover:text-[#ffc107] transition py-2">
                 Fiyatlandırma
-              </Link>
-              <Link href="/demo" className="hover:text-[#ffc107] transition py-2">
-                Demo
               </Link>
               <Link href="/iletisim" className="hover:text-[#ffc107] transition py-2">
                 İletişim
