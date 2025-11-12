@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 export default function ChatWidget() {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -137,7 +138,8 @@ export default function ChatWidget() {
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 20px;
+          overflow: hidden;
+          position: relative;
         }
 
         .chat-header-info h3 {
@@ -308,13 +310,30 @@ export default function ChatWidget() {
           onClick={toggleChat}
           aria-label="Chat"
         >
-          {isChatOpen ? '✕' : '💬'}
+          {isChatOpen ? (
+            '✕'
+          ) : (
+            <Image
+              src="https://www.fokusistatistik.com/assets/img/fokus216kare.png"
+              alt="FOKUS216"
+              width={50}
+              height={50}
+              className="rounded-full"
+            />
+          )}
         </button>
 
         {isChatOpen && (
           <div className="chat-window">
             <div className="chat-header">
-              <div className="chat-header-avatar">🤖</div>
+              <div className="chat-header-avatar">
+                <Image
+                  src="https://www.fokusistatistik.com/assets/img/fokus216kare.png"
+                  alt="FOKUS216"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <div className="chat-header-info">
                 <h3>FOKUS Asistan</h3>
                 <p>Size nasıl yardımcı olabilirim?</p>

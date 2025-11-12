@@ -1529,6 +1529,8 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
     // Webhook'tan veri çekme denemesi
     const fetchAssistantData = async () => {
       try {
+        const assistantId = params.id.toLowerCase(); // URL'den gelen ID'yi lowercase yap
+
         const webhookUrl = 'https://n8n.fokusistatistik.com/fokuswebsiteasistanlar';
         const response = await fetch(webhookUrl, {
           method: 'POST',
@@ -1536,7 +1538,7 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            assistantCode: params.id.toUpperCase(),
+            assistantCode: assistantId.toUpperCase(),
             userEmail: session?.user?.email || null,
             userName: session?.user?.name || null,
           }),
@@ -1547,22 +1549,25 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
           setAssistant(data);
         } else {
           // Webhook başarısız ise statik veriyi kullan
-          setAssistant(assistantsData[params.id] || null);
+          setAssistant(assistantsData[assistantId] || null);
         }
       } catch (error) {
         // Hata durumunda statik veriyi kullan
-        setAssistant(assistantsData[params.id] || null);
+        const assistantId = params.id.toLowerCase();
+        setAssistant(assistantsData[assistantId] || null);
       }
     };
 
     fetchAssistantData();
   }, [params.id, session]);
 
-  if (!assistant && !assistantsData[params.id]) {
+  const assistantId = params.id.toLowerCase();
+
+  if (!assistant && !assistantsData[assistantId]) {
     notFound();
   }
 
-  const displayAssistant = assistant || assistantsData[params.id];
+  const displayAssistant = assistant || assistantsData[assistantId];
 
   if (!displayAssistant) {
     notFound();

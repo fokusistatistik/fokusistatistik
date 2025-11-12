@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import {
   TrendingUp,
@@ -47,55 +48,55 @@ export default function Home() {
       code: 'fokus001',
       name: 'FOKUS001',
       title: 'Yönetici Asistanı',
-      icon: '👔',
+      image: 'https://www.fokusistatistik.com/assets/img/fokus001.png',
     },
     {
       code: 'fokus216',
       name: 'FOKUS216',
       title: 'Müşteri Hizmetleri',
-      icon: '💬',
+      image: 'https://www.fokusistatistik.com/assets/img/fokus216.png',
     },
     {
       code: 'fokus314',
       name: 'FOKUS314',
       title: 'Veri Analisti',
-      icon: '📊',
+      image: 'https://www.fokusistatistik.com/assets/img/fokus314.png',
     },
     {
       code: 'fokus520',
       name: 'FOKUS520',
       title: 'Pazarlama & Lead',
-      icon: '🎯',
+      image: 'https://www.fokusistatistik.com/assets/img/fokus520.png',
     },
     {
       code: 'fokus618',
       name: 'FOKUS618',
       title: 'Finans & Fatura',
-      icon: '💰',
+      image: 'https://www.fokusistatistik.com/assets/img/fokus618.png',
     },
     {
       code: 'fokus707',
       name: 'FOKUS707',
       title: 'İnsan Kaynakları',
-      icon: '👥',
+      image: 'https://www.fokusistatistik.com/assets/img/fokus707.png',
     },
     {
       code: 'fokus717',
       name: 'FOKUS717',
       title: 'İçerik Tasarımı',
-      icon: '🎨',
+      image: 'https://www.fokusistatistik.com/assets/img/fokus717.png',
     },
     {
       code: 'fokus808',
       name: 'FOKUS808',
       title: 'Sosyal Medya & İletişim',
-      icon: '📱',
+      image: 'https://www.fokusistatistik.com/assets/img/fokus808.png',
     },
     {
       code: 'fokus999',
       name: 'FOKUS999',
       title: 'Joker Asistan',
-      icon: '🃏',
+      image: 'https://www.fokusistatistik.com/assets/img/fokus999.png',
     },
   ];
 
@@ -201,8 +202,13 @@ export default function Home() {
                   href={`/sanalasistanlar/${assistant.code}`}
                   className="flex flex-col items-center text-center group"
                 >
-                  <div className="text-6xl mb-3 group-hover:scale-125 transition-transform duration-300">
-                    {assistant.icon}
+                  <div className="relative w-24 h-24 mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <Image
+                      src={assistant.image}
+                      alt={assistant.title}
+                      fill
+                      className="object-contain rounded-lg"
+                    />
                   </div>
                   <span className="font-semibold text-gray-700 group-hover:text-[#860000] transition">
                     {assistant.title}
