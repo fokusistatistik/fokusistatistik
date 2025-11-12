@@ -41,13 +41,13 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6">
-            <Link href="/" className="hover:text-[#ffc107] transition">
+            <Link href="/" className="hover:text-gray-200 transition">
               Anasayfa
             </Link>
-            <Link href="/hakkimizda" className="hover:text-[#ffc107] transition">
+            <Link href="/hakkimizda" className="hover:text-gray-200 transition">
               Hakkımızda
             </Link>
-            <Link href="/ekibimiz" className="hover:text-[#ffc107] transition">
+            <Link href="/ekibimiz" className="hover:text-gray-200 transition">
               Ekibimiz
             </Link>
 
@@ -57,7 +57,7 @@ export default function Header() {
               onMouseEnter={() => setIsDropdownOpen(true)}
               onMouseLeave={() => setIsDropdownOpen(false)}
             >
-              <button className="flex items-center space-x-1 hover:text-[#ffc107] transition">
+              <button className="flex items-center space-x-1 hover:text-gray-200 transition">
                 <span>Sanal Asistanlar</span>
                 <ChevronDown size={16} />
               </button>
@@ -93,23 +93,23 @@ export default function Header() {
               )}
             </div>
 
-            <Link href="/dijital" className="hover:text-[#ffc107] transition">
+            <Link href="/dijital" className="hover:text-gray-200 transition">
               Dijital Çözümler
             </Link>
-            <Link href="/yapay-zeka-danismanligi" className="hover:text-[#ffc107] transition">
+            <Link href="/yapay-zeka-danismanligi" className="hover:text-gray-200 transition">
               YZ Danışmanlığı
             </Link>
-            <Link href="/fiyatlandirma" className="hover:text-[#ffc107] transition">
+            <Link href="/fiyatlandirma" className="hover:text-gray-200 transition">
               Fiyatlandırma
             </Link>
-            <Link href="/iletisim" className="hover:text-[#ffc107] transition">
+            <Link href="/iletisim" className="hover:text-gray-200 transition">
               İletişim
             </Link>
 
             {/* Search */}
             <button
               onClick={() => setIsSearchOpen(!isSearchOpen)}
-              className="hover:text-[#ffc107] transition"
+              className="hover:text-gray-200 transition"
             >
               <Search size={20} />
             </button>
@@ -117,7 +117,7 @@ export default function Header() {
             {/* Login Button */}
             <Link
               href="/giris"
-              className="bg-[#ffc107] text-[#860000] px-6 py-2 rounded-full font-semibold hover:bg-yellow-300 transition"
+              className="bg-white text-[#860000] px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition shadow-md hover:shadow-lg"
             >
               Giriş Yap
             </Link>
@@ -126,7 +126,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden hover:text-[#ffc107] transition"
+            className="lg:hidden hover:text-gray-200 transition"
           >
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -138,7 +138,7 @@ export default function Header() {
             <input
               type="text"
               placeholder="Site içinde ara..."
-              className="w-full px-4 py-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#ffc107]"
+              className="w-full px-4 py-2 rounded-lg bg-white/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition"
             />
           </div>
         )}
@@ -147,18 +147,18 @@ export default function Header() {
         {isMenuOpen && (
           <nav className="lg:hidden py-4 border-t border-[#a50000]">
             <div className="flex flex-col space-y-3">
-              <Link href="/" className="hover:text-[#ffc107] transition py-2">
+              <Link href="/" className="hover:text-gray-200 transition py-2">
                 Anasayfa
               </Link>
-              <Link href="/hakkimizda" className="hover:text-[#ffc107] transition py-2">
+              <Link href="/hakkimizda" className="hover:text-gray-200 transition py-2">
                 Hakkımızda
               </Link>
-              <Link href="/ekibimiz" className="hover:text-[#ffc107] transition py-2">
+              <Link href="/ekibimiz" className="hover:text-gray-200 transition py-2">
                 Ekibimiz
               </Link>
 
               <details className="group">
-                <summary className="cursor-pointer hover:text-[#ffc107] transition py-2 list-none flex items-center justify-between">
+                <summary className="cursor-pointer hover:text-gray-200 transition py-2 list-none flex items-center justify-between">
                   <span>Sanal Asistanlar</span>
                   <ChevronDown size={16} className="group-open:rotate-180 transition" />
                 </summary>
@@ -167,7 +167,7 @@ export default function Header() {
                     <Link
                       key={assistant.code}
                       href={`/sanalasistanlar/${assistant.code}`}
-                      className="block hover:text-[#ffc107] transition py-1 text-sm"
+                      className="block hover:text-gray-200 transition py-1 text-sm"
                     >
                       {assistant.name}
                     </Link>
@@ -176,7 +176,7 @@ export default function Header() {
                     href="https://asistan.fokusistatistik.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center hover:text-[#ffc107] transition py-1 text-sm font-bold"
+                    className="flex items-center hover:text-gray-200 transition py-1 text-sm font-bold"
                   >
                     <Image
                       src="https://www.fokusistatistik.com/assets/img/favicon.png"
@@ -190,22 +190,22 @@ export default function Header() {
                 </div>
               </details>
 
-              <Link href="/dijital" className="hover:text-[#ffc107] transition py-2">
+              <Link href="/dijital" className="hover:text-gray-200 transition py-2">
                 Dijital Çözümler
               </Link>
-              <Link href="/yapay-zeka-danismanligi" className="hover:text-[#ffc107] transition py-2">
+              <Link href="/yapay-zeka-danismanligi" className="hover:text-gray-200 transition py-2">
                 YZ Danışmanlığı
               </Link>
-              <Link href="/fiyatlandirma" className="hover:text-[#ffc107] transition py-2">
+              <Link href="/fiyatlandirma" className="hover:text-gray-200 transition py-2">
                 Fiyatlandırma
               </Link>
-              <Link href="/iletisim" className="hover:text-[#ffc107] transition py-2">
+              <Link href="/iletisim" className="hover:text-gray-200 transition py-2">
                 İletişim
               </Link>
 
               <Link
                 href="/giris"
-                className="bg-[#ffc107] text-[#860000] px-6 py-2 rounded-full font-semibold hover:bg-yellow-300 transition text-center mt-4"
+                className="bg-white text-[#860000] px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition text-center mt-4 shadow-md"
               >
                 Giriş Yap
               </Link>

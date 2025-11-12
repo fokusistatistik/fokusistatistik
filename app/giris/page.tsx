@@ -132,25 +132,6 @@ export default function GirisPage() {
                     </>
                   )}
                 </button>
-
-                {/* Divider */}
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-300"></div>
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-4 bg-white text-gray-500">veya</span>
-                  </div>
-                </div>
-
-                {/* Email Login (Placeholder for future) */}
-                <button
-                  disabled
-                  className="w-full flex items-center justify-center space-x-3 bg-gray-100 border-2 border-gray-200 text-gray-400 font-semibold py-4 px-6 rounded-xl cursor-not-allowed"
-                >
-                  <Mail className="w-5 h-5" />
-                  <span>E-posta ile Giriş (Yakında)</span>
-                </button>
               </div>
 
               <div className="mt-8 text-center">
