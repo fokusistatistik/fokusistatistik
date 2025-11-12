@@ -1,0 +1,252 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Ekibimiz - FOKUS Sanal Asistanlar | 9 Uzman AI Asistan',
+  description: 'FOKUS İstatistik\'in 9 farklı alana özel yapay zeka destekli sanal asistanlarıyla tanışın. E-ticaret, müşteri hizmetleri, veri analizi, pazarlama ve daha fazlası.',
+  keywords: 'sanal asistan ekibi, yapay zeka asistanları, AI team, FOKUS asistanları',
+};
+
+interface Assistant {
+  id: string;
+  code: string;
+  name: string;
+  title: string;
+  icon: string;
+  shortDescription: string;
+  color: string;
+}
+
+const assistants: Assistant[] = [
+  {
+    id: 'fokus001',
+    code: 'FOKUS001',
+    name: 'E-Ticaret Sanal Asistanı',
+    title: '🛍️ E-Ticaret ve Yönetim Uzmanı',
+    icon: '🛍️',
+    shortDescription: 'Stok yönetimi, sipariş takibi ve müşteri analiziyle e-ticaret süreçlerinizi optimize eder.',
+    color: 'from-blue-500 to-blue-700'
+  },
+  {
+    id: 'fokus216',
+    code: 'FOKUS216',
+    name: 'Müşteri Hizmetleri Sanal Asistanı',
+    title: '💬 7/24 Müşteri Desteği',
+    icon: '💬',
+    shortDescription: 'Müşteri sorularına anında yanıt verir, destek taleplerini yönetir ve memnuniyeti artırır.',
+    color: 'from-green-500 to-green-700'
+  },
+  {
+    id: 'fokus314',
+    code: 'FOKUS314',
+    name: 'Veri Analisti Sanal Asistanı',
+    title: '📊 Veri ve İstatistik Uzmanı',
+    icon: '📊',
+    shortDescription: 'Verilerinizi analiz eder, görselleştirir ve stratejik kararlar için raporlar sunar.',
+    color: 'from-purple-500 to-purple-700'
+  },
+  {
+    id: 'fokus520',
+    code: 'FOKUS520',
+    name: 'Pazarlama Sanal Asistanı',
+    title: '📈 Pazarlama ve Lead Takip',
+    icon: '📈',
+    shortDescription: 'Kampanya yönetimi, lead takibi ve müşteri skorlamasıyla pazarlama süreçlerinizi otomatikleştirir.',
+    color: 'from-orange-500 to-orange-700'
+  },
+  {
+    id: 'fokus618',
+    code: 'FOKUS618',
+    name: 'Finans Sanal Asistanı',
+    title: '💰 Finans ve Fatura Yönetimi',
+    icon: '💰',
+    shortDescription: 'Fatura işlemleri, gelir-gider takibi ve ödeme hatırlatmalarını otomatik yönetir.',
+    color: 'from-emerald-500 to-emerald-700'
+  },
+  {
+    id: 'fokus707',
+    code: 'FOKUS707',
+    name: 'İnsan Kaynakları Sanal Asistanı',
+    title: '👥 İK ve Personel Yönetimi',
+    icon: '👥',
+    shortDescription: 'Personel takibi, özlük dosyaları, izin yönetimi ve işe alım süreçlerini dijitalleştirir.',
+    color: 'from-cyan-500 to-cyan-700'
+  },
+  {
+    id: 'fokus717',
+    code: 'FOKUS717',
+    name: 'İçerik Tasarımı Sanal Asistanı',
+    title: '🎨 İçerik ve Tasarım Uzmanı',
+    icon: '🎨',
+    shortDescription: 'Görsel içerik, video ve sunum oluşturarak yaratıcı süreçlerinizi hızlandırır.',
+    color: 'from-pink-500 to-pink-700'
+  },
+  {
+    id: 'fokus808',
+    code: 'FOKUS808',
+    name: 'Sosyal Medya Sanal Asistanı',
+    title: '📱 Sosyal Medya ve İletişim',
+    icon: '📱',
+    shortDescription: 'Sosyal medya yönetimi, içerik planlaması ve etkileşim analiziyle dijital varlığınızı güçlendirir.',
+    color: 'from-violet-500 to-violet-700'
+  },
+  {
+    id: 'fokus999',
+    code: 'FOKUS999',
+    name: 'Joker Sanal Asistan',
+    title: '🃏 Her İhtiyaca Özel Çözüm',
+    icon: '🃏',
+    shortDescription: 'İşletmenizin her alanına uyum sağlayan, özelleştirilebilir dijital destek.',
+    color: 'from-red-500 to-red-700'
+  }
+];
+
+export default function Ekibimiz() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <section className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            FOKUS Sanal Asistan Ekibi
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            9 farklı alana özel, yapay zeka destekli sanal asistanlarımızla
+            <br />
+            işletmenizin tüm süreçlerini otomatikleştirin
+          </p>
+        </section>
+
+        {/* Assistants Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {assistants.map((assistant) => (
+            <Link
+              key={assistant.id}
+              href={`/sanalasistanlar/${assistant.id}`}
+              className="group"
+            >
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full transform hover:-translate-y-2">
+                {/* Gradient Header */}
+                <div className={`bg-gradient-to-r ${assistant.color} p-6 text-white`}>
+                  <div className="text-6xl mb-4 text-center transform group-hover:scale-110 transition-transform">
+                    {assistant.icon}
+                  </div>
+                  <div className="text-sm font-semibold text-center opacity-90">
+                    {assistant.code}
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#860000] transition-colors">
+                    {assistant.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-4">
+                    {assistant.title}
+                  </p>
+                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                    {assistant.shortDescription}
+                  </p>
+                  <div className="flex items-center text-[#860000] font-semibold text-sm group-hover:translate-x-2 transition-transform">
+                    Detaylı İncele →
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Stats Section */}
+        <section className="bg-gradient-to-r from-[#860000] to-[#a30000] rounded-2xl shadow-xl p-8 md:p-12 text-white mb-16">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Sanal Asistanlarımızın Gücü
+          </h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-5xl font-bold mb-2">9</div>
+              <div className="text-lg opacity-90">Uzman Asistan</div>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl font-bold mb-2">7/24</div>
+              <div className="text-lg opacity-90">Kesintisiz Hizmet</div>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl font-bold mb-2">100+</div>
+              <div className="text-lg opacity-90">Özellik</div>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl font-bold mb-2">∞</div>
+              <div className="text-lg opacity-90">Ölçeklenebilir</div>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works */}
+        <section className="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-16">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            Nasıl Çalışır?
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-20 h-20 bg-[#860000] rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
+                1
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">İhtiyacınızı Belirleyin</h3>
+              <p className="text-gray-600">
+                9 asistan arasından işletmenizin ihtiyacına uygun olanı seçin
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-20 h-20 bg-[#860000] rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
+                2
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Paketi Seçin</h3>
+              <p className="text-gray-600">
+                Standart, Pro veya Premium paketlerden size uygun olanı tercih edin
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-20 h-20 bg-[#860000] rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
+                3
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Hemen Kullanmaya Başlayın</h3>
+              <p className="text-gray-600">
+                Kurulum ve entegrasyon desteğiyle asistanınız dakikalar içinde aktif
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Hangi Asistan İşinize Yarar?
+          </h2>
+          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            Ücretsiz analiz formunu doldurun, size özel asistan önerilerimizi alın
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/analiz-formu"
+              className="bg-[#860000] hover:bg-[#b30000] text-white font-semibold py-4 px-8 rounded-lg transition-all transform hover:scale-105"
+            >
+              Ücretsiz Analiz Talep Edin
+            </Link>
+            <Link
+              href="/demo"
+              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-8 rounded-lg transition-all"
+            >
+              Demo Talep Edin
+            </Link>
+            <Link
+              href="/iletisim"
+              className="bg-transparent border-2 border-[#860000] text-[#860000] hover:bg-[#860000] hover:text-white font-semibold py-4 px-8 rounded-lg transition-all"
+            >
+              İletişime Geçin
+            </Link>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}
