@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import SessionProvider from "@/components/SessionProvider";
 import ChatWidget from "@/app/components/ChatWidget";
 import Footer from "@/components/Footer";
+import PromotionCTA from "@/app/components/PromotionCTA";
+import CookieConsent from "@/app/components/CookieConsent";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -31,6 +33,8 @@ export default function RootLayout({
           <Footer />
         </SessionProvider>
         <ChatWidget />
+        <PromotionCTA />
+        <CookieConsent />
       </body>
     </html>
   );
