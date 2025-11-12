@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'asistan.fokusistatistik.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'static.fokusistatistik.com',
+      },
     ],
   },
 };

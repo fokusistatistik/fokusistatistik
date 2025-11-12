@@ -8,52 +8,52 @@ export default function Footer() {
     {
       name: 'Instagram',
       url: 'https://www.instagram.com/fokusistatistik/',
-      icon: '/assets/img/instagram.png',
+      icon: 'https://www.fokusistatistik.com/assets/img/instagram.png',
     },
     {
       name: 'E-posta',
       url: 'mailto:bilgi@fokusistatistik.com',
-      icon: '/assets/img/eposta.png',
+      icon: 'https://www.fokusistatistik.com/assets/img/eposta.png',
     },
     {
       name: 'Facebook',
       url: 'https://www.facebook.com/profile.php?id=61577855105088',
-      icon: '/assets/img/facebook.png',
+      icon: 'https://www.fokusistatistik.com/assets/img/facebook.png',
     },
     {
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/company/fokusistatistik',
-      icon: '/assets/img/ln.png',
+      icon: 'https://www.fokusistatistik.com/assets/img/ln.png',
     },
     {
       name: 'Twitter',
       url: 'https://twitter.com/fokusistatistik',
-      icon: '/assets/img/twitter.png',
+      icon: 'https://www.fokusistatistik.com/assets/img/twitter.png',
     },
     {
       name: 'Telegram',
       url: 'https://t.me/fokusistatistikbot',
-      icon: '/assets/img/telegram.png',
+      icon: 'https://www.fokusistatistik.com/assets/img/telegram.png',
     },
     {
       name: 'Asistanlar',
       url: 'https://asistan.fokusistatistik.com/',
-      icon: '/assets/img/asistanfokus.png',
+      icon: 'https://www.fokusistatistik.com/assets/img/asistanfokus.png',
     },
     {
       name: 'WhatsApp',
       url: 'https://wa.me/905354040712?text=merhaba%20fokusistatistik',
-      icon: '/assets/img/whatsapp.png',
+      icon: 'https://www.fokusistatistik.com/assets/img/whatsapp.png',
     },
     {
       name: 'YouTube',
       url: 'https://www.youtube.com/@fokusistatistik',
-      icon: '/assets/img/youtube.png',
+      icon: 'https://www.fokusistatistik.com/assets/img/youtube.png',
     },
     {
       name: 'GitHub',
       url: 'https://github.com/fokusistatistik',
-      icon: '/assets/img/github.png',
+      icon: 'https://www.fokusistatistik.com/assets/img/github.png',
     },
   ];
 

@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   themeColor: "#860000",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   icons: {
-    icon: "/assets/img/favicon.png",
-    apple: "/assets/img/favicon.png",
-    shortcut: "/assets/img/favicon.png",
+    icon: "https://www.fokusistatistik.com/assets/img/favicon.png",
+    apple: "https://www.fokusistatistik.com/assets/img/favicon.png",
+    shortcut: "https://www.fokusistatistik.com/assets/img/favicon.png",
   },
   openGraph: {
     type: "website",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: "9 farklı sanal asistanla iş süreçlerinizi optimize edin. Yapay zeka destekli çözümler.",
     images: [
       {
-        url: "/assets/img/fokus-ekosistem-og.png",
+        url: "https://www.fokusistatistik.com/assets/img/fokus-ekosistem-og.jpg",
         width: 1200,
         height: 630,
         alt: "FOKUS Ekosistemi",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FOKUS İstatistik ve YZ Danışmanlığı",
     description: "9 farklı sanal asistanla iş süreçlerinizi optimize edin.",
-    images: ["/assets/img/fokus-ekosistem-og.png"],
+    images: ["https://www.fokusistatistik.com/assets/img/fokus-ekosistem-og.jpg"],
   },
 };
 
