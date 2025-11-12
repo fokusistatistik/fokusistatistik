@@ -25,10 +25,10 @@ export default function Header() {
   return (
     <header className="bg-[#860000] text-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-2.5">
           {/* Logo and Title */}
           <Link href="/" className="flex items-center space-x-3 hover:opacity-90 transition">
-            <div className="relative w-10 h-10">
+            <div className="relative w-16 h-16">
               <Image
                 src="https://www.fokusistatistik.com/assets/img/logobeyaz.png"
                 alt="FOKUS Logo"
@@ -41,13 +41,13 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6">
-            <Link href="/" className="hover:text-gray-200 transition">
+            <Link href="/" className="py-1 border-b-2 border-transparent hover:border-white hover:text-gray-100 transition">
               Anasayfa
             </Link>
-            <Link href="/hakkimizda" className="hover:text-gray-200 transition">
+            <Link href="/hakkimizda" className="py-1 border-b-2 border-transparent hover:border-white hover:text-gray-100 transition">
               Hakkımızda
             </Link>
-            <Link href="/ekibimiz" className="hover:text-gray-200 transition">
+            <Link href="/ekibimiz" className="py-1 border-b-2 border-transparent hover:border-white hover:text-gray-100 transition">
               Ekibimiz
             </Link>
 
@@ -57,28 +57,34 @@ export default function Header() {
               onMouseEnter={() => setIsDropdownOpen(true)}
               onMouseLeave={() => setIsDropdownOpen(false)}
             >
-              <button className="flex items-center space-x-1 hover:text-gray-200 transition">
+              <button className="flex items-center space-x-1 py-1 border-b-2 border-transparent hover:border-white hover:text-gray-100 transition">
                 <span>Sanal Asistanlar</span>
                 <ChevronDown size={16} />
               </button>
 
               {isDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white text-gray-800 rounded-lg shadow-xl py-2 max-h-96 overflow-y-auto">
+                <div className="absolute top-full left-0 mt-0 w-64 bg-gray-900 text-white rounded-lg shadow-xl py-2 max-h-96 overflow-y-auto border border-gray-700">
+                  <Link
+                    href="/sanalasistanlar"
+                    className="block px-4 py-2 hover:bg-[#860000] transition text-sm font-semibold border-b border-gray-700"
+                  >
+                    📋 Tüm Asistanlar
+                  </Link>
                   {assistants.map((assistant) => (
                     <Link
                       key={assistant.code}
                       href={`/sanalasistanlar/${assistant.code}`}
-                      className="block px-4 py-2 hover:bg-[#860000] hover:text-white transition text-sm"
+                      className="block px-4 py-2 hover:bg-[#860000] transition text-sm"
                     >
                       {assistant.name}
                     </Link>
                   ))}
-                  <hr className="my-2" />
+                  <hr className="my-2 border-gray-700" />
                   <a
                     href="https://asistan.fokusistatistik.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center px-4 py-2 hover:bg-[#860000] hover:text-white transition text-sm font-bold"
+                    className="flex items-center px-4 py-2 hover:bg-[#860000] transition text-sm font-bold"
                   >
                     <Image
                       src="https://www.fokusistatistik.com/assets/img/favicon.png"
@@ -93,16 +99,16 @@ export default function Header() {
               )}
             </div>
 
-            <Link href="/dijital" className="hover:text-gray-200 transition">
+            <Link href="/dijital" className="py-1 border-b-2 border-transparent hover:border-white hover:text-gray-100 transition">
               Dijital Çözümler
             </Link>
-            <Link href="/yapay-zeka-danismanligi" className="hover:text-gray-200 transition">
+            <Link href="/yapay-zeka-danismanligi" className="py-1 border-b-2 border-transparent hover:border-white hover:text-gray-100 transition">
               YZ Danışmanlığı
             </Link>
-            <Link href="/fiyatlandirma" className="hover:text-gray-200 transition">
+            <Link href="/fiyatlandirma" className="py-1 border-b-2 border-transparent hover:border-white hover:text-gray-100 transition">
               Fiyatlandırma
             </Link>
-            <Link href="/iletisim" className="hover:text-gray-200 transition">
+            <Link href="/iletisim" className="py-1 border-b-2 border-transparent hover:border-white hover:text-gray-100 transition">
               İletişim
             </Link>
 

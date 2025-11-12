@@ -33,11 +33,21 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Prevent horizontal overflow on all elements */
+* {
+  max-width: 100%;
 }
 
 /* Custom scrollbar for webkit browsers */

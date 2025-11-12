@@ -6,9 +6,11 @@ export default function PromotionCTA() {
   const [showToast, setShowToast] = useState(false);
   const [showFloatingCta, setShowFloatingCta] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [isFloatingClosing, setIsFloatingClosing] = useState(false);
 
   useEffect(() => {
     const toastSeen = localStorage.getItem('fokusToastSeen');
+    const floatingCtaDismissed = localStorage.getItem('fokusFloatingCtaDismissed');
 
     if (!toastSeen) {
       // Show toast after 5 seconds
@@ -22,8 +24,8 @@ export default function PromotionCTA() {
       }, 5000);
 
       return () => clearTimeout(timer);
-    } else {
-      // If toast was already seen, show floating CTA immediately
+    } else if (!floatingCtaDismissed) {
+      // If toast was already seen but floating CTA wasn't dismissed, show it
       setShowFloatingCta(true);
     }
   }, []);
@@ -36,6 +38,15 @@ export default function PromotionCTA() {
       setShowFloatingCta(true);
       localStorage.setItem('fokusToastSeen', 'true');
     }, 500);
+  };
+
+  const closeFloatingCta = () => {
+    setIsFloatingClosing(true);
+    setTimeout(() => {
+      setShowFloatingCta(false);
+      setIsFloatingClosing(false);
+      localStorage.setItem('fokusFloatingCtaDismissed', 'true');
+    }, 300);
   };
 
   const trackToastClick = () => {
@@ -112,16 +123,31 @@ export default function PromotionCTA() {
 
       {/* Floating CTA Button */}
       {showFloatingCta && (
-        <a
-          href="https://asistan.fokusistatistik.com/ucretsiz.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={trackFloatingClick}
-          className="fixed top-[66px] left-[30px] bg-gradient-to-br from-[#860000] to-[#a30000] text-white px-5 py-3 rounded-full shadow-xl font-semibold text-xs z-[9999] transition-all hover:-translate-y-1 hover:shadow-2xl flex items-center gap-2 animate-slideInUp hover:scale-105 max-md:top-auto max-md:bottom-5 max-md:left-1/2 max-md:-translate-x-1/2 max-md:px-6 max-md:py-3.5"
+        <div
+          className={`fixed top-[86px] left-[30px] z-[9999] max-md:top-auto max-md:bottom-5 max-md:left-1/2 max-md:-translate-x-1/2 ${
+            isFloatingClosing ? 'animate-fadeOut' : 'animate-slideInUp'
+          }`}
         >
-          <span className="text-[17px] animate-bounce">🎁</span>
-          <span className="whitespace-nowrap">1 Ay Ücretsiz Dene</span>
-        </a>
+          <div className="relative group">
+            <a
+              href="https://asistan.fokusistatistik.com/ucretsiz.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={trackFloatingClick}
+              className="bg-gradient-to-br from-[#860000] to-[#a30000] text-white px-5 py-3 rounded-full shadow-xl font-semibold text-xs transition-all hover:-translate-y-1 hover:shadow-2xl flex items-center gap-2 hover:scale-105 max-md:px-6 max-md:py-3.5"
+            >
+              <span className="text-[17px] animate-bounce">🎁</span>
+              <span className="whitespace-nowrap">1 Ay Ücretsiz Dene</span>
+            </a>
+            <button
+              onClick={closeFloatingCta}
+              className="absolute -top-2 -right-2 bg-white text-[#860000] rounded-full w-6 h-6 flex items-center justify-center text-lg font-bold shadow-md hover:bg-gray-100 transition-all hover:scale-110 opacity-0 group-hover:opacity-100"
+              aria-label="Kapat"
+            >
+              ×
+            </button>
+          </div>
+        </div>
       )}
 
       <style jsx>{`
@@ -168,6 +194,19 @@ export default function PromotionCTA() {
 
         .animate-slideInUp {
           animation: slideInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeOut {
+          from {
+            opacity: 1;
+          }
+          to {
+            opacity: 0;
+          }
+        }
+
+        .animate-fadeOut {
+          animation: fadeOut 0.3s ease-out;
         }
 
         @media (max-width: 768px) {
