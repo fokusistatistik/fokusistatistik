@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 
 interface FAQ {
@@ -292,7 +291,7 @@ export default function SSS() {
         </section>
       </main>
 
-      <Footer />
+      
     </div>
   );
 }

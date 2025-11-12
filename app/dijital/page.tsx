@@ -1,5 +1,4 @@
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import {
   Stethoscope,
   GraduationCap,
@@ -243,7 +242,7 @@ export default function DijitalCozumler() {
         </section>
       </main>
 
-      <Footer />
+      
     </div>
   );
 }

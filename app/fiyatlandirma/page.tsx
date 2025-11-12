@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { Check, Star, Zap, Crown, ArrowRight } from 'lucide-react';
 
 export default function Fiyatlandirma() {
@@ -224,7 +223,7 @@ export default function Fiyatlandirma() {
         </section>
       </main>
 
-      <Footer />
+      
     </div>
   );
 }

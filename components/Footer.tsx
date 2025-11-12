@@ -94,7 +94,17 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/neden-biz" className="hover:text-[#ffc107] transition">
-                  Neden Biz?
+                  Neden FOKUS?
+                </Link>
+              </li>
+              <li>
+                <Link href="/ekibimiz" className="hover:text-[#ffc107] transition">
+                  Ekibimiz
+                </Link>
+              </li>
+              <li>
+                <Link href="/yapay-zeka-danismanligi" className="hover:text-[#ffc107] transition">
+                  YZ Danışmanlığı
                 </Link>
               </li>
               <li>
@@ -109,11 +119,6 @@ export default function Footer() {
             <h3 className="font-bold text-[#ffc107] mb-3">Hizmetler</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/dijital" className="hover:text-[#ffc107] transition">
-                  Dijital Çözümler
-                </Link>
-              </li>
-              <li>
                 <Link href="/sanalasistanlar" className="hover:text-[#ffc107] transition">
                   Sanal Asistanlar
                 </Link>
@@ -121,6 +126,21 @@ export default function Footer() {
               <li>
                 <Link href="/fiyatlandirma" className="hover:text-[#ffc107] transition">
                   Fiyatlandırma
+                </Link>
+              </li>
+              <li>
+                <Link href="/demo" className="hover:text-[#ffc107] transition">
+                  Demo Talep Et
+                </Link>
+              </li>
+              <li>
+                <Link href="/analiz-formu" className="hover:text-[#ffc107] transition">
+                  Ücretsiz Analiz
+                </Link>
+              </li>
+              <li>
+                <Link href="/dashboard" className="hover:text-[#ffc107] transition">
+                  Panel
                 </Link>
               </li>
             </ul>
@@ -135,13 +155,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/dokumantasyon" className="hover:text-[#ffc107] transition">
-                  Dokümantasyon
+                <Link href="/giris" className="hover:text-[#ffc107] transition">
+                  Giriş Yap
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-[#ffc107] transition">
-                  Blog
+                <Link href="/profil" className="hover:text-[#ffc107] transition">
+                  Profilim
+                </Link>
+              </li>
+              <li>
+                <Link href="/siparisler" className="hover:text-[#ffc107] transition">
+                  Siparişlerim
                 </Link>
               </li>
             </ul>
@@ -151,18 +176,23 @@ export default function Footer() {
             <h3 className="font-bold text-[#ffc107] mb-3">Yasal</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/kvkk" className="hover:text-[#ffc107] transition">
-                  KVKK
+                <Link href="/kvkk-aydinlatma" className="hover:text-[#ffc107] transition">
+                  KVKK Aydınlatma
                 </Link>
               </li>
               <li>
-                <Link href="/gizlilik" className="hover:text-[#ffc107] transition">
+                <Link href="/gizlilik-politikasi" className="hover:text-[#ffc107] transition">
                   Gizlilik Politikası
                 </Link>
               </li>
               <li>
                 <Link href="/kullanim-kosullari" className="hover:text-[#ffc107] transition">
                   Kullanım Koşulları
+                </Link>
+              </li>
+              <li>
+                <Link href="/cerez-politikasi" className="hover:text-[#ffc107] transition">
+                  Çerez Politikası
                 </Link>
               </li>
             </ul>
@@ -175,13 +205,18 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-center text-sm text-gray-400">
           <p>
-            © 2025 FOKUS İstatistik ve YZ Danışmanlığı
+            © {new Date().getFullYear()} FOKUS İstatistik ve YZ Danışmanlığı
             <span className="mx-3">|</span>
             Tüm Hakları Saklıdır
           </p>
           <p className="mt-2 text-xs">
             Yapay Zeka ve Veri Bilimi ile İş Süreçlerinizi Optimize Edin
           </p>
+          <div className="flex flex-wrap justify-center gap-6 mt-4 text-xs">
+            <span>🎯 22+ Yıllık Deneyim</span>
+            <span>🤖 9 Sanal Asistan</span>
+            <span>⏰ 7/24 Destek</span>
+          </div>
         </div>
       </div>
     </footer>

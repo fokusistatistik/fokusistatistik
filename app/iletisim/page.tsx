@@ -2,7 +2,6 @@
 
 import { useState, FormEvent } from 'react';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 export default function Iletisim() {
@@ -243,7 +242,7 @@ export default function Iletisim() {
         </section>
       </main>
 
-      <Footer />
+      
     </div>
   );
 }

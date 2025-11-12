@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { Chrome, Mail, Lock, ArrowRight, Shield, Zap } from 'lucide-react';
 
 export default function GirisPage() {
@@ -194,7 +193,7 @@ export default function GirisPage() {
         </div>
       </main>
 
-      <Footer />
+      
     </div>
   );
 }

@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import {
   ArrowRight,
   Bot,
@@ -503,7 +502,7 @@ export default function SanalAsistanlar() {
         </section>
       </main>
 
-      <Footer />
+      
     </div>
   );
 }

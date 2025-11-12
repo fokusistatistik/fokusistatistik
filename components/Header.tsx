@@ -44,11 +44,11 @@ export default function Header() {
             <Link href="/" className="hover:text-[#ffc107] transition">
               Anasayfa
             </Link>
-            <Link href="/dijital" className="hover:text-[#ffc107] transition">
-              Dijital Çözümlerimiz
+            <Link href="/hakkimizda" className="hover:text-[#ffc107] transition">
+              Hakkımızda
             </Link>
-            <Link href="/neden-biz" className="hover:text-[#ffc107] transition">
-              Neden Biz?
+            <Link href="/ekibimiz" className="hover:text-[#ffc107] transition">
+              Ekibimiz
             </Link>
 
             {/* Dropdown Menu */}
@@ -63,7 +63,7 @@ export default function Header() {
               </button>
 
               {isDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white text-gray-800 rounded-lg shadow-xl py-2">
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white text-gray-800 rounded-lg shadow-xl py-2 max-h-96 overflow-y-auto">
                   {assistants.map((assistant) => (
                     <Link
                       key={assistant.code}
@@ -93,11 +93,14 @@ export default function Header() {
               )}
             </div>
 
-            <Link href="/yapay-zeka-cagi" className="hover:text-[#ffc107] transition">
-              Yapay Zeka Çağı
+            <Link href="/yapay-zeka-danismanligi" className="hover:text-[#ffc107] transition">
+              YZ Danışmanlığı
             </Link>
-            <Link href="/sss" className="hover:text-[#ffc107] transition">
-              S.S.S.
+            <Link href="/fiyatlandirma" className="hover:text-[#ffc107] transition">
+              Fiyatlandırma
+            </Link>
+            <Link href="/demo" className="hover:text-[#ffc107] transition">
+              Demo
             </Link>
             <Link href="/iletisim" className="hover:text-[#ffc107] transition">
               İletişim
@@ -147,11 +150,11 @@ export default function Header() {
               <Link href="/" className="hover:text-[#ffc107] transition py-2">
                 Anasayfa
               </Link>
-              <Link href="/dijital" className="hover:text-[#ffc107] transition py-2">
-                Dijital Çözümlerimiz
+              <Link href="/hakkimizda" className="hover:text-[#ffc107] transition py-2">
+                Hakkımızda
               </Link>
-              <Link href="/neden-biz" className="hover:text-[#ffc107] transition py-2">
-                Neden Biz?
+              <Link href="/ekibimiz" className="hover:text-[#ffc107] transition py-2">
+                Ekibimiz
               </Link>
 
               <details className="group">
@@ -187,11 +190,14 @@ export default function Header() {
                 </div>
               </details>
 
-              <Link href="/yapay-zeka-cagi" className="hover:text-[#ffc107] transition py-2">
-                Yapay Zeka Çağı
+              <Link href="/yapay-zeka-danismanligi" className="hover:text-[#ffc107] transition py-2">
+                YZ Danışmanlığı
               </Link>
-              <Link href="/sss" className="hover:text-[#ffc107] transition py-2">
-                S.S.S.
+              <Link href="/fiyatlandirma" className="hover:text-[#ffc107] transition py-2">
+                Fiyatlandırma
+              </Link>
+              <Link href="/demo" className="hover:text-[#ffc107] transition py-2">
+                Demo
               </Link>
               <Link href="/iletisim" className="hover:text-[#ffc107] transition py-2">
                 İletişim
