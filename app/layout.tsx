@@ -20,6 +20,28 @@ export const metadata: Metadata = {
     apple: "/assets/img/favicon.png",
     shortcut: "/assets/img/favicon.png",
   },
+  openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    url: "https://www.fokusistatistik.com",
+    siteName: "FOKUS İstatistik",
+    title: "FOKUS İstatistik ve YZ Danışmanlığı | Sanal Asistanlar",
+    description: "9 farklı sanal asistanla iş süreçlerinizi optimize edin. Yapay zeka destekli çözümler.",
+    images: [
+      {
+        url: "/assets/img/fokus-ekosistem-og.png",
+        width: 1200,
+        height: 630,
+        alt: "FOKUS Ekosistemi",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FOKUS İstatistik ve YZ Danışmanlığı",
+    description: "9 farklı sanal asistanla iş süreçlerinizi optimize edin.",
+    images: ["/assets/img/fokus-ekosistem-og.png"],
+  },
 };
 
 export default function RootLayout({
