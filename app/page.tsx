@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import Header from '@/components/Header';
 import {
   TrendingUp,
   Users,
@@ -135,7 +134,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
 
       {/* Toast Notification */}
       {showToast && (

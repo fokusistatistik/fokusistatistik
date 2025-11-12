@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Header from '@/components/Header';
 import { Check, Star, Zap, Crown, ArrowRight } from 'lucide-react';
 
 export default function Fiyatlandirma() {
@@ -63,7 +62,6 @@ export default function Fiyatlandirma() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
 
       <main className="flex-grow">
         {/* Hero */}

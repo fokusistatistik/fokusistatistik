@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Header from '@/components/Header';
 import {
   ArrowRight,
   Bot,
@@ -214,7 +213,6 @@ export default function SanalAsistanlar() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
 
       <main className="flex-grow">
         {/* Hero Section */}

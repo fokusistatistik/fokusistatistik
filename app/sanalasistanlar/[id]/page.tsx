@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import Header from '@/components/Header';
 import { CheckCircle2, X } from 'lucide-react';
 import { notFound } from 'next/navigation';
 
@@ -1573,7 +1572,6 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
 
       <main className="flex-grow">
         {/* Hero Section with Image */}

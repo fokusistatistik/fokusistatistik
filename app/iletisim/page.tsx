@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import Header from '@/components/Header';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 export default function Iletisim() {
@@ -47,7 +46,6 @@ export default function Iletisim() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
 
       <main className="flex-grow">
         {/* Hero Section */}

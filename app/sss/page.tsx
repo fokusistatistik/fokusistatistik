@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Header from '@/components/Header';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 
 interface FAQ {
@@ -213,7 +212,6 @@ export default function SSS() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
 
       <main className="flex-grow">
         {/* Hero Section */}

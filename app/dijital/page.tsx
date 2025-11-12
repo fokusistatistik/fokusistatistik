@@ -1,4 +1,3 @@
-import Header from '@/components/Header';
 import {
   Stethoscope,
   GraduationCap,
@@ -114,7 +113,6 @@ export default function DijitalCozumler() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
 
       <main className="flex-grow">
         {/* Hero Section */}

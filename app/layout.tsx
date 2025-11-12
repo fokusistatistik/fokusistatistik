@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SessionProvider from "@/components/SessionProvider";
+import Header from "@/components/Header";
 import ChatWidget from "@/app/components/ChatWidget";
 import Footer from "@/components/Footer";
 import PromotionCTA from "@/app/components/PromotionCTA";
@@ -15,8 +16,9 @@ export const metadata: Metadata = {
   themeColor: "#860000",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   icons: {
-    icon: "/favicon.ico",
-    apple: "/icon-192x192.png",
+    icon: "/assets/img/favicon.png",
+    apple: "/assets/img/favicon.png",
+    shortcut: "/assets/img/favicon.png",
   },
 };
 
@@ -28,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className="antialiased">
+        <Header />
         <SessionProvider>
           {children}
           <Footer />
