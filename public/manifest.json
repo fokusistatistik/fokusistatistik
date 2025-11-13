@@ -7,14 +7,7 @@
   "background_color": "#ffffff",
   "theme_color": "#860000",
   "orientation": "portrait-primary",
-  "icons": [
-    {
-      "src": "/assets/img/fokus216kare.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
-  ],
+  "icons": [],
   "categories": ["business", "productivity", "utilities"],
   "lang": "tr",
   "dir": "ltr"
