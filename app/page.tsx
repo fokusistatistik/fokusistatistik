@@ -226,7 +226,7 @@ export default function Home() {
 
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-5xl mx-auto text-center">
-              <h1 className="text-3xl lg:text-5xl font-bold mb-8 leading-tight">
+              <h1 className="text-2xl lg:text-4xl font-semibold mb-8 leading-relaxed tracking-wide">
                 Yapay Zekâ Dalgasına Katılın — FOKUS ile Dijitalleşin, Daha Hızlı, Daha Kârlı Olun
               </h1>
 

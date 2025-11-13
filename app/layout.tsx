@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SessionProvider from "@/components/SessionProvider";
 import Header from "@/components/Header";
 import ChatWidget from "@/app/components/ChatWidget";
+import VapiWidget from "@/app/components/VapiWidget";
 import Footer from "@/components/Footer";
 import PromotionCTA from "@/app/components/PromotionCTA";
 import CookieConsent from "@/app/components/CookieConsent";
@@ -58,6 +59,7 @@ export default function RootLayout({
           <Footer />
         </SessionProvider>
         <ChatWidget />
+        <VapiWidget />
         <PromotionCTA />
         <CookieConsent />
       </body>

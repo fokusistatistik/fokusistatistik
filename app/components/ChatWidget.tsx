@@ -335,8 +335,8 @@ export default function ChatWidget() {
                 />
               </div>
               <div className="chat-header-info">
-                <h3>FOKUS Asistan</h3>
-                <p>Size nasıl yardımcı olabilirim?</p>
+                <h3>FOKUS216</h3>
+                <p>Müşteri Hizmetleri Asistanı</p>
               </div>
             </div>
 
