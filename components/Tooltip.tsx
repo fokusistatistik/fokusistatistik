@@ -140,7 +140,11 @@ export default function Tooltip({
  * FormTooltip - Specifically for form fields
  * Shows next to labels
  */
-export function FormTooltip({ label, tooltip }: { label: string; tooltip: string }) {
+export function FormTooltip({ label, tooltip }: { label?: string; tooltip: string }) {
+  if (!label) {
+    return <Tooltip content={tooltip} position="right" />;
+  }
+
   return (
     <div className="flex items-center gap-2">
       <label className="block text-sm font-medium text-gray-700">

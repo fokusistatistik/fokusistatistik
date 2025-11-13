@@ -194,7 +194,7 @@ export default function ProfilPage() {
                 </p>
               )}
             </div>
-            <SaveIndicator lastSaved={lastSaved} saving={saving} />
+            <SaveIndicator lastSaved={lastSaved} isSaving={saving} hasUnsavedChanges={false} />
           </div>
         </div>
 
@@ -209,7 +209,7 @@ export default function ProfilPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
                   <User className="w-4 h-4" />
                   Ad *
-                  <FormTooltip content="Adınızı girin" />
+                  <FormTooltip tooltip="Adınızı girin" />
                 </label>
                 <input
                   type="text"
@@ -225,7 +225,7 @@ export default function ProfilPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
                   <User className="w-4 h-4" />
                   Soyad *
-                  <FormTooltip content="Soyadınızı girin" />
+                  <FormTooltip tooltip="Soyadınızı girin" />
                 </label>
                 <input
                   type="text"
@@ -244,7 +244,7 @@ export default function ProfilPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
                   <Building2 className="w-4 h-4" />
                   Şirket (Opsiyonel)
-                  <FormTooltip content="Çalıştığınız şirket veya kurum adı" />
+                  <FormTooltip tooltip="Çalıştığınız şirket veya kurum adı" />
                 </label>
                 <input
                   type="text"
@@ -259,7 +259,7 @@ export default function ProfilPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
                   Doğum Yılı
-                  <FormTooltip content="Doğum yılınızı seçin" />
+                  <FormTooltip tooltip="Doğum yılınızı seçin" />
                 </label>
                 <select
                   value={formData.birthYear || ''}
@@ -279,7 +279,7 @@ export default function ProfilPage() {
               <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
                 <Phone className="w-4 h-4" />
                 Telefon
-                <FormTooltip content="Telefon numaranızı girin (5XX XXX XX XX)" />
+                <FormTooltip tooltip="Telefon numaranızı girin (5XX XXX XX XX)" />
               </label>
               <input
                 type="tel"

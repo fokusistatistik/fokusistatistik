@@ -65,7 +65,7 @@ export function useFormValidation<T>(schema: z.Schema<T>) {
       return true;
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const fieldErrors = error.errors.map(err => err.message);
+        const fieldErrors = error.issues.map((err: any) => err.message);
         setErrors(prev => [...prev, ...fieldErrors]);
         return false;
       }
@@ -106,7 +106,7 @@ export function useRealtimeValidation<T>(schema: z.Schema<T>) {
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const errorMessage = error.errors[0]?.message || 'Geçersiz değer';
+        const errorMessage = error.issues[0]?.message || 'Geçersiz değer';
         setFieldErrors(prev => ({
           ...prev,
           [fieldName]: errorMessage,

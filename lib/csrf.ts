@@ -150,5 +150,5 @@ export function getClientIp(request: NextRequest): string {
   }
 
   // Fallback
-  return request.ip || 'unknown';
+  return request.headers.get('x-forwarded-for') || 'unknown';
 }

@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Mock URL döndür
-    const mockLogoUrl = `https://static.fokusistatistik.com/logos/${session.user.id}-${Date.now()}.${file.type.split('/')[1]}`;
+    const mockLogoUrl = `https://static.fokusistatistik.com/logos/${session.user.email}-${Date.now()}.${file.type.split('/')[1]}`;
 
     return NextResponse.json({
       success: true,

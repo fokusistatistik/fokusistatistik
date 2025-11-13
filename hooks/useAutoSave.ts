@@ -40,7 +40,7 @@ export function useAutoSave<T>({
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
 
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastDataRef = useRef<T>(data);
   const isMountedRef = useRef(true);
 

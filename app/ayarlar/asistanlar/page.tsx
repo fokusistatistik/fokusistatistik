@@ -3,8 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'sonner';
 import './styles.css';
 import TeknikDestekChatbot from '@/components/TeknikDestekChatbot';
 
@@ -389,7 +388,7 @@ export default function AssistantSettingsPage() {
 
   // Add CRM Personnel (FOKUS520)
   const addCrmPersonnel = () => {
-    if (crmPersonnel.length >= 5) {
+    if (crmPersonnel && crmPersonnel.length >= 5) {
       toast.warning('Maksimum 5 personel ekleyebilirsiniz');
       return;
     }
@@ -405,11 +404,11 @@ export default function AssistantSettingsPage() {
       fotoURL: '',
     };
 
-    setCrmPersonnel([...crmPersonnel, newPersonnel]);
+    setCrmPersonnel([...(crmPersonnel || []), newPersonnel]);
   };
 
   const removeCrmPersonnel = (id: string) => {
-    setCrmPersonnel(crmPersonnel.filter((p) => p.id !== id));
+    setCrmPersonnel((crmPersonnel || []).filter((p) => p.id !== id));
     // Remove photo if exists
     const newPhotos = { ...personnelPhotos };
     delete newPhotos[id];
@@ -421,7 +420,7 @@ export default function AssistantSettingsPage() {
 
   const updateCrmPersonnel = (id: string, field: string, value: string) => {
     setCrmPersonnel(
-      crmPersonnel.map((p) => (p.id === id ? { ...p, [field]: value } : p))
+      (crmPersonnel || []).map((p) => (p.id === id ? { ...p, [field]: value } : p))
     );
   };
 
@@ -561,7 +560,7 @@ export default function AssistantSettingsPage() {
 
     // Upload photos for CRM personnel
     const updatedPersonnel = await Promise.all(
-      crmPersonnel.map(async (personnel) => {
+      (crmPersonnel || []).map(async (personnel) => {
         let photoURL = personnel.fotoURL;
         if (personnelPhotos[personnel.id]) {
           const uploadedPhotoURL = await uploadPersonnelPhoto(personnel.id);
@@ -767,8 +766,6 @@ export default function AssistantSettingsPage() {
 
   return (
     <div className="assistant-settings-container">
-      <ToastContainer position="top-right" autoClose={3000} />
-
       {/* Header */}
       <div className="assistant-header">
         <button onClick={() => router.push('/ayarlar')} className="btn-back">
@@ -1211,14 +1208,14 @@ export default function AssistantSettingsPage() {
                   type="button"
                   onClick={addCrmPersonnel}
                   className="btn-add-personnel"
-                  disabled={crmPersonnel.length >= 5}
+                  disabled={(crmPersonnel || []).length >= 5}
                 >
                   + Personel Ekle
                 </button>
               </div>
 
               <div className="personnel-list">
-                {crmPersonnel.map((personnel, index) => (
+                {(crmPersonnel || []).map((personnel, index) => (
                   <div key={personnel.id} className="personnel-item">
                     <div className="personnel-header">
                       <h4>Personel {index + 1}</h4>
@@ -1320,7 +1317,7 @@ export default function AssistantSettingsPage() {
                   </div>
                 ))}
 
-                {crmPersonnel.length === 0 && (
+                {(crmPersonnel || []).length === 0 && (
                   <div className="empty-state">
                     <p>Henüz personel eklenmedi. Yukarıdaki butona tıklayarak personel ekleyebilirsiniz.</p>
                   </div>

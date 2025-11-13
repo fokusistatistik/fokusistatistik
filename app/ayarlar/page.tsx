@@ -1708,7 +1708,7 @@ export default function SettingsPage() {
                   type="radio"
                   name="holidayStatus"
                   value="Sınırlı"
-                  defaultChecked={settings.holidayStatus === 'Sınırlı'}
+                  defaultChecked={settings.holidayStatus === 'Sınırlı' as any}
                 />
                 Sınırlı Hizmet
               </label>
@@ -1746,7 +1746,7 @@ export default function SettingsPage() {
                   type="radio"
                   name="backupFrequency"
                   value="Aylık"
-                  defaultChecked={settings.backupFrequency === 'Aylık'}
+                  defaultChecked={settings.backupFrequency === 'Aylık' as any}
                 />
                 Aylık
               </label>
@@ -1925,7 +1925,7 @@ export default function SettingsPage() {
                   <div className="package-info">
                     <h3>{pkg.name}</h3>
                     <p>{pkg.title}</p>
-                    <span className={`package-type type-${pkg.type.toLowerCase()}`}>
+                    <span className={`package-type type-${pkg.type?.toLowerCase() || 'default'}`}>
                       {pkg.type}
                     </span>
                   </div>

@@ -111,8 +111,8 @@ const dismiss = (toastId?: string | number) => {
 /**
  * Özel toast (custom)
  */
-const custom = (jsx: React.ReactNode, options?: ToastOptions) => {
-  return sonnerToast.custom(jsx, {
+const custom = (jsx: React.ReactNode | ((id: string | number) => React.ReactElement), options?: ToastOptions) => {
+  return sonnerToast.custom(jsx as any, {
     duration: options?.duration || 4000,
     dismissible: options?.dismissible !== false,
   });

@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/nextjs';
+import { browserTracingIntegration, replayIntegration } from '@sentry/nextjs';
 
 /**
  * Sentry Client Configuration
@@ -24,15 +25,8 @@ Sentry.init({
 
   // Integrations
   integrations: [
-    new Sentry.BrowserTracing({
-      // Set sampling rate for performance monitoring
-      tracePropagationTargets: [
-        'localhost',
-        'fokusistatistik.com',
-        /^https:\/\/.*\.fokusistatistik\.com/,
-      ],
-    }),
-    new Sentry.Replay({
+    browserTracingIntegration(),
+    replayIntegration({
       // Mask all text content, images, etc.
       maskAllText: true,
       blockAllMedia: true,

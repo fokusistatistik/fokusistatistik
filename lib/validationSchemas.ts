@@ -205,7 +205,7 @@ export const staffSchema = z.object({
   location: z.string().max(200).optional(),
   details: z.string().max(1000).optional(),
   note: z.string().max(500).optional(),
-  services: z.record(z.boolean()),
+  services: z.record(z.string(), z.boolean()),
 });
 
 export type StaffData = z.infer<typeof staffSchema>;
@@ -263,7 +263,7 @@ export type KurumsalSettingsData = z.infer<typeof kurumsalSettingsSchema>;
  * Zod hatalarını kullanıcı dostu formata çevirir
  */
 export function formatZodError(error: z.ZodError): string[] {
-  return error.errors.map(err => err.message);
+  return error.issues.map((err: any) => err.message);
 }
 
 /**
