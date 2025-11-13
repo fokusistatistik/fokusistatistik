@@ -93,7 +93,7 @@ export default function Fiyatlandirma() {
                   }`}
                 >
                   {plan.popular && (
-                    <div className="absolute top-0 right-0 bg-[#ffc107] text-[#860000] px-4 py-1 rounded-bl-lg font-bold text-sm">
+                    <div className="absolute top-0 right-0 bg-white text-[#860000] px-4 py-1 rounded-bl-lg font-bold text-sm shadow-md">
                       En Popüler
                     </div>
                   )}
@@ -212,7 +212,7 @@ export default function Fiyatlandirma() {
 
             <Link
               href="/giris"
-              className="inline-flex items-center bg-[#ffc107] text-[#860000] px-10 py-5 rounded-full font-bold text-xl hover:bg-yellow-300 transition shadow-2xl"
+              className="inline-flex items-center bg-white text-[#860000] px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-100 transition shadow-2xl"
             >
               Ücretsiz Deneyin
               <ArrowRight className="ml-3" />

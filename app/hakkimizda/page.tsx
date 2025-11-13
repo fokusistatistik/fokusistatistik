@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Hakkımızda | FOKUS İstatistik - Veri Bilimi ve Yapay Zeka Çözümleri',
@@ -13,8 +14,13 @@ export default function Hakkimizda() {
         {/* Hero Section */}
         <section className="text-center mb-16">
           <div className="inline-block mb-6">
-            <div className="w-32 h-32 bg-gradient-to-br from-[#860000] to-[#a30000] rounded-full flex items-center justify-center text-white text-6xl font-bold shadow-xl">
-              F
+            <div className="relative w-40 h-40 mx-auto">
+              <Image
+                src="https://static.fokusistatistik.com/logolar/fokuslogo1.png"
+                alt="FOKUS Logo"
+                fill
+                className="object-contain"
+              />
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">

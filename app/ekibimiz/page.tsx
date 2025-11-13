@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Ekibimiz - FOKUS Sanal Asistanlar | 9 Uzman AI Asistan',
@@ -12,7 +13,7 @@ interface Assistant {
   code: string;
   name: string;
   title: string;
-  icon: string;
+  image: string;
   shortDescription: string;
   color: string;
 }
@@ -21,9 +22,9 @@ const assistants: Assistant[] = [
   {
     id: 'fokus001',
     code: 'FOKUS001',
-    name: 'E-Ticaret Sanal Asistanı',
-    title: '🛍️ E-Ticaret ve Yönetim Uzmanı',
-    icon: '🛍️',
+    name: 'Yönetici Sanal Asistanı',
+    title: 'Yönetici Asistanı',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus001.png',
     shortDescription: 'Stok yönetimi, sipariş takibi ve müşteri analiziyle e-ticaret süreçlerinizi optimize eder.',
     color: 'from-blue-500 to-blue-700'
   },
@@ -31,8 +32,8 @@ const assistants: Assistant[] = [
     id: 'fokus216',
     code: 'FOKUS216',
     name: 'Müşteri Hizmetleri Sanal Asistanı',
-    title: '💬 7/24 Müşteri Desteği',
-    icon: '💬',
+    title: 'Müşteri Hizmetleri',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus216.png',
     shortDescription: 'Müşteri sorularına anında yanıt verir, destek taleplerini yönetir ve memnuniyeti artırır.',
     color: 'from-green-500 to-green-700'
   },
@@ -40,8 +41,8 @@ const assistants: Assistant[] = [
     id: 'fokus314',
     code: 'FOKUS314',
     name: 'Veri Analisti Sanal Asistanı',
-    title: '📊 Veri ve İstatistik Uzmanı',
-    icon: '📊',
+    title: 'Veri Analisti',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus314.png',
     shortDescription: 'Verilerinizi analiz eder, görselleştirir ve stratejik kararlar için raporlar sunar.',
     color: 'from-purple-500 to-purple-700'
   },
@@ -49,8 +50,8 @@ const assistants: Assistant[] = [
     id: 'fokus520',
     code: 'FOKUS520',
     name: 'Pazarlama Sanal Asistanı',
-    title: '📈 Pazarlama ve Lead Takip',
-    icon: '📈',
+    title: 'Pazarlama & Lead Takip',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus520.png',
     shortDescription: 'Kampanya yönetimi, lead takibi ve müşteri skorlamasıyla pazarlama süreçlerinizi otomatikleştirir.',
     color: 'from-orange-500 to-orange-700'
   },
@@ -58,8 +59,8 @@ const assistants: Assistant[] = [
     id: 'fokus618',
     code: 'FOKUS618',
     name: 'Finans Sanal Asistanı',
-    title: '💰 Finans ve Fatura Yönetimi',
-    icon: '💰',
+    title: 'Finans & Fatura',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus618.png',
     shortDescription: 'Fatura işlemleri, gelir-gider takibi ve ödeme hatırlatmalarını otomatik yönetir.',
     color: 'from-emerald-500 to-emerald-700'
   },
@@ -67,8 +68,8 @@ const assistants: Assistant[] = [
     id: 'fokus707',
     code: 'FOKUS707',
     name: 'İnsan Kaynakları Sanal Asistanı',
-    title: '👥 İK ve Personel Yönetimi',
-    icon: '👥',
+    title: 'İnsan Kaynakları',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus707.png',
     shortDescription: 'Personel takibi, özlük dosyaları, izin yönetimi ve işe alım süreçlerini dijitalleştirir.',
     color: 'from-cyan-500 to-cyan-700'
   },
@@ -76,8 +77,8 @@ const assistants: Assistant[] = [
     id: 'fokus717',
     code: 'FOKUS717',
     name: 'İçerik Tasarımı Sanal Asistanı',
-    title: '🎨 İçerik ve Tasarım Uzmanı',
-    icon: '🎨',
+    title: 'İçerik Tasarımı',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus717.png',
     shortDescription: 'Görsel içerik, video ve sunum oluşturarak yaratıcı süreçlerinizi hızlandırır.',
     color: 'from-pink-500 to-pink-700'
   },
@@ -85,8 +86,8 @@ const assistants: Assistant[] = [
     id: 'fokus808',
     code: 'FOKUS808',
     name: 'Sosyal Medya Sanal Asistanı',
-    title: '📱 Sosyal Medya ve İletişim',
-    icon: '📱',
+    title: 'Sosyal Medya & İletişim',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus808.png',
     shortDescription: 'Sosyal medya yönetimi, içerik planlaması ve etkileşim analiziyle dijital varlığınızı güçlendirir.',
     color: 'from-violet-500 to-violet-700'
   },
@@ -94,8 +95,8 @@ const assistants: Assistant[] = [
     id: 'fokus999',
     code: 'FOKUS999',
     name: 'Joker Sanal Asistan',
-    title: '🃏 Her İhtiyaca Özel Çözüm',
-    icon: '🃏',
+    title: 'Joker Asistan',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus999.png',
     shortDescription: 'İşletmenizin her alanına uyum sağlayan, özelleştirilebilir dijital destek.',
     color: 'from-red-500 to-red-700'
   }
@@ -128,8 +129,13 @@ export default function Ekibimiz() {
               <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full transform hover:-translate-y-2">
                 {/* Gradient Header */}
                 <div className={`bg-gradient-to-r ${assistant.color} p-6 text-white`}>
-                  <div className="text-6xl mb-4 text-center transform group-hover:scale-110 transition-transform">
-                    {assistant.icon}
+                  <div className="relative w-24 h-24 mx-auto mb-4 transform group-hover:scale-110 transition-transform">
+                    <Image
+                      src={assistant.image}
+                      alt={assistant.name}
+                      fill
+                      className="object-contain rounded-full"
+                    />
                   </div>
                   <div className="text-sm font-semibold text-center opacity-90">
                     {assistant.code}
