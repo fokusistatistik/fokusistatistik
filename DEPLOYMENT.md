@@ -126,9 +126,120 @@ systemctl reload nginx
 
 ## 🔗 n8n Webhook Entegrasyonu
 
-### Kullanıcı Yönetimi Webhook'u
+### ⚠️ Test Mode - Webhook Endpoint'leri
+
+**Tüm webhook'lar şu an TEST modunda:**
+- Test URL: `webhook-test/`
+- Production URL: `webhook/` (backend hazır olunca değiştirilecek)
+
+---
+
+### 1. Login Webhook - Mevcut Kullanıcı Girişi
+
+**Endpoint:** `https://n8n.fokusistatistik.com/webhook-test/fokuswebsitelogin`
+
+**Method:** POST
+
+**Request Body:**
+```javascript
+{
+  "action": "login",
+  "email": "user@example.com",
+  "googleId": "123456789",
+  "name": "John Doe",
+  "picture": "https://lh3.googleusercontent.com/...",
+  "loginAt": "2025-11-13T10:30:00.000Z",
+  "authMethod": "google"
+}
+```
+
+**Response (Başarılı):**
+```javascript
+{
+  "success": true,
+  "user": {
+    "email": "user@example.com",
+    "name": "John Doe",
+    "picture": "https://...",
+    "lastLogin": "2025-11-13T10:30:00.000Z",
+    // ... diğer kullanıcı verileri
+  }
+}
+```
+
+**Response (Kullanıcı Bulunamadı - 404):**
+```javascript
+{
+  "error": "User not found",
+  "message": "Please sign up first"
+}
+```
+
+---
+
+### 2. Sign Up Webhook - Yeni Kullanıcı Kaydı
+
+**Endpoint:** `https://n8n.fokusistatistik.com/webhook-test/fokuswebsitesignup`
+
+**Method:** POST
+
+#### 2a. Kullanıcı Kontrolü (Check)
+```javascript
+{
+  "action": "check",
+  "email": "user@example.com",
+  "googleId": "123456789"
+}
+
+// Response (Kullanıcı Varsa - 200):
+{
+  "exists": true,
+  "user": {...}
+}
+
+// Response (Kullanıcı Yoksa - 404):
+{
+  "exists": false
+}
+```
+
+#### 2b. Kullanıcı Kaydı (Register)
+```javascript
+{
+  "action": "register",
+  "email": "user@example.com",
+  "googleId": "123456789",
+  "name": "John Doe",
+  "displayName": "John Doe",
+  "picture": "https://lh3.googleusercontent.com/...",
+  "avatarUrl": "https://lh3.googleusercontent.com/...",
+  "emailSubscription": true,
+  "acceptedTerms": true,
+  "registeredAt": "2025-11-13T10:30:00.000Z",
+  "authMethod": "google",
+  "environment": "production"
+}
+
+// Response (Başarılı):
+{
+  "success": true,
+  "message": "User registered successfully",
+  "userId": "12345"
+}
+
+// Response (Kullanıcı Zaten Var - 409):
+{
+  "error": "User already exists"
+}
+```
+
+---
+
+### 3. Kullanıcı Yönetimi Webhook (Eski Sistem - Backward Compatibility)
 
 **Endpoint:** `https://n8n.fokusistatistik.com/webhook/fokuswebsitekullanicibilgileri`
+
+> ⚠️ Bu endpoint eski sistemi desteklemek için korunmuştur. Yeni implementasyonlar için yukarıdaki Login ve Sign Up webhook'larını kullanın.
 
 #### 1. Kullanıcı Kontrolü (Check)
 ```javascript
@@ -164,7 +275,7 @@ POST /webhook/fokuswebsitekullanicibilgileri
 { "success": true, "message": "User registered" }
 ```
 
-#### 3. Profil Getir (Get)
+#### 3. Profil Getir (Get) - DEPRECATED
 ```javascript
 POST /webhook/fokuswebsitekullanicibilgileri
 {
@@ -187,7 +298,7 @@ POST /webhook/fokuswebsitekullanicibilgileri
 }
 ```
 
-#### 4. Profil Güncelle (Update)
+#### 4. Profil Güncelle (Update) - DEPRECATED
 ```javascript
 POST /webhook/fokuswebsitekullanicibilgileri
 {

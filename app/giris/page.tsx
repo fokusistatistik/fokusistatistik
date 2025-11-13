@@ -12,16 +12,98 @@ export default function GirisPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [isSigningUp, setIsSigningUp] = useState(false);
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);
   const [checkingUser, setCheckingUser] = useState(false);
 
-  // Check if user is registered when authenticated
+  // Check auth flow when authenticated
   useEffect(() => {
     if (status === 'authenticated' && session && !checkingUser && !showWelcomeModal) {
-      checkUserRegistration();
+      // Get the auth flow from localStorage
+      const authFlow = localStorage.getItem('authFlow');
+
+      if (authFlow === 'login') {
+        handleLoginFlow();
+      } else if (authFlow === 'signup') {
+        handleSignUpFlow();
+      } else {
+        // Fallback: check user registration (backward compatibility)
+        checkUserRegistration();
+      }
     }
   }, [status, session]);
 
+  // LOGIN FLOW - For existing users
+  const handleLoginFlow = async () => {
+    setCheckingUser(true);
+    console.log('🔐 Processing login for:', session?.user?.email);
+
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+      });
+      const data = await response.json();
+
+      console.log('📋 Login response:', data);
+
+      if (data.success) {
+        // Successful login - redirect to dashboard
+        const firstName = session?.user?.name?.split(' ')[0] || 'tekrar';
+        toast.success(`Hoş geldiniz ${firstName}!`);
+        localStorage.removeItem('authFlow'); // Clean up
+        router.push('/dashboard');
+      } else if (data.userNotFound) {
+        // User not found - suggest sign up
+        toast.error('Kullanıcı bulunamadı. Lütfen önce kayıt olun.');
+        localStorage.removeItem('authFlow');
+      } else {
+        // Other error
+        toast.error(data.error || 'Giriş başarısız');
+        localStorage.removeItem('authFlow');
+      }
+    } catch (error) {
+      console.error('❌ Login error:', error);
+      toast.error('Giriş sırasında bir hata oluştu.');
+      localStorage.removeItem('authFlow');
+    } finally {
+      setCheckingUser(false);
+    }
+  };
+
+  // SIGN UP FLOW - For new users
+  const handleSignUpFlow = async () => {
+    setCheckingUser(true);
+    console.log('📝 Processing sign up for:', session?.user?.email);
+
+    try {
+      // Check if user can sign up (not already registered)
+      const response = await fetch('/api/auth/signup');
+      const data = await response.json();
+
+      console.log('📋 Sign up check response:', data);
+
+      if (data.canSignUp) {
+        // Show welcome modal
+        console.log('✅ User can sign up - showing welcome modal');
+        setShowWelcomeModal(true);
+      } else if (data.alreadyExists) {
+        // User already exists
+        toast.error('Bu e-posta zaten kayıtlı. Lütfen giriş yapın.');
+        localStorage.removeItem('authFlow');
+      } else {
+        toast.error(data.error || 'Kayıt kontrolü başarısız');
+        localStorage.removeItem('authFlow');
+      }
+    } catch (error) {
+      console.error('❌ Sign up check error:', error);
+      toast.error('Kayıt kontrolü sırasında bir hata oluştu.');
+      localStorage.removeItem('authFlow');
+    } finally {
+      setCheckingUser(false);
+    }
+  };
+
+  // FALLBACK - Backward compatibility with old flow
   const checkUserRegistration = async () => {
     setCheckingUser(true);
     console.log('🔍 Checking user registration for:', session?.user?.email);
@@ -66,7 +148,7 @@ export default function GirisPage() {
     });
 
     try {
-      const response = await fetch('/api/user/register', {
+      const response = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -76,35 +158,58 @@ export default function GirisPage() {
       });
 
       const data = await response.json();
-      console.log('📋 Registration response:', data);
+      console.log('📋 Sign up response:', data);
 
       if (data.success) {
         const firstName = session?.user?.name?.split(' ')[0] || 'Kullanıcı';
         toast.success(`Hoş geldiniz ${firstName}! Hesabınız oluşturuldu. 🎉`);
         setShowWelcomeModal(false);
+        localStorage.removeItem('authFlow'); // Clean up
 
         // Redirect to profile for completion
-        console.log('✅ Registration successful - redirecting to profile');
+        console.log('✅ Sign up successful - redirecting to profile');
         setTimeout(() => {
           router.push('/profil');
         }, 1500);
       } else {
-        console.error('❌ Registration failed:', data.error);
+        console.error('❌ Sign up failed:', data.error);
         toast.error(data.error || 'Kayıt sırasında bir hata oluştu.');
       }
     } catch (error) {
-      console.error('❌ Registration error:', error);
+      console.error('❌ Sign up error:', error);
       toast.error('Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.');
     }
   };
 
-  const handleGoogleSignIn = async () => {
+  const handleGoogleLogin = async () => {
     setIsLoading(true);
+    console.log('🔐 User selected: LOGIN');
+
+    // Store auth flow in localStorage
+    localStorage.setItem('authFlow', 'login');
+
     try {
-      await signIn('google', { callbackUrl: '/giris' }); // Redirect back to /giris for check
+      await signIn('google', { callbackUrl: '/giris' });
     } catch (error) {
       console.error('Login error:', error);
+      localStorage.removeItem('authFlow');
       setIsLoading(false);
+    }
+  };
+
+  const handleGoogleSignUp = async () => {
+    setIsSigningUp(true);
+    console.log('📝 User selected: SIGN UP');
+
+    // Store auth flow in localStorage
+    localStorage.setItem('authFlow', 'signup');
+
+    try {
+      await signIn('google', { callbackUrl: '/giris' });
+    } catch (error) {
+      console.error('Sign up error:', error);
+      localStorage.removeItem('authFlow');
+      setIsSigningUp(false);
     }
   };
 
@@ -198,18 +303,50 @@ export default function GirisPage() {
               </div>
 
               <div className="space-y-4">
-                {/* Google Login */}
+                {/* Google Login - For existing users */}
                 <button
-                  onClick={handleGoogleSignIn}
-                  disabled={isLoading}
-                  className="w-full flex items-center justify-center space-x-3 bg-white border-2 border-gray-300 hover:border-[#860000] text-gray-700 font-semibold py-4 px-6 rounded-xl transition group disabled:opacity-50 disabled:cursor-not-allowed"
+                  onClick={handleGoogleLogin}
+                  disabled={isLoading || isSigningUp}
+                  className="w-full flex items-center justify-center space-x-3 bg-[#860000] hover:bg-[#b30000] text-white font-semibold py-4 px-6 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
                 >
                   {isLoading ? (
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#860000]"></div>
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                      <span>Giriş yapılıyor...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Chrome className="w-5 h-5" />
+                      <span>Giriş Yap (Google)</span>
+                    </>
+                  )}
+                </button>
+
+                {/* Divider */}
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-300"></div>
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 bg-white text-gray-500">veya</span>
+                  </div>
+                </div>
+
+                {/* Google Sign Up - For new users */}
+                <button
+                  onClick={handleGoogleSignUp}
+                  disabled={isLoading || isSigningUp}
+                  className="w-full flex items-center justify-center space-x-3 bg-white border-2 border-gray-300 hover:border-[#860000] text-gray-700 font-semibold py-4 px-6 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSigningUp ? (
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#860000]"></div>
+                      <span>Kayıt yapılıyor...</span>
+                    </>
                   ) : (
                     <>
                       <Chrome className="w-5 h-5 text-[#860000]" />
-                      <span>Google ile Giriş Yap</span>
+                      <span>Kayıt Ol (Google)</span>
                     </>
                   )}
                 </button>
@@ -229,16 +366,11 @@ export default function GirisPage() {
                 </p>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-gray-200 text-center">
-                <p className="text-sm text-gray-600">
-                  Hesabınız yok mu?{' '}
-                  <button
-                    onClick={handleGoogleSignIn}
-                    disabled={isLoading}
-                    className="text-[#860000] font-semibold hover:underline disabled:opacity-50"
-                  >
-                    Hemen Kaydolun
-                  </button>
+              <div className="mt-6 text-center">
+                <p className="text-xs text-gray-500">
+                  <strong>Giriş Yap:</strong> Mevcut kullanıcılar için
+                  <br />
+                  <strong>Kayıt Ol:</strong> Yeni kullanıcılar için (1 ay ücretsiz)
                 </p>
               </div>
             </div>
