@@ -6,6 +6,7 @@ import Script from 'next/script';
 import './styles.css';
 import TeknikDestekChatbot from '@/components/TeknikDestekChatbot';
 import { fetchWithRetry, postToWebhook } from '@/lib/fetchWithRetry';
+import { toast } from '@/lib/toast';
 
 // ========================================
 // TYPES
@@ -190,7 +191,7 @@ export default function KurumsalSettingsPage() {
 
         setTimeout(() => {
           setIsLoadingFromWebhook(false);
-          showToast('Verileriniz yüklendi! İşlemleriniz sonrasında kaydetmeyi unutmayın.', 'info');
+          toast.info('Verileriniz yüklendi! İşlemleriniz sonrasında kaydetmeyi unutmayın.');
         }, 800);
       }, 300);
     }, 100);
@@ -313,7 +314,7 @@ export default function KurumsalSettingsPage() {
   // ========================================
   const addStaff = () => {
     if (staffCount >= 30) {
-      showToast('En fazla 30 personel ekleyebilirsiniz.', 'warning');
+      toast.warning('En fazla 30 personel ekleyebilirsiniz.');
       return;
     }
 
@@ -382,7 +383,7 @@ export default function KurumsalSettingsPage() {
       return newUrls;
     });
 
-    showToast(`Personel ${id} silindi.`, 'success');
+    toast.success(`Personel ${id} silindi.`);
   };
 
   const handleStaffChange = (id: number, field: keyof StaffData, value: any) => {
@@ -414,13 +415,13 @@ export default function KurumsalSettingsPage() {
     // Validate file type
     const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
     if (!validTypes.includes(file.type)) {
-      showToast('Sadece JPG, JPEG veya PNG formatlarında fotoğraf yükleyebilirsiniz.', 'error');
+      toast.error('Sadece JPG, JPEG veya PNG formatlarında fotoğraf yükleyebilirsiniz.');
       return;
     }
 
     // Validate file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
-      showToast('Fotoğraf boyutu en fazla 5MB olabilir.', 'error');
+      toast.error('Fotoğraf boyutu en fazla 5MB olabilir.');
       return;
     }
 
@@ -445,7 +446,7 @@ export default function KurumsalSettingsPage() {
   const uploadStaffPhoto = async (staffId: number) => {
     const file = selectedStaffPhotos[staffId];
     if (!file) {
-      showToast('Lütfen önce bir fotoğraf seçin.', 'warning');
+      toast.warning('Lütfen önce bir fotoğraf seçin.');
       return;
     }
 
@@ -469,7 +470,7 @@ export default function KurumsalSettingsPage() {
         body: formData,
         maxRetries: 3,
         onRetry: (attempt, delay) => {
-          showToast(`Bağlantı sorunu, yeniden deneniyor... (${attempt}/3)`, 'info');
+          toast.retry(attempt, 3);
         }
       });
 
@@ -481,13 +482,13 @@ export default function KurumsalSettingsPage() {
 
       if (result.success && result.photoUrl) {
         handleStaffChange(staffId, 'photoUrl', result.photoUrl);
-        showToast('Fotoğraf başarıyla yüklendi!', 'success');
+        toast.success('Fotoğraf başarıyla yüklendi!');
       } else {
         throw new Error(result.message || 'Fotoğraf yüklenirken hata oluştu');
       }
     } catch (error: any) {
       console.error('Fotoğraf yükleme hatası:', error);
-      showToast(`Fotoğraf yükleme hatası: ${error.message}`, 'error');
+      toast.error(`Fotoğraf yükleme hatası: ${error.message}`);
     } finally {
       setStaffPhotoUploadStates(prev => ({ ...prev, [staffId]: false }));
     }
@@ -555,7 +556,7 @@ export default function KurumsalSettingsPage() {
   // ========================================
   const addService = () => {
     if (serviceCount >= 75) {
-      showToast('En fazla 75 hizmet ekleyebilirsiniz.', 'warning');
+      toast.warning('En fazla 75 hizmet ekleyebilirsiniz.');
       return;
     }
 
@@ -610,7 +611,7 @@ export default function KurumsalSettingsPage() {
       return newData;
     });
 
-    showToast(`Hizmet ${id} silindi.`, 'success');
+    toast.success(`Hizmet ${id} silindi.`);
   };
 
   const handleServiceChange = (id: number, field: keyof ServiceData, value: any) => {
@@ -675,7 +676,7 @@ export default function KurumsalSettingsPage() {
   // ========================================
   const addDevice = () => {
     if (deviceCount >= 10) {
-      showToast('En fazla 10 cihaz ekleyebilirsiniz.', 'warning');
+      toast.warning('En fazla 10 cihaz ekleyebilirsiniz.');
       return;
     }
 
@@ -699,7 +700,7 @@ export default function KurumsalSettingsPage() {
       return newData;
     });
 
-    showToast(`Cihaz ${id} silindi.`, 'success');
+    toast.success(`Cihaz ${id} silindi.`);
   };
 
   const handleDeviceChange = (id: number, value: string) => {
@@ -714,7 +715,7 @@ export default function KurumsalSettingsPage() {
   // ========================================
   const addStock = () => {
     if (stockCount >= 100) {
-      showToast('En fazla 100 stok ürünü ekleyebilirsiniz.', 'warning');
+      toast.warning('En fazla 100 stok ürünü ekleyebilirsiniz.');
       return;
     }
 
@@ -738,7 +739,7 @@ export default function KurumsalSettingsPage() {
       return newData;
     });
 
-    showToast(`Stok ürünü ${id} silindi.`, 'success');
+    toast.success(`Stok ürünü ${id} silindi.`);
   };
 
   const handleStockChange = (id: number, value: string) => {
@@ -753,11 +754,11 @@ export default function KurumsalSettingsPage() {
   // ========================================
   const validateStaffForm = (staff: StaffData): boolean => {
     if (!staff.name || !staff.name.trim()) {
-      showToast(`Personel ${staff.id}: İsim alanı boş bırakılamaz.`, 'error');
+      toast.error(`Personel ${staff.id}: İsim alanı boş bırakılamaz.`);
       return false;
     }
     if (!staff.position || !staff.position.trim()) {
-      showToast(`Personel ${staff.id}: Görev alanı boş bırakılamaz.`, 'error');
+      toast.error(`Personel ${staff.id}: Görev alanı boş bırakılamaz.`);
       return false;
     }
     return true;
@@ -765,15 +766,15 @@ export default function KurumsalSettingsPage() {
 
   const validateServiceForm = (service: ServiceData): boolean => {
     if (!service.name || !service.name.trim()) {
-      showToast(`Hizmet ${service.id}: İşlem adı boş bırakılamaz.`, 'error');
+      toast.error(`Hizmet ${service.id}: İşlem adı boş bırakılamaz.`);
       return false;
     }
     if (service.sessions < 1) {
-      showToast(`Hizmet ${service.id}: Seans sayısı en az 1 olmalıdır.`, 'error');
+      toast.error(`Hizmet ${service.id}: Seans sayısı en az 1 olmalıdır.`);
       return false;
     }
     if (service.duration < 1) {
-      showToast(`Hizmet ${service.id}: Süre en az 1 dakika olmalıdır.`, 'error');
+      toast.error(`Hizmet ${service.id}: Süre en az 1 dakika olmalıdır.`);
       return false;
     }
     return true;
@@ -793,33 +794,7 @@ export default function KurumsalSettingsPage() {
     return true;
   };
 
-  // ========================================
-  // TOAST NOTIFICATIONS
-  // ========================================
-  const showToast = (message: string, type: 'success' | 'error' | 'warning' | 'info' = 'info') => {
-    if (typeof window !== 'undefined' && (window as any).Toastify) {
-      const bgColors = {
-        success: 'linear-gradient(to right, #00b09b, #96c93d)',
-        error: 'linear-gradient(to right, #ff5f6d, #ffc371)',
-        warning: 'linear-gradient(to right, #f093fb, #f5576c)',
-        info: 'linear-gradient(to right, #4facfe, #00f2fe)'
-      };
-
-      (window as any).Toastify({
-        text: message,
-        duration: 4000,
-        gravity: 'top',
-        position: 'right',
-        stopOnFocus: true,
-        style: {
-          background: bgColors[type],
-          borderRadius: '10px',
-          fontSize: '14px',
-          fontWeight: '500'
-        }
-      }).showToast();
-    }
-  };
+  // TOAST NOTIFICATIONS - Using standardized Sonner toast
 
   // ========================================
   // ASSISTANT ADS
@@ -964,13 +939,13 @@ export default function KurumsalSettingsPage() {
       });
 
       if (result.success) {
-        showToast('✅ Kurumsal ayarlar güvenli şekilde kaydedildi!', 'success');
+        toast.success('✅ Kurumsal ayarlar güvenli şekilde kaydedildi!');
       } else {
         throw new Error(result.message || 'Kaydetme sırasında hata oluştu!');
       }
     } catch (error: any) {
       console.error('Kayıt hatası:', error);
-      showToast(`❌ Kayıt hatası: ${error.message}. Destek ekibi ile iletişime geçin.`, 'error');
+      toast.error(`Kayıt hatası: ${error.message}. Destek ekibi ile iletişime geçin.`);
     } finally {
       stopAssistantAds();
       setIsSaving(false);

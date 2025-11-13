@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import PromotionCTA from "@/app/components/PromotionCTA";
 import CookieConsent from "@/app/components/CookieConsent";
 import GoogleAnalytics from "@/app/components/GoogleAnalytics";
+import ToastProvider from "@/components/ToastProvider";
 import { OrganizationSchema } from "@/app/components/StructuredData";
 import "./globals.css";
 
@@ -123,6 +124,7 @@ export default function RootLayout({
       <body className="antialiased">
         <OrganizationSchema type="ProfessionalService" />
         <GoogleAnalytics />
+        <ToastProvider />
         <Header />
         <SessionProvider>
           {children}
