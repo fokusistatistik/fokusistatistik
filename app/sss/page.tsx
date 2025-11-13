@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
+import { FAQSchema } from '@/app/components/StructuredData';
 
 interface FAQ {
   question: string;
@@ -211,9 +212,10 @@ export default function SSS() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
-
-      <main className="flex-grow">
+    <>
+      <FAQSchema faqs={faqs} />
+      <div className="min-h-screen flex flex-col">
+        <main className="flex-grow">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-[#860000] via-[#a50000] to-[#6b0000] text-white py-16 lg:py-20">
           <div className="container mx-auto px-4">
@@ -288,8 +290,7 @@ export default function SSS() {
           </div>
         </section>
       </main>
-
-      
     </div>
+    </>
   );
 }

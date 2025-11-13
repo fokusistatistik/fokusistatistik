@@ -1,15 +1,54 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ServiceSchema } from '@/app/components/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'Yapay Zeka Danışmanlığı | FOKUS İstatistik - Şirketlere AI Çözümleri',
-  description: '22 yıllık deneyimimizle işletmenize özel yapay zeka stratejileri geliştiriyor, veri odaklı dönüşüm süreçlerinizde rehberlik ediyoruz.',
-  keywords: 'yapay zeka danışmanlığı, AI consulting, dijital dönüşüm, veri stratejisi, otomasyon danışmanlığı',
+  title: 'Yapay Zeka Danışmanlığı | AI Stratejisi, ChatGPT Entegrasyonu, Dijital Dönüşüm',
+  description: '22 yıllık deneyim ve akademik uzmanlıkla yapay zeka danışmanlığı. ChatGPT entegrasyonu, veri bilimi, machine learning stratejileri, dijital dönüşüm ve AI otomasyon çözümleri. İşletmeniz için özel yapay zeka yol haritası.',
+  keywords: [
+    'yapay zeka danışmanlığı',
+    'AI consulting',
+    'chatgpt danışmanlık',
+    'dijital dönüşüm',
+    'veri stratejisi',
+    'otomasyon danışmanlığı',
+    'machine learning danışmanlık',
+    'yapay zeka stratejisi',
+    'AI transformation',
+    'openai entegrasyonu',
+    'gpt-4 danışmanlık',
+    'iş zekası danışmanlığı',
+    'veri bilimi danışmanlığı',
+    'AI yol haritası',
+    'yapay zeka çözümleri',
+  ],
+  openGraph: {
+    title: 'Yapay Zeka Danışmanlığı | FOKUS İstatistik',
+    description: '22 yıllık deneyimle AI stratejileri, ChatGPT entegrasyonu ve dijital dönüşüm danışmanlığı.',
+    url: 'https://fokusistatistik.com/yapay-zeka-danismanligi',
+    images: [
+      {
+        url: 'https://www.fokusistatistik.com/assets/img/fokus-ekosistem-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'FOKUS Yapay Zeka Danışmanlığı',
+      },
+    ],
+  },
+  alternates: {
+    canonical: 'https://fokusistatistik.com/yapay-zeka-danismanligi',
+  },
 };
 
 export default function YapayZekaDanismanligi() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4">
+    <>
+      <ServiceSchema
+        name="Yapay Zeka Danışmanlığı"
+        description="22 yıllık deneyim ve akademik uzmanlıkla yapay zeka danışmanlığı hizmetleri. ChatGPT entegrasyonu, veri bilimi, machine learning stratejileri ve dijital dönüşüm çözümleri."
+        url="https://fokusistatistik.com/yapay-zeka-danismanligi"
+      />
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Hero Section */}
         <section className="text-center mb-16">
@@ -373,5 +412,6 @@ export default function YapayZekaDanismanligi() {
         </section>
       </div>
     </div>
+    </>
   );
 }

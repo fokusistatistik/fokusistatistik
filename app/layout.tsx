@@ -7,13 +7,77 @@ import Footer from "@/components/Footer";
 import PromotionCTA from "@/app/components/PromotionCTA";
 import CookieConsent from "@/app/components/CookieConsent";
 import GoogleAnalytics from "@/app/components/GoogleAnalytics";
+import { OrganizationSchema } from "@/app/components/StructuredData";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "FOKUS İstatistik ve YZ Danışmanlığı | Sanal Asistanlar",
-  description: "9 farklı sanal asistanla iş süreçlerinizi optimize edin. Yönetim, müşteri hizmetleri, veri analizi, pazarlama ve daha fazlası için yapay zeka destekli çözümler.",
-  keywords: "sanal asistan, yapay zeka, iş süreçleri, veri analizi, müşteri hizmetleri, pazarlama, finans, insan kaynakları",
-  authors: [{ name: "FOKUS İstatistik" }],
+  metadataBase: new URL('https://fokusistatistik.com'),
+  title: {
+    default: "FOKUS İstatistik ve YZ Danışmanlığı | Yapay Zeka, Sanal Asistan, Veri Analizi",
+    template: "%s | FOKUS İstatistik",
+  },
+  description: "Türkiye'nin lider yapay zeka danışmanlık şirketi. 9 farklı sanal asistan ile iş süreçlerinizi dijitalleştirin. ChatGPT tabanlı çözümler, veri analizi, istatistiksel danışmanlık, dijital dönüşüm hizmetleri. Yönetim, müşteri hizmetleri, pazarlama, finans otomasyonu.",
+  keywords: [
+    // Ana keywords
+    "yapay zeka danışmanlığı",
+    "sanal asistan",
+    "yapay zeka",
+    "istatistik",
+    "veri analizi",
+    "dijital dönüşüm",
+    "chatgpt",
+    // İş süreçleri
+    "iş süreçleri otomasyonu",
+    "dijital otomasyon",
+    "akıllı asistan",
+    "ai danışmanlık",
+    // Hizmetler
+    "veri bilimi",
+    "istatistiksel danışmanlık",
+    "veri görselleştirme",
+    "iş zekası",
+    "büyük veri analizi",
+    "machine learning",
+    "derin öğrenme",
+    // Sektörler
+    "müşteri hizmetleri otomasyonu",
+    "pazarlama otomasyonu",
+    "finans otomasyonu",
+    "insan kaynakları otomasyonu",
+    "yönetim asistanı",
+    // Teknolojiler
+    "openai",
+    "gpt-4",
+    "doğal dil işleme",
+    "nlp",
+    "chatbot",
+    "sesli asistan",
+    "konuşma yapay zekası",
+    // Türkçe
+    "yapay zeka türkiye",
+    "sanal asistan türkçe",
+    "chatgpt türkçe",
+    "veri analizi hizmeti",
+  ],
+  authors: [{ name: "FOKUS İstatistik ve YZ Danışmanlığı", url: "https://fokusistatistik.com" }],
+  creator: "FOKUS İstatistik",
+  publisher: "FOKUS İstatistik",
+  category: "Technology",
+  classification: "Yapay Zeka ve Veri Bilimi Danışmanlığı",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://fokusistatistik.com',
+  },
   manifest: "/manifest.json",
   themeColor: "#860000",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
@@ -25,24 +89,27 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "tr_TR",
-    url: "https://www.fokusistatistik.com",
-    siteName: "FOKUS İstatistik",
-    title: "FOKUS İstatistik ve YZ Danışmanlığı | Sanal Asistanlar",
-    description: "9 farklı sanal asistanla iş süreçlerinizi optimize edin. Yapay zeka destekli çözümler.",
+    url: "https://fokusistatistik.com",
+    siteName: "FOKUS İstatistik ve YZ Danışmanlığı",
+    title: "FOKUS İstatistik | Yapay Zeka Danışmanlığı, Sanal Asistan, Veri Analizi",
+    description: "Türkiye'nin en kapsamlı yapay zeka danışmanlık platformu. 9 farklı sanal asistan ile dijital dönüşümünüzü hızlandırın. ChatGPT, veri analizi, istatistik ve otomasyon çözümleri.",
     images: [
       {
         url: "https://www.fokusistatistik.com/assets/img/fokus-ekosistem-og.jpg",
         width: 1200,
         height: 630,
-        alt: "FOKUS Ekosistemi",
+        alt: "FOKUS İstatistik - Yapay Zeka ve Sanal Asistan Ekosistemi",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FOKUS İstatistik ve YZ Danışmanlığı",
-    description: "9 farklı sanal asistanla iş süreçlerinizi optimize edin.",
+    title: "FOKUS İstatistik | Yapay Zeka Danışmanlığı & Sanal Asistan",
+    description: "9 farklı AI sanal asistan ile dijital dönüşümünüzü hızlandırın. ChatGPT, veri analizi ve otomasyon çözümleri.",
     images: ["https://www.fokusistatistik.com/assets/img/fokus-ekosistem-og.jpg"],
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
 };
 
@@ -54,6 +121,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className="antialiased">
+        <OrganizationSchema type="ProfessionalService" />
         <GoogleAnalytics />
         <Header />
         <SessionProvider>

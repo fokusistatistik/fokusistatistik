@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import {
   Stethoscope,
   GraduationCap,
@@ -7,6 +8,44 @@ import {
   CheckCircle2,
   Sparkles,
 } from 'lucide-react';
+import { ServiceSchema } from '@/app/components/StructuredData';
+
+export const metadata: Metadata = {
+  title: 'Dijital Çözümler | İş Süreçleri Otomasyonu, Veri Analizi, Dijital Dönüşüm',
+  description: 'Sağlık, eğitim, kamu, ticaret ve girişimler için dijital dönüşüm çözümleri. İş süreçleri otomasyonu, veri analizi, yapay zeka entegrasyonu, müşteri ilişkileri yönetimi ve performans takibi sistemleri.',
+  keywords: [
+    'dijital çözümler',
+    'dijital dönüşüm',
+    'iş süreçleri otomasyonu',
+    'veri analizi',
+    'müşteri ilişkileri yönetimi',
+    'CRM',
+    'performans takibi',
+    'satış otomasyonu',
+    'e-ticaret çözümleri',
+    'dijital otomasyon',
+    'iş zekası',
+    'süreç optimizasyonu',
+    'dijitalleşme',
+    'kurumsal çözümler',
+  ],
+  openGraph: {
+    title: 'Dijital Çözümler | FOKUS İstatistik',
+    description: 'Sağlık, eğitim, kamu ve ticaret için dijital dönüşüm ve otomasyon çözümleri.',
+    url: 'https://fokusistatistik.com/dijital',
+    images: [
+      {
+        url: 'https://www.fokusistatistik.com/assets/img/fokus-ekosistem-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'FOKUS Dijital Çözümler',
+      },
+    ],
+  },
+  alternates: {
+    canonical: 'https://fokusistatistik.com/dijital',
+  },
+};
 
 export default function DijitalCozumler() {
   const sectors = [
@@ -112,9 +151,14 @@ export default function DijitalCozumler() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
-
-      <main className="flex-grow">
+    <>
+      <ServiceSchema
+        name="Dijital Çözümler"
+        description="Sağlık, eğitim, kamu, ticaret ve girişimler için dijital dönüşüm çözümleri. İş süreçleri otomasyonu, veri analizi ve performans takibi sistemleri."
+        url="https://fokusistatistik.com/dijital"
+      />
+      <div className="min-h-screen flex flex-col">
+        <main className="flex-grow">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-[#860000] via-[#a50000] to-[#6b0000] text-white py-16 lg:py-20">
           <div className="container mx-auto px-4">
@@ -239,8 +283,7 @@ export default function DijitalCozumler() {
           </div>
         </section>
       </main>
-
-      
     </div>
+    </>
   );
 }
