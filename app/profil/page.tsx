@@ -1,13 +1,33 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { UserProfile, ProfileFormData } from '@/types/profile';
+import { toast } from '@/lib/toast';
+import { User, Building2, Calendar, Phone, Mail, CheckCircle2, Info } from 'lucide-react';
+import { FormTooltip } from '@/components/Tooltip';
+import SaveIndicator from '@/components/SaveIndicator';
 
-export default function Profil() {
+export default function ProfilPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [isEditing, setIsEditing] = useState(false);
+
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [lastSaved, setLastSaved] = useState<Date | null>(null);
+
+  const [formData, setFormData] = useState<ProfileFormData>({
+    firstName: '',
+    lastName: '',
+    company: '',
+    birthYear: undefined,
+    phone: '',
+    kvkkConsent: false,
+    emailSubscription: true,
+    smsSubscription: false,
+  });
 
   useEffect(() => {
     if (status === 'unauthenticated') {
