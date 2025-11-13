@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import './styles.css';
 import TeknikDestekChatbot from '@/components/TeknikDestekChatbot';
+import { fetchWithRetry, postToWebhook } from '@/lib/fetchWithRetry';
 
 // ========================================
 // TYPES
@@ -462,10 +463,14 @@ export default function KurumsalSettingsPage() {
       formData.append('MÜŞTERİ İŞLEM ID', currentUserData['MÜŞTERİ İŞLEM ID'] || '');
       formData.append('PERSONEL SIRA', staffId.toString());
 
-      // Upload to webhook
-      const response = await fetch('https://n8n.fokusistatistik.com/webhook/uploadstaffphoto', {
+      // Upload to webhook with retry
+      const response = await fetchWithRetry('https://n8n.fokusistatistik.com/webhook/uploadstaffphoto', {
         method: 'POST',
-        body: formData
+        body: formData,
+        maxRetries: 3,
+        onRetry: (attempt, delay) => {
+          showToast(`Bağlantı sorunu, yeniden deneniyor... (${attempt}/3)`, 'info');
+        }
       });
 
       if (!response.ok) {
@@ -945,17 +950,18 @@ export default function KurumsalSettingsPage() {
       const formData = collectFormData();
       const webhookData = prepareWebhookData(formData);
 
-      const response = await fetch('https://n8n.fokusistatistik.com/webhook/settingsasistantssavedata', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(webhookData)
+      // Retry mekanizması ile kaydetme
+      const result = await postToWebhook('https://n8n.fokusistatistik.com/webhook/settingsasistantssavedata', webhookData, {
+        maxRetries: 4,
+        baseDelay: 2000,
+        maxDelay: 16000,
+        onRetry: (attempt, delay) => {
+          const messageDiv = document.querySelector('.loading-message');
+          if (messageDiv) {
+            messageDiv.textContent = `Bağlantı sorunu tespit edildi. Yeniden deneniyor... (${attempt}/4)`;
+          }
+        }
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const result = await response.json();
 
       if (result.success) {
         showToast('✅ Kurumsal ayarlar güvenli şekilde kaydedildi!', 'success');
