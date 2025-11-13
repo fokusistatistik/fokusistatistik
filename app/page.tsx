@@ -272,7 +272,7 @@ export default function Home() {
               <div className="flex flex-col md:flex-row gap-6 justify-center">
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition shadow-xl flex-1 max-w-md">
                   <Link
-                    href="/analiz"
+                    href="/analiz-formu"
                     className="block bg-white text-[#860000] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition mb-3"
                   >
                     Ücretsiz İhtiyaç Analizi

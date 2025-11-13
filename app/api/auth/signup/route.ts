@@ -33,6 +33,15 @@ export async function GET(request: NextRequest) {
 
     console.log('🔍 Checking if user can sign up:', session.user.email);
 
+    const checkData = {
+      action: 'check',
+      email: session.user.email,
+      googleId: (session.user as any).id || session.user.email,
+    };
+
+    console.log('🚀 Sending SIGNUP CHECK webhook to:', SIGNUP_WEBHOOK_URL);
+    console.log('📦 Check data payload:', JSON.stringify(checkData, null, 2));
+
     // Check if user already exists
     try {
       const response = await fetchWithRetry(
@@ -42,14 +51,12 @@ export async function GET(request: NextRequest) {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            action: 'check',
-            email: session.user.email,
-            googleId: (session.user as any).id || session.user.email,
-          }),
+          body: JSON.stringify(checkData),
         },
         3
       );
+
+      console.log('📨 Webhook check response status:', response.status, response.statusText);
 
       if (response.ok) {
         // User already exists
@@ -136,6 +143,9 @@ export async function POST(request: NextRequest) {
       environment: process.env.NODE_ENV || 'production',
     };
 
+    console.log('🚀 Sending SIGNUP REGISTER webhook to:', SIGNUP_WEBHOOK_URL);
+    console.log('📦 Signup data payload:', JSON.stringify(signupData, null, 2));
+
     // Send to n8n signup webhook
     try {
       const response = await fetchWithRetry(
@@ -149,6 +159,8 @@ export async function POST(request: NextRequest) {
         },
         3
       );
+
+      console.log('📨 Webhook register response status:', response.status, response.statusText);
 
       if (!response.ok) {
         const errorText = await response.text();

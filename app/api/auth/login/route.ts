@@ -47,6 +47,9 @@ export async function POST(request: NextRequest) {
       authMethod: 'google',
     };
 
+    console.log('🚀 Sending LOGIN webhook to:', LOGIN_WEBHOOK_URL);
+    console.log('📦 Login data payload:', JSON.stringify(loginData, null, 2));
+
     // Send to n8n login webhook
     try {
       const response = await fetchWithRetry(
@@ -60,6 +63,8 @@ export async function POST(request: NextRequest) {
         },
         3
       );
+
+      console.log('📨 Webhook response status:', response.status, response.statusText);
 
       if (!response.ok) {
         const errorText = await response.text();

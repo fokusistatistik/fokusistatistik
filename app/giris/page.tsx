@@ -37,14 +37,17 @@ export default function GirisPage() {
   const handleLoginFlow = async () => {
     setCheckingUser(true);
     console.log('🔐 Processing login for:', session?.user?.email);
+    console.log('🌐 Calling POST /api/auth/login');
 
     try {
       const response = await fetch('/api/auth/login', {
         method: 'POST',
       });
-      const data = await response.json();
 
-      console.log('📋 Login response:', data);
+      console.log('📡 Login API response status:', response.status, response.statusText);
+
+      const data = await response.json();
+      console.log('📋 Login response data:', data);
 
       if (data.success) {
         // Successful login - redirect to dashboard
@@ -74,13 +77,16 @@ export default function GirisPage() {
   const handleSignUpFlow = async () => {
     setCheckingUser(true);
     console.log('📝 Processing sign up for:', session?.user?.email);
+    console.log('🌐 Calling GET /api/auth/signup (check)');
 
     try {
       // Check if user can sign up (not already registered)
       const response = await fetch('/api/auth/signup');
-      const data = await response.json();
 
-      console.log('📋 Sign up check response:', data);
+      console.log('📡 Signup check API response status:', response.status, response.statusText);
+
+      const data = await response.json();
+      console.log('📋 Sign up check response data:', data);
 
       if (data.canSignUp) {
         // Show welcome modal
@@ -146,6 +152,7 @@ export default function GirisPage() {
       name: session?.user?.name,
       emailSubscription,
     });
+    console.log('🌐 Calling POST /api/auth/signup (register)');
 
     try {
       const response = await fetch('/api/auth/signup', {
@@ -157,8 +164,10 @@ export default function GirisPage() {
         }),
       });
 
+      console.log('📡 Signup register API response status:', response.status, response.statusText);
+
       const data = await response.json();
-      console.log('📋 Sign up response:', data);
+      console.log('📋 Sign up response data:', data);
 
       if (data.success) {
         const firstName = session?.user?.name?.split(' ')[0] || 'Kullanıcı';
