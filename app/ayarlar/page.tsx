@@ -943,6 +943,1060 @@ export default function SettingsPage() {
 
   const timeOptions = generateTimeOptions();
 
-  // Devam edecek... (Part 2'de settings render)
-  return null;
+  return (
+    <>
+      <Script src="https://cdn.jsdelivr.net/npm/toastify-js" strategy="afterInteractive" />
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+
+      <div className="settings-container" id="settingsContainer">
+        {/* Header */}
+        <div className="settings-header">
+          <img
+            src="https://static.fokusistatistik.com/resimler/bannerkck.jpg"
+            alt="FOKUS Banner"
+            className="settings-banner"
+          />
+          <button onClick={handleLogout} className="logout-btn">
+            Çıkış Yap
+          </button>
+        </div>
+
+        {/* Warning Banner */}
+        {settings.contract.remainingDays < 10 && (
+          <div className="warning-banner">
+            ⚠️ Sözleşme bitiş tarihiniz yaklaşıyor! Kalan gün: {settings.contract.remainingDays}
+          </div>
+        )}
+
+        {/* Müşteri Bilgileri (Readonly) */}
+        <div className="section-card">
+          <h2 className="section-title">Müşteri Bilgileri (Değiştirilemez)</h2>
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="customerId">Müşteri ID</label>
+              <input
+                type="text"
+                id="customerId"
+                value={settings.customerId}
+                readOnly
+                className="readonly-input"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="companyName">Kurum Adı</label>
+              <input
+                type="text"
+                id="companyName"
+                value={settings.companyName}
+                readOnly
+                className="readonly-input"
+              />
+            </div>
+          </div>
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="companyOfficialName">Kurum Resmi Adı (Fatura Adı)</label>
+              <input
+                type="text"
+                id="companyOfficialName"
+                value={settings.companyOfficialName}
+                readOnly
+                className="readonly-input"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="taxNumber">Vergi No</label>
+              <input
+                type="text"
+                id="taxNumber"
+                value={settings.taxNumber}
+                readOnly
+                className="readonly-input"
+              />
+            </div>
+          </div>
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="authorizedPersonName">Yetkili Kişi Adı</label>
+              <input
+                type="text"
+                id="authorizedPersonName"
+                value={settings.authorizedPersonName}
+                readOnly
+                className="readonly-input"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="phone">Telefon</label>
+              <input
+                type="text"
+                id="phone"
+                value={settings.phone}
+                readOnly
+                className="readonly-input"
+              />
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">E-posta</label>
+            <input
+              type="email"
+              id="email"
+              value={settings.email}
+              readOnly
+              className="readonly-input"
+            />
+          </div>
+        </div>
+
+        {/* İşletme Ayarları */}
+        <div className="section-card">
+          <h2 className="section-title">İşletme Ayarları</h2>
+
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="website">Web Sitesi</label>
+              <input
+                type="url"
+                id="website"
+                defaultValue={settings.website}
+                placeholder="https://www.example.com"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="sector">Sektör *</label>
+              <select
+                id="sector"
+                defaultValue={settings.sector}
+                onChange={showSectorWarning}
+                required
+              >
+                <option value="">Seçiniz</option>
+                <option value="Teknoloji">Teknoloji</option>
+                <option value="E-ticaret">E-ticaret</option>
+                <option value="Eğitim">Eğitim</option>
+                <option value="Sağlık">Sağlık</option>
+                <option value="Finans">Finans</option>
+                <option value="Emlak">Emlak</option>
+                <option value="Otomotiv">Otomotiv</option>
+                <option value="Gıda & İçecek">Gıda & İçecek</option>
+                <option value="Danışmanlık">Danışmanlık</option>
+                <option value="İnşaat">İnşaat</option>
+                <option value="Turizm & Konaklama">Turizm & Konaklama</option>
+                <option value="Diğer">Diğer</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="employeeCount">Çalışan Sayısı</label>
+              <select id="employeeCount" defaultValue={settings.employeeCount}>
+                <option value="">Seçiniz</option>
+                <option value="1-10">1-10</option>
+                <option value="11-50">11-50</option>
+                <option value="51-100">51-100</option>
+                <option value="101-500">101-500</option>
+                <option value="500+">500+</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="defaultProcessTime">Varsayılan İşlem Süresi (Dakika)</label>
+              <input
+                type="number"
+                id="defaultProcessTime"
+                defaultValue={settings.defaultProcessTime}
+                placeholder="30"
+              />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="address">Adres</label>
+            <textarea
+              id="address"
+              rows={3}
+              defaultValue={settings.address}
+              placeholder="Şirket adresinizi giriniz"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="companySlogan">Kurumsal Slogan</label>
+            <input
+              type="text"
+              id="companySlogan"
+              defaultValue={settings.companySlogan}
+              placeholder="Şirket sloganınız..."
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="companyInfo">Kurumsal Bilgiler</label>
+            <textarea
+              id="companyInfo"
+              rows={4}
+              defaultValue={settings.companyInfo}
+              placeholder="Şirketiniz hakkında genel bilgiler..."
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="companyHeader">Kurumsal Antet Bilgileri</label>
+            <textarea
+              id="companyHeader"
+              rows={3}
+              defaultValue={settings.companyHeader}
+              placeholder="Antet bilgileriniz (adres, telefon, e-posta vb.)"
+            />
+          </div>
+
+          {/* Logo Upload */}
+          <div className="form-group">
+            <label htmlFor="logoUpload">Şirket Logosu</label>
+            <div className="logo-upload-container">
+              {logoPreviewUrl && (
+                <img src={logoPreviewUrl} alt="Logo önizleme" className="logo-preview" />
+              )}
+              <input
+                type="file"
+                id="logoUpload"
+                accept="image/png,image/jpeg,image/jpg"
+                onChange={handleLogoSelect}
+              />
+              <button
+                type="button"
+                onClick={handleLogoUpload}
+                disabled={!logoFile || isUploadingLogo}
+                className="upload-btn"
+              >
+                {isUploadingLogo ? 'Yükleniyor...' : 'Logo Yükle'}
+              </button>
+            </div>
+            <small className="hint-text">PNG, JPG veya JPEG formatı, max 5MB</small>
+          </div>
+
+          <input type="hidden" id="logoUrl" defaultValue={settings.logoUrl} />
+
+          {/* Color Picker */}
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="companyColor">Kurumsal Renk</label>
+              <input
+                type="color"
+                id="companyColor"
+                defaultValue={settings.companyColor}
+                onChange={updateColorDemo}
+              />
+            </div>
+            <div className="form-group">
+              <label>Renk Önizleme</label>
+              <div
+                id="colorDemo"
+                className="color-demo"
+                style={{ backgroundColor: settings.companyColor }}
+              />
+            </div>
+          </div>
+
+          {/* Static Resource & CRM URL */}
+          <div className="form-group">
+            <label htmlFor="staticResourceUrl">Statik Kaynak URL</label>
+            <input
+              type="url"
+              id="staticResourceUrl"
+              defaultValue={settings.staticResourceUrl}
+              placeholder="https://..."
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="crmUrl">CRM Veri URL</label>
+            <input
+              type="url"
+              id="crmUrl"
+              defaultValue={settings.crmUrl}
+              placeholder="https://..."
+            />
+          </div>
+        </div>
+
+        {/* Konum Ayarları */}
+        <div className="section-card">
+          <h2 className="section-title">Konum Ayarları</h2>
+
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="latitude">Enlem</label>
+              <input
+                type="text"
+                id="latitude"
+                defaultValue={settings.latitude}
+                placeholder="39.925533"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="longitude">Boylam</label>
+              <input
+                type="text"
+                id="longitude"
+                defaultValue={settings.longitude}
+                placeholder="32.866287"
+              />
+            </div>
+          </div>
+
+          <button type="button" onClick={getCurrentLocation} className="location-btn">
+            📍 Mevcut Konumu Al
+          </button>
+
+          <div className="map-container">
+            <MapComponent
+              coordinates={mapCoordinates}
+              onLocationSelect={(lat, lng) => {
+                const latInput = document.getElementById('latitude') as HTMLInputElement;
+                const lonInput = document.getElementById('longitude') as HTMLInputElement;
+                if (latInput) latInput.value = lat.toFixed(6);
+                if (lonInput) lonInput.value = lng.toFixed(6);
+                setMapCoordinates({ lat, lng });
+              }}
+            />
+          </div>
+        </div>
+
+        {/* API Entegrasyonları */}
+        <div className="section-card">
+          <h2 className="section-title">API Entegrasyonları</h2>
+
+          {/* Google Drive */}
+          <h3 className="subsection-title">Google Drive</h3>
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="googleDriveId">Google Drive ID</label>
+              <input
+                type="text"
+                id="googleDriveId"
+                defaultValue={settings.integrations.googleDrive.id}
+                placeholder="Drive ID"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="googleDriveClientId">Client ID</label>
+              <input
+                type="text"
+                id="googleDriveClientId"
+                defaultValue={settings.integrations.googleDrive.clientId}
+                placeholder="Client ID"
+              />
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="googleDriveClientSecret">Client Secret</label>
+            <input
+              type="password"
+              id="googleDriveClientSecret"
+              defaultValue={settings.integrations.googleDrive.clientSecret}
+              placeholder="Client Secret"
+            />
+          </div>
+
+          {/* Google Calendar */}
+          <h3 className="subsection-title">Google Takvim</h3>
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="googleCalendarId">Google Takvim ID</label>
+              <input
+                type="text"
+                id="googleCalendarId"
+                defaultValue={settings.integrations.googleCalendar.id}
+                placeholder="Takvim ID"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="googleCalendarClientId">Client ID</label>
+              <input
+                type="text"
+                id="googleCalendarClientId"
+                defaultValue={settings.integrations.googleCalendar.clientId}
+                placeholder="Client ID"
+              />
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="googleCalendarClientSecret">Client Secret</label>
+            <input
+              type="password"
+              id="googleCalendarClientSecret"
+              defaultValue={settings.integrations.googleCalendar.clientSecret}
+              placeholder="Client Secret"
+            />
+          </div>
+
+          {/* E-posta */}
+          <h3 className="subsection-title">E-posta Entegrasyonu</h3>
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="emailSender">Gönderici E-posta</label>
+              <input
+                type="email"
+                id="emailSender"
+                defaultValue={settings.integrations.email.sender}
+                placeholder="noreply@example.com"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="emailPlatform">Platform</label>
+              <input
+                type="text"
+                id="emailPlatform"
+                defaultValue={settings.integrations.email.platform}
+                placeholder="Gmail, Outlook, vb."
+              />
+            </div>
+          </div>
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="emailApiCode">API Kod</label>
+              <input
+                type="password"
+                id="emailApiCode"
+                defaultValue={settings.integrations.email.apiCode}
+                placeholder="API Kod"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="emailApiLink">API Link</label>
+              <input
+                type="url"
+                id="emailApiLink"
+                defaultValue={settings.integrations.email.apiLink}
+                placeholder="https://api..."
+              />
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="emailExtraInfo">Ek Bilgi</label>
+            <textarea
+              id="emailExtraInfo"
+              rows={2}
+              defaultValue={settings.integrations.email.extraInfo}
+              placeholder="Ek notlar..."
+            />
+          </div>
+
+          {/* Instagram */}
+          <h3 className="subsection-title">Instagram</h3>
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="instagramUsername">Instagram Kullanıcı Adı</label>
+              <input
+                type="text"
+                id="instagramUsername"
+                defaultValue={settings.integrations.instagram.username}
+                placeholder="@kullanici_adi"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="instagramBusinessUserId">Business User ID</label>
+              <input
+                type="text"
+                id="instagramBusinessUserId"
+                defaultValue={settings.integrations.instagram.businessUserId}
+                placeholder="Business ID"
+              />
+            </div>
+          </div>
+
+          {/* WhatsApp */}
+          <h3 className="subsection-title">WhatsApp Business</h3>
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="whatsappPhoneNumber">Telefon Numarası</label>
+              <input
+                type="text"
+                id="whatsappPhoneNumber"
+                defaultValue={settings.integrations.whatsapp.phoneNumber}
+                placeholder="+90 XXX XXX XX XX"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="whatsappPhoneId">Phone ID</label>
+              <input
+                type="text"
+                id="whatsappPhoneId"
+                defaultValue={settings.integrations.whatsapp.phoneId}
+                placeholder="Phone ID"
+              />
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="whatsappApiToken">API Token</label>
+            <input
+              type="password"
+              id="whatsappApiToken"
+              defaultValue={settings.integrations.whatsapp.apiToken}
+              placeholder="WhatsApp API Token"
+            />
+          </div>
+
+          {/* Meta / Facebook */}
+          <h3 className="subsection-title">Meta (Facebook)</h3>
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="metaAppId">App ID</label>
+              <input
+                type="text"
+                id="metaAppId"
+                defaultValue={settings.integrations.meta.appId}
+                placeholder="App ID"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="metaAppSecret">App Secret</label>
+              <input
+                type="password"
+                id="metaAppSecret"
+                defaultValue={settings.integrations.meta.appSecret}
+                placeholder="App Secret"
+              />
+            </div>
+          </div>
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="metaBusinessManagerId">Business Manager ID</label>
+              <input
+                type="text"
+                id="metaBusinessManagerId"
+                defaultValue={settings.integrations.meta.businessManagerId}
+                placeholder="Business Manager ID"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="metaAccessToken">Access Token</label>
+              <input
+                type="password"
+                id="metaAccessToken"
+                defaultValue={settings.integrations.meta.accessToken}
+                placeholder="Access Token"
+              />
+            </div>
+          </div>
+
+          {/* SMS */}
+          <h3 className="subsection-title">SMS Entegrasyonu</h3>
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="smsProvider">SMS Sağlayıcı</label>
+              <input
+                type="text"
+                id="smsProvider"
+                defaultValue={settings.integrations.sms.provider}
+                placeholder="NetGSM, İleti Merkezi, vb."
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="smsApiUsername">API Kullanıcı Adı</label>
+              <input
+                type="text"
+                id="smsApiUsername"
+                defaultValue={settings.integrations.sms.username}
+                placeholder="Kullanıcı Adı"
+              />
+            </div>
+          </div>
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="smsApiToken">API Token</label>
+              <input
+                type="password"
+                id="smsApiToken"
+                defaultValue={settings.integrations.sms.apiToken}
+                placeholder="API Token"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="smsHeader">SMS Başlık</label>
+              <input
+                type="text"
+                id="smsHeader"
+                defaultValue={settings.integrations.sms.header}
+                placeholder="Başlık"
+              />
+            </div>
+          </div>
+
+          {/* Telegram */}
+          <h3 className="subsection-title">Telegram</h3>
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="telegramChatId">Chat ID</label>
+              <input
+                type="text"
+                id="telegramChatId"
+                defaultValue={settings.integrations.telegram.chatId}
+                placeholder="Chat ID"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="telegramBotToken">Bot Token</label>
+              <input
+                type="password"
+                id="telegramBotToken"
+                defaultValue={settings.integrations.telegram.botToken}
+                placeholder="Bot Token"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Bildirim Tercihleri */}
+        <div className="section-card">
+          <h2 className="section-title">Bildirim Tercihleri</h2>
+
+          <div className="notification-grid">
+            <div className="notification-item">
+              <h3>E-posta Bildirimleri</h3>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  id="emailNotifGeneral"
+                  defaultChecked={settings.notifications.email.general}
+                />
+                Genel Bildirimler
+              </label>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  id="emailNotifUrgent"
+                  defaultChecked={settings.notifications.email.urgent}
+                />
+                Acil Bildirimler
+              </label>
+            </div>
+
+            <div className="notification-item">
+              <h3>SMS Bildirimleri</h3>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  id="smsNotifGeneral"
+                  defaultChecked={settings.notifications.sms.general}
+                />
+                Genel Bildirimler
+              </label>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  id="smsNotifSpecial"
+                  defaultChecked={settings.notifications.sms.special}
+                />
+                Özel Bildirimler
+              </label>
+            </div>
+
+            <div className="notification-item">
+              <h3>WhatsApp Bildirimleri</h3>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  id="whatsappNotifGeneral"
+                  defaultChecked={settings.notifications.whatsapp.general}
+                />
+                Genel Bildirimler
+              </label>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  id="whatsappNotifSpecial"
+                  defaultChecked={settings.notifications.whatsapp.special}
+                />
+                Özel Bildirimler
+              </label>
+            </div>
+
+            <div className="notification-item">
+              <h3>Telegram Bildirimleri</h3>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  id="telegramNotifGeneral"
+                  defaultChecked={settings.notifications.telegram.general}
+                />
+                Genel Bildirimler
+              </label>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  id="telegramNotifSpecial"
+                  defaultChecked={settings.notifications.telegram.special}
+                />
+                Özel Bildirimler
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Çalışma Saatleri */}
+        <div className="section-card">
+          <h2 className="section-title">Çalışma Saatleri</h2>
+
+          <div className="working-hours-grid">
+            {['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'].map((dayTr, index) => {
+              const dayEn = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'][index];
+              const dayData = settings.workingHours[dayEn as keyof typeof settings.workingHours];
+
+              return (
+                <div key={dayEn} className="working-hours-row">
+                  <div className="day-name">{dayTr}</div>
+                  <select
+                    id={`${dayEn}Start`}
+                    defaultValue={dayData.start}
+                    disabled={dayData.closed}
+                  >
+                    {timeOptions.map(time => (
+                      <option key={time} value={time}>{time}</option>
+                    ))}
+                  </select>
+                  <span>-</span>
+                  <select
+                    id={`${dayEn}End`}
+                    defaultValue={dayData.end}
+                    disabled={dayData.closed}
+                  >
+                    {timeOptions.map(time => (
+                      <option key={time} value={time}>{time}</option>
+                    ))}
+                  </select>
+                  <label className="checkbox-label">
+                    <input
+                      type="checkbox"
+                      id={`${dayEn}Off`}
+                      defaultChecked={dayData.closed}
+                      onChange={(e) => toggleDayInputs(dayEn, e.target.checked)}
+                    />
+                    Kapalı
+                  </label>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="form-group" style={{ marginTop: '20px' }}>
+            <label>Resmi Tatil Günleri Müsaitlik Durumu</label>
+            <div className="radio-group">
+              <label className="radio-label">
+                <input
+                  type="radio"
+                  name="holidayStatus"
+                  value="Açık"
+                  defaultChecked={settings.holidayStatus === 'Açık'}
+                />
+                Açık
+              </label>
+              <label className="radio-label">
+                <input
+                  type="radio"
+                  name="holidayStatus"
+                  value="Kapalı"
+                  defaultChecked={settings.holidayStatus === 'Kapalı'}
+                />
+                Kapalı
+              </label>
+              <label className="radio-label">
+                <input
+                  type="radio"
+                  name="holidayStatus"
+                  value="Sınırlı"
+                  defaultChecked={settings.holidayStatus === 'Sınırlı'}
+                />
+                Sınırlı Hizmet
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Güvenlik ve Yedekleme */}
+        <div className="section-card">
+          <h2 className="section-title">Güvenlik ve Yedekleme</h2>
+
+          <div className="form-group">
+            <label>Yedekleme Sıklığı</label>
+            <div className="radio-group">
+              <label className="radio-label">
+                <input
+                  type="radio"
+                  name="backupFrequency"
+                  value="Günlük"
+                  defaultChecked={settings.backupFrequency === 'Günlük'}
+                />
+                Günlük
+              </label>
+              <label className="radio-label">
+                <input
+                  type="radio"
+                  name="backupFrequency"
+                  value="Haftalık"
+                  defaultChecked={settings.backupFrequency === 'Haftalık'}
+                />
+                Haftalık
+              </label>
+              <label className="radio-label">
+                <input
+                  type="radio"
+                  name="backupFrequency"
+                  value="Aylık"
+                  defaultChecked={settings.backupFrequency === 'Aylık'}
+                />
+                Aylık
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Sözleşme Bilgileri */}
+        <div className="section-card">
+          <h2 className="section-title">Sözleşme Bilgileri (Salt Okunur)</h2>
+
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="contractNumber">Sözleşme No</label>
+              <input
+                type="text"
+                id="contractNumber"
+                value={settings.contract.contractNumber}
+                readOnly
+                className="readonly-input"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="contractPeriod">Sözleşme Süresi</label>
+              <input
+                type="text"
+                id="contractPeriod"
+                value={settings.contract.period}
+                readOnly
+                className="readonly-input"
+              />
+            </div>
+          </div>
+
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="contractStart">Başlangıç Tarihi</label>
+              <input
+                type="text"
+                id="contractStart"
+                value={settings.contract.contractStart}
+                readOnly
+                className="readonly-input"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="processStart">İşlem Başlangıç</label>
+              <input
+                type="text"
+                id="processStart"
+                value={settings.contract.processStart}
+                readOnly
+                className="readonly-input"
+              />
+            </div>
+          </div>
+
+          <div className="form-group-row">
+            <div className="form-group">
+              <label htmlFor="remainingDays">Kalan Gün</label>
+              <input
+                type="text"
+                id="remainingDays"
+                value={settings.contract.remainingDays}
+                readOnly
+                className="readonly-input"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="autoRenewal">Otomatik Yenileme</label>
+              <input
+                type="text"
+                id="autoRenewal"
+                value={settings.contract.autoRenewal}
+                readOnly
+                className="readonly-input"
+              />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="extraServices">Ekstra Hizmetler</label>
+            <textarea
+              id="extraServices"
+              rows={2}
+              value={settings.contract.extraServices}
+              readOnly
+              className="readonly-input"
+            />
+          </div>
+
+          {settings.contract.contractUrl && (
+            <div className="form-group">
+              <a
+                href={settings.contract.contractUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="download-contract-btn"
+              >
+                📄 Sözleşmeyi İndir / Görüntüle
+              </a>
+            </div>
+          )}
+        </div>
+
+        {/* Düzenleme Talepleri */}
+        <div className="section-card">
+          <h2 className="section-title">Düzenleme Talepleri</h2>
+          <div className="form-group">
+            <label htmlFor="editRequestNotes">
+              Değiştirmek istediğiniz bilgiler veya ekstra talepleriniz varsa lütfen buraya yazınız
+            </label>
+            <textarea
+              id="editRequestNotes"
+              rows={5}
+              defaultValue={settings.editRequestNotes}
+              placeholder="Düzenleme taleplerinizi detaylı olarak yazınız..."
+            />
+          </div>
+        </div>
+
+        {/* Acil Destek */}
+        <div className="section-card">
+          <h2 className="section-title">Acil Destek</h2>
+          <div className="form-group">
+            <label className="checkbox-label" style={{ fontSize: '16px' }}>
+              <input
+                type="checkbox"
+                id="emergencySupport"
+                defaultChecked={settings.emergencySupport}
+                onChange={toggleEmergencyInput}
+              />
+              Acil destek talebi oluştur
+            </label>
+          </div>
+
+          <div
+            id="emergencyDetails"
+            className={settings.emergencySupport ? '' : 'hidden'}
+          >
+            <div className="form-group">
+              <label htmlFor="emergencyText">Acil Destek Detayı</label>
+              <textarea
+                id="emergencyText"
+                rows={4}
+                defaultValue={settings.emergencyText}
+                placeholder="Acil destek talebinizin detaylarını yazınız..."
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* FOKUS Asistanları */}
+        <div className="section-card">
+          <h2 className="section-title">FOKUS Asistanları</h2>
+          <p className="section-description">
+            Aktif asistanlarınız ve kullanıma açılmaya hazır FOKUS paketleriniz
+          </p>
+
+          <div className="packages-grid">
+            {settings.packages.map((pkg) => (
+              <div
+                key={pkg.id}
+                className={`package-card ${pkg.status === 'active' ? 'active' : 'inactive'}`}
+              >
+                <div className="package-header">
+                  <img
+                    src={pkg.icon}
+                    alt={pkg.name}
+                    className="package-icon"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src =
+                        'https://static.fokusistatistik.com/resimler/fokus999iconkare.png';
+                    }}
+                  />
+                  <div className="package-info">
+                    <h3>{pkg.name}</h3>
+                    <p>{pkg.title}</p>
+                    <span className={`package-type type-${pkg.type.toLowerCase()}`}>
+                      {pkg.type}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="package-actions">
+                  {pkg.status === 'active' ? (
+                    <>
+                      <button
+                        className="btn-settings"
+                        onClick={() => openAssistantSettings(pkg.code.replace('fokus', ''))}
+                      >
+                        ⚙️ Ayarlar
+                      </button>
+                      {pkg.type === 'Standart' && (
+                        <button
+                          className="btn-upgrade"
+                          onClick={() => upgradePackage(pkg.code.replace('fokus', ''))}
+                        >
+                          ⬆️ Yükselt
+                        </button>
+                      )}
+                    </>
+                  ) : (
+                    <button
+                      className="btn-request"
+                      onClick={() => requestPackage(pkg.code.replace('fokus', ''))}
+                    >
+                      ✉️ Talep Et
+                    </button>
+                  )}
+                </div>
+
+                <div className={`package-status status-${pkg.status}`}>
+                  {pkg.status === 'active' ? '✓ Aktif' : '○ Pasif'}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Kurumsal Özel Ayarlar Kartı */}
+          <div className="package-card special-card">
+            <div className="package-header">
+              <img
+                src="https://static.fokusistatistik.com/resimler/fokuslogolar.png"
+                alt="Kurumsal"
+                className="package-icon"
+              />
+              <div className="package-info">
+                <h3>Kurumsal Özel Ayarlar</h3>
+                <p>Tüm FOKUS asistanları için genel kurumsal ayarlar</p>
+              </div>
+            </div>
+            <div className="package-actions">
+              <button className="btn-settings" onClick={openKurumsalSettings}>
+                ⚙️ Kurumsal Ayarlar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Kaydet Butonu */}
+        <div className="save-button-container">
+          <button
+            onClick={saveSettings}
+            disabled={isSaving}
+            className="save-btn"
+          >
+            {isSaving ? 'Kaydediliyor...' : '💾 Ayarları Kaydet'}
+          </button>
+        </div>
+      </div>
+    </>
+  );
 }
