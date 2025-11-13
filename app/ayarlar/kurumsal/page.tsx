@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import './styles.css';
@@ -93,7 +93,7 @@ const fokusAssistants: Record<string, { title: string; descriptions: string[] }>
   }
 };
 
-export default function KurumsalSettingsPage() {
+function KurumsalSettingsPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -1501,5 +1501,20 @@ export default function KurumsalSettingsPage() {
       {/* Teknik Destek Chatbot */}
       <TeknikDestekChatbot pageType="kurumsal" pageTitle="Kurumsal Ayarlar" />
     </>
+  );
+}
+
+export default function KurumsalSettingsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#860000] mx-auto"></div>
+          <p className="mt-4 text-gray-600">Yükleniyor...</p>
+        </div>
+      </div>
+    }>
+      <KurumsalSettingsPageContent />
+    </Suspense>
   );
 }

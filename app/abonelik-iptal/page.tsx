@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect, FormEvent } from 'react';
+import { useState, useEffect, FormEvent, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import './styles.css';
 
-export default function AbonelikIptalPage() {
+function AbonelikIptalContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -189,5 +189,20 @@ export default function AbonelikIptalPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function AbonelikIptalPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#860000] mx-auto"></div>
+          <p className="mt-4 text-gray-600">Yükleniyor...</p>
+        </div>
+      </div>
+    }>
+      <AbonelikIptalContent />
+    </Suspense>
   );
 }
