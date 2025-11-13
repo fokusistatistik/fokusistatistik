@@ -29,13 +29,94 @@ export default function ProfilPage() {
     smsSubscription: false,
   });
 
+  // Load profile data on mount
   useEffect(() => {
     if (status === 'unauthenticated') {
       router.push('/giris');
+    } else if (status === 'authenticated' && session) {
+      loadProfile();
     }
-  }, [status, router]);
+  }, [status, router, session]);
 
-  if (status === 'loading') {
+  // Load profile from API
+  const loadProfile = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/api/profile');
+      const data = await response.json();
+
+      if (data.success && data.data) {
+        setProfile(data.data);
+        // Populate form with existing data
+        setFormData({
+          firstName: data.data.firstName || '',
+          lastName: data.data.lastName || '',
+          company: data.data.company || '',
+          birthYear: data.data.birthYear,
+          phone: data.data.phone || '',
+          kvkkConsent: data.data.kvkkConsent || false,
+          emailSubscription: data.data.emailSubscription !== false, // Default true
+          smsSubscription: data.data.smsSubscription || false,
+        });
+      }
+    } catch (error) {
+      console.error('Profil yüklenirken hata:', error);
+      toast.error('Profil bilgileri yüklenemedi');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validate KVKK consent
+    if (!formData.kvkkConsent) {
+      toast.error('Devam etmek için KVKK Aydınlatma Metni\'ni onaylamanız gerekmektedir.');
+      return;
+    }
+
+    // Validate required fields
+    if (!formData.firstName || !formData.lastName) {
+      toast.error('Ad ve Soyad alanları zorunludur.');
+      return;
+    }
+
+    try {
+      setSaving(true);
+      const response = await fetch('/api/profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setProfile(data.data);
+        setLastSaved(new Date());
+        toast.success('Profil bilgileriniz başarıyla kaydedildi!');
+      } else {
+        toast.error(data.error || 'Profil kaydedilemedi');
+      }
+    } catch (error) {
+      console.error('Profil kaydetme hatası:', error);
+      toast.error('Profil kaydedilirken bir hata oluştu');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  // Handle input changes
+  const handleChange = (field: keyof ProfileFormData, value: any) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  // Generate birth year options (1940-2010)
+  const birthYearOptions = Array.from({ length: 71 }, (_, i) => 2010 - i);
+
+  if (status === 'loading' || loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -56,159 +137,234 @@ export default function ProfilPage() {
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <div className="flex items-center gap-6">
-            <div className="w-24 h-24 bg-gradient-to-br from-[#860000] to-[#a30000] rounded-full flex items-center justify-center text-white text-3xl font-bold">
-              {session.user?.name?.charAt(0).toUpperCase() || 'U'}
+            <div className="relative">
+              {session.user?.image ? (
+                <img
+                  src={session.user.image}
+                  alt={session.user.name || 'Profil'}
+                  className="w-24 h-24 rounded-full object-cover"
+                />
+              ) : (
+                <div className="w-24 h-24 bg-gradient-to-br from-[#860000] to-[#a30000] rounded-full flex items-center justify-center text-white text-3xl font-bold">
+                  {session.user?.name?.charAt(0).toUpperCase() || 'U'}
+                </div>
+              )}
+              {profile?.profileCompleted && (
+                <div className="absolute -bottom-2 -right-2 bg-green-500 rounded-full p-2">
+                  <CheckCircle2 className="w-5 h-5 text-white" />
+                </div>
+              )}
             </div>
             <div className="flex-1">
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                {session.user?.name || 'Kullanıcı'}
+                {profile?.firstName && profile?.lastName
+                  ? `${profile.firstName} ${profile.lastName}`
+                  : session.user?.name || 'Kullanıcı'}
               </h1>
-              <p className="text-gray-600">{session.user?.email}</p>
+              <p className="text-gray-600 flex items-center gap-2">
+                <Mail className="w-4 h-4" />
+                {session.user?.email}
+              </p>
+              {!profile?.profileCompleted && (
+                <p className="text-orange-600 text-sm mt-2 flex items-center gap-1">
+                  <Info className="w-4 h-4" />
+                  Profil bilgilerinizi tamamlayın
+                </p>
+              )}
             </div>
-            <button
-              onClick={() => setIsEditing(!isEditing)}
-              className="bg-[#860000] hover:bg-[#b30000] text-white px-6 py-3 rounded-lg transition-all"
-            >
-              {isEditing ? 'İptal' : 'Düzenle'}
-            </button>
+            <SaveIndicator lastSaved={lastSaved} saving={saving} />
           </div>
         </div>
 
-        {/* Profile Information */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        {/* Profile Form */}
+        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Profil Bilgileri</h2>
 
           <div className="space-y-6">
+            {/* Name Fields */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Ad Soyad
+                <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                  <User className="w-4 h-4" />
+                  Ad *
+                  <FormTooltip content="Adınızı girin" />
                 </label>
                 <input
                   type="text"
-                  value={session.user?.name || ''}
-                  disabled={!isEditing}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#860000] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  required
+                  value={formData.firstName}
+                  onChange={(e) => handleChange('firstName', e.target.value)}
+                  placeholder="Adınız"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#860000] focus:border-transparent transition-all"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  E-posta
-                </label>
-                <input
-                  type="email"
-                  value={session.user?.email || ''}
-                  disabled
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Telefon
-                </label>
-                <input
-                  type="tel"
-                  placeholder="Telefon numarası ekleyin"
-                  disabled={!isEditing}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#860000] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Şirket
+                <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                  <User className="w-4 h-4" />
+                  Soyad *
+                  <FormTooltip content="Soyadınızı girin" />
                 </label>
                 <input
                   type="text"
-                  placeholder="Şirket adı ekleyin"
-                  disabled={!isEditing}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#860000] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  required
+                  value={formData.lastName}
+                  onChange={(e) => handleChange('lastName', e.target.value)}
+                  placeholder="Soyadınız"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#860000] focus:border-transparent transition-all"
                 />
               </div>
             </div>
 
-            {isEditing && (
-              <div className="flex justify-end gap-4 pt-4 border-t">
-                <button
-                  onClick={() => setIsEditing(false)}
-                  className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  İptal
-                </button>
-                <button
-                  onClick={() => {
-                    alert('Profil güncelleme özelliği yakında eklenecek!');
-                    setIsEditing(false);
-                  }}
-                  className="px-6 py-3 bg-[#860000] hover:bg-[#b30000] text-white rounded-lg transition-colors"
-                >
-                  Değişiklikleri Kaydet
-                </button>
+            {/* Company and Birth Year */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                  <Building2 className="w-4 h-4" />
+                  Şirket (Opsiyonel)
+                  <FormTooltip content="Çalıştığınız şirket veya kurum adı" />
+                </label>
+                <input
+                  type="text"
+                  value={formData.company || ''}
+                  onChange={(e) => handleChange('company', e.target.value)}
+                  placeholder="Şirket adı"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#860000] focus:border-transparent transition-all"
+                />
               </div>
-            )}
-          </div>
-        </div>
 
-        {/* Quick Actions */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-xl shadow p-6 hover:shadow-lg transition-shadow">
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-              <span className="text-2xl">📦</span>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  Doğum Yılı
+                  <FormTooltip content="Doğum yılınızı seçin" />
+                </label>
+                <select
+                  value={formData.birthYear || ''}
+                  onChange={(e) => handleChange('birthYear', e.target.value ? parseInt(e.target.value) : undefined)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#860000] focus:border-transparent transition-all"
+                >
+                  <option value="">Seçiniz</option>
+                  {birthYearOptions.map(year => (
+                    <option key={year} value={year}>{year}</option>
+                  ))}
+                </select>
+              </div>
             </div>
-            <h3 className="font-semibold text-gray-900 mb-2">Siparişlerim</h3>
-            <p className="text-sm text-gray-600 mb-4">Aktif ve geçmiş siparişleriniz</p>
-            <a
-              href="/siparisler"
-              className="text-[#860000] hover:underline text-sm font-medium"
-            >
-              Görüntüle →
-            </a>
-          </div>
 
-          <div className="bg-white rounded-xl shadow p-6 hover:shadow-lg transition-shadow">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-              <span className="text-2xl">🤖</span>
-            </div>
-            <h3 className="font-semibold text-gray-900 mb-2">Asistanlarım</h3>
-            <p className="text-sm text-gray-600 mb-4">Aktif sanal asistanlarınız</p>
-            <a
-              href="/dashboard"
-              className="text-[#860000] hover:underline text-sm font-medium"
-            >
-              Yönet →
-            </a>
-          </div>
-
-          <div className="bg-white rounded-xl shadow p-6 hover:shadow-lg transition-shadow">
-            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-              <span className="text-2xl">💳</span>
-            </div>
-            <h3 className="font-semibold text-gray-900 mb-2">Ödeme Yöntemleri</h3>
-            <p className="text-sm text-gray-600 mb-4">Kayıtlı kart ve yöntemler</p>
-            <button
-              onClick={() => alert('Ödeme yöntemleri özelliği yakında eklenecek!')}
-              className="text-[#860000] hover:underline text-sm font-medium"
-            >
-              Düzenle →
-            </button>
-          </div>
-        </div>
-
-        {/* Notification */}
-        <div className="mt-8 bg-blue-50 border border-blue-200 rounded-xl p-6">
-          <div className="flex items-start gap-4">
-            <div className="text-3xl">ℹ️</div>
+            {/* Phone */}
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Geliştirme Aşamasında</h3>
-              <p className="text-gray-600 text-sm">
-                Profil yönetimi özellikleri aktif olarak geliştirilmektedir.
-                Yakında tam özellikli profil düzenleme, şifre değiştirme ve hesap ayarları eklenecektir.
-              </p>
+              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                Telefon
+                <FormTooltip content="Telefon numaranızı girin (5XX XXX XX XX)" />
+              </label>
+              <input
+                type="tel"
+                value={formData.phone || ''}
+                onChange={(e) => handleChange('phone', e.target.value)}
+                placeholder="5XX XXX XX XX"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#860000] focus:border-transparent transition-all"
+              />
+            </div>
+
+            {/* Communication Preferences */}
+            <div className="border-t pt-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">İletişim Tercihleri</h3>
+
+              <div className="space-y-3">
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.emailSubscription}
+                    onChange={(e) => handleChange('emailSubscription', e.target.checked)}
+                    className="w-5 h-5 text-[#860000] border-gray-300 rounded focus:ring-2 focus:ring-[#860000]"
+                  />
+                  <div>
+                    <div className="font-medium text-gray-900">E-posta bildirimleri</div>
+                    <div className="text-sm text-gray-600">Kampanya ve güncellemelerden haberdar olun</div>
+                  </div>
+                </label>
+
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.smsSubscription}
+                    onChange={(e) => handleChange('smsSubscription', e.target.checked)}
+                    className="w-5 h-5 text-[#860000] border-gray-300 rounded focus:ring-2 focus:ring-[#860000]"
+                  />
+                  <div>
+                    <div className="font-medium text-gray-900">SMS bildirimleri</div>
+                    <div className="text-sm text-gray-600">Önemli güncellemeler için SMS alın</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            {/* KVKK Consent */}
+            <div className="border-t pt-6">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  required
+                  checked={formData.kvkkConsent}
+                  onChange={(e) => handleChange('kvkkConsent', e.target.checked)}
+                  className="w-5 h-5 text-[#860000] border-gray-300 rounded focus:ring-2 focus:ring-[#860000] mt-1"
+                />
+                <div className="text-sm">
+                  <span className="text-gray-900">
+                    <a href="/kvkk-aydinlatma" target="_blank" className="text-[#860000] hover:underline font-medium">
+                      KVKK Aydınlatma Metni
+                    </a>
+                    'ni okudum ve kabul ediyorum. *
+                  </span>
+                  <p className="text-gray-600 mt-1">
+                    Kişisel verilerinizin işlenmesi hakkında detaylı bilgi almak için lütfen aydınlatma metnini okuyun.
+                  </p>
+                </div>
+              </label>
+            </div>
+
+            {/* Submit Button */}
+            <div className="flex justify-end pt-6 border-t">
+              <button
+                type="submit"
+                disabled={saving || !formData.kvkkConsent}
+                className="px-8 py-3 bg-[#860000] hover:bg-[#b30000] text-white rounded-lg transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {saving ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    Kaydediliyor...
+                  </>
+                ) : (
+                  'Profili Kaydet'
+                )}
+              </button>
             </div>
           </div>
-        </div>
+        </form>
+
+        {/* Profile Status */}
+        {profile && (
+          <div className={`rounded-xl p-6 ${profile.profileCompleted ? 'bg-green-50 border border-green-200' : 'bg-orange-50 border border-orange-200'}`}>
+            <div className="flex items-start gap-4">
+              <div className="text-3xl">
+                {profile.profileCompleted ? '✅' : 'ℹ️'}
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  {profile.profileCompleted ? 'Profiliniz Tamamlandı' : 'Profilinizi Tamamlayın'}
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  {profile.profileCompleted
+                    ? 'Profil bilgileriniz güncel ve eksiksiz. Dilediğiniz zaman yukarıdaki formdan güncelleyebilirsiniz.'
+                    : 'Profil bilgilerinizi tamamlayarak size daha iyi hizmet vermemizi sağlayın.'}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
