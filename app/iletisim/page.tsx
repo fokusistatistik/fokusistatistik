@@ -2,21 +2,21 @@
 
 import { useState, FormEvent } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { useToast } from '@/app/hooks/useToast';
 
 export default function Iletisim() {
+  const { showToast, ToastContainer } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
     message: '',
   });
-  const [result, setResult] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setResult('');
 
     try {
       // n8n webhook'a gönder
@@ -30,7 +30,7 @@ export default function Iletisim() {
         });
       }
 
-      setResult('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.');
+      showToast('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.', 'success', 6000);
       setFormData({
         name: '',
         phone: '',
@@ -38,7 +38,7 @@ export default function Iletisim() {
         message: '',
       });
     } catch (error) {
-      setResult('Bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+      showToast('Bir hata oluştu. Lütfen daha sonra tekrar deneyin.', 'error', 6000);
     } finally {
       setIsSubmitting(false);
     }
@@ -46,7 +46,7 @@ export default function Iletisim() {
 
   return (
     <div className="min-h-screen flex flex-col">
-
+      <ToastContainer />
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-[#860000] via-[#a50000] to-[#6b0000] text-white py-16 lg:py-20">
@@ -220,18 +220,6 @@ export default function Iletisim() {
                         </>
                       )}
                     </button>
-
-                    {result && (
-                      <div
-                        className={`mt-4 p-4 rounded-lg ${
-                          result.includes('başarıyla')
-                            ? 'bg-green-50 text-green-800 border border-green-200'
-                            : 'bg-red-50 text-red-800 border border-red-200'
-                        }`}
-                      >
-                        {result}
-                      </div>
-                    )}
                   </form>
                 </div>
               </div>

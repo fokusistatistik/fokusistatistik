@@ -6,6 +6,7 @@ import VapiWidget from "@/app/components/VapiWidget";
 import Footer from "@/components/Footer";
 import PromotionCTA from "@/app/components/PromotionCTA";
 import CookieConsent from "@/app/components/CookieConsent";
+import GoogleAnalytics from "@/app/components/GoogleAnalytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -53,6 +54,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className="antialiased">
+        <GoogleAnalytics />
         <Header />
         <SessionProvider>
           {children}

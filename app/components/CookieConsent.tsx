@@ -25,6 +25,9 @@ export default function CookieConsent() {
     localStorage.setItem('fokusCookieConsent', 'accepted');
     localStorage.setItem('fokusCookieConsentDate', new Date().toISOString());
 
+    // Dispatch event for Google Analytics
+    window.dispatchEvent(new Event('cookieConsentAccepted'));
+
     // Hide banner with animation
     setIsVisible(false);
 
