@@ -182,7 +182,7 @@ export default function ChatWidget() {
           key={pulseKey}
           style={{ display: isOpen ? 'none' : 'block' }}
         >
-          <img src="/assets/img/fokus216kare.png" alt="FOKUS216" />
+          <img src="/assets/img/fokus216kare.svg" alt="FOKUS216" />
           <div className="description">Size nasıl yardımcı olabilirim?</div>
         </div>
 
