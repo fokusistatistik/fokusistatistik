@@ -18,26 +18,26 @@ export default function VapiWidget() {
       <style jsx global>{`
         .voice-assistant-container {
           position: fixed;
-          bottom: 30px;
-          left: 30px;
+          bottom: 80px;
+          left: 20px;
           z-index: 9998;
           text-align: center;
           user-select: none;
         }
 
         .voice-assistant-btn {
-          width: 70px;
-          height: 70px;
+          width: 50px;
+          height: 50px;
           border-radius: 50%;
           cursor: pointer;
-          transition: transform 0.3s ease;
-          box-shadow: 0 6px 16px rgba(134, 0, 0, 0.3);
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 12px rgba(134, 0, 0, 0.3);
           overflow: hidden;
         }
 
         .voice-assistant-btn:hover {
           transform: scale(1.15);
-          box-shadow: 0 8px 20px rgba(134, 0, 0, 0.4);
+          box-shadow: 0 6px 16px rgba(134, 0, 0, 0.4);
         }
 
         .voice-assistant-btn img {
@@ -47,11 +47,7 @@ export default function VapiWidget() {
         }
 
         .voice-assistant-text {
-          font-size: 11px;
-          color: #666;
-          margin-top: 8px;
-          font-weight: 500;
-          line-height: 1.3;
+          display: none;
         }
 
         .voice-modal {
@@ -149,13 +145,38 @@ export default function VapiWidget() {
         }
 
         @media (max-width: 768px) {
+          .voice-assistant-container {
+            bottom: 70px;
+            left: 15px;
+          }
+
+          .voice-assistant-btn {
+            width: 40px;
+            height: 40px;
+          }
+
           .voice-modal-content {
             width: 95%;
             max-height: 95vh;
           }
 
+          .voice-modal-header h3 {
+            font-size: 16px;
+          }
+
           .voice-modal-body iframe {
             height: 400px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .voice-assistant-btn {
+            width: 38px;
+            height: 38px;
+          }
+
+          .voice-modal-body iframe {
+            height: 350px;
           }
         }
       `}</style>

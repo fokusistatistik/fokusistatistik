@@ -5,29 +5,88 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Chrome, Mail, Lock, ArrowRight, Shield, Zap } from 'lucide-react';
+import WelcomeModal from '@/app/components/WelcomeModal';
+import { toast } from 'sonner';
 
 export default function GirisPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+  const [checkingUser, setCheckingUser] = useState(false);
 
+  // Check if user is registered when authenticated
   useEffect(() => {
-    if (status === 'authenticated') {
-      router.push('/dashboard');
+    if (status === 'authenticated' && session && !checkingUser && !showWelcomeModal) {
+      checkUserRegistration();
     }
-  }, [status, router]);
+  }, [status, session]);
+
+  const checkUserRegistration = async () => {
+    setCheckingUser(true);
+    try {
+      const response = await fetch('/api/user/register');
+      const data = await response.json();
+
+      if (data.success) {
+        if (data.isNewUser || !data.isRegistered) {
+          // New user - show welcome modal
+          setShowWelcomeModal(true);
+        } else {
+          // Existing user - redirect to dashboard
+          router.push('/dashboard');
+        }
+      } else {
+        // Error checking - assume new user
+        setShowWelcomeModal(true);
+      }
+    } catch (error) {
+      console.error('User check error:', error);
+      // On error, show modal to be safe
+      setShowWelcomeModal(true);
+    } finally {
+      setCheckingUser(false);
+    }
+  };
+
+  const handleWelcomeAccept = async (emailSubscription: boolean) => {
+    try {
+      const response = await fetch('/api/user/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          acceptedTerms: true,
+          emailSubscription,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success('Hoş geldiniz! Hesabınız oluşturuldu.');
+        setShowWelcomeModal(false);
+        // Redirect to dashboard or profile
+        router.push('/profil');
+      } else {
+        toast.error(data.error || 'Kayıt sırasında bir hata oluştu.');
+      }
+    } catch (error) {
+      console.error('Registration error:', error);
+      toast.error('Beklenmeyen bir hata oluştu.');
+    }
+  };
 
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     try {
-      await signIn('google', { callbackUrl: '/dashboard' });
+      await signIn('google', { callbackUrl: '/giris' }); // Redirect back to /giris for check
     } catch (error) {
       console.error('Login error:', error);
       setIsLoading(false);
     }
   };
 
-  if (status === 'loading') {
+  if (status === 'loading' || checkingUser) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
@@ -141,7 +200,7 @@ export default function GirisPage() {
                     Kullanım Koşulları
                   </Link>{' '}
                   ve{' '}
-                  <Link href="/gizlilik" className="text-[#860000] hover:underline">
+                  <Link href="/gizlilik-politikasi" className="text-[#860000] hover:underline">
                     Gizlilik Politikası
                   </Link>
                   &apos;nı kabul etmiş olursunuz.
@@ -172,7 +231,18 @@ export default function GirisPage() {
         </div>
       </main>
 
-      
+      {/* Welcome Modal for New Users */}
+      {showWelcomeModal && session && (
+        <WelcomeModal
+          isOpen={showWelcomeModal}
+          userInfo={{
+            name: session.user?.name,
+            email: session.user?.email,
+            image: session.user?.image,
+          }}
+          onAccept={handleWelcomeAccept}
+        />
+      )}
     </div>
   );
 }

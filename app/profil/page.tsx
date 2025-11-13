@@ -132,8 +132,30 @@ export default function ProfilPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4">
-      <div className="max-w-4xl mx-auto">
+    <>
+      <style jsx global>{`
+        /* Touch-friendly sizes for mobile */
+        @media (max-width: 768px) {
+          input[type="text"],
+          input[type="email"],
+          input[type="tel"],
+          select {
+            min-height: 44px !important;
+            font-size: 16px; /* Prevents iOS zoom on focus */
+          }
+
+          input[type="checkbox"] {
+            width: 1.5rem !important;
+            height: 1.5rem !important;
+          }
+
+          button {
+            min-height: 44px !important;
+          }
+        }
+      `}</style>
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4">
+        <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <div className="flex items-center gap-6">
@@ -367,5 +389,6 @@ export default function ProfilPage() {
         )}
       </div>
     </div>
+    </>
   );
 }

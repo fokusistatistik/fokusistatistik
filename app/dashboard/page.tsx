@@ -243,9 +243,21 @@ export default function Dashboard() {
           </div>
         </div>
 
+        {/* Demo Data Notice */}
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 flex items-start gap-3">
+          <div className="text-2xl">ℹ️</div>
+          <div className="flex-1">
+            <h3 className="font-semibold text-amber-900 mb-1">Demo Veri Görüntüleniyor</h3>
+            <p className="text-sm text-amber-800">
+              Aşağıdaki istatistikler örnek verilerdir. Asistanlarınızı aktif olarak kullanmaya başladığınızda gerçek verileriniz burada görünecektir.
+            </p>
+          </div>
+        </div>
+
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-xl shadow-md p-6">
+          <div className="bg-white rounded-xl shadow-md p-6 relative">
+            <span className="absolute top-2 right-2 text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded">Demo</span>
             <div className="flex items-center justify-between mb-4">
               <div className="bg-blue-100 rounded-lg p-3">
                 <Bot className="w-6 h-6 text-blue-600" />
@@ -255,7 +267,8 @@ export default function Dashboard() {
             <h3 className="text-gray-600 text-sm font-medium">Aktif Asistanlar</h3>
           </div>
 
-          <div className="bg-white rounded-xl shadow-md p-6">
+          <div className="bg-white rounded-xl shadow-md p-6 relative">
+            <span className="absolute top-2 right-2 text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded">Demo</span>
             <div className="flex items-center justify-between mb-4">
               <div className="bg-green-100 rounded-lg p-3">
                 <TrendingUp className="w-6 h-6 text-green-600" />
@@ -265,7 +278,8 @@ export default function Dashboard() {
             <h3 className="text-gray-600 text-sm font-medium">Verimlilik Artışı</h3>
           </div>
 
-          <div className="bg-white rounded-xl shadow-md p-6">
+          <div className="bg-white rounded-xl shadow-md p-6 relative">
+            <span className="absolute top-2 right-2 text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded">Demo</span>
             <div className="flex items-center justify-between mb-4">
               <div className="bg-purple-100 rounded-lg p-3">
                 <MessageSquare className="w-6 h-6 text-purple-600" />
@@ -275,7 +289,8 @@ export default function Dashboard() {
             <h3 className="text-gray-600 text-sm font-medium">Toplam Görüşme</h3>
           </div>
 
-          <div className="bg-white rounded-xl shadow-md p-6">
+          <div className="bg-white rounded-xl shadow-md p-6 relative">
+            <span className="absolute top-2 right-2 text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded">Demo</span>
             <div className="flex items-center justify-between mb-4">
               <div className="bg-orange-100 rounded-lg p-3">
                 <Clock className="w-6 h-6 text-orange-600" />
