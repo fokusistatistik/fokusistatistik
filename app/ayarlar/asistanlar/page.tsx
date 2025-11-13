@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles.css';
+import TeknikDestekChatbot from '@/components/TeknikDestekChatbot';
 
 // Session configuration
 const SESSION_CONFIG = {
@@ -1476,6 +1477,9 @@ export default function AssistantSettingsPage() {
           {isSaving ? 'Kaydediliyor...' : 'Ayarları Kaydet'}
         </button>
       </div>
+
+      {/* Teknik Destek Chatbot */}
+      <TeknikDestekChatbot pageType="asistanlar" pageTitle="Asistan Ayarları" />
     </div>
   );
 }

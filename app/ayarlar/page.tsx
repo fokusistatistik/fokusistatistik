@@ -6,6 +6,7 @@ import { useEffect, useState, useRef } from 'react';
 import { CustomerSettings } from '@/types/settings';
 import Script from 'next/script';
 import dynamic from 'next/dynamic';
+import TeknikDestekChatbot from '@/components/TeknikDestekChatbot';
 import './styles.css';
 
 // Leaflet'i dinamik olarak yükle (SSR sorunlarını önlemek için)
@@ -1997,6 +1998,9 @@ export default function SettingsPage() {
           </button>
         </div>
       </div>
+
+      {/* Teknik Destek Chatbot */}
+      <TeknikDestekChatbot pageType="ayarlar" pageTitle="Ana Ayarlar" />
     </>
   );
 }

@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import './styles.css';
+import TeknikDestekChatbot from '@/components/TeknikDestekChatbot';
 
 // ========================================
 // TYPES
@@ -1515,6 +1516,9 @@ export default function KurumsalSettingsPage() {
           </button>
         </div>
       </div>
+
+      {/* Teknik Destek Chatbot */}
+      <TeknikDestekChatbot pageType="kurumsal" pageTitle="Kurumsal Ayarlar" />
     </>
   );
 }
