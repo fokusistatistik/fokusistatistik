@@ -29,14 +29,22 @@ export default function WelcomeModal({ isOpen, onClose, userInfo, onAccept }: We
     }
 
     setIsLoading(true);
+    console.log('🚀 Welcome modal - user accepting terms:', {
+      email: userInfo.email,
+      name: userInfo.name,
+      emailSubscription,
+      acceptedTerms,
+    });
+
     try {
       await onAccept(emailSubscription);
+      console.log('✅ Welcome modal - onAccept completed');
     } catch (error) {
-      console.error('Registration error:', error);
+      console.error('❌ Registration error in modal:', error);
       alert('Bir hata oluştu. Lütfen tekrar deneyin.');
-    } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Only reset on error
     }
+    // Note: Don't reset loading on success - parent will handle redirect
   };
 
   return (

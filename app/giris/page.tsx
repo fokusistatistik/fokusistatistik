@@ -24,25 +24,34 @@ export default function GirisPage() {
 
   const checkUserRegistration = async () => {
     setCheckingUser(true);
+    console.log('🔍 Checking user registration for:', session?.user?.email);
+
     try {
       const response = await fetch('/api/user/register');
       const data = await response.json();
 
+      console.log('📋 User check response:', data);
+
       if (data.success) {
         if (data.isNewUser || !data.isRegistered) {
           // New user - show welcome modal
+          console.log('✨ New user detected - showing welcome modal');
           setShowWelcomeModal(true);
         } else {
           // Existing user - redirect to dashboard
+          console.log('✅ Existing user - redirecting to dashboard');
+          toast.success(`Hoş geldiniz ${session?.user?.name || 'tekrar'}!`);
           router.push('/dashboard');
         }
       } else {
         // Error checking - assume new user
+        console.warn('⚠️ User check failed - showing welcome modal as fallback');
         setShowWelcomeModal(true);
       }
     } catch (error) {
-      console.error('User check error:', error);
+      console.error('❌ User check error:', error);
       // On error, show modal to be safe
+      toast.error('Kullanıcı kontrolü başarısız, lütfen tekrar deneyin.');
       setShowWelcomeModal(true);
     } finally {
       setCheckingUser(false);
@@ -50,6 +59,12 @@ export default function GirisPage() {
   };
 
   const handleWelcomeAccept = async (emailSubscription: boolean) => {
+    console.log('📝 Registering new user:', {
+      email: session?.user?.email,
+      name: session?.user?.name,
+      emailSubscription,
+    });
+
     try {
       const response = await fetch('/api/user/register', {
         method: 'POST',
@@ -61,18 +76,25 @@ export default function GirisPage() {
       });
 
       const data = await response.json();
+      console.log('📋 Registration response:', data);
 
       if (data.success) {
-        toast.success('Hoş geldiniz! Hesabınız oluşturuldu.');
+        const firstName = session?.user?.name?.split(' ')[0] || 'Kullanıcı';
+        toast.success(`Hoş geldiniz ${firstName}! Hesabınız oluşturuldu. 🎉`);
         setShowWelcomeModal(false);
-        // Redirect to dashboard or profile
-        router.push('/profil');
+
+        // Redirect to profile for completion
+        console.log('✅ Registration successful - redirecting to profile');
+        setTimeout(() => {
+          router.push('/profil');
+        }, 1500);
       } else {
+        console.error('❌ Registration failed:', data.error);
         toast.error(data.error || 'Kayıt sırasında bir hata oluştu.');
       }
     } catch (error) {
-      console.error('Registration error:', error);
-      toast.error('Beklenmeyen bir hata oluştu.');
+      console.error('❌ Registration error:', error);
+      toast.error('Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.');
     }
   };
 

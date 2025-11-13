@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../../auth/[...nextauth]/route';
 
-const WEBHOOK_URL = 'https://n8n.fokusistatistik.com/webhook/fokuswebsitekullanicibilgileri';
+// Webhook URL - TEST mode (production'da 'webhook' olacak)
+const WEBHOOK_URL = 'https://n8n.fokusistatistik.com/webhook-test/fokuswebsitekullanicibilgileri';
 
 // Retry logic for webhook requests
 async function fetchWithRetry(url: string, options: RequestInit, retries = 3): Promise<Response> {
@@ -41,16 +42,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Prepare user data for webhook
+    // Prepare user data for webhook (comprehensive format)
     const userData = {
       action: 'register',
       email: session.user.email,
       googleId: (session.user as any).id || session.user.email,
       name: session.user.name,
+      displayName: session.user.name,
       picture: session.user.image,
+      avatarUrl: session.user.image,
       emailSubscription,
       acceptedTerms,
       registeredAt: new Date().toISOString(),
+      authMethod: 'google',
+      environment: process.env.NODE_ENV || 'production',
     };
 
     // Send to n8n webhook
@@ -68,17 +73,28 @@ export async function POST(request: NextRequest) {
       );
 
       if (!response.ok) {
-        console.error('n8n webhook error:', response.status);
+        const errorText = await response.text();
+        console.error('n8n webhook error:', {
+          status: response.status,
+          statusText: response.statusText,
+          body: errorText,
+        });
         return NextResponse.json(
           {
             success: false,
             error: 'Kayıt işlemi sırasında bir hata oluştu',
+            details: process.env.NODE_ENV === 'development' ? errorText : undefined,
           },
           { status: 500 }
         );
       }
 
       const webhookData = await response.json();
+      console.log('✅ User registered successfully:', {
+        email: session.user.email,
+        name: session.user.name,
+        webhookResponse: webhookData,
+      });
 
       return NextResponse.json({
         success: true,
@@ -87,8 +103,10 @@ export async function POST(request: NextRequest) {
           user: {
             email: session.user.email,
             name: session.user.name,
+            picture: session.user.image,
             isRegistered: true,
           },
+          webhookData,
         },
       });
     } catch (webhookError) {
@@ -145,6 +163,7 @@ export async function GET(request: NextRequest) {
 
       if (!response.ok) {
         // User doesn't exist - this is a new user
+        console.log('ℹ️ New user detected:', session.user.email);
         return NextResponse.json({
           success: true,
           isRegistered: false,
@@ -153,6 +172,10 @@ export async function GET(request: NextRequest) {
       }
 
       const userData = await response.json();
+      console.log('✅ Existing user found:', {
+        email: session.user.email,
+        userData: userData,
+      });
 
       return NextResponse.json({
         success: true,
