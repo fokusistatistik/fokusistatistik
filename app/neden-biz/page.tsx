@@ -120,7 +120,7 @@ export default function NedenBiz() {
             >
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Image */}
-                <div className="relative h-64 md:h-auto">
+                <div className="relative h-48 md:h-56">
                   <Image
                     src={reason.image}
                     alt={reason.title}

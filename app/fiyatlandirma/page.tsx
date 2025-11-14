@@ -4,10 +4,10 @@ import { Check, Star, Zap, Crown, ArrowRight } from 'lucide-react';
 export default function Fiyatlandirma() {
   const plans = [
     {
-      name: 'Başlangıç',
-      price: '499',
+      name: 'Standart',
+      price: '999',
       period: 'ay',
-      description: 'Küçük işletmeler için ideal başlangıç paketi',
+      description: 'Her bir asistan 999 TL\'den başlayan fiyatlarla',
       icon: <Zap className="w-8 h-8 text-blue-500" />,
       color: 'from-blue-500 to-blue-600',
       popular: false,
@@ -21,10 +21,10 @@ export default function Fiyatlandirma() {
       ],
     },
     {
-      name: 'Profesyonel',
-      price: '1.499',
+      name: 'Pro',
+      price: '1.999',
       period: 'ay',
-      description: 'Büyüyen işletmeler için en popüler paket',
+      description: '1999\'dan başlayan fiyatlarla',
       icon: <Star className="w-8 h-8 text-[#860000]" />,
       color: 'from-[#860000] to-[#6b0000]',
       popular: true,
@@ -40,10 +40,10 @@ export default function Fiyatlandirma() {
       ],
     },
     {
-      name: 'Kurumsal',
-      price: 'Özel',
-      period: 'teklif',
-      description: 'Büyük kurumlar için özelleştirilebilir çözümler',
+      name: 'Premium',
+      price: 'Özel Teklif',
+      period: '',
+      description: 'Fiyatlandırma için özel teklif',
       icon: <Crown className="w-8 h-8 text-purple-500" />,
       color: 'from-purple-500 to-purple-600',
       popular: false,
@@ -104,17 +104,17 @@ export default function Fiyatlandirma() {
                     <p className="text-white/80 text-sm mb-6">{plan.description}</p>
 
                     <div className="flex items-end mb-2">
-                      {plan.price !== 'Özel' ? (
+                      {plan.price !== 'Özel Teklif' ? (
                         <>
                           <span className="text-5xl font-bold">₺{plan.price}</span>
                           <span className="text-white/80 ml-2 mb-2">/{plan.period}</span>
                         </>
                       ) : (
-                        <span className="text-5xl font-bold">{plan.price}</span>
+                        <span className="text-4xl font-bold">{plan.price}</span>
                       )}
                     </div>
                     <p className="text-white/60 text-sm">
-                      {plan.price !== 'Özel' ? '+ KDV' : 'Fiyat teklifi alın'}
+                      {plan.price !== 'Özel Teklif' ? '+ KDV' : 'Fiyat teklifi alın'}
                     </p>
                   </div>
 
@@ -136,11 +136,44 @@ export default function Fiyatlandirma() {
                           : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                       }`}
                     >
-                      {plan.price !== 'Özel' ? 'Hemen Başlayın' : 'İletişime Geçin'}
+                      {plan.price !== 'Özel Teklif' ? 'Hemen Başlayın' : 'İletişime Geçin'}
                     </Link>
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Free Analysis CTA */}
+        <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border-2 border-[#860000]/20">
+              <div className="bg-gradient-to-r from-[#860000] to-[#a30000] text-white p-8 text-center">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-3">Ücretsiz İhtiyaç Analizi</h2>
+                <p className="text-xl text-white/90">Hangi sanal asistana ihtiyacınız olduğunu anında analiz edelim</p>
+              </div>
+              <div className="p-8 md:p-12 text-center">
+                <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
+                  İşletmenizin ihtiyaçlarını anlayalım ve size en uygun sanal asistan paketini önerelim.
+                  Detaylı analiz formumuzu doldurarak ücretsiz danışmanlık hizmeti alın.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link
+                    href="/analiz"
+                    className="inline-flex items-center justify-center bg-[#860000] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#6b0000] transition shadow-lg"
+                  >
+                    <span>İhtiyaç Analizi Yap</span>
+                    <ArrowRight className="ml-2" />
+                  </Link>
+                  <Link
+                    href="/sanalasistanlar"
+                    className="inline-flex items-center justify-center bg-gray-100 text-gray-800 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-200 transition"
+                  >
+                    Tüm Asistanları İncele
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </section>

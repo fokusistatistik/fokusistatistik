@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ServiceSchema } from '@/app/components/StructuredData';
 
 export const metadata: Metadata = {
@@ -53,8 +54,15 @@ export default function YapayZekaDanismanligi() {
         {/* Hero Section */}
         <section className="text-center mb-16">
           <div className="inline-block mb-6">
-            <div className="w-24 h-24 bg-gradient-to-br from-[#860000] to-[#a30000] rounded-full flex items-center justify-center text-white text-5xl shadow-xl">
-              🤖
+            <div className="w-24 h-24 bg-gradient-to-br from-[#860000] to-[#a30000] rounded-full flex items-center justify-center shadow-xl p-4">
+              <div className="relative w-full h-full">
+                <Image
+                  src="https://www.fokusistatistik.com/assets/img/logobeyaz.png"
+                  alt="FOKUS Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">

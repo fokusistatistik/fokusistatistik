@@ -86,29 +86,38 @@ export default function VapiWidget() {
   return (
     <>
       {/* Floating Button - Sol Alt */}
-      <button
-        onClick={toggleWidget}
-        className="fixed bottom-6 left-6 z-[9998] bg-gradient-to-br from-[#860000] to-[#a30000] text-white rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 flex items-center justify-center group"
-        style={{ width: '64px', height: '64px' }}
-        aria-label="FOKUS520 Sesli Asistan"
-      >
-        {isOpen ? (
-          <X className="w-7 h-7" />
-        ) : (
-          <div className="relative">
-            <Image
-              src="https://www.fokusistatistik.com/assets/img/fokus520.png"
-              alt="FOKUS520"
-              width={48}
-              height={48}
-              className="rounded-full object-cover"
-            />
-            <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center animate-pulse">
-              <Volume2 className="w-3 h-3 text-white" />
+      <div className="fixed bottom-6 left-6 z-[9998]">
+        <button
+          onClick={toggleWidget}
+          className="bg-gradient-to-br from-[#860000] to-[#a30000] text-white rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 flex items-center justify-center group"
+          style={{ width: '64px', height: '64px' }}
+          aria-label="FOKUS520 Sesli Asistan"
+        >
+          {isOpen ? (
+            <X className="w-7 h-7" />
+          ) : (
+            <div className="relative">
+              <Image
+                src="https://www.fokusistatistik.com/assets/img/fokus520.png"
+                alt="FOKUS520"
+                width={48}
+                height={48}
+                className="rounded-full object-cover"
+              />
+              <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center animate-pulse">
+                <Volume2 className="w-3 h-3 text-white" />
+              </div>
             </div>
+          )}
+        </button>
+
+        {!isOpen && (
+          <div className="absolute left-20 bottom-4 bg-white text-gray-800 px-4 py-2 rounded-lg shadow-xl whitespace-nowrap animate-slideInLeft pointer-events-none">
+            <div className="text-sm font-semibold">Sesli Görüşme Yap</div>
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-white"></div>
           </div>
         )}
-      </button>
+      </div>
 
       {/* Widget Penceresi */}
       {isOpen && (
@@ -274,8 +283,23 @@ export default function VapiWidget() {
           }
         }
 
+        @keyframes slideInLeft {
+          from {
+            transform: translateX(-20px);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+
         .animate-slideInUp {
           animation: slideInUp 0.3s ease-out;
+        }
+
+        .animate-slideInLeft {
+          animation: slideInLeft 0.3s ease-out;
         }
       `}</style>
     </>

@@ -95,6 +95,34 @@ export default function ChatWidget() {
           box-shadow: 0 6px 16px rgba(134, 0, 0, 0.4);
         }
 
+        .chat-tooltip {
+          position: absolute;
+          bottom: 70px;
+          right: 0;
+          background: white;
+          color: #333;
+          padding: 8px 16px;
+          border-radius: 12px;
+          font-size: 13px;
+          font-weight: 500;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+          white-space: nowrap;
+          animation: fadeIn 0.3s ease;
+          pointer-events: none;
+        }
+
+        .chat-tooltip::after {
+          content: '';
+          position: absolute;
+          bottom: -6px;
+          right: 20px;
+          width: 12px;
+          height: 12px;
+          background: white;
+          transform: rotate(45deg);
+          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
         .chat-window {
           position: absolute;
           bottom: 80px;
@@ -322,6 +350,12 @@ export default function ChatWidget() {
             />
           )}
         </button>
+
+        {!isChatOpen && (
+          <div className="chat-tooltip">
+            Size nasıl yardımcı olabilirim?
+          </div>
+        )}
 
         {isChatOpen && (
           <div className="chat-window">

@@ -55,7 +55,7 @@ export default function Header() {
                 className="object-contain"
               />
             </div>
-            <span className="text-xl font-bold hidden sm:inline">VERİ BİLİMİ</span>
+            <span className="text-lg font-bold hidden sm:inline">VERİ BİLİMİ</span>
           </Link>
 
           {/* Desktop Navigation */}
