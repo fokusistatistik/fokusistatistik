@@ -207,7 +207,7 @@ export default function Home() {
                       src={assistant.image}
                       alt={assistant.title}
                       fill
-                      className="object-contain rounded-lg"
+                      className="object-contain rounded-[50%]"
                     />
                   </div>
                   <span className="font-semibold text-gray-700 group-hover:text-[#860000] transition text-sm">

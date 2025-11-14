@@ -1574,7 +1574,7 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
     };
 
     fetchAssistantData();
-  }, [params.id, session]);
+  }, [params.id]);
 
   const assistantId = params.id.toLowerCase();
   const displayAssistant = assistant || assistantsData[assistantId];
@@ -1612,7 +1612,7 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
     );
   }
 
-  const featureKeys = displayAssistant.packages.length > 0
+  const featureKeys = displayAssistant?.packages?.length > 0
     ? Object.keys(displayAssistant.packages[0].features)
     : [];
 

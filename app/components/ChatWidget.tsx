@@ -351,12 +351,6 @@ export default function ChatWidget() {
           )}
         </button>
 
-        {!isChatOpen && (
-          <div className="chat-tooltip">
-            Size nasıl yardımcı olabilirim?
-          </div>
-        )}
-
         {isChatOpen && (
           <div className="chat-window">
             <div className="chat-header">

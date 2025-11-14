@@ -328,7 +328,7 @@ export default function Dashboard() {
                         : 'border-gray-200 bg-gray-50 opacity-75 hover:opacity-100'
                     }`}
                   >
-                    <div className={`bg-gradient-to-r ${assistant.color} p-4 text-white`}>
+                    <div className="bg-gradient-to-r from-[#860000] to-[#a30000] p-4 text-white">
                       <div className="flex items-center justify-between">
                         <div className="text-3xl">{assistant.icon}</div>
                         {assistant.status === 'active' && (

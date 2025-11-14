@@ -110,13 +110,6 @@ export default function VapiWidget() {
             </div>
           )}
         </button>
-
-        {!isOpen && (
-          <div className="absolute left-20 bottom-4 bg-white text-gray-800 px-4 py-2 rounded-lg shadow-xl whitespace-nowrap animate-slideInLeft pointer-events-none">
-            <div className="text-sm font-semibold">Sesli Görüşme Yap</div>
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-white"></div>
-          </div>
-        )}
       </div>
 
       {/* Widget Penceresi */}

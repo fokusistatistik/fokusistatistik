@@ -3,7 +3,6 @@ import Header from "@/components/Header";
 import ChatWidget from "@/app/components/ChatWidget";
 import VapiWidget from "@/app/components/VapiWidget";
 import Footer from "@/components/Footer";
-import PromotionCTA from "@/app/components/PromotionCTA";
 import CookieConsent from "@/app/components/CookieConsent";
 import GoogleAnalytics from "@/app/components/GoogleAnalytics";
 import { OrganizationSchema } from "@/app/components/StructuredData";
@@ -123,11 +122,14 @@ export default function RootLayout({
         <OrganizationSchema type="ProfessionalService" />
         <GoogleAnalytics />
         <Header />
-        {children}
+        <div className="w-full flex justify-center">
+          <div className="w-full lg:w-[75%]">
+            {children}
+          </div>
+        </div>
         <Footer />
         <ChatWidget />
         <VapiWidget />
-        <PromotionCTA />
         <CookieConsent />
       </body>
     </html>
