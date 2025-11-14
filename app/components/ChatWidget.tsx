@@ -464,7 +464,7 @@ export default function ChatWidget() {
               />
               <button
                 className="send-button"
-                onClick={sendMessage}
+                onClick={() => sendMessage()}
                 disabled={isLoading || !inputValue.trim()}
                 aria-label="Gönder"
               >
