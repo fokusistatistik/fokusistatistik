@@ -1,62 +1,84 @@
 'use client';
 
-import { signIn, useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Chrome, Mail, Lock, ArrowRight, Shield, Zap } from 'lucide-react';
 
 export default function GirisPage() {
-  const { data: session, status } = useSession();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
 
   useEffect(() => {
-    if (status === 'authenticated') {
-      router.push('/dashboard');
-    }
-  }, [status, router]);
+    // URL'den hata ve success mesajlarını kontrol et
+    const error = searchParams?.get('error');
+    const authSuccess = searchParams?.get('auth');
+    const sessionData = searchParams?.get('session');
 
-  const handleGoogleSignIn = async () => {
-    console.log('🚀 Starting Google Sign In process...');
-    setIsLoading(true);
-    try {
-      console.log('🔐 Calling signIn with Google provider...');
-      const result = await signIn('google', { callbackUrl: '/dashboard' });
-      console.log('📥 SignIn result:', result);
-
-      if (result?.error) {
-        console.error('❌ SignIn error:', result.error);
-      } else {
-        console.log('✅ SignIn successful');
-      }
-    } catch (error) {
+    if (error) {
+      setStatusMessage(`❌ Giriş hatası: ${error}`);
       console.error('❌ Login error:', error);
-      if (error instanceof Error) {
-        console.error('❌ Error details:', {
-          message: error.message,
-          name: error.name,
-          stack: error.stack
-        });
-      }
-      setIsLoading(false);
-    }
-  };
+    } else if (authSuccess === 'success' && sessionData) {
+      try {
+        const decoded = JSON.parse(decodeURIComponent(sessionData));
+        console.log('✅ Authentication successful:', decoded);
 
-  if (status === 'loading') {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#860000] mx-auto"></div>
-          <p className="mt-4 text-gray-600">Yükleniyor...</p>
-        </div>
-      </div>
-    );
-  }
+        // Session'ı localStorage'a kaydet
+        const fullSessionData = {
+          ...decoded.userInfo,
+          user: decoded.user,
+          email: decoded.email,
+          userId: decoded.userId,
+          picture: decoded.picture,
+          token: generateSecureToken(),
+          timestamp: Date.now(),
+          isLoggedIn: true,
+          authMethod: 'google'
+        };
+
+        localStorage.setItem('fokus520Session', JSON.stringify(fullSessionData));
+        console.log('💾 Session saved to localStorage');
+
+        setStatusMessage(`✅ Hoş geldiniz ${decoded.user.split(' ')[0]}!`);
+
+        // Dashboard'a yönlendir
+        setTimeout(() => {
+          router.push('/dashboard');
+        }, 1500);
+
+      } catch (e) {
+        console.error('❌ Session parse error:', e);
+        setStatusMessage('❌ Session verisi işlenemedi');
+      }
+    }
+
+    // Check if already logged in
+    const session = localStorage.getItem('fokus520Session');
+    if (session) {
+      try {
+        const parsed = JSON.parse(session);
+        if (parsed.isLoggedIn && parsed.token) {
+          router.push('/dashboard');
+        }
+      } catch (e) {
+        localStorage.removeItem('fokus520Session');
+      }
+    }
+  }, [searchParams, router]);
+
+  const handleGoogleSignIn = () => {
+    console.log('🚀 Starting Google Sign In...');
+    setIsLoading(true);
+    setStatusMessage('Google ile giriş başlatılıyor...');
+
+    // API route'a yönlendir
+    window.location.href = '/api/auth/google';
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
-
       <main className="flex-grow flex items-center justify-center py-12 px-4 bg-gradient-to-br from-gray-50 to-gray-100">
         <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Info */}
@@ -132,6 +154,14 @@ export default function GirisPage() {
                 <p className="text-gray-600">Giriş yaparak devam edin</p>
               </div>
 
+              {/* Status Message */}
+              {statusMessage && (
+                <div className={`mb-4 p-4 rounded-lg text-center ${statusMessage.startsWith('✅') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                  }`}>
+                  {statusMessage}
+                </div>
+              )}
+
               <div className="space-y-4">
                 {/* Google Login */}
                 <button
@@ -187,8 +217,16 @@ export default function GirisPage() {
           </div>
         </div>
       </main>
-
-      
     </div>
   );
+}
+
+// Helper function
+function generateSecureToken(): string {
+  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+    return Array.from(crypto.getRandomValues(new Uint8Array(32)), byte =>
+      byte.toString(16).padStart(2, '0')).join('');
+  } else {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  }
 }
