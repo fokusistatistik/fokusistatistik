@@ -30,24 +30,24 @@ export default function Header() {
   };
 
   const assistants = [
-    { code: 'fokus001', name: 'FOKUS001 - Yönetici' },
-    { code: 'fokus216', name: 'FOKUS216 - Müşteri Hizmetleri' },
-    { code: 'fokus314', name: 'FOKUS314 - Veri Analisti' },
-    { code: 'fokus520', name: 'FOKUS520 - Pazarlama & Lead' },
-    { code: 'fokus618', name: 'FOKUS618 - Finans & Fatura' },
-    { code: 'fokus707', name: 'FOKUS707 - İnsan Kaynakları' },
-    { code: 'fokus717', name: 'FOKUS717 - İçerik Tasarımı' },
-    { code: 'fokus808', name: 'FOKUS808 - Sosyal Medya' },
-    { code: 'fokus999', name: 'FOKUS999 - Joker' },
+    { code: 'fokus001', name: 'FOKUS001' },
+    { code: 'fokus216', name: 'FOKUS216' },
+    { code: 'fokus314', name: 'FOKUS314' },
+    { code: 'fokus520', name: 'FOKUS520' },
+    { code: 'fokus618', name: 'FOKUS618' },
+    { code: 'fokus707', name: 'FOKUS707' },
+    { code: 'fokus717', name: 'FOKUS717' },
+    { code: 'fokus808', name: 'FOKUS808' },
+    { code: 'fokus999', name: 'FOKUS999' },
   ];
 
   return (
     <header className="bg-[#860000] text-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between py-2.5">
+        <div className="flex items-center justify-between py-1.5">
           {/* Logo and Title */}
           <Link href="/" className="flex items-center space-x-3 hover:opacity-90 transition">
-            <div className="relative w-16 h-16">
+            <div className="relative w-20 h-20">
               <Image
                 src="https://www.fokusistatistik.com/assets/img/logobeyaz.png"
                 alt="FOKUS Logo"
@@ -82,10 +82,10 @@ export default function Header() {
               </button>
 
               {isDropdownOpen && (
-                <div className="absolute top-full left-0 mt-0 w-64 bg-gray-900 text-white rounded-lg shadow-xl py-2 max-h-96 overflow-y-auto border border-gray-700">
+                <div className="absolute top-full left-0 mt-0 w-44 bg-gray-900 text-white rounded-lg shadow-xl py-2 border border-gray-700">
                   <Link
                     href="/sanalasistanlar"
-                    className="block px-4 py-2 hover:bg-[#860000] transition text-sm font-semibold border-b border-gray-700"
+                    className="block px-3 py-1.5 hover:bg-[#860000] transition text-xs font-semibold border-b border-gray-700"
                   >
                     📋 Tüm Asistanlar
                   </Link>
@@ -93,7 +93,7 @@ export default function Header() {
                     <Link
                       key={assistant.code}
                       href={`/sanalasistanlar/${assistant.code}`}
-                      className="block px-4 py-2 hover:bg-[#860000] transition text-sm"
+                      className="block px-3 py-1.5 hover:bg-[#860000] transition text-xs"
                     >
                       {assistant.name}
                     </Link>
@@ -103,16 +103,16 @@ export default function Header() {
                     href="https://asistan.fokusistatistik.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center px-4 py-2 hover:bg-[#860000] transition text-sm font-bold"
+                    className="flex items-center px-3 py-1.5 hover:bg-[#860000] transition text-xs font-bold"
                   >
                     <Image
                       src="https://www.fokusistatistik.com/assets/img/favicon.png"
                       alt="FOKUS"
-                      width={18}
-                      height={18}
+                      width={14}
+                      height={14}
                       className="mr-2"
                     />
-                    FOKUS EKOSİSTEMİ
+                    EKOSİSTEM
                   </a>
                 </div>
               )}
@@ -196,7 +196,7 @@ export default function Header() {
                     <Link
                       key={assistant.code}
                       href={`/sanalasistanlar/${assistant.code}`}
-                      className="block hover:text-gray-200 transition py-1 text-sm"
+                      className="block hover:text-gray-200 transition py-1 text-xs"
                     >
                       {assistant.name}
                     </Link>
