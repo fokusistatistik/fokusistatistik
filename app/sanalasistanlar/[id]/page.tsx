@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { CheckCircle2, X } from 'lucide-react';
 import Link from 'next/link';
 
@@ -1522,9 +1521,22 @@ const assistantsData: Record<string, AssistantData> = {
 };
 
 export default function AssistantDetail({ params }: { params: { id: string } }) {
-  const { data: session } = useSession();
+  const [session, setSession] = useState<any>(null);
   const [assistant, setAssistant] = useState<AssistantData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // localStorage'dan session oku
+    const sessionData = localStorage.getItem('fokus520Session');
+    if (sessionData) {
+      try {
+        const parsed = JSON.parse(sessionData);
+        setSession(parsed);
+      } catch (e) {
+        console.error('Session parse error:', e);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     // Webhook'tan veri çekme denemesi
@@ -1540,8 +1552,8 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
           },
           body: JSON.stringify({
             assistantCode: assistantId.toUpperCase(),
-            userEmail: session?.user?.email || null,
-            userName: session?.user?.name || null,
+            userEmail: session?.email || null,
+            userName: session?.user || session?.name || null,
           }),
         });
 

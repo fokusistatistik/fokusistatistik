@@ -1,20 +1,35 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Siparisler() {
-  const { data: session, status } = useSession();
   const router = useRouter();
+  const [session, setSession] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (status === 'unauthenticated') {
+    const sessionData = localStorage.getItem('fokus520Session');
+    if (!sessionData) {
+      router.push('/giris');
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(sessionData);
+      if (!parsed.isLoggedIn || !parsed.token) {
+        router.push('/giris');
+        return;
+      }
+      setSession(parsed);
+      setIsLoading(false);
+    } catch (e) {
+      console.error('Session parse error:', e);
       router.push('/giris');
     }
-  }, [status, router]);
+  }, [router]);
 
-  if (status === 'loading') {
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">

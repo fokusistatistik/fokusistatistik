@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Code'u webhook'a gönder ve token al
-    console.log('🔄 Webhook'a gönderiliyor...');
+    console.log(`🔄 Webhook'a gönderiliyor...`);
     const webhookResponse = await exchangeCodeForToken(code);
 
     console.log('📦 Webhook response:', webhookResponse);

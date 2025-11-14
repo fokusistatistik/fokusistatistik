@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import SessionProvider from "@/components/SessionProvider";
 import Header from "@/components/Header";
 import ChatWidget from "@/app/components/ChatWidget";
 import VapiWidget from "@/app/components/VapiWidget";
@@ -124,10 +123,8 @@ export default function RootLayout({
         <OrganizationSchema type="ProfessionalService" />
         <GoogleAnalytics />
         <Header />
-        <SessionProvider>
-          {children}
-          <Footer />
-        </SessionProvider>
+        {children}
+        <Footer />
         <ChatWidget />
         <VapiWidget />
         <PromotionCTA />

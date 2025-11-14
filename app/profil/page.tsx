@@ -1,21 +1,36 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function Profil() {
-  const { data: session, status } = useSession();
   const router = useRouter();
+  const [session, setSession] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    if (status === 'unauthenticated') {
+    const sessionData = localStorage.getItem('fokus520Session');
+    if (!sessionData) {
+      router.push('/giris');
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(sessionData);
+      if (!parsed.isLoggedIn || !parsed.token) {
+        router.push('/giris');
+        return;
+      }
+      setSession(parsed);
+      setIsLoading(false);
+    } catch (e) {
+      console.error('Session parse error:', e);
       router.push('/giris');
     }
-  }, [status, router]);
+  }, [router]);
 
-  if (status === 'loading') {
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -37,13 +52,13 @@ export default function Profil() {
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <div className="flex items-center gap-6">
             <div className="w-24 h-24 bg-gradient-to-br from-[#860000] to-[#a30000] rounded-full flex items-center justify-center text-white text-3xl font-bold">
-              {session.user?.name?.charAt(0).toUpperCase() || 'U'}
+              {(session.user || session.name)?.charAt(0).toUpperCase() || 'U'}
             </div>
             <div className="flex-1">
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                {session.user?.name || 'Kullanıcı'}
+                {session.user || session.name || 'Kullanıcı'}
               </h1>
-              <p className="text-gray-600">{session.user?.email}</p>
+              <p className="text-gray-600">{session.email}</p>
             </div>
             <button
               onClick={() => setIsEditing(!isEditing)}

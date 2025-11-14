@@ -1,162 +1,235 @@
-# 🚀 FOKUS İstatistik - Deployment Guide
+# Deployment Rehberi - FOKUS İstatistik
 
-Bu döküman, FOKUS İstatistik web sitesinin **test.fokusistatistik.com** adresine deploy edilmesi için gerekli adımları içerir.
+Bu döküman, FOKUS İstatistik Next.js projesinin sunucuya yüklenmesi için gereken tüm adımları içerir.
 
-## 📋 Gereksinimler
+## 🔧 Ön Gereksinimler
 
-- Node.js 18+
-- npm veya yarn
-- Vercel / Netlify hesabı (önerilen) veya kendi sunucu
-- Google OAuth credentials
-- İyzico API credentials (opsiyonel - ödeme için)
+### Sunucu Gereksinimleri
+- **Node.js**: v18.x veya üzeri (önerilen: v20.x)
+- **npm**: v9.x veya üzeri
+- **RAM**: Minimum 2GB (önerilen: 4GB+)
+- **Disk**: Minimum 2GB boş alan
+- **Port**: 3000 (veya özel port)
 
-## 🔧 Environment Variables
-
-Deployment platformunuzda (Vercel, Netlify, vb.) aşağıdaki environment variable'ları ayarlayın:
-
-### 1. NextAuth Ayarları
-
-```bash
-NEXTAUTH_URL=https://test.fokusistatistik.com
-NEXTAUTH_SECRET=<güçlü-random-string>
-```
-
-**NEXTAUTH_SECRET oluşturmak için:**
-```bash
-openssl rand -base64 32
-```
-
-### 2. Google OAuth
-
-Google Cloud Console'da (https://console.cloud.google.com):
-1. Yeni OAuth 2.0 Client ID oluşturun
-2. **Authorized redirect URIs** ekleyin:
-   - `https://test.fokusistatistik.com/api/auth/callback/google`
-3. Client ID ve Secret'i kaydedin
-
-```bash
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-```
-
-### 3. n8n Webhook (Opsiyonel)
-
-```bash
-N8N_WEBHOOK_URL=https://n8n.fokusistatistik.com/webhook/user-events
-```
-
-> **Not:** Webhook URL'leri kodda hard-coded olduğu için bu değişken şu anda kullanılmıyor.
-
-### 4. İyzico Payment (Opsiyonel)
-
-```bash
-IYZICO_API_KEY=your-production-api-key
-IYZICO_SECRET_KEY=your-production-secret-key
-IYZICO_BASE_URL=https://api.iyzipay.com
-```
-
-> **Önemli:** Sandbox yerine production URL kullanın!
-
-## 🌐 Vercel ile Deploy
-
-### 1. Vercel CLI ile Deploy
-
-```bash
-# Vercel CLI kurulumu (ilk kez)
-npm i -g vercel
-
-# Login
-vercel login
-
-# Deploy
-vercel
-
-# Production deploy
-vercel --prod
-```
-
-### 2. GitHub Entegrasyonu
-
-1. Vercel dashboard'da "Add New Project" tıklayın
-2. GitHub reposunu seçin
-3. Environment Variables ekleyin (yukarıdaki listeden)
-4. Domain ayarları:
-   - Custom domain: `test.fokusistatistik.com`
-   - DNS ayarlarınızı Vercel'in verdiği CNAME ile güncelleyin
-5. Deploy'a tıklayın
-
-## 🎯 Deploy Sonrası Kontrol Listesi
-
-- [ ] Site açılıyor: https://test.fokusistatistik.com
-- [ ] Google OAuth login çalışıyor
-- [ ] 9 sanal asistan sayfası yükleniyor
-- [ ] Chat widget görünüyor ve yanıt veriyor
-- [ ] Responsive tasarım mobilde çalışıyor
-- [ ] PWA manifest yükleniyor
-- [ ] SSL sertifikası aktif
-
-## 🔍 Webhook URL'leri
-
-Proje içinde kullanılan webhook URL'leri:
-
-1. **Asistan Sayfaları**: `https://n8n.fokusistatistik.com/fokuswebsiteasistanlar`
-   - Lokasyon: `/app/sanalasistanlar/[id]/page.tsx:1534`
-   - Kullanım: Asistan detay verilerini çeker
-
-2. **Chat Widget**: `https://n8n.fokusistatistik.com/webhook/fokus216clasic250001`
-   - Lokasyon: `/app/components/ChatWidget.tsx:36`
-   - Kullanım: FOKUS216 chatbot yanıtları
-
-## 🛠️ Lokal Geliştirme
-
-```bash
-# Bağımlılıkları yükle
-npm install
-
-# .env.local oluştur
-cp .env.example .env.local
-
-# Environment variable'ları düzenle
-nano .env.local
-
-# Dev server başlat
-npm run dev
-```
-
-## 📝 DNS Ayarları
-
-test.fokusistatistik.com için DNS ayarları:
-
-**Vercel için:**
-```
-Type: CNAME
-Name: test
-Value: cname.vercel-dns.com
-```
-
-**A Record için (kendi sunucu):**
-```
-Type: A
-Name: test
-Value: <sunucu-ip-adresi>
-```
-
-## 🔐 Güvenlik Notları
-
-1. **NEXTAUTH_SECRET**: Production'da mutlaka güçlü bir secret kullanın
-2. **Google OAuth**: Redirect URI'leri doğru domain ile eşleşmeli
-3. **Environment Variables**: Asla git'e commit etmeyin
-4. **HTTPS**: Mutlaka SSL sertifikası kullanın
-5. **CORS**: n8n webhook'larında gerekirse CORS ayarlarını yapın
-
-## 📞 Destek
-
-Sorun yaşarsanız:
-- GitHub Issues: [fokusistatistik/fokusistatistik/issues]
-- Webhook sorunları için n8n.fokusistatistik.com kontrol edin
-- NextAuth sorunları için callback URL'leri kontrol edin
+### Gerekli Bilgiler
+1. Google OAuth Credentials (Client ID & Secret)
+2. Webhook URL'leri
+3. Domain ve SSL sertifikaları (production için)
 
 ---
 
-**Son güncelleme:** 2025-11-11
-**Deploy hedef:** test.fokusistatistik.com
+## 📦 1. Projeyi Sunucuya Aktarma
+
+### GitHub'dan ZIP İndirme
+\`\`\`bash
+# ZIP'i indirin (GitHub linki)
+wget https://github.com/fokusistatistik/fokusistatistik/archive/refs/heads/claude/fix-ui-and-errors-01XUNAH9sYcea3qZwjwKifvj.zip
+
+# ZIP'i açın
+unzip claude-fix-ui-and-errors-01XUNAH9sYcea3qZwjwKifvj.zip
+
+# Klasöre girin
+cd fokusistatistik-claude-fix-ui-and-errors-01XUNAH9sYcea3qZwjwKifvj
+\`\`\`
+
+---
+
+## 🔐 2. Environment Variables Yapılandırması
+
+### .env.local Dosyası Oluşturun
+\`\`\`bash
+cp .env.example .env.local
+nano .env.local
+\`\`\`
+
+### Gerekli Environment Variables
+
+\`\`\`bash
+# Site URL (PRODUCTION)
+NEXT_PUBLIC_URL=https://test.fokusistatistik.com
+
+# Google OAuth Configuration
+GOOGLE_CLIENT_ID=your-actual-google-client-id-here
+GOOGLE_CLIENT_SECRET=your-actual-google-client-secret-here
+
+# Webhook Configuration  
+NEXT_PUBLIC_AUTH_WEBHOOK_URL=https://n8n.fokusistatistik.com/webhook-test/fokuswebuserauth
+\`\`\`
+
+### ⚠️ ÖNEMLİ:
+- **NEXT_PUBLIC_URL**: Sunucunuzun tam URL'i (trailing slash YOK)
+- **Google credentials**: Google Cloud Console'dan alın
+- **Webhook URL**: Path'e dikkat edin (`/webhook-test/fokuswebuserauth`)
+
+---
+
+## 🎯 3. Google Cloud Console Yapılandırması
+
+### OAuth 2.0 Redirect URI
+Google Cloud Console → APIs & Services → Credentials → OAuth 2.0 Client ID
+
+**Eklenecek URI:**
+\`\`\`
+https://test.fokusistatistik.com/api/auth/callback
+\`\`\`
+
+---
+
+## 📥 4. Bağımlılıkları Yükleme
+
+\`\`\`bash
+npm ci
+\`\`\`
+
+Sorun çıkarsa:
+\`\`\`bash
+npm cache clean --force
+rm -rf node_modules package-lock.json
+npm install
+\`\`\`
+
+---
+
+## 🏗️ 5. Build İşlemi
+
+\`\`\`bash
+npm run build
+\`\`\`
+
+### Build Kontrolleri:
+✅ 0 TypeScript errors
+✅ .next klasörü oluşmalı
+✅ Exit code 0
+
+Build hatası için:
+\`\`\`bash
+npx tsc --noEmit
+rm -rf .next
+npm run build
+\`\`\`
+
+---
+
+## 🚀 6. Çalıştırma
+
+### Production Mode
+\`\`\`bash
+npm start
+\`\`\`
+
+Custom port:
+\`\`\`bash
+PORT=8080 npm start
+\`\`\`
+
+### PM2 ile (Önerilen - Auto Restart)
+\`\`\`bash
+# PM2 kurulumu
+npm install -g pm2
+
+# Başlat
+pm2 start npm --name "fokusistatistik" -- start
+
+# Otomatik başlatma
+pm2 startup
+pm2 save
+
+# Loglar
+pm2 logs fokusistatistik
+
+# Restart
+pm2 restart fokusistatistik
+\`\`\`
+
+---
+
+## 🧪 7. Test ve Doğrulama
+
+### OAuth Flow Testi
+1. Giriş sayfasına gidin: https://test.fokusistatistik.com/giris
+2. "Google ile Giriş Yap" butonuna tıklayın
+3. Console'da log'ları kontrol edin:
+   - 🚀 Google Auth başlatılıyor...
+   - 📥 OAuth Callback alındı
+   - 🔄 Webhook'a gönderiliyor...
+   - ✅ Authentication başarılı!
+   - 🆕 Is new user: true/false
+4. Yeni kullanıcı → /dashboard
+5. Eski kullanıcı → / (anasayfa)
+
+### Browser Testleri
+- ✅ Anasayfa: https://test.fokusistatistik.com
+- ✅ Login: https://test.fokusistatistik.com/giris
+- ✅ Analiz: https://test.fokusistatistik.com/analiz
+- ✅ Dashboard: Login sonrası erişilebilir olmalı
+
+---
+
+## 🐛 8. Troubleshooting
+
+### OAuth Hataları
+
+**"redirect_uri_mismatch"**
+→ Google Console'da redirect URI'yi kontrol edin
+
+**"webhook_failed"**  
+→ n8n webhook URL'ini ve response formatını kontrol edin
+
+**Session kaybolması**
+→ Browser localStorage'da `fokus520Session` olmalı
+
+### Build Hataları
+\`\`\`bash
+npx tsc --noEmit  # TypeScript hatalarını gösterir
+rm -rf node_modules .next
+npm install && npm run build
+\`\`\`
+
+---
+
+## 📋 9. Deployment Checklist
+
+### Pre-Deployment
+- [ ] .env.local dosyası oluşturuldu
+- [ ] Google OAuth credentials ayarlandı
+- [ ] Redirect URIs Google Console'a eklendi
+- [ ] n8n webhook hazır
+
+### Deployment
+- [ ] Dependencies yüklendi (npm ci)
+- [ ] Build başarılı (npm run build)
+- [ ] TypeScript hataları yok
+- [ ] PM2 yapılandırıldı
+
+### Post-Deployment
+- [ ] Site erişilebilir
+- [ ] Google OAuth çalışıyor
+- [ ] Yeni/eski kullanıcı yönlendirmesi doğru
+- [ ] Console log'ları görünüyor
+- [ ] PM2 auto-restart aktif
+
+---
+
+## 🚨 Acil Durum
+
+Siteyi durdurma:
+\`\`\`bash
+pm2 stop fokusistatistik
+\`\`\`
+
+Logları görme:
+\`\`\`bash
+pm2 logs fokusistatistik --err
+\`\`\`
+
+---
+
+## 📞 Destek
+
+- **Webhook Dokümantasyonu**: WEBHOOK_INTEGRATION.md
+- **GitHub Issues**: https://github.com/fokusistatistik/fokusistatistik/issues
+
+---
+
+**Son Güncelleme**: 14 Kasım 2025  
+**Branch**: claude/fix-ui-and-errors-01XUNAH9sYcea3qZwjwKifvj
