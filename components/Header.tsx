@@ -44,10 +44,10 @@ export default function Header() {
   return (
     <header className="bg-[#860000] text-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between py-1.5">
+        <div className="flex items-center justify-between py-1">
           {/* Logo and Title */}
-          <Link href="/" className="flex items-center space-x-3 hover:opacity-90 transition">
-            <div className="relative w-24 h-24">
+          <Link href="/" className="flex items-center space-x-2 hover:opacity-90 transition">
+            <div className="relative w-16 h-16">
               <Image
                 src="https://www.fokusistatistik.com/assets/img/logobeyaz.png"
                 alt="FOKUS Logo"
@@ -55,7 +55,7 @@ export default function Header() {
                 className="object-contain"
               />
             </div>
-            <span className="text-lg font-bold hidden sm:inline">VERİ BİLİMİ</span>
+            <span className="text-base font-bold hidden sm:inline">VERİ BİLİMİ</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -82,10 +82,10 @@ export default function Header() {
               </button>
 
               {isDropdownOpen && (
-                <div className="absolute top-full left-0 mt-0 w-44 bg-gray-900 text-white rounded-lg shadow-xl py-2 border border-gray-700">
+                <div className="absolute top-full left-0 mt-0 w-44 bg-gray-900 text-white rounded-lg shadow-xl py-1 border border-gray-700">
                   <Link
                     href="/sanalasistanlar"
-                    className="block px-3 py-1.5 hover:bg-[#860000] transition text-xs font-semibold border-b border-gray-700"
+                    className="block px-3 py-1 hover:bg-[#860000] transition text-xs font-semibold border-b border-gray-700"
                   >
                     📋 Tüm Asistanlar
                   </Link>
@@ -93,17 +93,17 @@ export default function Header() {
                     <Link
                       key={assistant.code}
                       href={`/sanalasistanlar/${assistant.code}`}
-                      className="block px-3 py-1.5 hover:bg-[#860000] transition text-xs"
+                      className="block px-3 py-1 hover:bg-[#860000] transition text-xs"
                     >
                       {assistant.name}
                     </Link>
                   ))}
-                  <hr className="my-2 border-gray-700" />
+                  <hr className="my-1 border-gray-700" />
                   <a
                     href="https://asistan.fokusistatistik.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center px-3 py-1.5 hover:bg-[#860000] transition text-xs font-bold"
+                    className="flex items-center px-3 py-1 hover:bg-[#860000] transition text-xs font-bold"
                   >
                     <Image
                       src="https://www.fokusistatistik.com/assets/img/favicon.png"
@@ -159,7 +159,7 @@ export default function Header() {
 
         {/* Search Bar */}
         {isSearchOpen && (
-          <div className="pb-4">
+          <div className="pb-2">
             <input
               type="text"
               placeholder="Site içinde ara... (Enter ile Google'da ara)"
@@ -167,27 +167,27 @@ export default function Header() {
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={handleSearch}
               autoFocus
-              className="w-full px-4 py-2 rounded-lg bg-white/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition"
+              className="w-full px-4 py-1.5 rounded-lg bg-white/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition"
             />
           </div>
         )}
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <nav className="lg:hidden py-4 border-t border-[#a50000]">
-            <div className="flex flex-col space-y-3">
-              <Link href="/" className={`transition py-2 ${isActive('/') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+          <nav className="lg:hidden py-2 border-t border-[#a50000]">
+            <div className="flex flex-col space-y-2">
+              <Link href="/" className={`transition py-1.5 ${isActive('/') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 Anasayfa
               </Link>
-              <Link href="/hakkimizda" className={`transition py-2 ${isActive('/hakkimizda') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+              <Link href="/hakkimizda" className={`transition py-1.5 ${isActive('/hakkimizda') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 Hakkımızda
               </Link>
-              <Link href="/ekibimiz" className={`transition py-2 ${isActive('/ekibimiz') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+              <Link href="/ekibimiz" className={`transition py-1.5 ${isActive('/ekibimiz') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 Ekibimiz
               </Link>
 
               <details className="group">
-                <summary className="cursor-pointer hover:text-gray-200 transition py-2 list-none flex items-center justify-between">
+                <summary className="cursor-pointer hover:text-gray-200 transition py-1.5 list-none flex items-center justify-between">
                   <span>Sanal Asistanlar</span>
                   <ChevronDown size={16} className="group-open:rotate-180 transition" />
                 </summary>
@@ -219,22 +219,22 @@ export default function Header() {
                 </div>
               </details>
 
-              <Link href="/dijital" className={`transition py-2 ${isActive('/dijital') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+              <Link href="/dijital" className={`transition py-1.5 ${isActive('/dijital') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 Dijital Çözümler
               </Link>
-              <Link href="/yapay-zeka-danismanligi" className={`transition py-2 ${isActive('/yapay-zeka-danismanligi') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+              <Link href="/yapay-zeka-danismanligi" className={`transition py-1.5 ${isActive('/yapay-zeka-danismanligi') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 YZ Danışmanlığı
               </Link>
-              <Link href="/fiyatlandirma" className={`transition py-2 ${isActive('/fiyatlandirma') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+              <Link href="/fiyatlandirma" className={`transition py-1.5 ${isActive('/fiyatlandirma') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 Fiyatlandırma
               </Link>
-              <Link href="/iletisim" className={`transition py-2 ${isActive('/iletisim') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+              <Link href="/iletisim" className={`transition py-1.5 ${isActive('/iletisim') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 İletişim
               </Link>
 
               <Link
                 href="/giris"
-                className="bg-white text-[#860000] px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition text-center mt-4 shadow-md"
+                className="bg-white text-[#860000] px-6 py-1.5 rounded-full font-semibold hover:bg-gray-100 transition text-center mt-2 shadow-md"
               >
                 Giriş Yap
               </Link>

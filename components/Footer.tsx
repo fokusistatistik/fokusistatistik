@@ -58,10 +58,10 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black text-white py-12 mt-20">
+    <footer className="bg-gradient-to-b from-gray-900 to-black text-white py-6 mt-10">
       <div className="container mx-auto px-4">
         {/* Social Icons */}
-        <div className="flex flex-wrap justify-center items-center gap-6 mb-8">
+        <div className="flex flex-wrap justify-center items-center gap-4 mb-4">
           {socialLinks.map((social) => (
             <a
               key={social.name}
@@ -74,8 +74,8 @@ export default function Footer() {
               <Image
                 src={social.icon}
                 alt={social.name}
-                width={26}
-                height={26}
+                width={22}
+                height={22}
                 className="opacity-80 hover:opacity-100 transition"
               />
             </a>
@@ -83,10 +83,10 @@ export default function Footer() {
         </div>
 
         {/* Quick Links */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-center md:text-left">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-center md:text-left">
           <div>
-            <h3 className="font-bold text-[#ffc107] mb-3">Kurumsal</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="font-bold text-[#ffc107] mb-2">Kurumsal</h3>
+            <ul className="space-y-1 text-sm">
               <li>
                 <Link href="/hakkimizda" className="hover:text-[#ffc107] transition">
                   Hakkımızda
@@ -116,8 +116,8 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-bold text-[#ffc107] mb-3">Hizmetler</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="font-bold text-[#ffc107] mb-2">Hizmetler</h3>
+            <ul className="space-y-1 text-sm">
               <li>
                 <Link href="/dijital" className="hover:text-[#ffc107] transition">
                   Dijital Çözümler
@@ -147,8 +147,8 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-bold text-[#ffc107] mb-3">Destek</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="font-bold text-[#ffc107] mb-2">Destek</h3>
+            <ul className="space-y-1 text-sm">
               <li>
                 <Link href="/sss" className="hover:text-[#ffc107] transition">
                   S.S.S.
@@ -173,8 +173,8 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-bold text-[#ffc107] mb-3">Yasal</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="font-bold text-[#ffc107] mb-2">Yasal</h3>
+            <ul className="space-y-1 text-sm">
               <li>
                 <Link href="/kvkk-aydinlatma" className="hover:text-[#ffc107] transition">
                   KVKK Aydınlatma
@@ -200,7 +200,7 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <hr className="border-gray-700 mb-6" />
+        <hr className="border-gray-700 mb-3" />
 
         {/* Copyright */}
         <div className="text-center text-sm text-gray-400">
@@ -209,10 +209,10 @@ export default function Footer() {
             <span className="mx-3">|</span>
             Tüm Hakları Saklıdır
           </p>
-          <p className="mt-2 text-xs">
+          <p className="mt-1 text-xs">
             Yapay Zeka ve Veri Bilimi ile İş Süreçlerinizi Optimize Edin
           </p>
-          <div className="flex flex-wrap justify-center gap-6 mt-4 text-xs">
+          <div className="flex flex-wrap justify-center gap-4 mt-2 text-xs">
             <span>🎯 22+ Yıllık Deneyim</span>
             <span>🤖 9 Sanal Asistan</span>
             <span>⏰ 7/24 Destek</span>
