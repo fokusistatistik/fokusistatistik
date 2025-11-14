@@ -1590,7 +1590,14 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Image */}
                 <div className="flex justify-center">
-                  <div className="text-9xl">{displayAssistant.icon}</div>
+                  <div className="relative w-64 h-64">
+                    <Image
+                      src={displayAssistant.image}
+                      alt={displayAssistant.title}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
 
                 {/* Content */}
@@ -1665,9 +1672,8 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
                     href={displayAssistant.requestQrUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
+                    className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
                   >
-                    <h3 className="font-bold text-xl mb-4 text-gray-800">📋 Talep Et</h3>
                     <div className="w-48 h-48 mx-auto rounded-lg relative">
                       <Image
                         src={displayAssistant.requestQrImage}
@@ -1682,9 +1688,8 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
                     href={displayAssistant.testQrUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
+                    className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
                   >
-                    <h3 className="font-bold text-xl mb-4 text-gray-800">🧪 Test Et</h3>
                     <div className="w-48 h-48 mx-auto rounded-lg relative">
                       <Image
                         src={displayAssistant.testQrImage}

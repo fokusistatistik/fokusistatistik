@@ -154,7 +154,8 @@ export default function Footer() {
                   S.S.S.
                 </Link>
               </li>
-              <li>
+              {/* Temporarily disabled - User login links */}
+              {/* <li>
                 <Link href="/giris" className="hover:text-[#ffc107] transition">
                   Giriş Yap
                 </Link>
@@ -168,7 +169,7 @@ export default function Footer() {
                 <Link href="/siparisler" className="hover:text-[#ffc107] transition">
                   Siparişlerim
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 

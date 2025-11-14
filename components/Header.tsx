@@ -42,12 +42,12 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-[#860000] text-white shadow-lg sticky top-0 z-50">
+    <header className="bg-[#860000] text-white shadow-lg fixed top-0 left-0 right-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-0">
           {/* Logo and Title */}
           <Link href="/" className="flex items-center space-x-1.5 hover:opacity-90 transition">
-            <div className="relative w-14 h-14">
+            <div className="relative w-[73px] h-[73px] -my-2">
               <Image
                 src="https://www.fokusistatistik.com/assets/img/logobeyaz.png"
                 alt="FOKUS Logo"
@@ -139,13 +139,13 @@ export default function Header() {
               <Search size={20} />
             </button>
 
-            {/* Login Button */}
-            <Link
+            {/* Login Button - Temporarily disabled */}
+            {/* <Link
               href="/giris"
               className="bg-white text-[#860000] px-4 py-1 rounded-full font-semibold hover:bg-gray-100 transition shadow-md hover:shadow-lg text-sm"
             >
               Giriş Yap
-            </Link>
+            </Link> */}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -233,13 +233,14 @@ export default function Header() {
                 İletişim
               </Link>
 
-              <Link
+              {/* Login Button - Temporarily disabled */}
+              {/* <Link
                 href="/giris"
                 onClick={() => setIsMenuOpen(false)}
                 className="bg-white text-[#860000] px-6 py-1.5 rounded-full font-semibold hover:bg-gray-100 transition text-center mt-2 shadow-md"
               >
                 Giriş Yap
-              </Link>
+              </Link> */}
             </div>
           </nav>
         )}

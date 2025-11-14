@@ -118,7 +118,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
-      <body className="antialiased">
+      <body className="antialiased pt-16">
         <OrganizationSchema type="ProfessionalService" />
         <GoogleAnalytics />
         <Header />
