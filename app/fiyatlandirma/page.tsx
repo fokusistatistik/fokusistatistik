@@ -8,8 +8,8 @@ export default function Fiyatlandirma() {
       price: '999',
       period: 'ay',
       description: 'Her bir asistan 999 TL\'den başlayan fiyatlarla',
-      icon: <Zap className="w-8 h-8 text-blue-500" />,
-      color: 'from-blue-500 to-blue-600',
+      icon: <Zap className="w-8 h-8 text-white" />,
+      color: 'from-gray-600 to-gray-700',
       popular: false,
       features: [
         '3 Sanal Asistan',
@@ -25,7 +25,7 @@ export default function Fiyatlandirma() {
       price: '1.999',
       period: 'ay',
       description: '1999\'dan başlayan fiyatlarla',
-      icon: <Star className="w-8 h-8 text-[#860000]" />,
+      icon: <Star className="w-8 h-8 text-white" />,
       color: 'from-[#860000] to-[#6b0000]',
       popular: true,
       features: [
@@ -44,8 +44,8 @@ export default function Fiyatlandirma() {
       price: 'Özel Teklif',
       period: '',
       description: 'Fiyatlandırma için özel teklif',
-      icon: <Crown className="w-8 h-8 text-purple-500" />,
-      color: 'from-purple-500 to-purple-600',
+      icon: <Crown className="w-8 h-8 text-white" />,
+      color: 'from-gray-800 to-gray-900',
       popular: false,
       features: [
         'Tüm Asistanlar (9)',
@@ -88,7 +88,7 @@ export default function Fiyatlandirma() {
               {plans.map((plan, index) => (
                 <div
                   key={index}
-                  className={`relative rounded-3xl shadow-xl overflow-hidden ${
+                  className={`relative rounded-3xl shadow-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
                     plan.popular ? 'border-4 border-[#860000] transform scale-105' : 'border-2 border-gray-200'
                   }`}
                 >

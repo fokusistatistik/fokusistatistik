@@ -10,7 +10,14 @@ export default function ChatWidget() {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showQuickReplies, setShowQuickReplies] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const quickReplies = [
+    'İşletmeme Yapay Zekayı nasıl entegre ederim?',
+    'Ücretsiz Danışmanlık almak istiyorum',
+    'FOKUS Ekosistemi nedir?'
+  ];
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -24,14 +31,15 @@ export default function ChatWidget() {
     setIsChatOpen(!isChatOpen);
   };
 
-  const sendMessage = async () => {
-    const userMessage = inputValue.trim();
+  const sendMessage = async (message?: string) => {
+    const userMessage = message || inputValue.trim();
     if (!userMessage) return;
 
     // Kullanıcı mesajını ekle
     setMessages(prev => [...prev, { text: userMessage, sender: 'user' }]);
     setInputValue('');
     setIsLoading(true);
+    setShowQuickReplies(false);
 
     try {
       const response = await fetch('https://n8n.fokusistatistik.com/webhook/fokus216clasic250001', {
@@ -330,6 +338,33 @@ export default function ChatWidget() {
           }
         }
 
+        .quick-replies {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          padding: 0 16px 16px 16px;
+        }
+
+        .quick-reply-button {
+          background: white;
+          border: 1px solid #860000;
+          color: #860000;
+          padding: 10px 16px;
+          border-radius: 20px;
+          cursor: pointer;
+          font-size: 13px;
+          text-align: left;
+          transition: all 0.2s ease;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .quick-reply-button:hover {
+          background: #860000;
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(134, 0, 0, 0.2);
+        }
+
         @media (max-width: 480px) {
           .chat-widget .chat-window {
             width: calc(100vw - 32px) !important;
@@ -402,6 +437,20 @@ export default function ChatWidget() {
 
               <div ref={messagesEndRef} />
             </div>
+
+            {showQuickReplies && messages.length === 1 && (
+              <div className="quick-replies">
+                {quickReplies.map((reply, index) => (
+                  <button
+                    key={index}
+                    className="quick-reply-button"
+                    onClick={() => sendMessage(reply)}
+                  >
+                    {reply}
+                  </button>
+                ))}
+              </div>
+            )}
 
             <div className="chat-input-area">
               <input

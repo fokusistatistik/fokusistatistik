@@ -3,7 +3,8 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
-import { Chrome, Mail, Lock, ArrowRight, Shield, Zap } from 'lucide-react';
+import Image from 'next/image';
+import { Chrome, Mail, Lock, ArrowRight, Shield, Zap, User } from 'lucide-react';
 
 function GirisContent() {
   const router = useRouter();
@@ -89,9 +90,33 @@ function GirisContent() {
     window.location.href = '/api/auth/google';
   };
 
+  const handleAdminLogin = () => {
+    console.log('🔧 Admin bypass login...');
+    setIsLoading(true);
+    setStatusMessage('✅ Admin olarak giriş yapılıyor...');
+
+    // Create temporary admin session
+    const adminSession = {
+      user: 'Admin User',
+      email: 'admin@fokusistatistik.com',
+      userId: 'admin-temp-001',
+      picture: 'https://www.fokusistatistik.com/assets/img/logobeyaz.png',
+      isNewUser: false,
+      token: generateSecureToken(),
+      timestamp: Date.now(),
+      isLoggedIn: true,
+      authMethod: 'admin-bypass'
+    };
+
+    localStorage.setItem('fokus520Session', JSON.stringify(adminSession));
+    setTimeout(() => {
+      router.push('/dashboard');
+    }, 1000);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
-      <main className="flex-grow flex items-center justify-center py-12 px-4 bg-gradient-to-br from-gray-50 to-gray-100">
+      <main className="flex-grow flex items-center justify-center py-4 px-4 bg-gradient-to-br from-gray-50 to-gray-100">
         <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Info */}
           <div className="hidden lg:block">
@@ -172,10 +197,27 @@ function GirisContent() {
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#860000]"></div>
                   ) : (
                     <>
-                      <Chrome className="w-5 h-5 text-[#860000]" />
+                      <div className="relative w-5 h-5">
+                        <Image
+                          src="https://static.fokusistatistik.com/logolar/google.png"
+                          alt="Google"
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
                       <span>Google ile Giriş Yap</span>
                     </>
                   )}
+                </button>
+
+                {/* Admin Login (Temporary) */}
+                <button
+                  onClick={handleAdminLogin}
+                  disabled={isLoading}
+                  className="w-full flex items-center justify-center space-x-3 bg-gray-100 border-2 border-gray-400 hover:border-gray-600 text-gray-700 font-semibold py-4 px-6 rounded-xl transition group disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <User className="w-5 h-5 text-gray-600" />
+                  <span>Admin Girişi (Geçici)</span>
                 </button>
               </div>
 

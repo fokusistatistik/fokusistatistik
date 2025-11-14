@@ -44,10 +44,10 @@ export default function Header() {
   return (
     <header className="bg-[#860000] text-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between py-1">
+        <div className="flex items-center justify-between py-0.5">
           {/* Logo and Title */}
           <Link href="/" className="flex items-center space-x-2 hover:opacity-90 transition">
-            <div className="relative w-16 h-16">
+            <div className="relative w-22 h-22">
               <Image
                 src="https://www.fokusistatistik.com/assets/img/logobeyaz.png"
                 alt="FOKUS Logo"
@@ -55,7 +55,7 @@ export default function Header() {
                 className="object-contain"
               />
             </div>
-            <span className="text-base font-bold hidden sm:inline">VERİ BİLİMİ</span>
+            <span className="text-lg font-bold hidden sm:inline">VERİ BİLİMİ</span>
           </Link>
 
           {/* Desktop Navigation */}

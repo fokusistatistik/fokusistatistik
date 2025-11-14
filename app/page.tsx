@@ -12,36 +12,12 @@ import {
   CheckCircle2,
   ArrowRight,
   Star,
-  X,
-  Gift,
   Clock,
   Target,
 } from 'lucide-react';
 
 export default function Home() {
-  const [showToast, setShowToast] = useState(false);
-  const [showFloatingCta, setShowFloatingCta] = useState(false);
-
-  useEffect(() => {
-    const toastSeen = sessionStorage.getItem('fokusToastSeen');
-
-    if (!toastSeen) {
-      const timer = setTimeout(() => {
-        setShowToast(true);
-        sessionStorage.setItem('fokusToastSeen', 'true');
-
-        // Auto-hide after 15 seconds
-        setTimeout(() => {
-          setShowToast(false);
-          setTimeout(() => setShowFloatingCta(true), 1000);
-        }, 15000);
-      }, 5000);
-
-      return () => clearTimeout(timer);
-    } else {
-      setShowFloatingCta(true);
-    }
-  }, []);
+  // CTA toast and floating button removed per user request
 
   const assistants = [
     {
@@ -135,58 +111,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col">
-
-      {/* Toast Notification */}
-      {showToast && (
-        <div className="fixed top-20 right-5 bg-gradient-to-r from-[#860000] to-[#a30000] text-white rounded-xl shadow-2xl p-5 max-w-sm z-50 animate-slideIn">
-          <div className="flex items-center justify-between mb-3">
-            <span className="bg-white/20 px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
-              <Gift className="w-3 h-3" />
-              ÖZEL FIRSAT
-            </span>
-            <button onClick={() => setShowToast(false)} className="hover:bg-white/20 rounded-full p-1">
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-          <div className="flex gap-3">
-            <div className="w-16 h-16 bg-white rounded-full flex-shrink-0 overflow-hidden">
-              <div className="w-full h-full flex items-center justify-center text-3xl">💬</div>
-            </div>
-            <div className="flex-1">
-              <h3 className="font-bold mb-1">Randevu Sistemi İlk 1 Ay Ücretsiz!</h3>
-              <p className="text-sm opacity-90 mb-2">
-                Yapay zeka destekli randevu sistemi. Müşterileriniz 7/24 otomatik randevu alabilsin.
-              </p>
-              <div className="flex gap-2 text-xs mb-3">
-                <span className="flex items-center gap-1">✓ Hızlı Kurulum</span>
-                <span className="flex items-center gap-1">✓ 7/24 Aktif</span>
-              </div>
-              <a
-                href="https://asistan.fokusistatistik.com/fokusdemorandevusistemi/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-white text-[#860000] px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-100 transition"
-              >
-                Hemen Başla →
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Floating CTA */}
-      {showFloatingCta && (
-        <a
-          href="https://asistan.fokusistatistik.com/ucretsiz.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="fixed top-20 left-8 bg-gradient-to-r from-[#860000] to-[#a30000] text-white px-5 py-3 rounded-full shadow-2xl hover:shadow-3xl transition flex items-center gap-2 z-50 animate-slideIn font-semibold text-sm"
-        >
-          <Gift className="w-5 h-5 animate-bounce" />
-          <span>1 Ay Ücretsiz Dene</span>
-        </a>
-      )}
-
       <main className="flex-grow">
         {/* Assistants Section */}
         <section className="py-12 bg-gray-50">
