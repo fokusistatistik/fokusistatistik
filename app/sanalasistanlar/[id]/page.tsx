@@ -1,5 +1,3 @@
-'use client';
-
 import { CheckCircle2, X } from 'lucide-react';
 import Link from 'next/link';
 
@@ -1519,9 +1517,10 @@ const assistantsData: Record<string, AssistantData> = {
   },
 };
 
-export default function AssistantDetail({ params }: { params: { id: string } }) {
-  // Directly use static data from assistantsData
-  const assistantId = params?.id?.toLowerCase() || '';
+export default async function AssistantDetail({ params }: { params: Promise<{ id: string }> }) {
+  // Await params as required by Next.js 16
+  const { id } = await params;
+  const assistantId = id?.toLowerCase() || '';
   const displayAssistant = assistantsData[assistantId];
 
   // Not found state
