@@ -41,11 +41,46 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
     async signIn({ user, account, profile }) {
-      // Here you can add logic to fetch user role from backend
-      // For now, all new users get 'Standart' role by default
-      // Example:
-      // const userRole = await fetchUserRoleFromBackend(user.email);
-      // user.role = userRole || getDefaultRole();
+      try {
+        // Webhook'a kullanıcı bilgilerini gönder
+        const webhookUrl = process.env.NEXT_PUBLIC_AUTH_WEBHOOK_URL || 'https://n8n.fokusistatistik.com/webhook/userauth';
+
+        const webhookData = {
+          event: 'user_signin',
+          timestamp: new Date().toISOString(),
+          user: {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            image: user.image,
+          },
+          account: {
+            provider: account?.provider,
+            type: account?.type,
+            providerAccountId: account?.providerAccountId,
+          },
+          profile: {
+            email_verified: profile?.email_verified,
+          },
+          isNewUser: !profile?.email_verified, // Basit bir kontrol
+        };
+
+        // Webhook'u non-blocking şekilde çağır
+        fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(webhookData),
+        }).catch(error => {
+          console.error('Webhook error (non-blocking):', error);
+        });
+
+        console.log('✅ User signin event sent to webhook:', user.email);
+      } catch (error) {
+        console.error('❌ Error in signIn callback:', error);
+        // Webhook hatası kullanıcının giriş yapmasını engellemez
+      }
 
       return true;
     },
