@@ -114,38 +114,40 @@ export default function NedenBiz() {
           {reasons.map((reason, index) => (
             <article
               key={index}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
               itemScope
               itemType="https://schema.org/Service"
             >
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Image */}
-                <div className="relative h-48 md:h-56">
-                  <Image
-                    src={reason.image}
-                    alt={reason.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
+              <div className="p-6 flex gap-4 items-start">
+                {/* Icon/Image - Infographic Style */}
+                <div className="flex-shrink-0">
+                  <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100">
+                    <Image
+                      src={reason.image}
+                      alt={reason.title}
+                      fill
+                      className="object-cover"
+                      sizes="64px"
+                    />
+                  </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6 md:p-8 flex flex-col justify-center">
+                <div className="flex-1">
                   <h2
-                    className="text-xl md:text-2xl font-bold text-gray-900 mb-4"
+                    className="text-lg md:text-xl font-bold text-gray-900 mb-2"
                     itemProp="name"
                   >
                     {reason.title}
                   </h2>
                   <p
-                    className="text-gray-700 mb-4 leading-relaxed"
+                    className="text-gray-700 text-sm mb-2 leading-relaxed"
                     itemProp="description"
                   >
                     {reason.description}
                   </p>
-                  <p className="text-[#860000] font-semibold">
-                    <strong>Sonuç:</strong> {reason.result}
+                  <p className="text-[#860000] font-semibold text-sm">
+                    <strong>→</strong> {reason.result}
                   </p>
                 </div>
               </div>

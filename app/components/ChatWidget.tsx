@@ -350,13 +350,16 @@ export default function ChatWidget() {
           {isChatOpen ? (
             '✕'
           ) : (
-            <Image
-              src="https://www.fokusistatistik.com/assets/img/fokus216kare.png"
-              alt="FOKUS216"
-              width={50}
-              height={50}
-              className="rounded-full object-cover"
-            />
+            <div className="relative">
+              <Image
+                src="https://www.fokusistatistik.com/assets/img/fokus216kare.png"
+                alt="FOKUS216"
+                width={50}
+                height={50}
+                className="rounded-full object-cover"
+              />
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
+            </div>
           )}
         </button>
 
@@ -370,6 +373,7 @@ export default function ChatWidget() {
                   fill
                   className="object-cover"
                 />
+                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
               </div>
               <div className="chat-header-info">
                 <h3>FOKUS216</h3>

@@ -140,19 +140,6 @@ function GirisContent() {
                 </div>
               </div>
             </div>
-
-            <div className="mt-8 p-6 bg-white rounded-2xl shadow-lg border-2 border-[#860000]/20">
-              <p className="text-sm text-gray-600 mb-2">Halihazırda kullanıcılarımız:</p>
-              <div className="flex items-center space-x-2">
-                <div className="flex -space-x-2">
-                  <div className="w-10 h-10 rounded-full bg-blue-500 border-2 border-white"></div>
-                  <div className="w-10 h-10 rounded-full bg-green-500 border-2 border-white"></div>
-                  <div className="w-10 h-10 rounded-full bg-purple-500 border-2 border-white"></div>
-                  <div className="w-10 h-10 rounded-full bg-orange-500 border-2 border-white"></div>
-                </div>
-                <span className="text-gray-700 font-semibold">+500 İşletme</span>
-              </div>
-            </div>
           </div>
 
           {/* Right Side - Login Form */}

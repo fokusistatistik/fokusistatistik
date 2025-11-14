@@ -13,7 +13,7 @@ export default function Hakkimizda() {
       <div className="max-w-6xl mx-auto">
         {/* Hero Section */}
         <section className="text-center mb-16">
-          <div className="inline-block mb-3">
+          <div className="inline-block mb-1">
             <div className="relative w-48 h-48 mx-auto">
               <Image
                 src="https://static.fokusistatistik.com/logolar/fokuslogo1.png"

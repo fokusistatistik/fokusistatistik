@@ -65,8 +65,8 @@ export default function SanalAsistanlar() {
   return (
     <main className="min-h-screen bg-white">
       {/* Banner */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="w-full relative h-[200px] md:h-[280px] rounded-2xl overflow-hidden shadow-lg">
+      <div className="w-full">
+        <div className="w-full relative h-auto" style={{ aspectRatio: '16/4' }}>
           <Image
             src="https://www.fokusistatistik.com/assets/img/bannerasistanlar.png"
             alt="FOKUS Asistanları Banner"

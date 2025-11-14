@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { CheckCircle2, X } from 'lucide-react';
 import Link from 'next/link';
 
@@ -1521,80 +1520,9 @@ const assistantsData: Record<string, AssistantData> = {
 };
 
 export default function AssistantDetail({ params }: { params: { id: string } }) {
-  const [session, setSession] = useState<any>(null);
-  const [assistant, setAssistant] = useState<AssistantData | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // localStorage'dan session oku
-    const sessionData = localStorage.getItem('fokus520Session');
-    if (sessionData) {
-      try {
-        const parsed = JSON.parse(sessionData);
-        setSession(parsed);
-      } catch (e) {
-        console.error('Session parse error:', e);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    // Webhook'tan veri çekme denemesi
-    const fetchAssistantData = async () => {
-      if (!params.id) {
-        setIsLoading(false);
-        return;
-      }
-
-      try {
-        const assistantId = params.id.toLowerCase(); // URL'den gelen ID'yi lowercase yap
-
-        const webhookUrl = 'https://n8n.fokusistatistik.com/fokuswebsiteasistanlar';
-        const response = await fetch(webhookUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            assistantCode: assistantId.toUpperCase(),
-            userEmail: session?.email || null,
-            userName: session?.user || session?.name || null,
-          }),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setAssistant(data);
-        } else {
-          // Webhook başarısız ise statik veriyi kullan
-          setAssistant(assistantsData[assistantId] || null);
-        }
-      } catch (error) {
-        // Hata durumunda statik veriyi kullan
-        const assistantId = params.id?.toLowerCase() || '';
-        setAssistant(assistantsData[assistantId] || null);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchAssistantData();
-  }, [params.id]);
-
-  const assistantId = params.id?.toLowerCase() || '';
-  const displayAssistant = assistant || assistantsData[assistantId];
-
-  // Loading state
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#860000] mx-auto mb-4"></div>
-          <p className="text-gray-600">Yükleniyor...</p>
-        </div>
-      </div>
-    );
-  }
+  // Directly use static data from assistantsData
+  const assistantId = params?.id?.toLowerCase() || '';
+  const displayAssistant = assistantsData[assistantId];
 
   // Not found state
   if (!displayAssistant) {

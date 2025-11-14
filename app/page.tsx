@@ -195,14 +195,14 @@ export default function Home() {
               FOKUS Ekosistemi | <span className="text-[#860000]">Modüler Sanal Asistanlar Çağı</span>
             </h2>
 
-            <div className="flex flex-wrap justify-center items-center gap-8 max-w-5xl mx-auto">
+            <div className="flex flex-wrap justify-center items-center gap-5 max-w-5xl mx-auto">
               {assistants.map((assistant) => (
                 <Link
                   key={assistant.code}
                   href={`/sanalasistanlar/${assistant.code}`}
                   className="flex flex-col items-center text-center group"
                 >
-                  <div className="relative w-32 h-32 mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <div className="relative w-[115px] h-[115px] mb-3 group-hover:scale-110 transition-transform duration-300">
                     <Image
                       src={assistant.image}
                       alt={assistant.title}
@@ -299,16 +299,16 @@ export default function Home() {
         </section>
 
         {/* Video Section */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-12 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <div className="text-center mb-8">
-                <h2 className="text-2xl lg:text-3xl font-semibold mb-3 text-gray-800">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-6">
+                <h2 className="text-xl lg:text-2xl font-semibold mb-2 text-gray-800">
                   FOKUS Ekosistemi'ni <span className="text-[#860000]">Keşfedin</span>
                 </h2>
-                <p className="text-gray-600">İşletmenizi dijitale taşıyan sanal asistanları tanıyın</p>
+                <p className="text-sm text-gray-600">İşletmenizi dijitale taşıyan sanal asistanları tanıyın</p>
               </div>
-              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-[#860000]/10 hover:border-[#860000]/30 transition-all">
+              <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-[#860000]/10 hover:border-[#860000]/30 transition-all">
                 <div className="relative" style={{ paddingBottom: '56.25%' }}>
                   <iframe
                     src="https://www.youtube.com/embed/SQ3hBK6ZVDw?rel=0&modestbranding=1"
@@ -319,13 +319,13 @@ export default function Home() {
                   ></iframe>
                 </div>
               </div>
-              <div className="text-center mt-6">
+              <div className="text-center mt-4">
                 <Link
                   href="/sanalasistanlar"
-                  className="inline-flex items-center gap-2 text-[#860000] hover:text-[#a30000] font-semibold transition"
+                  className="inline-flex items-center gap-2 text-[#860000] hover:text-[#a30000] font-semibold transition text-sm"
                 >
                   Tüm Asistanları İncele
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
