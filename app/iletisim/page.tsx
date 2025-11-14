@@ -51,7 +51,7 @@ export default function Iletisim() {
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-[#860000] via-[#a50000] to-[#6b0000] text-white py-16 lg:py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
+            <div className="content-container text-center">
               <Mail className="w-16 h-16 mx-auto mb-6 text-[#ffc107]" />
               <h1 className="text-3xl lg:text-5xl font-bold mb-6">
                 Bizimle İletişime Geçin
@@ -66,7 +66,7 @@ export default function Iletisim() {
         {/* Contact Section */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
+            <div className="content-container">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {/* Contact Info */}
                 <div>

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Hakkimizda() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="content-container">
         {/* Hero Section */}
         <section className="text-center mb-16">
           <div className="inline-block mb-6">
