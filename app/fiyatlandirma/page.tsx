@@ -76,7 +76,7 @@ export default function Fiyatlandirma() {
 
             <div className="inline-flex items-center bg-green-100 text-green-700 px-6 py-3 rounded-full font-semibold">
               <Check className="w-5 h-5 mr-2" />
-              Tüm planlarda 1 ay ücretsiz deneme
+              Standart planlarda 1 ay ücretsiz deneme
             </div>
           </div>
         </section>

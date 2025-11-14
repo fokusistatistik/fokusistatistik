@@ -42,7 +42,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-[#860000] text-white shadow-lg">
+    <header className="bg-[#860000] text-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-0">
           {/* Logo and Title */}

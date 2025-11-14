@@ -1,5 +1,6 @@
 import { CheckCircle2, X } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface AssistantPackage {
   name: string;
@@ -93,8 +94,11 @@ const assistantsData: Record<string, AssistantData> = {
       'İşletmenizin tüm yazılım ve sistemlerine entegre olur.',
     ],
     videoUrl: 'https://www.youtube.com/embed/fckfRsZJtiM',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus001.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus001/',
+    testQrImage: 'https://www.fokusistatistik.com/assets/img/testet001.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://www.fokusistatistik.com/assets/img/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -272,8 +276,11 @@ const assistantsData: Record<string, AssistantData> = {
       'İstatistiksel raporlar sunarak hizmet kalitesini izler.',
     ],
     videoUrl: 'https://www.youtube.com/embed/VwVeSnsK0lA',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus216.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus216/',
+    testQrImage: 'https://www.fokusistatistik.com/assets/img/testet216.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://www.fokusistatistik.com/assets/img/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -433,8 +440,11 @@ const assistantsData: Record<string, AssistantData> = {
       'İhtiyaç duyduğunuzda Veri Bilimi Danışmanlığı sunar; doğru soruya, doğru analizle cevap verir.',
     ],
     videoUrl: 'https://www.youtube.com/embed/oePHh9TU4qg',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus314.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus314/',
+    testQrImage: 'https://www.fokusistatistik.com/assets/img/testet314.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://www.fokusistatistik.com/assets/img/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -612,8 +622,11 @@ const assistantsData: Record<string, AssistantData> = {
       'Satış fırsatlarını kaçırmaz.',
     ],
     videoUrl: 'https://www.youtube.com/embed/Wzwc3HCEDrU',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus520.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus520/',
+    testQrImage: 'https://www.fokusistatistik.com/assets/img/testet520.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://www.fokusistatistik.com/assets/img/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -776,8 +789,11 @@ const assistantsData: Record<string, AssistantData> = {
       'Komutla fatura oluşturma, etiketleme ve arşivleme sistemini kurar.',
     ],
     videoUrl: 'https://www.youtube.com/embed/4WS0b82IJ38',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus618.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus618/',
+    testQrImage: 'https://www.fokusistatistik.com/assets/img/testet618.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://www.fokusistatistik.com/assets/img/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -959,8 +975,11 @@ const assistantsData: Record<string, AssistantData> = {
       'Yönetici talepleri doğrultusunda kişi bazlı sorgulama yapar.',
     ],
     videoUrl: 'https://www.youtube.com/embed/AA0L2nleZXU',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus707.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus707/',
+    testQrImage: 'https://www.fokusistatistik.com/assets/img/testet707.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://www.fokusistatistik.com/assets/img/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -1157,8 +1176,11 @@ const assistantsData: Record<string, AssistantData> = {
       'FOKUS ekosisteminin diğer asistanlarıyla senkronize çalışarak kampanya içeriklerini zamanında üretir.',
     ],
     videoUrl: 'https://www.youtube.com/embed/Bt3ZmrE1MqU',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus717.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus717/',
+    testQrImage: 'https://www.fokusistatistik.com/assets/img/testet717.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://www.fokusistatistik.com/assets/img/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -1335,8 +1357,11 @@ const assistantsData: Record<string, AssistantData> = {
       'Kriz anlarında yayını durdurur ve alternatif içerik önerir.',
     ],
     videoUrl: 'https://www.youtube.com/embed/PWFR6mPbhGM',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus808.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus808/',
+    testQrImage: 'https://www.fokusistatistik.com/assets/img/testet808.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://www.fokusistatistik.com/assets/img/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -1512,8 +1537,11 @@ const assistantsData: Record<string, AssistantData> = {
       'Ve çok daha fazlası…',
     ],
     videoUrl: 'https://www.youtube.com/embed/cnZqBpW5bdc',
+    image: 'https://www.fokusistatistik.com/assets/img/fokus999.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus999/',
+    testQrImage: 'https://www.fokusistatistik.com/assets/img/testet999.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://www.fokusistatistik.com/assets/img/talepet.png',
     packages: [],
     priceNote:
       'FOKUS999, işletmenizin her alanına uyum sağlayan özel bir asistandır. Fiyatlandırma, projenizin kapsamına ve ihtiyaçlarınıza göre belirlenir. Detaylı bilgi ve teklif almak için bizimle iletişime geçin.',
@@ -1640,8 +1668,13 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
                     className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
                   >
                     <h3 className="font-bold text-xl mb-4 text-gray-800">📋 Talep Et</h3>
-                    <div className="bg-gray-100 w-48 h-48 mx-auto rounded-lg flex items-center justify-center text-gray-400">
-                      QR Kod
+                    <div className="w-48 h-48 mx-auto rounded-lg relative">
+                      <Image
+                        src={displayAssistant.requestQrImage}
+                        alt="Talep Et QR Kod"
+                        fill
+                        className="object-contain"
+                      />
                     </div>
                   </a>
 
@@ -1652,8 +1685,13 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
                     className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
                   >
                     <h3 className="font-bold text-xl mb-4 text-gray-800">🧪 Test Et</h3>
-                    <div className="bg-gray-100 w-48 h-48 mx-auto rounded-lg flex items-center justify-center text-gray-400">
-                      QR Kod
+                    <div className="w-48 h-48 mx-auto rounded-lg relative">
+                      <Image
+                        src={displayAssistant.testQrImage}
+                        alt="Test Et QR Kod"
+                        fill
+                        className="object-contain"
+                      />
                     </div>
                   </a>
                 </div>

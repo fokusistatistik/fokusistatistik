@@ -66,7 +66,7 @@ export default function SanalAsistanlar() {
     <main className="min-h-screen bg-white">
       {/* Banner */}
       <div className="w-full">
-        <div className="w-full relative h-auto" style={{ aspectRatio: '16/6' }}>
+        <div className="w-full relative h-auto" style={{ aspectRatio: '16/18' }}>
           <Image
             src="https://www.fokusistatistik.com/assets/img/bannerasistanlar.png"
             alt="FOKUS Asistanları Banner"
