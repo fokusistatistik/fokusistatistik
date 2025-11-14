@@ -225,14 +225,14 @@ export default function Home() {
         {/* Video Section */}
         <section className="py-12 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-2xl mx-auto">
               <div className="text-center mb-6">
-                <h2 className="text-xl lg:text-2xl font-semibold mb-2 text-gray-800">
+                <h2 className="text-lg lg:text-xl font-semibold mb-2 text-gray-800">
                   FOKUS Ekosistemi'ni <span className="text-[#860000]">Keşfedin</span>
                 </h2>
-                <p className="text-sm text-gray-600">İşletmenizi dijitale taşıyan sanal asistanları tanıyın</p>
+                <p className="text-xs text-gray-600">İşletmenizi dijitale taşıyan sanal asistanları tanıyın</p>
               </div>
-              <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-[#860000]/10 hover:border-[#860000]/30 transition-all">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-[#860000]/10 hover:border-[#860000]/30 transition-all">
                 <div className="relative" style={{ paddingBottom: '56.25%' }}>
                   <iframe
                     src="https://www.youtube.com/embed/SQ3hBK6ZVDw?rel=0&modestbranding=1"
@@ -243,13 +243,13 @@ export default function Home() {
                   ></iframe>
                 </div>
               </div>
-              <div className="text-center mt-4">
+              <div className="text-center mt-3">
                 <Link
                   href="/sanalasistanlar"
-                  className="inline-flex items-center gap-2 text-[#860000] hover:text-[#a30000] font-semibold transition text-sm"
+                  className="inline-flex items-center gap-2 text-[#860000] hover:text-[#a30000] font-semibold transition text-xs"
                 >
                   Tüm Asistanları İncele
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
             </div>

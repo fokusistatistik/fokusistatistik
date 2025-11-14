@@ -93,7 +93,7 @@ export default function NotFound() {
         {/* Help Text */}
         <div className="mt-8 p-4 bg-blue-50 rounded-lg">
           <p className="text-sm text-gray-700">
-            💡 Yardıma mı ihtiyacınız var?{' '}
+            🎯 Yardıma mı ihtiyacınız var?{' '}
             <Link href="/iletisim" className="text-[#860000] hover:underline font-semibold">
               Bizimle iletişime geçin
             </Link>

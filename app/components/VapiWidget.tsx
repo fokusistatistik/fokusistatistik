@@ -257,7 +257,7 @@ export default function VapiWidget() {
             {/* Modal Footer */}
             <div className="bg-gray-50 p-4 border-t border-gray-200 text-center">
               <p className="text-sm text-gray-600">
-                💡 Mikrofon izni verdiğinizden emin olun. ESC tuşu ile kapatabilirsiniz.
+                🎯 Mikrofon izni verdiğinizden emin olun. ESC tuşu ile kapatabilirsiniz.
               </p>
             </div>
           </div>

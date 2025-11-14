@@ -154,7 +154,7 @@ export default function YapayZekaDanismanligi() {
             <div className="flex gap-4">
               <div className="flex-shrink-0">
                 <div className="w-16 h-16 bg-pink-100 rounded-lg flex items-center justify-center text-3xl">
-                  💡
+                  🎯
                 </div>
               </div>
               <div>

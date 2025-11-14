@@ -176,13 +176,13 @@ export default function Header() {
         {isMenuOpen && (
           <nav className="lg:hidden py-2 border-t border-[#a50000]">
             <div className="flex flex-col space-y-2">
-              <Link href="/" className={`transition py-1.5 ${isActive('/') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+              <Link href="/" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 Anasayfa
               </Link>
-              <Link href="/hakkimizda" className={`transition py-1.5 ${isActive('/hakkimizda') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+              <Link href="/hakkimizda" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/hakkimizda') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 Hakkımızda
               </Link>
-              <Link href="/ekibimiz" className={`transition py-1.5 ${isActive('/ekibimiz') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+              <Link href="/ekibimiz" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/ekibimiz') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 Ekibimiz
               </Link>
 
@@ -196,6 +196,7 @@ export default function Header() {
                     <Link
                       key={assistant.code}
                       href={`/sanalasistanlar/${assistant.code}`}
+                      onClick={() => setIsMenuOpen(false)}
                       className="block hover:text-gray-200 transition py-1 text-xs"
                     >
                       {assistant.name}
@@ -219,21 +220,22 @@ export default function Header() {
                 </div>
               </details>
 
-              <Link href="/dijital" className={`transition py-1.5 ${isActive('/dijital') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+              <Link href="/dijital" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/dijital') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 Dijital Çözümler
               </Link>
-              <Link href="/yapay-zeka-danismanligi" className={`transition py-1.5 ${isActive('/yapay-zeka-danismanligi') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+              <Link href="/yapay-zeka-danismanligi" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/yapay-zeka-danismanligi') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 YZ Danışmanlığı
               </Link>
-              <Link href="/fiyatlandirma" className={`transition py-1.5 ${isActive('/fiyatlandirma') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+              <Link href="/fiyatlandirma" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/fiyatlandirma') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 Fiyatlandırma
               </Link>
-              <Link href="/iletisim" className={`transition py-1.5 ${isActive('/iletisim') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+              <Link href="/iletisim" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/iletisim') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 İletişim
               </Link>
 
               <Link
                 href="/giris"
+                onClick={() => setIsMenuOpen(false)}
                 className="bg-white text-[#860000] px-6 py-1.5 rounded-full font-semibold hover:bg-gray-100 transition text-center mt-2 shadow-md"
               >
                 Giriş Yap

@@ -69,14 +69,14 @@ export default function Footer() {
               title={social.name}
               target={social.name !== 'E-posta' ? '_blank' : undefined}
               rel={social.name !== 'E-posta' ? 'noopener noreferrer' : undefined}
-              className="hover:scale-110 transition-transform duration-200"
+              className="hover:scale-125 transition-all duration-300 ease-out"
             >
               <Image
                 src={social.icon}
                 alt={social.name}
                 width={22}
                 height={22}
-                className="opacity-80 hover:opacity-100 transition"
+                className="opacity-80 hover:opacity-100 transition md:w-[27px] md:h-[27px]"
               />
             </a>
           ))}

@@ -109,7 +109,7 @@ export default function Hakkimizda() {
 
             <div className="text-center">
               <div className="w-20 h-20 bg-[#860000] rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
-                💡
+                🎯
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Yenilikçilik</h3>
               <p className="text-gray-600">
