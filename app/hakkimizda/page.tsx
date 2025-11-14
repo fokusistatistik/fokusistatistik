@@ -13,8 +13,8 @@ export default function Hakkimizda() {
       <div className="max-w-6xl mx-auto">
         {/* Hero Section */}
         <section className="text-center mb-16">
-          <div className="inline-block mb-6">
-            <div className="relative w-40 h-40 mx-auto">
+          <div className="inline-block mb-3">
+            <div className="relative w-48 h-48 mx-auto">
               <Image
                 src="https://static.fokusistatistik.com/logolar/fokuslogo1.png"
                 alt="FOKUS Logo"
@@ -23,10 +23,10 @@ export default function Hakkimizda() {
               />
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             FOKUS İstatistik
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Veri Bilimi ve Yapay Zeka ile İşletmenizi Geleceğe Taşıyoruz
           </p>
         </section>

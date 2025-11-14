@@ -103,9 +103,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/yapay-zeka-danismanligi" className="hover:text-[#ffc107] transition">
-                  YZ Danışmanlığı
-                </Link>
+                <a href="https://www.fokusistatistik.com/kartvizit" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffc107] transition">
+                  Kartvizit
+                </a>
               </li>
               <li>
                 <Link href="/iletisim" className="hover:text-[#ffc107] transition">
