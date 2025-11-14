@@ -21,13 +21,28 @@ export default function ProfilPage() {
   const [formData, setFormData] = useState<ProfileFormData>({
     firstName: '',
     lastName: '',
-    company: '',
-    birthYear: undefined,
     phone: '',
+    birth_date: '',
+    unvan: '',
+    company_name: '',
+    company_size: undefined,
+    sektor: '',
+    tax_number: '',
+    city: '',
+    how_did_you_find_us: '',
     kvkkConsent: false,
     emailSubscription: true,
     smsSubscription: false,
+    // Legacy
+    company: '',
+    birthYear: undefined,
   });
+
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string>('');
+  const [emailVerified, setEmailVerified] = useState(false);
+  const [verificationCode, setVerificationCode] = useState('');
+  const [sendingVerification, setSendingVerification] = useState(false);
 
   // Load profile data on mount
   useEffect(() => {
@@ -47,16 +62,28 @@ export default function ProfilPage() {
 
       if (data.success && data.data) {
         setProfile(data.data);
+        setEmailVerified(data.data.email_verified || false);
+        setPhotoPreview(data.data.photo_url || '');
+
         // Populate form with existing data
         setFormData({
           firstName: data.data.firstName || '',
           lastName: data.data.lastName || '',
+          phone: data.data.phone || '',
+          birth_date: data.data.birth_date || '',
+          unvan: data.data.unvan || '',
+          company_name: data.data.company_name || data.data.company || '',
+          company_size: data.data.company_size,
+          sektor: data.data.sektor || '',
+          tax_number: data.data.tax_number || '',
+          city: data.data.city || '',
+          how_did_you_find_us: data.data.how_did_you_find_us || '',
+          kvkkConsent: data.data.kvkkConsent || false,
+          emailSubscription: data.data.emailSubscription !== false,
+          smsSubscription: data.data.smsSubscription || false,
+          // Legacy
           company: data.data.company || '',
           birthYear: data.data.birthYear,
-          phone: data.data.phone || '',
-          kvkkConsent: data.data.kvkkConsent || false,
-          emailSubscription: data.data.emailSubscription !== false, // Default true
-          smsSubscription: data.data.smsSubscription || false,
         });
       }
     } catch (error) {
@@ -64,6 +91,81 @@ export default function ProfilPage() {
       toast.error('Profil bilgileri yüklenemedi');
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Handle photo upload
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error('Fotoğraf boyutu 5MB\'dan küçük olmalıdır');
+        return;
+      }
+      setPhotoFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPhotoPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Send email verification
+  const sendEmailVerification = async () => {
+    try {
+      setSendingVerification(true);
+      const response = await fetch('/api/profile/verify-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'send' }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success('Doğrulama kodu e-posta adresinize gönderildi');
+      } else {
+        toast.error(data.error || 'Doğrulama kodu gönderilemedi');
+      }
+    } catch (error) {
+      console.error('Email verification error:', error);
+      toast.error('Doğrulama kodu gönderilemedi');
+    } finally {
+      setSendingVerification(false);
+    }
+  };
+
+  // Verify email with code
+  const verifyEmailCode = async () => {
+    if (!verificationCode || verificationCode.length !== 6) {
+      toast.error('Lütfen 6 haneli doğrulama kodunu girin');
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/profile/verify-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'verify',
+          verification_code: verificationCode,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success && data.verified) {
+        setEmailVerified(true);
+        setVerificationCode('');
+        toast.success('E-posta adresiniz doğrulandı!');
+        loadProfile(); // Refresh profile
+      } else {
+        toast.error(data.error || 'Doğrulama kodu hatalı');
+      }
+    } catch (error) {
+      console.error('Email verification error:', error);
+      toast.error('Doğrulama başarısız');
     }
   };
 
@@ -115,6 +217,63 @@ export default function ProfilPage() {
 
   // Generate birth year options (1940-2010)
   const birthYearOptions = Array.from({ length: 71 }, (_, i) => 2010 - i);
+
+  // Company size options
+  const companySizeOptions = [
+    { value: 'micro', label: '1-10 Çalışan' },
+    { value: 'small', label: '11-50 Çalışan' },
+    { value: 'medium', label: '51-250 Çalışan' },
+    { value: 'large', label: '251-1000 Çalışan' },
+    { value: 'enterprise', label: '1000+ Çalışan' },
+  ];
+
+  // Sektör options
+  const sektorOptions = [
+    'Teknoloji',
+    'Finans',
+    'Sağlık',
+    'Eğitim',
+    'Perakende',
+    'Üretim',
+    'İnşaat',
+    'Turizm',
+    'Lojistik',
+    'Danışmanlık',
+    'Medya',
+    'Enerji',
+    'Gıda',
+    'Tekstil',
+    'Otomotiv',
+    'Diğer',
+  ];
+
+  // Nereden buldunuz options
+  const howDidYouFindUsOptions = [
+    'Google Arama',
+    'Sosyal Medya',
+    'Arkadaş Tavsiyesi',
+    'Reklam',
+    'Blog/İçerik',
+    'E-posta',
+    'Etkinlik/Konferans',
+    'LinkedIn',
+    'YouTube',
+    'Diğer',
+  ];
+
+  // Türkiye şehirleri
+  const turkishCities = [
+    'Adana', 'Adıyaman', 'Afyonkarahisar', 'Ağrı', 'Aksaray', 'Amasya', 'Ankara', 'Antalya',
+    'Ardahan', 'Artvin', 'Aydın', 'Balıkesir', 'Bartın', 'Batman', 'Bayburt', 'Bilecik',
+    'Bingöl', 'Bitlis', 'Bolu', 'Burdur', 'Bursa', 'Çanakkale', 'Çankırı', 'Çorum',
+    'Denizli', 'Diyarbakır', 'Düzce', 'Edirne', 'Elazığ', 'Erzincan', 'Erzurum', 'Eskişehir',
+    'Gaziantep', 'Giresun', 'Gümüşhane', 'Hakkari', 'Hatay', 'Iğdır', 'Isparta', 'İstanbul',
+    'İzmir', 'Kahramanmaraş', 'Karabük', 'Karaman', 'Kars', 'Kastamonu', 'Kayseri', 'Kırıkkale',
+    'Kırklareli', 'Kırşehir', 'Kilis', 'Kocaeli', 'Konya', 'Kütahya', 'Malatya', 'Manisa',
+    'Mardin', 'Mersin', 'Muğla', 'Muş', 'Nevşehir', 'Niğde', 'Ordu', 'Osmaniye',
+    'Rize', 'Sakarya', 'Samsun', 'Siirt', 'Sinop', 'Sivas', 'Şanlıurfa', 'Şırnak',
+    'Tekirdağ', 'Tokat', 'Trabzon', 'Tunceli', 'Uşak', 'Van', 'Yalova', 'Yozgat', 'Zonguldak',
+  ];
 
   if (status === 'loading' || loading) {
     return (

@@ -57,6 +57,8 @@ export async function GET(request: NextRequest) {
       kvkkConsent: false,
       emailSubscription: true, // Varsayılan aktif
       smsSubscription: false,
+      email_verified: false,
+      phone_verified: false,
       profileCompleted: false,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
