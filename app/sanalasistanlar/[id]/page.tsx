@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { CheckCircle2, X } from 'lucide-react';
-import { notFound } from 'next/navigation';
+import Link from 'next/link';
 
 interface AssistantPackage {
   name: string;
@@ -1524,6 +1524,7 @@ const assistantsData: Record<string, AssistantData> = {
 export default function AssistantDetail({ params }: { params: { id: string } }) {
   const { data: session } = useSession();
   const [assistant, setAssistant] = useState<AssistantData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Webhook'tan veri çekme denemesi
@@ -1555,6 +1556,8 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
         // Hata durumunda statik veriyi kullan
         const assistantId = params.id.toLowerCase();
         setAssistant(assistantsData[assistantId] || null);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -1562,15 +1565,39 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
   }, [params.id, session]);
 
   const assistantId = params.id.toLowerCase();
-
-  if (!assistant && !assistantsData[assistantId]) {
-    notFound();
-  }
-
   const displayAssistant = assistant || assistantsData[assistantId];
 
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#860000] mx-auto mb-4"></div>
+          <p className="text-gray-600">Yükleniyor...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Not found state
   if (!displayAssistant) {
-    notFound();
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center max-w-md mx-auto px-4">
+          <div className="text-6xl mb-4">🤖</div>
+          <h1 className="text-3xl font-bold text-gray-800 mb-4">Asistan Bulunamadı</h1>
+          <p className="text-gray-600 mb-8">
+            Aradığınız sanal asistan mevcut değil veya kaldırılmış olabilir.
+          </p>
+          <Link
+            href="/sanalasistanlar"
+            className="inline-block bg-[#860000] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#a30000] transition"
+          >
+            Tüm Asistanları Görüntüle
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   const featureKeys = displayAssistant.packages.length > 0
