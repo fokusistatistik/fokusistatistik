@@ -28,7 +28,7 @@ https://test.fokusistatistik.com/api/auth/callback
 **Tek webhook kullanılıyor** (hem login hem signup için):
 
 ```
-https://n8n.fokusistatistik.com/webhook/userauth
+https://n8n.fokusistatistik.com/webhook-test/fokuswebuserauth
 ```
 
 Backend (n8n) kullanıcının yeni mi yoksa mevcut mi olduğunu kontrol eder ve `isNewUser` flag'i ile response döner.
@@ -120,7 +120,7 @@ Backend (n8n) kullanıcının yeni mi yoksa mevcut mi olduğunu kontrol eder ve 
    └─> Google callback: /api/auth/callback?code=...
 
 4. Authorization code webhook'a gönderilir
-   └─> POST: https://n8n.fokusistatistik.com/webhook/userauth
+   └─> POST: https://n8n.fokusistatistik.com/webhook-test/fokuswebuserauth
 
 5. Webhook işlemleri yapar:
    ├─> Google'dan token alır (code exchange)
@@ -210,7 +210,7 @@ GOOGLE_CLIENT_ID=your-google-client-id
 GOOGLE_CLIENT_SECRET=your-google-client-secret
 
 # Webhook Configuration
-NEXT_PUBLIC_AUTH_WEBHOOK_URL=https://n8n.fokusistatistik.com/webhook/userauth
+NEXT_PUBLIC_AUTH_WEBHOOK_URL=https://n8n.fokusistatistik.com/webhook-test/fokuswebuserauth
 ```
 
 ---
