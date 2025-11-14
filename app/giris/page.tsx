@@ -1,11 +1,11 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
 import { Chrome, Mail, Lock, ArrowRight, Shield, Zap } from 'lucide-react';
 
-export default function GirisPage() {
+function GirisContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
@@ -230,6 +230,22 @@ export default function GirisPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+// Suspense wrapper for the page
+export default function GirisPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#860000] mx-auto"></div>
+          <p className="mt-4 text-gray-600">Yükleniyor...</p>
+        </div>
+      </div>
+    }>
+      <GirisContent />
+    </Suspense>
   );
 }
 
