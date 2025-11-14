@@ -18,11 +18,27 @@ export default function GirisPage() {
   }, [status, router]);
 
   const handleGoogleSignIn = async () => {
+    console.log('🚀 Starting Google Sign In process...');
     setIsLoading(true);
     try {
-      await signIn('google', { callbackUrl: '/dashboard' });
+      console.log('🔐 Calling signIn with Google provider...');
+      const result = await signIn('google', { callbackUrl: '/dashboard' });
+      console.log('📥 SignIn result:', result);
+
+      if (result?.error) {
+        console.error('❌ SignIn error:', result.error);
+      } else {
+        console.log('✅ SignIn successful');
+      }
     } catch (error) {
-      console.error('Login error:', error);
+      console.error('❌ Login error:', error);
+      if (error instanceof Error) {
+        console.error('❌ Error details:', {
+          message: error.message,
+          name: error.name,
+          stack: error.stack
+        });
+      }
       setIsLoading(false);
     }
   };
