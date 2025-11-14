@@ -63,12 +63,14 @@ export async function GET(request: NextRequest) {
       email: webhookResponse.userInfo.email,
       userId: webhookResponse.userId,
       picture: webhookResponse.userInfo.picture,
+      isNewUser: webhookResponse.isNewUser || false, // Backend'den gelen flag
       userInfo: webhookResponse.userInfo
     };
 
     const encodedSession = encodeURIComponent(JSON.stringify(sessionData));
 
-    // Dashboard'a yönlendir ve session data'yı query param olarak gönder
+    // Giriş sayfasına yönlendir ve session data'yı query param olarak gönder
+    // Frontend isNewUser flag'ine göre yönlendirecek
     return NextResponse.redirect(
       new URL(`/giris?auth=success&session=${encodedSession}`, request.url)
     );

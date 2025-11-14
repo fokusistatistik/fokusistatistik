@@ -32,6 +32,7 @@ export default function GirisPage() {
           email: decoded.email,
           userId: decoded.userId,
           picture: decoded.picture,
+          isNewUser: decoded.isNewUser,
           token: generateSecureToken(),
           timestamp: Date.now(),
           isLoggedIn: true,
@@ -40,13 +41,24 @@ export default function GirisPage() {
 
         localStorage.setItem('fokus520Session', JSON.stringify(fullSessionData));
         console.log('💾 Session saved to localStorage');
+        console.log('🆕 Is new user:', decoded.isNewUser);
 
-        setStatusMessage(`✅ Hoş geldiniz ${decoded.user.split(' ')[0]}!`);
+        // Yeni kullanıcı mı kontrol et
+        const isNewUser = decoded.isNewUser === true;
 
-        // Dashboard'a yönlendir
-        setTimeout(() => {
-          router.push('/dashboard');
-        }, 1500);
+        if (isNewUser) {
+          setStatusMessage(`✅ Hoş geldiniz ${decoded.user.split(' ')[0]}! Hesabınız oluşturuldu.`);
+          // Yeni kullanıcılar dashboard'a yönlendirilir
+          setTimeout(() => {
+            router.push('/dashboard');
+          }, 1500);
+        } else {
+          setStatusMessage(`✅ Tekrar hoş geldiniz ${decoded.user.split(' ')[0]}!`);
+          // Eski kullanıcılar anasayfaya yönlendirilir
+          setTimeout(() => {
+            router.push('/');
+          }, 1500);
+        }
 
       } catch (e) {
         console.error('❌ Session parse error:', e);
