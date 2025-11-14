@@ -123,17 +123,20 @@ export default function ChatWidget() {
           box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .chat-window {
+        .chat-widget .chat-window {
           position: absolute;
           bottom: 80px;
           right: 0;
-          width: 380px;
-          height: 550px;
+          width: 380px !important;
+          min-width: 380px;
+          max-width: 380px;
+          height: 550px !important;
+          min-height: 550px;
           background: white;
           border-radius: 16px;
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-          display: flex;
-          flex-direction: column;
+          display: flex !important;
+          flex-direction: column !important;
           overflow: hidden;
           animation: slideUp 0.3s ease;
         }
@@ -149,13 +152,14 @@ export default function ChatWidget() {
           }
         }
 
-        .chat-header {
+        .chat-widget .chat-header {
           background: linear-gradient(135deg, #860000 0%, #b30000 100%);
           color: white;
           padding: 20px;
           display: flex;
           align-items: center;
           gap: 12px;
+          flex-shrink: 0;
         }
 
         .chat-header-avatar {
@@ -182,11 +186,12 @@ export default function ChatWidget() {
           opacity: 0.9;
         }
 
-        .chat-messages {
+        .chat-widget .chat-messages {
           flex: 1;
           padding: 20px;
           overflow-y: auto;
           background: #f8f9fa;
+          width: 100%;
         }
 
         .chat-messages::-webkit-scrollbar {
@@ -244,12 +249,14 @@ export default function ChatWidget() {
           border-bottom-right-radius: 4px;
         }
 
-        .chat-input-area {
+        .chat-widget .chat-input-area {
           padding: 16px;
           background: white;
           border-top: 1px solid #e9ecef;
           display: flex;
           gap: 12px;
+          flex-shrink: 0;
+          width: 100%;
         }
 
         .chat-input {
@@ -324,9 +331,11 @@ export default function ChatWidget() {
         }
 
         @media (max-width: 480px) {
-          .chat-window {
-            width: calc(100vw - 32px);
-            height: calc(100vh - 120px);
+          .chat-widget .chat-window {
+            width: calc(100vw - 32px) !important;
+            min-width: calc(100vw - 32px);
+            max-width: calc(100vw - 32px);
+            height: calc(100vh - 120px) !important;
             max-height: 600px;
           }
         }
