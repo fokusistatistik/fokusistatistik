@@ -47,7 +47,7 @@ export default function Header() {
         <div className="flex items-center justify-between py-1.5">
           {/* Logo and Title */}
           <Link href="/" className="flex items-center space-x-3 hover:opacity-90 transition">
-            <div className="relative w-20 h-20">
+            <div className="relative w-24 h-24">
               <Image
                 src="https://www.fokusistatistik.com/assets/img/logobeyaz.png"
                 alt="FOKUS Logo"

@@ -195,14 +195,14 @@ export default function Home() {
               FOKUS Ekosistemi | <span className="text-[#860000]">Modüler Sanal Asistanlar Çağı</span>
             </h2>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
+            <div className="flex flex-wrap justify-center items-center gap-8 max-w-5xl mx-auto">
               {assistants.map((assistant) => (
                 <Link
                   key={assistant.code}
                   href={`/sanalasistanlar/${assistant.code}`}
                   className="flex flex-col items-center text-center group"
                 >
-                  <div className="relative w-24 h-24 mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <div className="relative w-32 h-32 mb-3 group-hover:scale-110 transition-transform duration-300">
                     <Image
                       src={assistant.image}
                       alt={assistant.title}
@@ -210,7 +210,7 @@ export default function Home() {
                       className="object-contain rounded-lg"
                     />
                   </div>
-                  <span className="font-semibold text-gray-700 group-hover:text-[#860000] transition">
+                  <span className="font-semibold text-gray-700 group-hover:text-[#860000] transition text-sm">
                     {assistant.title}
                   </span>
                   <span className="text-xs text-gray-500 italic mt-1">{assistant.name}</span>
@@ -226,7 +226,7 @@ export default function Home() {
 
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-5xl mx-auto text-center">
-              <h1 className="text-2xl lg:text-4xl font-semibold mb-8 leading-relaxed tracking-wide">
+              <h1 className="text-xl lg:text-3xl font-medium mb-8 leading-relaxed">
                 Yapay Zekâ Dalgasına Katılın — FOKUS ile Dijitalleşin, Daha Hızlı, Daha Kârlı Olun
               </h1>
 
@@ -266,7 +266,7 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-800">
+                <h2 className="text-2xl lg:text-3xl font-semibold mb-4 text-gray-800">
                   FOKUS Ekosistemi ile <span className="text-[#860000]">Verimliliği Arttırın, Maliyeti Azaltın</span>
                 </h2>
                 <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
@@ -301,17 +301,32 @@ export default function Home() {
         {/* Video Section */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-8">
+                <h2 className="text-2xl lg:text-3xl font-semibold mb-3 text-gray-800">
+                  FOKUS Ekosistemi'ni <span className="text-[#860000]">Keşfedin</span>
+                </h2>
+                <p className="text-gray-600">İşletmenizi dijitale taşıyan sanal asistanları tanıyın</p>
+              </div>
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-[#860000]/10 hover:border-[#860000]/30 transition-all">
                 <div className="relative" style={{ paddingBottom: '56.25%' }}>
                   <iframe
-                    src="https://www.youtube.com/embed/SQ3hBK6ZVDw"
-                    title="FOKUS Ekosistemi Video"
+                    src="https://www.youtube.com/embed/SQ3hBK6ZVDw?rel=0&modestbranding=1"
+                    title="FOKUS Ekosistemi - Sanal Asistanlar Tanıtımı"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                     className="absolute top-0 left-0 w-full h-full"
                   ></iframe>
                 </div>
+              </div>
+              <div className="text-center mt-6">
+                <Link
+                  href="/sanalasistanlar"
+                  className="inline-flex items-center gap-2 text-[#860000] hover:text-[#a30000] font-semibold transition"
+                >
+                  Tüm Asistanları İncele
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
               </div>
             </div>
           </div>
