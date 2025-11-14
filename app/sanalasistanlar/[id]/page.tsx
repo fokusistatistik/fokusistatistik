@@ -1541,6 +1541,11 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
   useEffect(() => {
     // Webhook'tan veri çekme denemesi
     const fetchAssistantData = async () => {
+      if (!params.id) {
+        setIsLoading(false);
+        return;
+      }
+
       try {
         const assistantId = params.id.toLowerCase(); // URL'den gelen ID'yi lowercase yap
 
@@ -1566,7 +1571,7 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
         }
       } catch (error) {
         // Hata durumunda statik veriyi kullan
-        const assistantId = params.id.toLowerCase();
+        const assistantId = params.id?.toLowerCase() || '';
         setAssistant(assistantsData[assistantId] || null);
       } finally {
         setIsLoading(false);
@@ -1576,7 +1581,7 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
     fetchAssistantData();
   }, [params.id]);
 
-  const assistantId = params.id.toLowerCase();
+  const assistantId = params.id?.toLowerCase() || '';
   const displayAssistant = assistant || assistantsData[assistantId];
 
   // Loading state
@@ -1741,7 +1746,7 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
         </section>
 
         {/* Pricing Table */}
-        {displayAssistant.packages.length > 0 && (
+        {displayAssistant?.packages && displayAssistant.packages.length > 0 && (
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
@@ -1821,7 +1826,7 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
         )}
 
         {/* Price Note for non-packaged assistants */}
-        {displayAssistant.packages.length === 0 && displayAssistant.priceNote && (
+        {displayAssistant?.packages && displayAssistant.packages.length === 0 && displayAssistant.priceNote && (
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
