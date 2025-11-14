@@ -5,7 +5,6 @@ import VapiWidget from "@/app/components/VapiWidget";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/app/components/CookieConsent";
 import GoogleAnalytics from "@/app/components/GoogleAnalytics";
-import PromotionCTA from "@/app/components/PromotionCTA";
 import { OrganizationSchema } from "@/app/components/StructuredData";
 import "./globals.css";
 
@@ -131,7 +130,6 @@ export default function RootLayout({
         <Footer />
         <ChatWidget />
         <VapiWidget />
-        <PromotionCTA />
         <CookieConsent />
       </body>
     </html>
