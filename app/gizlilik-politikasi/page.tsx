@@ -132,7 +132,7 @@ export default function GizlilikPolitikasi() {
               haklarınızı kullanmak için:
             </p>
             <div className="bg-gray-50 p-6 rounded-lg mt-4">
-              <p><strong>E-posta:</strong> <a href="mailto:info@fokusistatistik.com" className="text-[#860000] hover:underline">info@fokusistatistik.com</a></p>
+              <p><strong>E-posta:</strong> <a href="mailto:bilgi@fokusistatistik.com" className="text-[#860000] hover:underline">bilgi@fokusistatistik.com</a></p>
               <p><strong>Web Sitesi:</strong> <a href="https://www.fokusistatistik.com" className="text-[#860000] hover:underline">www.fokusistatistik.com</a></p>
               <p className="mt-2 text-sm text-gray-600">
                 Başvurularınız en geç 30 gün içinde değerlendirilecek ve sonuçlandırılacaktır.

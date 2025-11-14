@@ -318,7 +318,7 @@ export default function ChatWidget() {
               alt="FOKUS216"
               width={50}
               height={50}
-              className="rounded-full"
+              className="rounded-full object-cover"
             />
           )}
         </button>

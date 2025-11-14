@@ -29,7 +29,7 @@ export default function VapiWidget() {
               alt="FOKUS520"
               width={48}
               height={48}
-              className="rounded-full"
+              className="rounded-full object-cover"
             />
             <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center animate-pulse">
               <Volume2 className="w-3 h-3 text-white" />

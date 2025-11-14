@@ -1573,7 +1573,9 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
     notFound();
   }
 
-  const featureKeys = Object.keys(displayAssistant.packages[0].features);
+  const featureKeys = displayAssistant.packages.length > 0
+    ? Object.keys(displayAssistant.packages[0].features)
+    : [];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -1700,6 +1702,7 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
         </section>
 
         {/* Pricing Table */}
+        {displayAssistant.packages.length > 0 && (
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
@@ -1776,6 +1779,21 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
             </div>
           </div>
         </section>
+        )}
+
+        {/* Price Note for non-packaged assistants */}
+        {displayAssistant.packages.length === 0 && displayAssistant.priceNote && (
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gray-50 rounded-xl p-8 border border-gray-200">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Özel Fiyatlandırma</h2>
+                <p className="text-gray-700 leading-relaxed text-center">{displayAssistant.priceNote}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        )}
       </main>
 
       

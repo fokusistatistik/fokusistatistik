@@ -26,7 +26,7 @@ const assistants: Assistant[] = [
     title: 'Yönetici Asistanı',
     image: 'https://www.fokusistatistik.com/assets/img/fokus001.png',
     shortDescription: 'Stok yönetimi, sipariş takibi ve müşteri analiziyle e-ticaret süreçlerinizi optimize eder.',
-    color: 'from-blue-500 to-blue-700'
+    color: 'from-[#860000] to-[#a30000]'
   },
   {
     id: 'fokus216',
@@ -35,7 +35,7 @@ const assistants: Assistant[] = [
     title: 'Müşteri Hizmetleri',
     image: 'https://www.fokusistatistik.com/assets/img/fokus216.png',
     shortDescription: 'Müşteri sorularına anında yanıt verir, destek taleplerini yönetir ve memnuniyeti artırır.',
-    color: 'from-green-500 to-green-700'
+    color: 'from-[#6d0000] to-[#860000]'
   },
   {
     id: 'fokus314',
@@ -44,7 +44,7 @@ const assistants: Assistant[] = [
     title: 'Veri Analisti',
     image: 'https://www.fokusistatistik.com/assets/img/fokus314.png',
     shortDescription: 'Verilerinizi analiz eder, görselleştirir ve stratejik kararlar için raporlar sunar.',
-    color: 'from-purple-500 to-purple-700'
+    color: 'from-[#a30000] to-[#b30000]'
   },
   {
     id: 'fokus520',
@@ -53,7 +53,7 @@ const assistants: Assistant[] = [
     title: 'Pazarlama & Lead Takip',
     image: 'https://www.fokusistatistik.com/assets/img/fokus520.png',
     shortDescription: 'Kampanya yönetimi, lead takibi ve müşteri skorlamasıyla pazarlama süreçlerinizi otomatikleştirir.',
-    color: 'from-orange-500 to-orange-700'
+    color: 'from-[#860000] to-[#6d0000]'
   },
   {
     id: 'fokus618',
@@ -62,7 +62,7 @@ const assistants: Assistant[] = [
     title: 'Finans & Fatura',
     image: 'https://www.fokusistatistik.com/assets/img/fokus618.png',
     shortDescription: 'Fatura işlemleri, gelir-gider takibi ve ödeme hatırlatmalarını otomatik yönetir.',
-    color: 'from-emerald-500 to-emerald-700'
+    color: 'from-[#5a0000] to-[#860000]'
   },
   {
     id: 'fokus707',
@@ -71,7 +71,7 @@ const assistants: Assistant[] = [
     title: 'İnsan Kaynakları',
     image: 'https://www.fokusistatistik.com/assets/img/fokus707.png',
     shortDescription: 'Personel takibi, özlük dosyaları, izin yönetimi ve işe alım süreçlerini dijitalleştirir.',
-    color: 'from-cyan-500 to-cyan-700'
+    color: 'from-[#a30000] to-[#860000]'
   },
   {
     id: 'fokus717',
@@ -80,7 +80,7 @@ const assistants: Assistant[] = [
     title: 'İçerik Tasarımı',
     image: 'https://www.fokusistatistik.com/assets/img/fokus717.png',
     shortDescription: 'Görsel içerik, video ve sunum oluşturarak yaratıcı süreçlerinizi hızlandırır.',
-    color: 'from-pink-500 to-pink-700'
+    color: 'from-[#6d0000] to-[#a30000]'
   },
   {
     id: 'fokus808',
@@ -89,7 +89,7 @@ const assistants: Assistant[] = [
     title: 'Sosyal Medya & İletişim',
     image: 'https://www.fokusistatistik.com/assets/img/fokus808.png',
     shortDescription: 'Sosyal medya yönetimi, içerik planlaması ve etkileşim analiziyle dijital varlığınızı güçlendirir.',
-    color: 'from-violet-500 to-violet-700'
+    color: 'from-[#b30000] to-[#860000]'
   },
   {
     id: 'fokus999',
@@ -98,7 +98,7 @@ const assistants: Assistant[] = [
     title: 'Joker Asistan',
     image: 'https://www.fokusistatistik.com/assets/img/fokus999.png',
     shortDescription: 'İşletmenizin her alanına uyum sağlayan, özelleştirilebilir dijital destek.',
-    color: 'from-red-500 to-red-700'
+    color: 'from-[#860000] to-[#b30000]'
   }
 ];
 
