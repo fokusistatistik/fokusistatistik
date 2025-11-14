@@ -42,12 +42,12 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-[#860000] text-white shadow-lg sticky top-0 z-50">
+    <header className="bg-[#860000] text-white shadow-lg">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between py-0.5">
+        <div className="flex items-center justify-between py-0">
           {/* Logo and Title */}
-          <Link href="/" className="flex items-center space-x-2 hover:opacity-90 transition">
-            <div className="relative w-22 h-22">
+          <Link href="/" className="flex items-center space-x-1.5 hover:opacity-90 transition">
+            <div className="relative w-14 h-14">
               <Image
                 src="https://www.fokusistatistik.com/assets/img/logobeyaz.png"
                 alt="FOKUS Logo"
@@ -55,11 +55,11 @@ export default function Header() {
                 className="object-contain"
               />
             </div>
-            <span className="text-lg font-bold hidden sm:inline">VERİ BİLİMİ</span>
+            <span className="text-base font-bold hidden sm:inline">VERİ BİLİMİ</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6">
+          <nav className="hidden lg:flex items-center space-x-4">
             <Link href="/" className={`py-1 border-b-2 transition ${isActive('/') ? 'border-white font-semibold' : 'border-transparent hover:border-white hover:text-gray-100'}`}>
               Anasayfa
             </Link>
@@ -142,7 +142,7 @@ export default function Header() {
             {/* Login Button */}
             <Link
               href="/giris"
-              className="bg-white text-[#860000] px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition shadow-md hover:shadow-lg"
+              className="bg-white text-[#860000] px-4 py-1 rounded-full font-semibold hover:bg-gray-100 transition shadow-md hover:shadow-lg text-sm"
             >
               Giriş Yap
             </Link>

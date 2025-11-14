@@ -17,11 +17,14 @@ interface AssistantData {
   subtitle: string;
   description: string;
   icon: string;
+  image: string;
   whyReasons: { title: string; description: string }[];
   capabilities: string[];
   videoUrl: string;
   testQrUrl: string;
+  testQrImage: string;
   requestQrUrl: string;
+  requestQrImage: string;
   packages: AssistantPackage[];
   priceNote: string;
 }
