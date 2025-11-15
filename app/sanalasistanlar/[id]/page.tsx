@@ -1587,7 +1587,7 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 items-center">
                 {/* Image */}
                 <div className="flex justify-center">
                   <div className="relative w-64 h-64">
@@ -1619,7 +1619,7 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-12 text-center text-gray-800">
+              <h2 className="text-2xl lg:text-3xl font-bold mb-6 text-center text-gray-800">
                 🎯 Neden {displayAssistant.code}?
               </h2>
 
@@ -1642,7 +1642,7 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-12 text-center text-gray-800">
+              <h2 className="text-2xl lg:text-3xl font-bold mb-6 text-center text-gray-800">
                 🧠 {displayAssistant.code} Neler Yapar?
               </h2>
 
@@ -1720,20 +1720,20 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
 
         {/* Pricing Table */}
         {displayAssistant?.packages && displayAssistant.packages.length > 0 && (
-        <section className="py-16 bg-white">
+        <section className="py-12 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-12 text-center text-gray-800">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl lg:text-3xl font-bold mb-6 text-center text-gray-800">
                 {displayAssistant.code} {displayAssistant.title.toUpperCase()} - PAKETLERİ
               </h2>
 
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse bg-white shadow-xl rounded-lg overflow-hidden">
+                <table className="w-full border-collapse bg-white shadow-md text-sm rounded-lg overflow-hidden">
                   <thead>
                     <tr className="bg-[#860000] text-white">
-                      <th className="p-4 text-left font-bold">ÖZELLİK</th>
+                      <th className="p-2 text-left font-semibold text-xs">ÖZELLİK</th>
                       {displayAssistant.packages.map((pkg) => (
-                        <th key={pkg.name} className="p-4 text-center font-bold">
+                        <th key={pkg.name} className="p-2 text-center font-semibold text-xs">
                           {pkg.name}
                         </th>
                       ))}
@@ -1745,18 +1745,18 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
                         key={featureKey}
                         className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}
                       >
-                        <td className="p-4 border-b border-gray-200 font-medium text-gray-700">
+                        <td className="p-2 border-b text-xs border-gray-200 font-medium text-gray-700">
                           {featureKey}
                         </td>
                         {displayAssistant.packages.map((pkg) => {
                           const value = pkg.features[featureKey];
                           return (
-                            <td key={pkg.name} className="p-4 border-b border-gray-200 text-center">
+                            <td key={pkg.name} className="p-2 border-b border-gray-200 text-center text-xs">
                               {typeof value === 'boolean' ? (
                                 value ? (
-                                  <CheckCircle2 className="w-6 h-6 text-green-600 mx-auto" />
+                                  <CheckCircle2 className="w-4 h-4 text-green-600 mx-auto" />
                                 ) : (
-                                  <X className="w-6 h-6 text-red-600 mx-auto" />
+                                  <X className="w-4 h-4 text-red-600 mx-auto" />
                                 )
                               ) : (
                                 <span className="text-gray-700">{value}</span>
@@ -1769,9 +1769,9 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
 
                     {/* Monthly Price Row */}
                     <tr className="bg-[#ffc107]">
-                      <td className="p-4 font-bold text-gray-800">Aylık Plan*</td>
+                      <td className="p-2 text-xs font-bold text-gray-800">Aylık Plan*</td>
                       {displayAssistant.packages.map((pkg) => (
-                        <td key={pkg.name} className="p-4 text-center font-bold text-gray-800">
+                        <td key={pkg.name} className="p-2 text-xs text-center font-bold text-gray-800">
                           {pkg.monthlyPrice}
                         </td>
                       ))}
@@ -1779,9 +1779,9 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
 
                     {/* Yearly Price Row */}
                     <tr className="bg-[#ffc107]">
-                      <td className="p-4 font-bold text-gray-800">Yıllık Plan*</td>
+                      <td className="p-2 text-xs font-bold text-gray-800">Yıllık Plan*</td>
                       {displayAssistant.packages.map((pkg) => (
-                        <td key={pkg.name} className="p-4 text-center font-bold text-gray-800">
+                        <td key={pkg.name} className="p-2 text-xs text-center font-bold text-gray-800">
                           {pkg.yearlyPrice}
                         </td>
                       ))}
@@ -1790,7 +1790,7 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
                 </table>
               </div>
 
-              <div className="mt-8 bg-gray-50 rounded-xl p-6 border border-gray-200">
+              <div className="mt-4 bg-white rounded-xl p-4 text-xs border border-gray-200">
                 <p className="text-gray-700 leading-relaxed">{displayAssistant.priceNote}</p>
               </div>
             </div>
