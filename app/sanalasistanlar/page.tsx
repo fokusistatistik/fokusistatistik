@@ -67,7 +67,7 @@ export default function SanalAsistanlar() {
       {/* Banner */}
       <div className="w-full relative h-[300px] md:h-[400px] overflow-hidden">
         <Image
-          src="https://www.fokusistatistik.com/assets/img/bannerasistanlar.png"
+          src="https://static.fokusistatistik.com/resimler/bannerasistanlar.png"
           alt="FOKUS Asistanları Banner"
           fill
           className="object-cover"
