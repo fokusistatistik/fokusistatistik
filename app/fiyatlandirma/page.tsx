@@ -1,8 +1,59 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Check, Star, Zap, Crown, ArrowRight } from 'lucide-react';
+import type { Metadata } from 'next';
+import { FAQSchema } from '@/app/components/StructuredData';
+
+export const metadata: Metadata = {
+  title: 'Fiyatlandırma - Sanal Asistan Paketleri',
+  description: 'FOKUS Sanal Asistan fiyatları. Standart 999 TL/ay, Pro 1.999 TL/ay\'dan başlayan paketler. 9 farklı yapay zeka asistanı ile iş süreçlerinizi otomatikleştirin. 1 ay ücretsiz deneme fırsatı.',
+  keywords: 'sanal asistan fiyat, yapay zeka asistan ücreti, chatbot fiyatları, otomasyon maliyeti, dijital asistan paketleri, AI asistan fiyat, müşteri hizmetleri bot fiyat',
+  openGraph: {
+    title: 'FOKUS Sanal Asistan Fiyatlandırma | 999 TL\'den Başlayan Paketler',
+    description: '9 farklı yapay zeka asistanı. Standart, Pro ve Premium paketler. 1 ay ücretsiz deneme. İşletmenize özel AI çözümleri.',
+    url: 'https://fokusistatistik.com/fiyatlandirma',
+    images: [
+      {
+        url: 'https://www.fokusistatistik.com/assets/img/fokus-pricing-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'FOKUS Sanal Asistan Fiyatlandırma',
+      },
+    ],
+  },
+  alternates: {
+    canonical: 'https://fokusistatistik.com/fiyatlandirma',
+  },
+};
 
 export default function Fiyatlandirma() {
+  const faqData = [
+    {
+      question: 'Birden fazla asistan alabilir miyim?',
+      answer: 'Evet, ihtiyacınız olan tüm asistanları seçebilirsiniz. Her asistan için aynı paket seviyesini seçmeniz gerekmez; farklı asistanlar için farklı paket seviyeleri seçebilirsiniz.',
+    },
+    {
+      question: 'Paket değişikliği yapabilir miyim?',
+      answer: 'Evet, istediğiniz zaman paketinizi yükseltebilir veya düşürebilirsiniz. Değişiklikler bir sonraki fatura döneminde geçerli olur.',
+    },
+    {
+      question: 'Standart pakette ücretsiz test nasıl çalışır?',
+      answer: 'Standart paketi seçtiğinizde, ilk 1 ay boyunca tüm özellikleri ücretsiz deneyebilirsiniz. Test süresinin sonunda memnun kalmazsanız, herhangi bir ücret ödemeden iptal edebilirsiniz.',
+    },
+    {
+      question: 'Mesaj limiti aşılırsa ne olur?',
+      answer: 'Aylık mesaj limitiniz dolduğunda, asistanınız çalışmaya devam eder ancak ek mesajlar için ücretlendirme yapılır. Premium pakette mesaj limiti sınırsızdır.',
+    },
+    {
+      question: 'Hangi ödeme yöntemlerini kabul ediyorsunuz?',
+      answer: 'Kredi kartı, banka kartı ve havale ile ödeme yapabilirsiniz. Tüm ödemeler İyzico güvencesi altındadır.',
+    },
+    {
+      question: 'Üyelik nasıl oluşturulur?',
+      answer: 'FOKUS İstatistik B2B hizmet vermektedir. Üyelikler, sözleşme sürecinizin tamamlanmasından sonra tarafımızca oluşturulur ve gerekli bilgiler size iletilir.',
+    },
+  ];
+
   const assistants = [
     {
       code: 'fokus001',
@@ -566,6 +617,9 @@ export default function Fiyatlandirma() {
           </div>
         </section>
       </main>
+
+      {/* Structured Data */}
+      <FAQSchema faqs={faqData} />
     </div>
   );
 }
