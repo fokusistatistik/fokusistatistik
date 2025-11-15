@@ -203,7 +203,7 @@ export default function Siparisler() {
               Asistanları İncele
             </a>
             <a
-              href="/demo"
+              href="https://asistan.fokusistatistik.com/ucretsiz.html"
               className="bg-transparent border-2 border-white hover:bg-white hover:text-[#860000] font-semibold py-3 px-8 rounded-lg transition-all inline-block"
             >
               Demo Talep Et

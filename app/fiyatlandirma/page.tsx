@@ -532,6 +532,17 @@ export default function Fiyatlandirma() {
                     altındadır.
                   </p>
                 </details>
+
+                <details className="bg-white p-6 rounded-xl shadow-md group">
+                  <summary className="font-bold text-gray-800 cursor-pointer list-none flex items-center justify-between">
+                    <span>Üyelik nasıl oluşturulur?</span>
+                    <span className="group-open:rotate-180 transition">▼</span>
+                  </summary>
+                  <p className="mt-4 text-gray-600">
+                    FOKUS İstatistik B2B hizmet vermektedir. Üyelikler, sözleşme sürecinizin tamamlanmasından sonra
+                    tarafımızca oluşturulur ve gerekli bilgiler size iletilir.
+                  </p>
+                </details>
               </div>
             </div>
           </div>

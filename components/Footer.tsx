@@ -134,7 +134,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/demo" className="hover:text-[#ffc107] transition">
+                <Link href="https://asistan.fokusistatistik.com/ucretsiz.html" className="hover:text-[#ffc107] transition">
                   Demo Talep Et
                 </Link>
               </li>

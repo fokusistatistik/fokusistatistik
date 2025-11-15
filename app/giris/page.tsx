@@ -255,6 +255,13 @@ function GirisContent() {
               <p>✓ Kredi kartı gerekmez</p>
               <p>✓ İstediğiniz zaman iptal</p>
             </div>
+
+            {/* B2B Info */}
+            <div className="mt-6 text-center">
+              <p className="text-xs text-gray-500 max-w-sm mx-auto">
+                ℹ️ FOKUS İstatistik B2B hizmet vermektedir. Üyelikler sözleşme sonrası oluşturulur.
+              </p>
+            </div>
           </div>
         </div>
       </main>

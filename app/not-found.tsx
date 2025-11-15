@@ -75,7 +75,7 @@ export default function NotFound() {
             </Link>
             <span className="text-gray-300">•</span>
             <Link
-              href="/demo"
+              href="https://asistan.fokusistatistik.com/ucretsiz.html"
               className="text-sm text-gray-600 hover:text-[#860000] transition-colors"
             >
               Demo

@@ -239,7 +239,7 @@ export default function Ekibimiz() {
               Ücretsiz Analiz Talep Edin
             </Link>
             <Link
-              href="/demo"
+              href="https://asistan.fokusistatistik.com/ucretsiz.html"
               className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-8 rounded-lg transition-all"
             >
               Demo Talep Edin

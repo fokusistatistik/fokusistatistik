@@ -274,7 +274,7 @@ export default function DijitalCozumler() {
                 Size özel çözümlerimiz hakkında konuşmak ve ihtiyaçlarınızı değerlendirmek için bizimle iletişime geçin.
               </p>
               <a
-                href="mailto:bilgi@fokusistatistik.com"
+                href="https://asistan.fokusistatistik.com/ucretsiz.html"
                 className="inline-block bg-white text-[#860000] px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition shadow-xl"
               >
                 Ücretsiz Görüşme Talep Edin
