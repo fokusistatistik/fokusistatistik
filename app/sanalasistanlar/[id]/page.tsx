@@ -1664,44 +1664,9 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
         {/* Video & QR Codes */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* QR Codes */}
-                <div className="flex flex-col gap-6 justify-center">
-                  <a
-                    href={displayAssistant.requestQrUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
-                  >
-                    <div className="w-48 h-48 mx-auto rounded-lg relative">
-                      <Image
-                        src={displayAssistant.requestQrImage}
-                        alt="Talep Et QR Kod"
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </a>
-
-                  <a
-                    href={displayAssistant.testQrUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
-                  >
-                    <div className="w-48 h-48 mx-auto rounded-lg relative">
-                      <Image
-                        src={displayAssistant.testQrImage}
-                        alt="Test Et QR Kod"
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </a>
-                </div>
-
-                {/* Video */}
+            <div className="max-w-4xl mx-auto">
+              {/* Video */}
+              <div className="lg:w-1/2 mx-auto mb-8">
                 <div className="bg-white rounded-xl overflow-hidden shadow-xl">
                   <div className="relative" style={{ paddingBottom: '56.25%' }}>
                     <iframe
@@ -1713,6 +1678,41 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
                     ></iframe>
                   </div>
                 </div>
+              </div>
+
+              {/* QR Codes */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <a
+                  href={displayAssistant.requestQrUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
+                >
+                  <div className="w-40 h-40 mx-auto rounded-lg relative">
+                    <Image
+                      src={displayAssistant.requestQrImage}
+                      alt="Talep Et QR Kod"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </a>
+
+                <a
+                  href={displayAssistant.testQrUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
+                >
+                  <div className="w-40 h-40 mx-auto rounded-lg relative">
+                    <Image
+                      src={displayAssistant.testQrImage}
+                      alt="Test Et QR Kod"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </a>
               </div>
             </div>
           </div>
