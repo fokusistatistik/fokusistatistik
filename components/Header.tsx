@@ -139,13 +139,12 @@ export default function Header() {
               <Search size={20} />
             </button>
 
-            {/* Login Button - Temporarily disabled */}
-            {/* <Link
-              href="/giris"
+            <Link
+              href="/demo"
               className="bg-white text-[#860000] px-4 py-1 rounded-full font-semibold hover:bg-gray-100 transition shadow-md hover:shadow-lg text-sm"
             >
-              Giriş Yap
-            </Link> */}
+              Demo Talep Et
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -233,14 +232,13 @@ export default function Header() {
                 İletişim
               </Link>
 
-              {/* Login Button - Temporarily disabled */}
-              {/* <Link
-                href="/giris"
+              <Link
+                href="/demo"
                 onClick={() => setIsMenuOpen(false)}
                 className="bg-white text-[#860000] px-6 py-1.5 rounded-full font-semibold hover:bg-gray-100 transition text-center mt-2 shadow-md"
               >
-                Giriş Yap
-              </Link> */}
+                Demo Talep Et
+              </Link>
             </div>
           </nav>
         )}

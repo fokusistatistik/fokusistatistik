@@ -12,21 +12,21 @@ export default function Profil() {
   useEffect(() => {
     const sessionData = localStorage.getItem('fokus520Session');
     if (!sessionData) {
-      router.push('/giris');
+      router.push('/');
       return;
     }
 
     try {
       const parsed = JSON.parse(sessionData);
       if (!parsed.isLoggedIn || !parsed.token) {
-        router.push('/giris');
+        router.push('/');
         return;
       }
       setSession(parsed);
       setIsLoading(false);
     } catch (e) {
       console.error('Session parse error:', e);
-      router.push('/giris');
+      router.push('/');
     }
   }, [router]);
 
@@ -169,10 +169,10 @@ export default function Profil() {
             <h3 className="font-semibold text-gray-900 mb-2">Asistanlarım</h3>
             <p className="text-sm text-gray-600 mb-4">Aktif sanal asistanlarınız</p>
             <a
-              href="/dashboard"
+              href="/sanalasistanlar"
               className="text-[#860000] hover:underline text-sm font-medium"
             >
-              Yönet →
+              İncele →
             </a>
           </div>
 

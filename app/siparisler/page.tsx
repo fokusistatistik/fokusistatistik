@@ -11,21 +11,21 @@ export default function Siparisler() {
   useEffect(() => {
     const sessionData = localStorage.getItem('fokus520Session');
     if (!sessionData) {
-      router.push('/giris');
+      router.push('/');
       return;
     }
 
     try {
       const parsed = JSON.parse(sessionData);
       if (!parsed.isLoggedIn || !parsed.token) {
-        router.push('/giris');
+        router.push('/');
         return;
       }
       setSession(parsed);
       setIsLoading(false);
     } catch (e) {
       console.error('Session parse error:', e);
-      router.push('/giris');
+      router.push('/');
     }
   }, [router]);
 
