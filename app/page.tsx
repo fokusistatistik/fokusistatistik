@@ -136,55 +136,65 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
 
-      {/* Toast Notification */}
+      {/* Minimal Toast Notification */}
       {showToast && (
-        <div className="fixed top-20 right-5 bg-gradient-to-r from-[#860000] to-[#a30000] text-white rounded-xl shadow-2xl p-5 max-w-sm z-50 animate-slideIn">
-          <div className="flex items-center justify-between mb-3">
-            <span className="bg-white/20 px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
-              <Gift className="w-3 h-3" />
-              ÖZEL FIRSAT
-            </span>
-            <button onClick={() => setShowToast(false)} className="hover:bg-white/20 rounded-full p-1">
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-          <div className="flex gap-3">
-            <div className="w-16 h-16 bg-white rounded-full flex-shrink-0 overflow-hidden">
-              <div className="w-full h-full flex items-center justify-center text-3xl">💬</div>
+        <div className="fixed top-20 right-4 lg:right-6 bg-white border-l-4 border-[#860000] rounded-lg shadow-lg p-4 max-w-[340px] z-50 animate-slideIn">
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#860000] to-[#a30000] rounded-full flex items-center justify-center">
+              <Gift className="w-5 h-5 text-white" />
             </div>
-            <div className="flex-1">
-              <h3 className="font-bold mb-1">Randevu Sistemi İlk 1 Ay Ücretsiz!</h3>
-              <p className="text-sm opacity-90 mb-2">
-                Yapay zeka destekli randevu sistemi. Müşterileriniz 7/24 otomatik randevu alabilsin.
-              </p>
-              <div className="flex gap-2 text-xs mb-3">
-                <span className="flex items-center gap-1">✓ Hızlı Kurulum</span>
-                <span className="flex items-center gap-1">✓ 7/24 Aktif</span>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-start justify-between gap-2 mb-1">
+                <h3 className="font-semibold text-gray-800 text-sm leading-tight">
+                  Randevu Sistemi 1 Ay Ücretsiz
+                </h3>
+                <button
+                  onClick={() => setShowToast(false)}
+                  className="flex-shrink-0 text-gray-400 hover:text-gray-600 transition"
+                  aria-label="Kapat"
+                >
+                  <X className="w-4 h-4" />
+                </button>
               </div>
+              <p className="text-xs text-gray-600 mb-2 leading-relaxed">
+                Yapay zeka destekli randevu sistemi ile 7/24 otomatik randevu alın.
+              </p>
               <a
                 href="https://asistan.fokusistatistik.com/fokusdemorandevusistemi/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-white text-[#860000] px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-100 transition"
+                className="inline-flex items-center text-xs font-medium text-[#860000] hover:text-[#a30000] transition gap-1"
               >
-                Hemen Başla →
+                Hemen Başla
+                <ArrowRight className="w-3 h-3" />
               </a>
             </div>
           </div>
         </div>
       )}
 
-      {/* Floating CTA */}
+      {/* Minimal Floating CTA */}
       {showFloatingCta && (
-        <a
-          href="https://asistan.fokusistatistik.com/ucretsiz.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="fixed top-20 left-8 bg-gradient-to-r from-[#860000] to-[#a30000] text-white px-5 py-3 rounded-full shadow-2xl hover:shadow-3xl transition flex items-center gap-2 z-50 animate-slideIn font-semibold text-sm"
-        >
-          <Gift className="w-5 h-5 animate-bounce" />
-          <span>1 Ay Ücretsiz Dene</span>
-        </a>
+        <div className="fixed bottom-6 right-4 lg:top-20 lg:left-6 lg:bottom-auto z-50 animate-slideIn">
+          <div className="relative group">
+            <button
+              onClick={() => setShowFloatingCta(false)}
+              className="absolute -top-2 -right-2 bg-gray-100 hover:bg-gray-200 rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity lg:hidden"
+              aria-label="Kapat"
+            >
+              <X className="w-3 h-3 text-gray-600" />
+            </button>
+            <a
+              href="https://asistan.fokusistatistik.com/ucretsiz.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-gradient-to-r from-[#860000] to-[#a30000] text-white px-4 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 text-sm font-medium"
+            >
+              <Gift className="w-4 h-4" />
+              <span className="whitespace-nowrap">1 Ay Ücretsiz</span>
+            </a>
+          </div>
+        </div>
       )}
 
       <main className="flex-grow">
