@@ -83,7 +83,7 @@ export default function Footer() {
         </div>
 
         {/* Quick Links */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-center md:text-left">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8 text-center md:text-left">
           <div>
             <h3 className="font-bold text-[#ffc107] mb-3">Kurumsal</h3>
             <ul className="space-y-2 text-sm">
@@ -134,6 +134,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/sss" className="hover:text-[#ffc107] transition">
+                  S.S.S.
+                </Link>
+              </li>
+              <li>
                 <Link href="/demo" className="hover:text-[#ffc107] transition">
                   Demo Talep Et
                 </Link>
@@ -141,32 +146,6 @@ export default function Footer() {
               <li>
                 <Link href="/analiz-formu" className="hover:text-[#ffc107] transition">
                   Ücretsiz Analiz
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-[#ffc107] mb-3">Destek</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/sss" className="hover:text-[#ffc107] transition">
-                  S.S.S.
-                </Link>
-              </li>
-              <li>
-                <Link href="/giris" className="hover:text-[#ffc107] transition">
-                  Giriş Yap
-                </Link>
-              </li>
-              <li>
-                <Link href="/profil" className="hover:text-[#ffc107] transition">
-                  Profilim
-                </Link>
-              </li>
-              <li>
-                <Link href="/siparisler" className="hover:text-[#ffc107] transition">
-                  Siparişlerim
                 </Link>
               </li>
             </ul>
@@ -214,7 +193,7 @@ export default function Footer() {
           </p>
           <div className="flex flex-wrap justify-center gap-6 mt-4 text-xs">
             <span>🎯 22+ Yıllık Deneyim</span>
-            <span>🤖 9 Sanal Asistan</span>
+            <span>🤖 9 Dijital İşçi</span>
             <span>⏰ 7/24 Destek</span>
           </div>
         </div>

@@ -65,14 +65,16 @@ export default function SanalAsistanlar() {
   return (
     <main className="min-h-screen bg-white">
       {/* Banner */}
-      <div className="w-full relative h-[300px] md:h-[400px] overflow-hidden">
-        <Image
-          src="https://static.fokusistatistik.com/resimler/bannerasistanlar.png"
-          alt="FOKUS Asistanları Banner"
-          fill
-          className="object-cover"
-          priority
-        />
+      <div className="w-full relative h-[300px] md:h-[400px] overflow-hidden mx-auto max-w-7xl px-4 pt-4">
+        <div className="relative w-full h-full rounded-2xl overflow-hidden">
+          <Image
+            src="https://static.fokusistatistik.com/resimler/bannerasistanlar.png"
+            alt="FOKUS Asistanları Banner"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
       </div>
 
       {/* Metal Yakalı İşçiler Nedir */}
