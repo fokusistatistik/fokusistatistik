@@ -83,7 +83,7 @@ export default function Footer() {
         </div>
 
         {/* Quick Links */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-center md:text-left">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4 text-center md:text-left">
           <div>
             <h3 className="font-bold text-[#ffc107] mb-2">Kurumsal</h3>
             <ul className="space-y-1 text-sm">
@@ -103,9 +103,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="https://www.fokusistatistik.com/kartvizit" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffc107] transition">
-                  Kartvizit
-                </a>
+                <Link href="/kartvizit" className="hover:text-[#ffc107] transition">
+                  Dijital Kartvizit
+                </Link>
               </li>
               <li>
                 <Link href="/iletisim" className="hover:text-[#ffc107] transition">
@@ -143,33 +143,11 @@ export default function Footer() {
                   Ücretsiz Analiz
                 </Link>
               </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-[#ffc107] mb-2">Destek</h3>
-            <ul className="space-y-1 text-sm">
               <li>
                 <Link href="/sss" className="hover:text-[#ffc107] transition">
                   S.S.S.
                 </Link>
               </li>
-              {/* Temporarily disabled - User login links */}
-              {/* <li>
-                <Link href="/giris" className="hover:text-[#ffc107] transition">
-                  Giriş Yap
-                </Link>
-              </li>
-              <li>
-                <Link href="/profil" className="hover:text-[#ffc107] transition">
-                  Profilim
-                </Link>
-              </li>
-              <li>
-                <Link href="/siparisler" className="hover:text-[#ffc107] transition">
-                  Siparişlerim
-                </Link>
-              </li> */}
             </ul>
           </div>
 
@@ -215,7 +193,7 @@ export default function Footer() {
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-2 text-xs">
             <span>🎯 22+ Yıllık Deneyim</span>
-            <span>🤖 9 Sanal Asistan</span>
+            <span>🤖 9 Dijital İşçi</span>
             <span>⏰ 7/24 Destek</span>
           </div>
         </div>
