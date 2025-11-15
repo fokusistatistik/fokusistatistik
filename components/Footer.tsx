@@ -112,6 +112,11 @@ export default function Footer() {
                   İletişim
                 </Link>
               </li>
+              <li>
+                <Link href="/kartvizit" className="hover:text-[#ffc107] transition">
+                  Dijital Kartvizit
+                </Link>
+              </li>
             </ul>
           </div>
 
