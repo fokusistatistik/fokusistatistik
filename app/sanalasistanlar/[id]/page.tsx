@@ -1583,10 +1583,10 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 items-center">
                 {/* Image */}
                 <div className="flex justify-center">
-                  <div className="text-9xl">{displayAssistant.icon}</div>
+                  <div className="text-8xl lg:text-9xl">{displayAssistant.icon}</div>
                 </div>
 
                 {/* Content */}
@@ -1653,67 +1653,65 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
         {/* Video & QR Codes */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* QR Codes */}
-                <div className="flex flex-col gap-6 justify-center">
-                  <a
-                    href={displayAssistant.requestQrUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
-                  >
-                    <h3 className="font-bold text-xl mb-4 text-gray-800">📋 Talep Et</h3>
-                    <div className="bg-gray-100 w-48 h-48 mx-auto rounded-lg flex items-center justify-center text-gray-400">
-                      QR Kod
-                    </div>
-                  </a>
-
-                  <a
-                    href={displayAssistant.testQrUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
-                  >
-                    <h3 className="font-bold text-xl mb-4 text-gray-800">🧪 Test Et</h3>
-                    <div className="bg-gray-100 w-48 h-48 mx-auto rounded-lg flex items-center justify-center text-gray-400">
-                      QR Kod
-                    </div>
-                  </a>
+            <div className="max-w-4xl mx-auto">
+              {/* Video - 50% width on desktop, centered */}
+              <div className="bg-white rounded-xl overflow-hidden shadow-xl mb-8 mx-auto lg:w-1/2">
+                <div className="relative" style={{ paddingBottom: '56.25%' }}>
+                  <iframe
+                    src={displayAssistant.videoUrl}
+                    title={`${displayAssistant.code} Video`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="absolute top-0 left-0 w-full h-full"
+                  ></iframe>
                 </div>
+              </div>
 
-                {/* Video */}
-                <div className="bg-white rounded-xl overflow-hidden shadow-xl">
-                  <div className="relative" style={{ paddingBottom: '56.25%' }}>
-                    <iframe
-                      src={displayAssistant.videoUrl}
-                      title={`${displayAssistant.code} Video`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      className="absolute top-0 left-0 w-full h-full"
-                    ></iframe>
+              {/* QR Codes - Side by side */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <a
+                  href={displayAssistant.requestQrUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
+                >
+                  <h3 className="font-bold text-lg mb-4 text-gray-800">📋 Talep Et</h3>
+                  <div className="bg-gray-100 w-40 h-40 mx-auto rounded-lg flex items-center justify-center text-gray-400">
+                    QR Kod
                   </div>
-                </div>
+                </a>
+
+                <a
+                  href={displayAssistant.testQrUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
+                >
+                  <h3 className="font-bold text-lg mb-4 text-gray-800">🧪 Test Et</h3>
+                  <div className="bg-gray-100 w-40 h-40 mx-auto rounded-lg flex items-center justify-center text-gray-400">
+                    QR Kod
+                  </div>
+                </a>
               </div>
             </div>
           </div>
         </section>
 
         {/* Pricing Table */}
-        <section className="py-16 bg-white">
+        <section className="py-12 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-12 text-center text-gray-800">
-                {displayAssistant.code} {displayAssistant.title.toUpperCase()} - PAKETLERİ
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl lg:text-3xl font-bold mb-6 text-center text-gray-800">
+                {displayAssistant.code} Paketleri
               </h2>
 
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse bg-white shadow-xl rounded-lg overflow-hidden">
+                <table className="w-full border-collapse bg-white shadow-md rounded-lg overflow-hidden text-sm">
                   <thead>
                     <tr className="bg-[#860000] text-white">
-                      <th className="p-4 text-left font-bold">ÖZELLİK</th>
+                      <th className="p-2 text-left font-semibold text-xs">ÖZELLİK</th>
                       {displayAssistant.packages.map((pkg) => (
-                        <th key={pkg.name} className="p-4 text-center font-bold">
+                        <th key={pkg.name} className="p-2 text-center font-semibold text-xs">
                           {pkg.name}
                         </th>
                       ))}
@@ -1725,21 +1723,21 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
                         key={featureKey}
                         className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}
                       >
-                        <td className="p-4 border-b border-gray-200 font-medium text-gray-700">
+                        <td className="p-2 border-b border-gray-200 font-medium text-gray-700 text-xs">
                           {featureKey}
                         </td>
                         {displayAssistant.packages.map((pkg) => {
                           const value = pkg.features[featureKey];
                           return (
-                            <td key={pkg.name} className="p-4 border-b border-gray-200 text-center">
+                            <td key={pkg.name} className="p-2 border-b border-gray-200 text-center">
                               {typeof value === 'boolean' ? (
                                 value ? (
-                                  <CheckCircle2 className="w-6 h-6 text-green-600 mx-auto" />
+                                  <CheckCircle2 className="w-4 h-4 text-green-600 mx-auto" />
                                 ) : (
-                                  <X className="w-6 h-6 text-red-600 mx-auto" />
+                                  <X className="w-4 h-4 text-red-600 mx-auto" />
                                 )
                               ) : (
-                                <span className="text-gray-700">{value}</span>
+                                <span className="text-gray-700 text-xs">{value}</span>
                               )}
                             </td>
                           );
@@ -1749,9 +1747,9 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
 
                     {/* Monthly Price Row */}
                     <tr className="bg-[#ffc107]">
-                      <td className="p-4 font-bold text-gray-800">Aylık Plan*</td>
+                      <td className="p-2 font-bold text-gray-800 text-xs">Aylık Plan*</td>
                       {displayAssistant.packages.map((pkg) => (
-                        <td key={pkg.name} className="p-4 text-center font-bold text-gray-800">
+                        <td key={pkg.name} className="p-2 text-center font-bold text-gray-800 text-xs">
                           {pkg.monthlyPrice}
                         </td>
                       ))}
@@ -1759,9 +1757,9 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
 
                     {/* Yearly Price Row */}
                     <tr className="bg-[#ffc107]">
-                      <td className="p-4 font-bold text-gray-800">Yıllık Plan*</td>
+                      <td className="p-2 font-bold text-gray-800 text-xs">Yıllık Plan*</td>
                       {displayAssistant.packages.map((pkg) => (
-                        <td key={pkg.name} className="p-4 text-center font-bold text-gray-800">
+                        <td key={pkg.name} className="p-2 text-center font-bold text-gray-800 text-xs">
                           {pkg.yearlyPrice}
                         </td>
                       ))}
@@ -1770,8 +1768,8 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
                 </table>
               </div>
 
-              <div className="mt-8 bg-gray-50 rounded-xl p-6 border border-gray-200">
-                <p className="text-gray-700 leading-relaxed">{displayAssistant.priceNote}</p>
+              <div className="mt-4 bg-white rounded-lg p-4 border border-gray-200">
+                <p className="text-gray-600 text-xs leading-relaxed">{displayAssistant.priceNote}</p>
               </div>
             </div>
           </div>

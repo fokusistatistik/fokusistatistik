@@ -4,58 +4,58 @@ import { Check, Star, Zap, Crown, ArrowRight } from 'lucide-react';
 export default function Fiyatlandirma() {
   const plans = [
     {
-      name: 'Başlangıç',
-      price: '499',
+      name: 'Standart',
+      price: '999',
       period: 'ay',
-      description: 'Küçük işletmeler için ideal başlangıç paketi',
-      icon: <Zap className="w-8 h-8 text-blue-500" />,
-      color: 'from-blue-500 to-blue-600',
+      description: 'Küçük işletmeler ve girişimciler için',
+      icon: <Zap className="w-6 h-6" />,
+      color: 'border-gray-300',
       popular: false,
       features: [
-        '3 Sanal Asistan',
-        '1.000 mesaj/ay',
-        'Temel raporlama',
-        'Email desteği',
-        'Google entegrasyonu',
-        'Temel analitikler',
+        '1 Ay Ücretsiz Test',
+        'İşletmeye Özel Prompt',
+        'Sürekli Gelişim ve Öğrenme',
+        'Server Kullanımı',
+        'Standart Bakım & Güncelleme (Ayda 1)',
+        'Email Desteği',
+        'Temel Raporlama',
       ],
     },
     {
-      name: 'Profesyonel',
-      price: '1.499',
+      name: 'Pro',
+      price: '2.500',
       period: 'ay',
       description: 'Büyüyen işletmeler için en popüler paket',
-      icon: <Star className="w-8 h-8 text-[#860000]" />,
-      color: 'from-[#860000] to-[#6b0000]',
+      icon: <Star className="w-6 h-6" />,
+      color: 'border-[#860000]',
       popular: true,
       features: [
-        '6 Sanal Asistan',
-        '5.000 mesaj/ay',
-        'Gelişmiş raporlama',
-        'Öncelikli destek',
-        'Tüm entegrasyonlar',
-        'Detaylı analitikler',
-        'Özel eğitim',
-        'API erişimi',
+        'Standart Paketin Tüm Özellikleri',
+        'Kurumsal Doküman Taraması',
+        'Çapraz Veri Doğrulama',
+        'Detaylı Arşivleme ve Raporlama',
+        'Diğer FOKUS Asistanlarıyla İletişim',
+        'Öncelikli Destek',
+        'Gelişmiş Analitikler',
       ],
     },
     {
-      name: 'Kurumsal',
-      price: 'Özel',
-      period: 'teklif',
-      description: 'Büyük kurumlar için özelleştirilebilir çözümler',
-      icon: <Crown className="w-8 h-8 text-purple-500" />,
-      color: 'from-purple-500 to-purple-600',
+      name: 'Premium',
+      price: '12.500',
+      period: 'ay',
+      description: 'Kurumsal çözümler ve maksimum performans',
+      icon: <Crown className="w-6 h-6" />,
+      color: 'border-purple-500',
       popular: false,
       features: [
-        'Tüm Asistanlar (9)',
-        'Sınırsız mesaj',
-        'Özel raporlama',
-        '7/24 dedike destek',
-        'Özel entegrasyonlar',
-        'Özel AI eğitimi',
-        'SLA garantisi',
-        'Kurumsal güvenlik',
+        'Pro Paketin Tüm Özellikleri',
+        'Dinamik Karar Destek Sistemi',
+        'Python Destekli Analizler',
+        'Kritik Düzey Uyarı Sistemleri',
+        'Premium Bakım & Güncelleme (Haftada 1)',
+        '7/24 Dedike Destek',
+        'Özel Geliştirmeler',
+        'SLA Garantisi',
       ],
     },
   ];
@@ -88,37 +88,31 @@ export default function Fiyatlandirma() {
               {plans.map((plan, index) => (
                 <div
                   key={index}
-                  className={`relative rounded-3xl shadow-xl overflow-hidden ${
-                    plan.popular ? 'border-4 border-[#860000] transform scale-105' : 'border-2 border-gray-200'
+                  className={`relative rounded-3xl shadow-lg overflow-hidden bg-white ${
+                    plan.popular ? 'border-4 border-[#860000] transform scale-105' : `border-2 ${plan.color}`
                   }`}
                 >
                   {plan.popular && (
-                    <div className="absolute top-0 right-0 bg-white text-[#860000] px-4 py-1 rounded-bl-lg font-bold text-sm shadow-md">
+                    <div className="absolute top-0 right-0 bg-[#860000] text-white px-4 py-2 rounded-bl-lg font-bold text-sm">
                       En Popüler
                     </div>
                   )}
 
-                  <div className={`bg-gradient-to-r ${plan.color} p-8 text-white`}>
-                    <div className="mb-4">{plan.icon}</div>
-                    <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                    <p className="text-white/80 text-sm mb-6">{plan.description}</p>
+                  <div className="p-8 border-b-2 border-gray-100">
+                    <div className={`mb-4 ${plan.popular ? 'text-[#860000]' : 'text-gray-600'}`}>
+                      {plan.icon}
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2 text-gray-800">{plan.name}</h3>
+                    <p className="text-gray-600 text-sm mb-6">{plan.description}</p>
 
                     <div className="flex items-end mb-2">
-                      {plan.price !== 'Özel' ? (
-                        <>
-                          <span className="text-5xl font-bold">₺{plan.price}</span>
-                          <span className="text-white/80 ml-2 mb-2">/{plan.period}</span>
-                        </>
-                      ) : (
-                        <span className="text-5xl font-bold">{plan.price}</span>
-                      )}
+                      <span className="text-5xl font-bold text-gray-900">₺{plan.price}</span>
+                      <span className="text-gray-500 ml-2 mb-2">/{plan.period}</span>
                     </div>
-                    <p className="text-white/60 text-sm">
-                      {plan.price !== 'Özel' ? '+ KDV' : 'Fiyat teklifi alın'}
-                    </p>
+                    <p className="text-gray-500 text-sm">+ KDV</p>
                   </div>
 
-                  <div className="p-8 bg-white">
+                  <div className="p-8">
                     <ul className="space-y-4 mb-8">
                       {plan.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start">
@@ -129,14 +123,14 @@ export default function Fiyatlandirma() {
                     </ul>
 
                     <Link
-                      href="/giris"
+                      href="/iletisim"
                       className={`block w-full py-4 rounded-xl font-bold text-center transition ${
                         plan.popular
                           ? 'bg-[#860000] text-white hover:bg-[#6b0000]'
                           : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                       }`}
                     >
-                      {plan.price !== 'Özel' ? 'Hemen Başlayın' : 'İletişime Geçin'}
+                      Hemen Başlayın
                     </Link>
                   </div>
                 </div>
@@ -211,7 +205,7 @@ export default function Fiyatlandirma() {
             </p>
 
             <Link
-              href="/giris"
+              href="/iletisim"
               className="inline-flex items-center bg-white text-[#860000] px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-100 transition shadow-2xl"
             >
               Ücretsiz Deneyin

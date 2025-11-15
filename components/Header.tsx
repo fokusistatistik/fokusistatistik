@@ -139,12 +139,12 @@ export default function Header() {
               <Search size={20} />
             </button>
 
-            {/* Login Button */}
+            {/* Demo Button */}
             <Link
-              href="/giris"
+              href="/demo"
               className="bg-white text-[#860000] px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition shadow-md hover:shadow-lg"
             >
-              Giriş Yap
+              Demo Talep Et
             </Link>
           </nav>
 
@@ -233,10 +233,10 @@ export default function Header() {
               </Link>
 
               <Link
-                href="/giris"
+                href="/demo"
                 className="bg-white text-[#860000] px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition text-center mt-4 shadow-md"
               >
-                Giriş Yap
+                Demo Talep Et
               </Link>
             </div>
           </nav>

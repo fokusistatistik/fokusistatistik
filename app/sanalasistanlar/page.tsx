@@ -199,7 +199,7 @@ export default function SanalAsistanlar() {
                   src={assistant.image}
                   alt={assistant.title}
                   fill
-                  className="object-contain p-4 group-hover:scale-110 transition-transform duration-300"
+                  className="object-contain p-4 group-hover:scale-110 transition-transform duration-300 rounded-full"
                 />
               </div>
               <div className="p-4 text-center">

@@ -10,7 +10,7 @@ export default function Siparisler() {
 
   useEffect(() => {
     if (status === 'unauthenticated') {
-      router.push('/giris');
+      router.push('/');
     }
   }, [status, router]);
 

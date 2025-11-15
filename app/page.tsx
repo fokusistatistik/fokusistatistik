@@ -217,7 +217,7 @@ export default function Home() {
                       src={assistant.image}
                       alt={assistant.title}
                       fill
-                      className="object-contain rounded-lg"
+                      className="object-contain rounded-full"
                     />
                   </div>
                   <span className="font-semibold text-gray-700 group-hover:text-[#860000] transition">
@@ -343,7 +343,7 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  href="/giris"
+                  href="/demo"
                   className="inline-flex items-center bg-[#860000] text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-[#6b0000] transition shadow-2xl group"
                 >
                   Hemen Başlayın

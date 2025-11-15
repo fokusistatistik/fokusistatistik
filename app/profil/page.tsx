@@ -11,7 +11,7 @@ export default function Profil() {
 
   useEffect(() => {
     if (status === 'unauthenticated') {
-      router.push('/giris');
+      router.push('/');
     }
   }, [status, router]);
 
@@ -154,10 +154,10 @@ export default function Profil() {
             <h3 className="font-semibold text-gray-900 mb-2">Asistanlarım</h3>
             <p className="text-sm text-gray-600 mb-4">Aktif sanal asistanlarınız</p>
             <a
-              href="/dashboard"
+              href="/sanalasistanlar"
               className="text-[#860000] hover:underline text-sm font-medium"
             >
-              Yönet →
+              İncele →
             </a>
           </div>
 
