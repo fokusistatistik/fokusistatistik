@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     url: 'https://fokusistatistik.com/dijital',
     images: [
       {
-        url: 'https://www.fokusistatistik.com/assets/img/fokus-ekosistem-og.jpg',
+        url: 'https://static.fokusistatistik.com/resimler/fokus-ekosistem-og.jpg',
         width: 1200,
         height: 630,
         alt: 'FOKUS Dijital Çözümler',
