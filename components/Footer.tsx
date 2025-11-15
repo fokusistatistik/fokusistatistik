@@ -83,10 +83,10 @@ export default function Footer() {
         </div>
 
         {/* Quick Links */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-4 text-center md:text-left max-w-4xl mx-auto">
-          <div>
-            <h3 className="font-bold text-[#ffc107] mb-2">Kurumsal</h3>
-            <ul className="space-y-1 text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-4 max-w-5xl mx-auto px-6">
+          <div className="text-center md:text-left">
+            <h3 className="font-bold text-[#ffc107] mb-3">Kurumsal</h3>
+            <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/hakkimizda" className="hover:text-[#ffc107] transition">
                   Hakkımızda
@@ -103,16 +103,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/kartvizit" className="hover:text-[#ffc107] transition">
+                <a href="https://asistan.fokusistatistik.com/kartvizit" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffc107] transition">
                   Dijital Kartvizit
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-bold text-[#ffc107] mb-2">Hizmetler</h3>
-            <ul className="space-y-1 text-sm">
+          <div className="text-center md:text-left">
+            <h3 className="font-bold text-[#ffc107] mb-3">Hizmetler</h3>
+            <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/dijital" className="hover:text-[#ffc107] transition">
                   Dijital Çözümler
@@ -129,16 +129,21 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="https://asistan.fokusistatistik.com/ucretsiz.html" className="hover:text-[#ffc107] transition">
+                <a href="https://asistan.fokusistatistik.com/ucretsiz.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffc107] transition">
                   Demo Talep Et
+                </a>
+              </li>
+              <li>
+                <Link href="/sss" className="hover:text-[#ffc107] transition">
+                  S.S.S.
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-bold text-[#ffc107] mb-2">Yasal</h3>
-            <ul className="space-y-1 text-sm">
+          <div className="text-center md:text-left">
+            <h3 className="font-bold text-[#ffc107] mb-3">Yasal</h3>
+            <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/kvkk-aydinlatma" className="hover:text-[#ffc107] transition">
                   KVKK Aydınlatma

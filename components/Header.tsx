@@ -140,7 +140,7 @@ export default function Header() {
             </button>
 
             <Link
-              href="https://asistan.fokusistatistik.com/ucretsiz.html"
+              href="https://asistan.fokusistatistik.com/ucretsiz.html" target="_blank" rel="noopener noreferrer"
               className="bg-white text-[#860000] px-4 py-1 rounded-full font-semibold hover:bg-gray-100 transition shadow-md hover:shadow-lg text-sm"
             >
               Demo Talep Et
@@ -233,7 +233,7 @@ export default function Header() {
               </Link>
 
               <Link
-                href="https://asistan.fokusistatistik.com/ucretsiz.html"
+                href="https://asistan.fokusistatistik.com/ucretsiz.html" target="_blank" rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}
                 className="bg-white text-[#860000] px-6 py-1.5 rounded-full font-semibold hover:bg-gray-100 transition text-center mt-2 shadow-md"
               >
