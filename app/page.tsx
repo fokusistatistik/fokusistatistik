@@ -170,8 +170,6 @@ export default function Home() {
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition shadow-xl flex-1 max-w-md">
                   <a
                     href="https://asistan.fokusistatistik.com/ucretsiz.html" target="_blank" rel="noopener noreferrer"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="block bg-white text-[#860000] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition mb-3"
                   >
                     Ücretsiz Danışmanlık
