@@ -18,11 +18,15 @@ export default function Fiyatlandirma() {
       popular: false,
       features: [
         '1 Ay Ücretsiz Test',
-        'İşletmeye Özel Prompt',
+        'Standart LLM Desteği',
+        'Server Kullanımı Dahil',
+        'Kurumsal Doküman Taraması',
+        'İşletmeye Özel Prompt Sistemi',
         'Sürekli Gelişim ve Öğrenme',
-        'Server Kullanımı',
-        'Standart Bakım & Güncelleme (Ayda 1)',
-        'Email Desteği',
+        'Veri Güvenliği ve Yetkilendirme',
+        'Web Arayüzü Erişimi',
+        'Aylık Bakım & Güncelleme',
+        'E-posta Desteği',
         'Temel Raporlama',
       ],
     },
@@ -33,13 +37,16 @@ export default function Fiyatlandirma() {
       color: 'border-[#860000]',
       popular: true,
       features: [
-        '1 Ay Ücretsiz Test',
-        'İşletmeye Özel Prompt',
+        'Pro LLM Desteği',
+        'Server Kullanımı Dahil',
+        'Kurumsal Dinamik Doküman İşleme',
+        'İşletmeye Özel Prompt Sistemi',
         'Sürekli Gelişim ve Öğrenme',
-        'Server Kullanımı',
-        'Kurumsal Doküman Taraması',
         'Çapraz Veri Doğrulama',
-        'Gelişmiş Bakım & Güncelleme (Ayda 2)',
+        'Gelişmiş Veri Güvenliği',
+        'Öncelikli Web Arayüzü',
+        'Çoklu Kanal Entegrasyonu',
+        'Haftalık Bakım & Güncelleme',
         'Öncelikli Destek',
         'Detaylı Raporlama ve Analiz',
       ],
@@ -51,16 +58,17 @@ export default function Fiyatlandirma() {
       color: 'border-purple-500',
       popular: false,
       features: [
-        '1 Ay Ücretsiz Test',
-        'İşletmeye Özel Prompt',
+        'Premium LLM Desteği',
+        'Özel Server Kullanımı',
+        'Dinamik Doküman İşleme & Entegrasyonu',
+        'İleri Seviye Prompt Sistemi',
         'Sürekli Gelişim ve Öğrenme',
-        'Server Kullanımı',
-        'Kurumsal Doküman Taraması',
         'Çapraz Veri Doğrulama',
         'Dinamik Karar Destek Sistemi',
         'Python Destekli Analizler',
         'API Entegrasyonu',
-        'Özel Bakım & Güncelleme (Haftalık)',
+        'Özel Geliştirmeler',
+        'Haftalık Bakım & Güncelleme',
         '7/24 Özel Destek',
         'Kapsamlı İş Zekası Raporları',
       ],
@@ -78,7 +86,7 @@ export default function Fiyatlandirma() {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             İşletmenizin ihtiyaçlarına uygun paketi seçin.
             <br />
-            Tüm paketlerde 1 ay ücretsiz deneme fırsatı!
+            Standart pakette 1 ay ücretsiz deneme fırsatı!
           </p>
         </section>
 
@@ -155,10 +163,10 @@ export default function Fiyatlandirma() {
               <Check className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-semibold text-gray-900 mb-1">
-                  1 Ay Ücretsiz Deneme
+                  LLM Desteği
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Risk almadan sistemimizi test edin
+                  Gelişmiş dil modeli entegrasyonu
                 </p>
               </div>
             </div>
@@ -188,7 +196,7 @@ export default function Fiyatlandirma() {
               <Check className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-semibold text-gray-900 mb-1">
-                  Güvenli Sunucu
+                  Güvenli Server
                 </h3>
                 <p className="text-sm text-gray-600">
                   Verileriniz güvenli sunucularda
@@ -199,10 +207,10 @@ export default function Fiyatlandirma() {
               <Check className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-semibold text-gray-900 mb-1">
-                  Düzenli Güncellemeler
+                  Veri Güvenliği
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Sistemimiz sürekli iyileştiriliyor
+                  Yetkilendirme ve şifreleme
                 </p>
               </div>
             </div>
@@ -239,7 +247,7 @@ export default function Fiyatlandirma() {
                 Ücretsiz deneme nasıl çalışır?
               </h3>
               <p className="text-gray-600 text-sm">
-                Tüm paketlerde 1 ay ücretsiz deneme hakkınız vardır. Kredi kartı bilgisi gerekmez ve deneme sonunda otomatik ücretlendirme yapılmaz.
+                Standart pakette 1 ay ücretsiz deneme hakkınız vardır. Kredi kartı bilgisi gerekmez ve deneme sonunda otomatik ücretlendirme yapılmaz.
               </p>
             </div>
             <div>
@@ -277,7 +285,7 @@ export default function Fiyatlandirma() {
               Bizimle İletişime Geçin
             </Link>
             <Link
-              href="/demo"
+              href="https://asistan.fokusistatistik.com/ucretsiz.html"
               className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-[#860000] transition"
             >
               Demo Talep Edin
