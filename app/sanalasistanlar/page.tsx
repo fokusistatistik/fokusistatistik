@@ -65,7 +65,7 @@ export default function SanalAsistanlar() {
   return (
     <main className="min-h-screen bg-white">
       {/* Banner */}
-      <div className="w-full">
+      <div className="w-full rounded-2xl overflow-hidden">
         <div className="w-full relative h-[150px]">
           <Image
             src="https://www.fokusistatistik.com/assets/img/bannerasistanlar.png"
@@ -199,7 +199,7 @@ export default function SanalAsistanlar() {
                   src={assistant.image}
                   alt={assistant.title}
                   fill
-                  className="object-contain p-4 group-hover:scale-110 transition-transform duration-300"
+                  className="object-contain p-4 rounded-full group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
               <div className="p-4 text-center">
