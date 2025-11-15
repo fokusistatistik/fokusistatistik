@@ -83,7 +83,7 @@ export default function Footer() {
         </div>
 
         {/* Quick Links */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4 text-center md:text-left">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-4 text-center md:text-left max-w-4xl mx-auto">
           <div>
             <h3 className="font-bold text-[#ffc107] mb-2">Kurumsal</h3>
             <ul className="space-y-1 text-sm">
@@ -105,11 +105,6 @@ export default function Footer() {
               <li>
                 <Link href="/kartvizit" className="hover:text-[#ffc107] transition">
                   Dijital Kartvizit
-                </Link>
-              </li>
-              <li>
-                <Link href="/iletisim" className="hover:text-[#ffc107] transition">
-                  İletişim
                 </Link>
               </li>
             </ul>
@@ -136,16 +131,6 @@ export default function Footer() {
               <li>
                 <Link href="https://asistan.fokusistatistik.com/ucretsiz.html" className="hover:text-[#ffc107] transition">
                   Demo Talep Et
-                </Link>
-              </li>
-              <li>
-                <Link href="/analiz-formu" className="hover:text-[#ffc107] transition">
-                  Ücretsiz Analiz
-                </Link>
-              </li>
-              <li>
-                <Link href="/sss" className="hover:text-[#ffc107] transition">
-                  S.S.S.
                 </Link>
               </li>
             </ul>

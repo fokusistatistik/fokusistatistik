@@ -65,13 +65,14 @@ export default function SanalAsistanlar() {
   return (
     <main className="min-h-screen bg-white">
       {/* Banner */}
-      <div className="w-full rounded-2xl overflow-hidden">
-        <div className="w-full relative h-[150px]">
+      <div className="w-full">
+        <div className="w-full relative">
           <Image
-            src="https://www.fokusistatistik.com/assets/img/bannerasistanlar.png"
+            src="https://static.fokusistatistik.com/resimler/bannerasistanlar.png"
             alt="FOKUS Asistanları Banner"
-            fill
-            className="object-cover"
+            width={1920}
+            height={400}
+            className="w-full h-auto object-contain"
             priority
           />
         </div>

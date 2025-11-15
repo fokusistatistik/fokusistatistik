@@ -84,6 +84,13 @@ export default function DijitalCozumler() {
         'Startup\'lardan hukuk bürolarına, yazılım firmalarından lojistik şirketlerine kadar tüm özel sektör paydaşları için dijitalleşme ve yapay zeka tabanlı çözümler geliştiriyoruz.',
       emoji: '🏘️',
     },
+    {
+      icon: <Sparkles className="w-8 h-8" />,
+      title: 'Üretim ve Teknoloji Şirketleri',
+      description:
+        'Üretim tesisleri, teknoloji firmaları ve inovasyon odaklı kuruluşlar için üretim süreçleri optimizasyonu, kalite kontrol sistemleri ve endüstri 4.0 çözümleri sunuyoruz.',
+      emoji: '🏭',
+    },
   ];
 
   const solutions = [
