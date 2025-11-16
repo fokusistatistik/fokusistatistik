@@ -387,7 +387,7 @@ export default function ChatWidget() {
           ) : (
             <div className="relative">
               <Image
-                src="https://static.fokusistatistik.com/asistanlar/fokus216kare.png"
+                src="https://static.fokusistatistik.com/resimler/fokus216kare.png"
                 alt="FOKUS216"
                 width={50}
                 height={50}
@@ -403,7 +403,7 @@ export default function ChatWidget() {
             <div className="chat-header">
               <div className="chat-header-avatar">
                 <Image
-                  src="https://static.fokusistatistik.com/asistanlar/fokus216kare.png"
+                  src="https://static.fokusistatistik.com/resimler/fokus216kare.png"
                   alt="FOKUS216"
                   fill
                   className="object-cover"

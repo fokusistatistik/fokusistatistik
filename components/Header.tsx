@@ -106,7 +106,7 @@ export default function Header() {
                     className="flex items-center px-3 py-1 hover:bg-[#860000] transition text-xs font-bold"
                   >
                     <Image
-                      src="https://static.fokusistatistik.com/resimler/faviconfokus.png"
+                      src="https://static.fokusistatistik.com/resimler/favicon.png"
                       alt="FOKUS"
                       width={14}
                       height={14}
@@ -208,7 +208,7 @@ export default function Header() {
                     className="flex items-center hover:text-gray-200 transition py-1 text-sm font-bold"
                   >
                     <Image
-                      src="https://static.fokusistatistik.com/resimler/faviconfokus.png"
+                      src="https://static.fokusistatistik.com/resimler/favicon.png"
                       alt="FOKUS"
                       width={18}
                       height={18}

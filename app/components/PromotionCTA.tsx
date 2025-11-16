@@ -81,7 +81,7 @@ export default function PromotionCTA() {
 
           <div className="flex gap-3">
             <img
-              src="https://static.fokusistatistik.com/asistanlar/fokus216kare.png"
+              src="https://static.fokusistatistik.com/resimler/fokus216kare.png"
               alt="FOKUS216"
               className="w-[60px] h-[60px] rounded-full object-cover border-2 border-white/30 flex-shrink-0 bg-blue-50"
               onError={(e) => {

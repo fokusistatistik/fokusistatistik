@@ -208,7 +208,7 @@ export default function AnalizFormu() {
           <div className="text-center">
             <div className="mb-6 flex justify-center">
               <Image
-                src="https://static.fokusistatistik.com/resimler/faviconfokus.png"
+                src="https://static.fokusistatistik.com/resimler/favicon.png"
                 alt="FOKUS Logo"
                 width={96}
                 height={96}

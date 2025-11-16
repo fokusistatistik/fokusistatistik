@@ -9,9 +9,9 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/favicon.ico",
+      "src": "https://static.fokusistatistik.com/resimler/favicon.png",
       "sizes": "48x48",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
       "src": "https://static.fokusistatistik.com/resimler/favicon.png",
