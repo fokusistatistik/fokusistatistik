@@ -107,6 +107,11 @@ export default function Footer() {
                   Dijital Kartvizit
                 </a>
               </li>
+              <li>
+                <Link href="/admin" className="hover:text-[#ffc107] transition">
+                  Yönetim Paneli
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -167,11 +172,6 @@ export default function Footer() {
               <li>
                 <Link href="/cerez-politikasi" className="hover:text-[#ffc107] transition">
                   Çerez Politikası
-                </Link>
-              </li>
-              <li>
-                <Link href="/admin" className="hover:text-[#ffc107] transition">
-                  Yönetim Paneli
                 </Link>
               </li>
             </ul>

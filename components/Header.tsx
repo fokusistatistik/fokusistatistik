@@ -127,11 +127,11 @@ export default function Header() {
             <Link href="/fiyatlandirma" className={`py-1 border-b-2 transition ${isActive('/fiyatlandirma') ? 'border-white font-semibold' : 'border-transparent hover:border-white hover:text-gray-100'}`}>
               Fiyatlandırma
             </Link>
-            <Link href="/iletisim" className={`py-1 border-b-2 transition ${isActive('/iletisim') ? 'border-white font-semibold' : 'border-transparent hover:border-white hover:text-gray-100'}`}>
-              İletişim
-            </Link>
             <Link href="/blog" className={`py-1 border-b-2 transition ${isActive('/blog') ? 'border-white font-semibold' : 'border-transparent hover:border-white hover:text-gray-100'}`}>
               Blog
+            </Link>
+            <Link href="/iletisim" className={`py-1 border-b-2 transition ${isActive('/iletisim') ? 'border-white font-semibold' : 'border-transparent hover:border-white hover:text-gray-100'}`}>
+              İletişim
             </Link>
 
             {/* Search */}
@@ -231,11 +231,11 @@ export default function Header() {
               <Link href="/fiyatlandirma" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/fiyatlandirma') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 Fiyatlandırma
               </Link>
-              <Link href="/iletisim" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/iletisim') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
-                İletişim
-              </Link>
               <Link href="/blog" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/blog') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 Blog
+              </Link>
+              <Link href="/iletisim" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/iletisim') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+                İletişim
               </Link>
 
               <Link
