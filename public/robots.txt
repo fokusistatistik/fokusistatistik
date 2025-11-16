@@ -14,4 +14,4 @@ Disallow: /memnuniyet-anketi
 Disallow: /sozlesme-olustur
 
 # Sitemap
-Sitemap: https://test.fokusistatistik.com/sitemap.xml
+Sitemap: https://fokusistatistik.com/sitemap.xml

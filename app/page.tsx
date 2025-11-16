@@ -17,6 +17,8 @@ import {
 } from 'lucide-react';
 import RandevuToast from './components/RandevuToast';
 
+// Note: metadata is handled in layout.tsx for this page
+
 export default function Home() {
   // CTA toast and floating button removed per user request
 

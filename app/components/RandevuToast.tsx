@@ -1,8 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { X } from 'lucide-react';
+import { X, Sparkles } from 'lucide-react';
 
 export default function RandevuToast() {
   const [isVisible, setIsVisible] = useState(false);
@@ -18,10 +17,10 @@ export default function RandevuToast() {
         setIsVisible(true);
         sessionStorage.setItem('fokusRandevuToastSeen', 'true');
 
-        // Auto-hide after 15 seconds
+        // Auto-hide after 12 seconds
         const hideTimer = setTimeout(() => {
           handleClose();
-        }, 15000);
+        }, 12000);
 
         return () => clearTimeout(hideTimer);
       }, 5000);
@@ -34,7 +33,7 @@ export default function RandevuToast() {
     setIsExiting(true);
     setTimeout(() => {
       setIsVisible(false);
-    }, 500);
+    }, 300);
   };
 
   const trackClick = () => {
@@ -51,75 +50,57 @@ export default function RandevuToast() {
 
   return (
     <div
-      className={`fixed top-20 right-5 z-[10000] max-w-[380px] transition-all duration-500 ${
-        isExiting ? 'translate-x-[400px] opacity-0' : 'translate-x-0 opacity-100'
+      className={`fixed top-24 right-6 z-[10000] max-w-[320px] transition-all duration-300 ${
+        isExiting ? 'translate-x-[350px] opacity-0' : 'translate-x-0 opacity-100'
       }`}
     >
-      <div className="bg-gradient-to-br from-[#860000] to-[#a30000] text-white rounded-xl shadow-2xl p-4 sm:p-5">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-white/20 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wide">
-            🎁 Özel Fırsat
-          </span>
-          <button
-            onClick={handleClose}
-            className="flex items-center justify-center w-6 h-6 rounded-full hover:bg-white/15 transition"
-            aria-label="Kapat"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
+      {/* Modern Minimal Toast */}
+      <div className="relative backdrop-blur-xl bg-white/95 dark:bg-gray-900/95 rounded-2xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-4 overflow-hidden">
+        {/* Gradient Accent */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#860000] via-[#a30000] to-[#860000]"></div>
+
+        {/* Close Button */}
+        <button
+          onClick={handleClose}
+          className="absolute top-3 right-3 w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group"
+          aria-label="Kapat"
+        >
+          <X className="w-4 h-4 text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300" />
+        </button>
 
         {/* Content */}
-        <div className="flex gap-3">
-          {/* Image */}
-          <div className="flex-shrink-0">
-            <div className="relative w-[60px] h-[60px] rounded-full overflow-hidden bg-white/10 border-2 border-white/30">
-              <Image
-                src="https://www.fokusistatistik.com/assets/img/fokus216kare.png"
-                alt="FOKUS216"
-                fill
-                className="object-cover"
-              />
+        <div className="pr-6">
+          {/* Icon + Badge */}
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#860000] to-[#a30000] flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-white" />
             </div>
+            <span className="text-[10px] font-semibold text-[#860000] uppercase tracking-wider">
+              Özel Fırsat
+            </span>
           </div>
 
-          {/* Text Content */}
-          <div className="flex-1 min-w-0">
-            <h3 className="text-base font-semibold mb-2 leading-tight">
-              Randevu Sistemi İlk 1 Ay Ücretsiz!
-            </h3>
-            <p className="text-[13px] opacity-95 mb-3 leading-relaxed">
-              Yapay zeka destekli randevu sistemi. Müşterileriniz 7/24 otomatik randevu alabilsin.
-            </p>
+          {/* Title */}
+          <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1.5 leading-snug">
+            Randevu Sistemi 1 Ay Ücretsiz
+          </h3>
 
-            {/* Features */}
-            <div className="flex gap-3 mb-3 flex-wrap">
-              <span className="flex items-center gap-1 text-[11px] opacity-90">
-                <span className="font-bold text-[13px]">✓</span>
-                Hızlı Kurulum
-              </span>
-              <span className="flex items-center gap-1 text-[11px] opacity-90">
-                <span className="font-bold text-[13px]">✓</span>
-                7/24 Aktif
-              </span>
-              <span className="flex items-center gap-1 text-[11px] opacity-90">
-                <span className="font-bold text-[13px]">✓</span>
-                Pratik
-              </span>
-            </div>
+          {/* Description */}
+          <p className="text-xs text-gray-600 dark:text-gray-400 mb-3 leading-relaxed">
+            AI destekli randevu sistemi ile müşterileriniz 7/24 kolayca randevu alabilsin
+          </p>
 
-            {/* CTA Button */}
-            <a
-              href="https://asistan.fokusistatistik.com/fokusdemorandevusistemi/"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={trackClick}
-              className="inline-block w-full bg-white text-[#860000] px-5 py-2.5 rounded-lg text-[13px] font-semibold text-center hover:bg-gray-100 transition shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-            >
-              Hemen Başla →
-            </a>
-          </div>
+          {/* CTA Button */}
+          <a
+            href="https://asistan.fokusistatistik.com/fokusdemorandevusistemi/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={trackClick}
+            className="inline-flex items-center justify-center w-full bg-gradient-to-r from-[#860000] to-[#a30000] hover:from-[#a30000] hover:to-[#860000] text-white px-4 py-2.5 rounded-lg text-xs font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <Sparkles className="w-3.5 h-3.5 mr-1.5" />
+            Hemen Dene
+          </a>
         </div>
       </div>
     </div>
