@@ -41,6 +41,15 @@ const blogPosts = [
     image: 'https://static.fokusistatistik.com/blog/whatsapp-bot.jpg',
   },
   {
+    slug: 'sanal-asistan-vs-gercek-personel',
+    title: 'Sanal Asistan vs Gerçek Personel: 12 Aylık Maliyet Karşılaştırması [2025]',
+    excerpt: 'Sanal asistan mı yoksa gerçek personel mi? Detaylı maliyet analizi, verimlilik karşılaştırması ve işletmeniz için doğru seçim rehberi. Gerçek rakamlarla.',
+    date: '2025-01-17',
+    readTime: '12 dakika',
+    category: 'Karşılaştırma',
+    image: 'https://static.fokusistatistik.com/blog/comparison.jpg',
+  },
+  {
     slug: 'veri-analizi-rehberi',
     title: 'Veri Analizi Nedir? Başlangıçtan İleri Seviyeye Kapsamlı Rehber',
     excerpt: 'Veri analizinin temellerinden ileri tekniklerine kadar her şey. Araçlar, metodolojiler, örnekler ve başarı için ipuçları.',
