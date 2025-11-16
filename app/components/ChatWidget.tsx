@@ -2,6 +2,33 @@
 
 import { useState, useEffect, useRef } from 'react';
 
+// Basit markdown formatlaması
+function formatMessage(text: string): string {
+  if (!text) return '';
+
+  // Temizleme
+  let cleanText = text.replace(/\\n/g, '\n').replace(/\\t/g, ' ').trim();
+
+  // Markdown formatlaması
+  let formatted = cleanText
+    // Başlıklar
+    .replace(/^#### (.*$)/gm, '<strong>$1</strong>')
+    .replace(/^### (.*$)/gm, '<strong>$1</strong>')
+    .replace(/^## (.*$)/gm, '<strong>$1</strong>')
+    .replace(/^# (.*$)/gm, '<strong>$1</strong>')
+    // Bold
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    // Linkler
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+    // Liste işaretleri
+    .replace(/^- (.*$)/gm, '• $1')
+    .replace(/^\* (.*$)/gm, '• $1')
+    // Satır sonları
+    .replace(/\n/g, '<br>');
+
+  return formatted;
+}
+
 export default function ChatWidget() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState<Array<{ text: string; sender: 'user' | 'bot' }>>([
@@ -12,6 +39,7 @@ export default function ChatWidget() {
   const [showQuickReplies, setShowQuickReplies] = useState(true);
   const [sessionId, setSessionId] = useState<string>('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const quickReplies = [
     'İşletmeme Yapay Zekayı nasıl entegre ederim?',
@@ -36,6 +64,15 @@ export default function ChatWidget() {
     };
     setSessionId(generateSessionId());
   }, []);
+
+  // Auto-resize textarea
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      const newHeight = Math.min(textareaRef.current.scrollHeight, 140);
+      textareaRef.current.style.height = newHeight + 'px';
+    }
+  }, [inputValue]);
 
   const toggleChat = () => {
     setIsChatOpen(!isChatOpen);
@@ -79,8 +116,9 @@ export default function ChatWidget() {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && !isLoading) {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey && !isLoading) {
+      e.preventDefault();
       sendMessage();
     }
   };
@@ -256,6 +294,10 @@ export default function ChatWidget() {
           border-radius: 16px;
           line-height: 1.5;
           font-size: 14px;
+          word-wrap: break-word;
+          word-break: break-word;
+          overflow-wrap: break-word;
+          white-space: pre-wrap;
         }
 
         .message.bot .message-content {
@@ -269,6 +311,47 @@ export default function ChatWidget() {
           background: #860000;
           color: white;
           border-bottom-right-radius: 4px;
+        }
+
+        .message-content a {
+          color: #860000;
+          text-decoration: none;
+          font-weight: 500;
+          border-bottom: 1px solid rgba(134, 0, 0, 0.3);
+          transition: all 0.2s ease;
+          word-break: break-all;
+        }
+
+        .message-content a:hover {
+          color: #5b0000;
+          border-bottom-color: #5b0000;
+        }
+
+        .message.user .message-content a {
+          color: white;
+          border-bottom-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .message.user .message-content a:hover {
+          border-bottom-color: white;
+        }
+
+        .message-content strong {
+          font-weight: 600;
+        }
+
+        .message-content ul,
+        .message-content ol {
+          margin: 0;
+          padding-left: 20px;
+        }
+
+        .message-content li {
+          margin: 0;
+        }
+
+        .message-content p {
+          margin: 0;
         }
 
         .chat-widget .chat-input-area {
@@ -289,11 +372,33 @@ export default function ChatWidget() {
           outline: none;
           font-size: 14px;
           transition: all 0.2s ease;
+          resize: none;
+          overflow-y: hidden;
+          min-height: 44px;
+          max-height: 140px;
+          line-height: 1.5;
+          font-family: inherit;
         }
 
         .chat-input:focus {
           border-color: #860000;
           box-shadow: 0 0 0 3px rgba(134, 0, 0, 0.1);
+        }
+
+        .char-counter {
+          font-size: 11px;
+          color: #6c757d;
+          text-align: right;
+          padding: 0 20px 8px;
+          font-weight: 500;
+        }
+
+        .char-counter.warning {
+          color: #fd7e14;
+        }
+
+        .char-counter.error {
+          color: #dc3545;
         }
 
         .send-button {
@@ -430,7 +535,10 @@ export default function ChatWidget() {
             <div className="chat-messages">
               {messages.map((msg, index) => (
                 <div key={index} className={`message ${msg.sender}`}>
-                  <div className="message-content">{msg.text}</div>
+                  <div
+                    className="message-content"
+                    dangerouslySetInnerHTML={{ __html: formatMessage(msg.text) }}
+                  />
                 </div>
               ))}
 
@@ -464,14 +572,16 @@ export default function ChatWidget() {
             )}
 
             <div className="chat-input-area">
-              <input
-                type="text"
+              <textarea
+                ref={textareaRef}
                 className="chat-input"
                 placeholder="Mesajınızı yazın..."
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyPress}
                 disabled={isLoading}
+                rows={1}
+                maxLength={1000}
               />
               <button
                 className="send-button"
@@ -481,6 +591,9 @@ export default function ChatWidget() {
               >
                 ➤
               </button>
+            </div>
+            <div className={`char-counter ${inputValue.length > 900 ? 'error' : inputValue.length > 700 ? 'warning' : ''}`}>
+              {inputValue.length} / 1000
             </div>
           </div>
         )}
