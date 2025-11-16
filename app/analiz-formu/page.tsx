@@ -206,10 +206,14 @@ export default function AnalizFormu() {
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <div className="text-center">
-            <div className="mb-6">
-              <div className="w-24 h-24 mx-auto bg-[#860000] rounded-full flex items-center justify-center text-white text-4xl font-bold">
-                F
-              </div>
+            <div className="mb-6 flex justify-center">
+              <Image
+                src="https://static.fokusistatistik.com/resimler/favicon.png"
+                alt="FOKUS Logo"
+                width={96}
+                height={96}
+                className="object-contain"
+              />
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               FOKUS Ekosistemi Sanal Asistan Analiz Formu

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Neden Biz? | FOKUS İstatistik',
     description: 'FOKUS İstatistik\'in neden tercih edildiğini keşfedin. Deneyim, teknoloji, etik ve müşteri odaklı çözümlerle işinizi bir adım öteye taşıyoruz.',
-    images: ['https://www.fokusistatistik.com/assets/img/nedenbiz1.jpg'],
+    images: ['https://static.fokusistatistik.com/resimler/nedenbiz1.jpg'],
     locale: 'tr_TR',
     type: 'website',
   }
@@ -23,79 +23,79 @@ interface ReasonItem {
 
 const reasons: ReasonItem[] = [
   {
-    image: 'https://www.fokusistatistik.com/assets/img/nedenbiz1.jpg',
+    image: 'https://static.fokusistatistik.com/resimler/nedenbiz1.jpg',
     title: 'Veriyi Stratejik Bir Araca Dönüştürüyoruz',
     description: 'FOKUS olarak veriye sadece teknik bir çıktı olarak bakmıyoruz. Her veri noktasını kurum hedeflerinizle entegre eden, operasyonel aksiyonları besleyen ve yönetime stratejik yol gösteren bir karar aracına dönüştürüyoruz.',
     result: 'Sadece veri değil, vizyon kazanırsınız.'
   },
   {
-    image: 'https://www.fokusistatistik.com/assets/img/nedenbiz2.jpg',
+    image: 'https://static.fokusistatistik.com/resimler/nedenbiz2.jpg',
     title: 'Kamu ve Gerçek Saha Deneyimiyle Uygulanabilir Çözümler Üretiyoruz',
     description: 'Sağlık ve yerel yönetimler başta olmak üzere çeşitli kamu kurumlarında gerçekleştirdiğimiz projeler sayesinde, karmaşık yapılarda çalışan, gerçek ihtiyaçlara dayalı uygulanabilir çözümler geliştirme yetkinliği kazandık.',
     result: 'Hazır reçeteler değil, kurumunuza özel sistemler.'
   },
   {
-    image: 'https://www.fokusistatistik.com/assets/img/nedenbiz5.jpg',
+    image: 'https://static.fokusistatistik.com/resimler/nedenbiz5.jpg',
     title: 'Ölçülebilir Fayda ve Sürdürülebilir Etki Odaklıyız',
     description: 'Her proje başlangıcında "ne kazandıracak?" sorusunu netleştirir, sonunda bu kazanımları somutlaştırır ve periyodik olarak raporlarız. Zaman tasarrufu, iş gücü verimliliği, veri kaybı azalması, operasyon hızı, kaynak optimizasyonu gibi somut çıktılarla projelerimizi yönetiriz.',
     result: 'Sözde değil, veriye dayalı fayda garantisi.'
   },
   {
-    image: 'https://www.fokusistatistik.com/assets/img/nedenbiz6.jpg',
+    image: 'https://static.fokusistatistik.com/resimler/nedenbiz6.jpg',
     title: 'Gizlilik, Etik ve Hukuki Çerçevede Çalışırız',
     description: 'Tüm veri süreçlerimizi, Kişisel Verilerin Korunması Kanunu (KVKK), istatistik meslek etiği ilkeleri ve kurumsal danışmanlık protokolleri çerçevesinde yürütüyoruz. Verinizin güvenliği ve etik kullanımı bizim için temel bir ilkedir.',
     result: 'Endişesiz iş birliği, tam güven ortamı.'
   },
   {
-    image: 'https://www.fokusistatistik.com/assets/img/nedenbiz7.jpg',
+    image: 'https://static.fokusistatistik.com/resimler/nedenbiz7.jpg',
     title: 'Etkileyici Sunum ve Görsel İletişimle Fark Yaratırız',
     description: 'En güçlü analiz bile iyi anlatılamıyorsa etkisizdir. FOKUS, veriyi yalnızca doğru analiz etmez; onu etkileyici sunumlar, infografikler ve stratejik iletişim içerikleriyle karar vericilere aktarır. PowerPoint, görsel dil, raporlama standardizasyonu gibi araçlarla iletişimi güçlendiririz.',
     result: 'Veriyle yalnızca bilgilendirme değil, ikna da sağlarsınız.'
   },
   {
-    image: 'https://www.fokusistatistik.com/assets/img/nedenbiz8.jpg',
+    image: 'https://static.fokusistatistik.com/resimler/nedenbiz8.jpg',
     title: 'İşletme Ölçeğiniz Ne Olursa Olsun Yanınızdayız',
     description: 'İster tek kişilik bir girişim, ister yüzlerce personelli bir kurum, ister on binlerce çalışanı olan bir holding olun — FOKUS, veri odaklı çözümlerini ölçek farkı gözetmeden ihtiyaçlarınıza özel tasarlar. Analiz altyapılarımız, danışmanlık metodolojilerimiz ve görsel iletişim sistemlerimiz her ölçekte esnek çalışabilir.',
     result: 'Bütçenize, kapasitenize ve vizyonunuza uygun özelleştirilmiş veri çözümleri.'
   },
   {
-    image: 'https://www.fokusistatistik.com/assets/img/nedenbiz9.jpg',
+    image: 'https://static.fokusistatistik.com/resimler/nedenbiz9.jpg',
     title: 'Yenilikçi ve Gelecek Odaklı Yaklaşımlar Sunarız',
     description: 'FOKUS, sadece bugünü değil yarını da hesap eder. Stratejik öngörü, teknolojik yakınsama ve geleceğe hazır çözümler üretiriz.',
     result: 'Zamanın ilerisinde pozisyon alırsınız.'
   },
   {
-    image: 'https://www.fokusistatistik.com/assets/img/nedenbiz10.jpg',
+    image: 'https://static.fokusistatistik.com/resimler/nedenbiz10.jpg',
     title: 'Sanal ve Gerçek Kişilerle 7/24 Erişilebilir Destek Sunarız',
     description: 'Hem gerçek danışmanlarımız hem de sanal asistanlarımızla kesintisiz iletişim sunarız.',
     result: 'Sorularınız cevapsız, ihtiyaçlarınız karşılıksız kalmaz.'
   },
   {
-    image: 'https://www.fokusistatistik.com/assets/img/nedenbiz11.jpg',
+    image: 'https://static.fokusistatistik.com/resimler/nedenbiz11.jpg',
     title: 'Akademiden Gelen Bilimsel Güçle Hareket Ederiz',
     description: 'İstatistik ve veri bilimi kökenli ekibimiz sayesinde projelerinize bilimsel yöntemlerle yaklaşırız.',
     result: 'Deney değil, doğrulanabilir ve tekrarlanabilir çözümler.'
   },
   {
-    image: 'https://www.fokusistatistik.com/assets/img/nedenbiz12.jpg',
+    image: 'https://static.fokusistatistik.com/resimler/nedenbiz12.jpg',
     title: 'Sizinle Birlikte Öğrenir, Geliştirir, Uygularız',
     description: 'Yalnızca bir hizmet sağlayıcı değil, birlikte düşünen ve üreten bir çözüm ortağıyız.',
     result: 'Sadece hizmet değil, stratejik ortaklık kazanırsınız.'
   },
   {
-    image: 'https://www.fokusistatistik.com/assets/img/nedenbiz13.jpg',
+    image: 'https://static.fokusistatistik.com/resimler/nedenbiz13.jpg',
     title: 'Ücretsiz Demo ve Pilot Uygulama İmkânları Sunarız',
     description: 'Projeye başlamadan önce örnek bir senaryoyla sistemi test etmenizi sağlıyoruz.',
     result: 'Kararsızlık değil, deneyimleyerek karar verme imkânı.'
   },
   {
-    image: 'https://www.fokusistatistik.com/assets/img/nedenbiz14.jpg',
+    image: 'https://static.fokusistatistik.com/resimler/nedenbiz14.jpg',
     title: '22 Yıllık Deneyim, Dinamik Yaklaşım ile Buluşuyoruz',
     description: 'Deneyim ile dinamizmi buluşturan hibrit bir bakış açısıyla çalışıyoruz.',
     result: 'Ne gençlik hataları ne de eski alışkanlıklar; sadece verimli çözümler.'
   },
   {
-    image: 'https://www.fokusistatistik.com/assets/img/nedenbiz15.jpg',
+    image: 'https://static.fokusistatistik.com/resimler/nedenbiz15.jpg',
     title: 'Her Projeye Özgü Tasarım, Her Kuruma Özgü Yaklaşım Sunarız',
     description: 'Hazır şablonlarla ilerlemeyiz; sizin için en baştan, sizin dilinizle düşünürüz. Yeni ve karmaşık sistemler dayatmak yerine, hâlihazırda kullandığınız düzeni esas alır, onun üzerinden otomasyonu geliştiririz. Böylece hem alışık olduğunuz yapıyı bozmamış oluruz, hem de teknolojinin gücünü arka planda size hissettirmeden işler hâle getiririz.',
     result: 'Sizin gibi düşünen, size özel ve uyumlu sistemlerle hızlıca adapte olur, farkı kısa sürede hissetmeye başlarsınız.'
@@ -114,38 +114,40 @@ export default function NedenBiz() {
           {reasons.map((reason, index) => (
             <article
               key={index}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
               itemScope
               itemType="https://schema.org/Service"
             >
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Image */}
-                <div className="relative h-64 md:h-auto">
-                  <Image
-                    src={reason.image}
-                    alt={reason.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
+              <div className="p-6 flex gap-4 items-start">
+                {/* Icon/Image - Infographic Style */}
+                <div className="flex-shrink-0">
+                  <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100">
+                    <Image
+                      src={reason.image}
+                      alt={reason.title}
+                      fill
+                      className="object-cover"
+                      sizes="64px"
+                    />
+                  </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6 md:p-8 flex flex-col justify-center">
+                <div className="flex-1">
                   <h2
-                    className="text-xl md:text-2xl font-bold text-gray-900 mb-4"
+                    className="text-lg md:text-xl font-bold text-gray-900 mb-2"
                     itemProp="name"
                   >
                     {reason.title}
                   </h2>
                   <p
-                    className="text-gray-700 mb-4 leading-relaxed"
+                    className="text-gray-700 text-sm mb-2 leading-relaxed"
                     itemProp="description"
                   >
                     {reason.description}
                   </p>
-                  <p className="text-[#860000] font-semibold">
-                    <strong>Sonuç:</strong> {reason.result}
+                  <p className="text-[#860000] font-semibold text-sm">
+                    <strong>→</strong> {reason.result}
                   </p>
                 </div>
               </div>

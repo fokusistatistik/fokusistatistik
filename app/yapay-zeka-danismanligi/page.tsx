@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ServiceSchema } from '@/app/components/StructuredData';
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     url: 'https://fokusistatistik.com/yapay-zeka-danismanligi',
     images: [
       {
-        url: 'https://www.fokusistatistik.com/assets/img/fokus-ekosistem-og.jpg',
+        url: 'https://static.fokusistatistik.com/resimler/fokus-ekosistem-og.jpg',
         width: 1200,
         height: 630,
         alt: 'FOKUS Yapay Zeka Danışmanlığı',
@@ -53,8 +54,15 @@ export default function YapayZekaDanismanligi() {
         {/* Hero Section */}
         <section className="text-center mb-16">
           <div className="inline-block mb-6">
-            <div className="w-24 h-24 bg-gradient-to-br from-[#860000] to-[#a30000] rounded-full flex items-center justify-center text-white text-5xl shadow-xl">
-              🤖
+            <div className="w-24 h-24 bg-gradient-to-br from-[#860000] to-[#a30000] rounded-full flex items-center justify-center shadow-xl p-4">
+              <div className="relative w-full h-full">
+                <Image
+                  src="https://static.fokusistatistik.com/resimler/logobeyaz.png"
+                  alt="FOKUS Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -67,7 +75,7 @@ export default function YapayZekaDanismanligi() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/demo"
+              href="https://asistan.fokusistatistik.com/ucretsiz.html"
               className="bg-[#860000] hover:bg-[#b30000] text-white font-semibold py-4 px-8 rounded-lg transition-all transform hover:scale-105"
             >
               Ücretsiz Danışmanlık Talep Edin
@@ -146,7 +154,7 @@ export default function YapayZekaDanismanligi() {
             <div className="flex gap-4">
               <div className="flex-shrink-0">
                 <div className="w-16 h-16 bg-pink-100 rounded-lg flex items-center justify-center text-3xl">
-                  💡
+                  🎯
                 </div>
               </div>
               <div>
@@ -397,7 +405,7 @@ export default function YapayZekaDanismanligi() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/demo"
+              href="https://asistan.fokusistatistik.com/ucretsiz.html"
               className="bg-[#860000] hover:bg-[#b30000] text-white font-semibold py-4 px-8 rounded-lg transition-all transform hover:scale-105 shadow-lg"
             >
               Hemen Başvur

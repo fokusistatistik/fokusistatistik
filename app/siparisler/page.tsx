@@ -1,20 +1,35 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Siparisler() {
-  const { data: session, status } = useSession();
   const router = useRouter();
+  const [session, setSession] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/giris');
+    const sessionData = localStorage.getItem('fokus520Session');
+    if (!sessionData) {
+      router.push('/');
+      return;
     }
-  }, [status, router]);
 
-  if (status === 'loading') {
+    try {
+      const parsed = JSON.parse(sessionData);
+      if (!parsed.isLoggedIn || !parsed.token) {
+        router.push('/');
+        return;
+      }
+      setSession(parsed);
+      setIsLoading(false);
+    } catch (e) {
+      console.error('Session parse error:', e);
+      router.push('/');
+    }
+  }, [router]);
+
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -188,7 +203,7 @@ export default function Siparisler() {
               Asistanları İncele
             </a>
             <a
-              href="/demo"
+              href="https://asistan.fokusistatistik.com/ucretsiz.html"
               className="bg-transparent border-2 border-white hover:bg-white hover:text-[#860000] font-semibold py-3 px-8 rounded-lg transition-all inline-block"
             >
               Demo Talep Et

@@ -10,69 +10,72 @@ export default function SanalAsistanlar() {
       code: 'fokus001',
       name: 'FOKUS001',
       title: 'Yönetici Sanal Asistanı',
-      image: 'https://www.fokusistatistik.com/assets/img/fokus001.png',
+      image: 'https://static.fokusistatistik.com/asistanlar/fokus001.png',
     },
     {
       code: 'fokus216',
       name: 'FOKUS216',
       title: 'Müşteri Hizmetleri Sanal Asistanı',
-      image: 'https://www.fokusistatistik.com/assets/img/fokus216.png',
+      image: 'https://static.fokusistatistik.com/asistanlar/fokus216.png',
     },
     {
       code: 'fokus314',
       name: 'FOKUS314',
       title: 'Veri Analisti Sanal Asistanı',
-      image: 'https://www.fokusistatistik.com/assets/img/fokus314.png',
+      image: 'https://static.fokusistatistik.com/asistanlar/fokus314.png',
     },
     {
       code: 'fokus520',
       name: 'FOKUS520',
       title: 'Pazarlama & Lead Takip Sanal Asistanı',
-      image: 'https://www.fokusistatistik.com/assets/img/fokus520.png',
+      image: 'https://static.fokusistatistik.com/asistanlar/fokus520.png',
     },
     {
       code: 'fokus618',
       name: 'FOKUS618',
       title: 'Finans & Fatura Sanal Asistanı',
-      image: 'https://www.fokusistatistik.com/assets/img/fokus618.png',
+      image: 'https://static.fokusistatistik.com/asistanlar/fokus618.png',
     },
     {
       code: 'fokus707',
       name: 'FOKUS707',
       title: 'İnsan Kaynakları Sanal Asistanı',
-      image: 'https://www.fokusistatistik.com/assets/img/fokus707.png',
+      image: 'https://static.fokusistatistik.com/asistanlar/fokus707.png',
     },
     {
       code: 'fokus717',
       name: 'FOKUS717',
       title: 'İçerik Tasarımı Sanal Asistanı',
-      image: 'https://www.fokusistatistik.com/assets/img/fokus717.png',
+      image: 'https://static.fokusistatistik.com/asistanlar/fokus717.png',
     },
     {
       code: 'fokus808',
       name: 'FOKUS808',
       title: 'Sosyal Medya & İletişim Sanal Asistanı',
-      image: 'https://www.fokusistatistik.com/assets/img/fokus808.png',
+      image: 'https://static.fokusistatistik.com/asistanlar/fokus808.png',
     },
     {
       code: 'fokus999',
       name: 'FOKUS999',
       title: 'Joker Sanal Asistan',
-      image: 'https://www.fokusistatistik.com/assets/img/fokus999.png',
+      image: 'https://static.fokusistatistik.com/asistanlar/fokus999.png',
     },
   ];
 
   return (
     <main className="min-h-screen bg-white">
       {/* Banner */}
-      <div className="w-full relative h-[300px] md:h-[400px] overflow-hidden">
-        <Image
-          src="https://www.fokusistatistik.com/assets/img/bannerasistanlar.png"
-          alt="FOKUS Asistanları Banner"
-          fill
-          className="object-cover"
-          priority
-        />
+      <div className="w-full px-4">
+        <div className="w-full relative overflow-hidden rounded-xl">
+          <Image
+            src="https://static.fokusistatistik.com/resimler/bannerasistanlar.png"
+            alt="FOKUS Asistanları Banner"
+            width={1920}
+            height={400}
+            className="w-full h-auto object-contain"
+            priority
+          />
+        </div>
       </div>
 
       {/* Metal Yakalı İşçiler Nedir */}
@@ -197,7 +200,7 @@ export default function SanalAsistanlar() {
                   src={assistant.image}
                   alt={assistant.title}
                   fill
-                  className="object-contain p-4 group-hover:scale-110 transition-transform duration-300"
+                  className="object-contain p-4 rounded-full group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
               <div className="p-4 text-center">
@@ -391,7 +394,9 @@ export default function SanalAsistanlar() {
           </div>
           <div className="flex flex-col items-center">
             <a
-              href="/demo"
+              href="https://asistan.fokusistatistik.com/ucretsiz.html"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-[#860000] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-[#a30000] transition shadow-lg hover:shadow-xl hover:-translate-y-1"
             >
               Demo Talep Et

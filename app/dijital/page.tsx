@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     url: 'https://fokusistatistik.com/dijital',
     images: [
       {
-        url: 'https://www.fokusistatistik.com/assets/img/fokus-ekosistem-og.jpg',
+        url: 'https://static.fokusistatistik.com/resimler/fokus-ekosistem-og.jpg',
         width: 1200,
         height: 630,
         alt: 'FOKUS Dijital Çözümler',
@@ -83,6 +83,13 @@ export default function DijitalCozumler() {
       description:
         'Startup\'lardan hukuk bürolarına, yazılım firmalarından lojistik şirketlerine kadar tüm özel sektör paydaşları için dijitalleşme ve yapay zeka tabanlı çözümler geliştiriyoruz.',
       emoji: '🏘️',
+    },
+    {
+      icon: <Sparkles className="w-8 h-8" />,
+      title: 'Üretim ve Teknoloji Şirketleri',
+      description:
+        'Üretim tesisleri, teknoloji firmaları ve inovasyon odaklı kuruluşlar için üretim süreçleri optimizasyonu, kalite kontrol sistemleri ve endüstri 4.0 çözümleri sunuyoruz.',
+      emoji: '🏭',
     },
   ];
 
@@ -274,7 +281,7 @@ export default function DijitalCozumler() {
                 Size özel çözümlerimiz hakkında konuşmak ve ihtiyaçlarınızı değerlendirmek için bizimle iletişime geçin.
               </p>
               <a
-                href="mailto:bilgi@fokusistatistik.com"
+                href="https://asistan.fokusistatistik.com/ucretsiz.html"
                 className="inline-block bg-white text-[#860000] px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition shadow-xl"
               >
                 Ücretsiz Görüşme Talep Edin

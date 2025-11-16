@@ -1,9 +1,6 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { CheckCircle2, X } from 'lucide-react';
-import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import Image from 'next/image';
 
 interface AssistantPackage {
   name: string;
@@ -21,11 +18,14 @@ interface AssistantData {
   subtitle: string;
   description: string;
   icon: string;
+  image: string;
   whyReasons: { title: string; description: string }[];
   capabilities: string[];
   videoUrl: string;
   testQrUrl: string;
+  testQrImage: string;
   requestQrUrl: string;
+  requestQrImage: string;
   packages: AssistantPackage[];
   priceNote: string;
 }
@@ -94,8 +94,11 @@ const assistantsData: Record<string, AssistantData> = {
       'İşletmenizin tüm yazılım ve sistemlerine entegre olur.',
     ],
     videoUrl: 'https://www.youtube.com/embed/fckfRsZJtiM',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus001.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus001/',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet001.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -273,8 +276,11 @@ const assistantsData: Record<string, AssistantData> = {
       'İstatistiksel raporlar sunarak hizmet kalitesini izler.',
     ],
     videoUrl: 'https://www.youtube.com/embed/VwVeSnsK0lA',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus216.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus216/',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet216.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -434,8 +440,11 @@ const assistantsData: Record<string, AssistantData> = {
       'İhtiyaç duyduğunuzda Veri Bilimi Danışmanlığı sunar; doğru soruya, doğru analizle cevap verir.',
     ],
     videoUrl: 'https://www.youtube.com/embed/oePHh9TU4qg',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus314.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus314/',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet314.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -613,8 +622,11 @@ const assistantsData: Record<string, AssistantData> = {
       'Satış fırsatlarını kaçırmaz.',
     ],
     videoUrl: 'https://www.youtube.com/embed/Wzwc3HCEDrU',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus520.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus520/',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet520.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -777,8 +789,11 @@ const assistantsData: Record<string, AssistantData> = {
       'Komutla fatura oluşturma, etiketleme ve arşivleme sistemini kurar.',
     ],
     videoUrl: 'https://www.youtube.com/embed/4WS0b82IJ38',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus618.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus618/',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet618.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -960,8 +975,11 @@ const assistantsData: Record<string, AssistantData> = {
       'Yönetici talepleri doğrultusunda kişi bazlı sorgulama yapar.',
     ],
     videoUrl: 'https://www.youtube.com/embed/AA0L2nleZXU',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus707.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus707/',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet707.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -1158,8 +1176,11 @@ const assistantsData: Record<string, AssistantData> = {
       'FOKUS ekosisteminin diğer asistanlarıyla senkronize çalışarak kampanya içeriklerini zamanında üretir.',
     ],
     videoUrl: 'https://www.youtube.com/embed/Bt3ZmrE1MqU',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus717.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus717/',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet717.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -1336,8 +1357,11 @@ const assistantsData: Record<string, AssistantData> = {
       'Kriz anlarında yayını durdurur ve alternatif içerik önerir.',
     ],
     videoUrl: 'https://www.youtube.com/embed/PWFR6mPbhGM',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus808.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus808/',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet808.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -1513,67 +1537,47 @@ const assistantsData: Record<string, AssistantData> = {
       'Ve çok daha fazlası…',
     ],
     videoUrl: 'https://www.youtube.com/embed/cnZqBpW5bdc',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus999.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus999/',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet999.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [],
     priceNote:
       'FOKUS999, işletmenizin her alanına uyum sağlayan özel bir asistandır. Fiyatlandırma, projenizin kapsamına ve ihtiyaçlarınıza göre belirlenir. Detaylı bilgi ve teklif almak için bizimle iletişime geçin.',
   },
 };
 
-export default function AssistantDetail({ params }: { params: { id: string } }) {
-  const { data: session } = useSession();
-  const [assistant, setAssistant] = useState<AssistantData | null>(null);
+export default async function AssistantDetail({ params }: { params: Promise<{ id: string }> }) {
+  // Await params as required by Next.js 16
+  const { id } = await params;
+  const assistantId = id?.toLowerCase() || '';
+  const displayAssistant = assistantsData[assistantId];
 
-  useEffect(() => {
-    // Webhook'tan veri çekme denemesi
-    const fetchAssistantData = async () => {
-      try {
-        const assistantId = params.id.toLowerCase(); // URL'den gelen ID'yi lowercase yap
-
-        const webhookUrl = 'https://n8n.fokusistatistik.com/fokuswebsiteasistanlar';
-        const response = await fetch(webhookUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            assistantCode: assistantId.toUpperCase(),
-            userEmail: session?.user?.email || null,
-            userName: session?.user?.name || null,
-          }),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setAssistant(data);
-        } else {
-          // Webhook başarısız ise statik veriyi kullan
-          setAssistant(assistantsData[assistantId] || null);
-        }
-      } catch (error) {
-        // Hata durumunda statik veriyi kullan
-        const assistantId = params.id.toLowerCase();
-        setAssistant(assistantsData[assistantId] || null);
-      }
-    };
-
-    fetchAssistantData();
-  }, [params.id, session]);
-
-  const assistantId = params.id.toLowerCase();
-
-  if (!assistant && !assistantsData[assistantId]) {
-    notFound();
-  }
-
-  const displayAssistant = assistant || assistantsData[assistantId];
-
+  // Not found state
   if (!displayAssistant) {
-    notFound();
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center max-w-md mx-auto px-4">
+          <div className="text-6xl mb-4">🤖</div>
+          <h1 className="text-3xl font-bold text-gray-800 mb-4">Asistan Bulunamadı</h1>
+          <p className="text-gray-600 mb-8">
+            Aradığınız sanal asistan mevcut değil veya kaldırılmış olabilir.
+          </p>
+          <Link
+            href="/sanalasistanlar"
+            className="inline-block bg-[#860000] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#a30000] transition"
+          >
+            Tüm Asistanları Görüntüle
+          </Link>
+        </div>
+      </div>
+    );
   }
 
-  const featureKeys = Object.keys(displayAssistant.packages[0].features);
+  const featureKeys = displayAssistant?.packages?.length > 0
+    ? Object.keys(displayAssistant.packages[0].features)
+    : [];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -1583,10 +1587,17 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 items-center">
                 {/* Image */}
                 <div className="flex justify-center">
-                  <div className="text-9xl">{displayAssistant.icon}</div>
+                  <div className="relative w-64 h-64">
+                    <Image
+                      src={displayAssistant.image}
+                      alt={displayAssistant.title}
+                      fill
+                      className="object-contain rounded-[50%]"
+                    />
+                  </div>
                 </div>
 
                 {/* Content */}
@@ -1608,7 +1619,7 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-12 text-center text-gray-800">
+              <h2 className="text-2xl lg:text-3xl font-bold mb-6 text-center text-gray-800">
                 🎯 Neden {displayAssistant.code}?
               </h2>
 
@@ -1631,7 +1642,7 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-12 text-center text-gray-800">
+              <h2 className="text-2xl lg:text-3xl font-bold mb-6 text-center text-gray-800">
                 🧠 {displayAssistant.code} Neler Yapar?
               </h2>
 
@@ -1653,36 +1664,9 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
         {/* Video & QR Codes */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* QR Codes */}
-                <div className="flex flex-col gap-6 justify-center">
-                  <a
-                    href={displayAssistant.requestQrUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
-                  >
-                    <h3 className="font-bold text-xl mb-4 text-gray-800">📋 Talep Et</h3>
-                    <div className="bg-gray-100 w-48 h-48 mx-auto rounded-lg flex items-center justify-center text-gray-400">
-                      QR Kod
-                    </div>
-                  </a>
-
-                  <a
-                    href={displayAssistant.testQrUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
-                  >
-                    <h3 className="font-bold text-xl mb-4 text-gray-800">🧪 Test Et</h3>
-                    <div className="bg-gray-100 w-48 h-48 mx-auto rounded-lg flex items-center justify-center text-gray-400">
-                      QR Kod
-                    </div>
-                  </a>
-                </div>
-
-                {/* Video */}
+            <div className="max-w-4xl mx-auto">
+              {/* Video */}
+              <div className="lg:w-1/2 mx-auto mb-8">
                 <div className="bg-white rounded-xl overflow-hidden shadow-xl">
                   <div className="relative" style={{ paddingBottom: '56.25%' }}>
                     <iframe
@@ -1695,25 +1679,61 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
                   </div>
                 </div>
               </div>
+
+              {/* QR Codes */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <a
+                  href={displayAssistant.requestQrUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
+                >
+                  <div className="w-40 h-40 mx-auto rounded-lg relative">
+                    <Image
+                      src={displayAssistant.requestQrImage}
+                      alt="Talep Et QR Kod"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </a>
+
+                <a
+                  href={displayAssistant.testQrUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
+                >
+                  <div className="w-40 h-40 mx-auto rounded-lg relative">
+                    <Image
+                      src={displayAssistant.testQrImage}
+                      alt="Test Et QR Kod"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Pricing Table */}
-        <section className="py-16 bg-white">
+        {displayAssistant?.packages && displayAssistant.packages.length > 0 && (
+        <section className="py-12 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-12 text-center text-gray-800">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl lg:text-3xl font-bold mb-6 text-center text-gray-800">
                 {displayAssistant.code} {displayAssistant.title.toUpperCase()} - PAKETLERİ
               </h2>
 
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse bg-white shadow-xl rounded-lg overflow-hidden">
+                <table className="w-full border-collapse bg-white shadow-md text-sm rounded-lg overflow-hidden">
                   <thead>
                     <tr className="bg-[#860000] text-white">
-                      <th className="p-4 text-left font-bold">ÖZELLİK</th>
+                      <th className="p-2 text-left font-semibold text-xs">ÖZELLİK</th>
                       {displayAssistant.packages.map((pkg) => (
-                        <th key={pkg.name} className="p-4 text-center font-bold">
+                        <th key={pkg.name} className="p-2 text-center font-semibold text-xs">
                           {pkg.name}
                         </th>
                       ))}
@@ -1725,18 +1745,18 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
                         key={featureKey}
                         className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}
                       >
-                        <td className="p-4 border-b border-gray-200 font-medium text-gray-700">
+                        <td className="p-2 border-b text-xs border-gray-200 font-medium text-gray-700">
                           {featureKey}
                         </td>
                         {displayAssistant.packages.map((pkg) => {
                           const value = pkg.features[featureKey];
                           return (
-                            <td key={pkg.name} className="p-4 border-b border-gray-200 text-center">
+                            <td key={pkg.name} className="p-2 border-b border-gray-200 text-center text-xs">
                               {typeof value === 'boolean' ? (
                                 value ? (
-                                  <CheckCircle2 className="w-6 h-6 text-green-600 mx-auto" />
+                                  <CheckCircle2 className="w-4 h-4 text-green-600 mx-auto" />
                                 ) : (
-                                  <X className="w-6 h-6 text-red-600 mx-auto" />
+                                  <X className="w-4 h-4 text-red-600 mx-auto" />
                                 )
                               ) : (
                                 <span className="text-gray-700">{value}</span>
@@ -1749,9 +1769,9 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
 
                     {/* Monthly Price Row */}
                     <tr className="bg-[#ffc107]">
-                      <td className="p-4 font-bold text-gray-800">Aylık Plan*</td>
+                      <td className="p-2 text-xs font-bold text-gray-800">Aylık Plan*</td>
                       {displayAssistant.packages.map((pkg) => (
-                        <td key={pkg.name} className="p-4 text-center font-bold text-gray-800">
+                        <td key={pkg.name} className="p-2 text-xs text-center font-bold text-gray-800">
                           {pkg.monthlyPrice}
                         </td>
                       ))}
@@ -1759,9 +1779,9 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
 
                     {/* Yearly Price Row */}
                     <tr className="bg-[#ffc107]">
-                      <td className="p-4 font-bold text-gray-800">Yıllık Plan*</td>
+                      <td className="p-2 text-xs font-bold text-gray-800">Yıllık Plan*</td>
                       {displayAssistant.packages.map((pkg) => (
-                        <td key={pkg.name} className="p-4 text-center font-bold text-gray-800">
+                        <td key={pkg.name} className="p-2 text-xs text-center font-bold text-gray-800">
                           {pkg.yearlyPrice}
                         </td>
                       ))}
@@ -1770,12 +1790,27 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
                 </table>
               </div>
 
-              <div className="mt-8 bg-gray-50 rounded-xl p-6 border border-gray-200">
+              <div className="mt-4 bg-white rounded-xl p-4 text-xs border border-gray-200">
                 <p className="text-gray-700 leading-relaxed">{displayAssistant.priceNote}</p>
               </div>
             </div>
           </div>
         </section>
+        )}
+
+        {/* Price Note for non-packaged assistants */}
+        {displayAssistant?.packages && displayAssistant.packages.length === 0 && displayAssistant.priceNote && (
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gray-50 rounded-xl p-8 border border-gray-200">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Özel Fiyatlandırma</h2>
+                <p className="text-gray-700 leading-relaxed text-center">{displayAssistant.priceNote}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        )}
       </main>
 
       

@@ -75,7 +75,7 @@ export default function NotFound() {
             </Link>
             <span className="text-gray-300">•</span>
             <Link
-              href="/demo"
+              href="https://asistan.fokusistatistik.com/ucretsiz.html"
               className="text-sm text-gray-600 hover:text-[#860000] transition-colors"
             >
               Demo
@@ -93,7 +93,7 @@ export default function NotFound() {
         {/* Help Text */}
         <div className="mt-8 p-4 bg-blue-50 rounded-lg">
           <p className="text-sm text-gray-700">
-            💡 Yardıma mı ihtiyacınız var?{' '}
+            🎯 Yardıma mı ihtiyacınız var?{' '}
             <Link href="/iletisim" className="text-[#860000] hover:underline font-semibold">
               Bizimle iletişime geçin
             </Link>

@@ -8,60 +8,60 @@ export default function Footer() {
     {
       name: 'Instagram',
       url: 'https://www.instagram.com/fokusistatistik/',
-      icon: 'https://www.fokusistatistik.com/assets/img/instagram.png',
+      icon: 'https://static.fokusistatistik.com/resimler/instagram.png',
     },
     {
       name: 'E-posta',
       url: 'mailto:bilgi@fokusistatistik.com',
-      icon: 'https://www.fokusistatistik.com/assets/img/eposta.png',
+      icon: 'https://static.fokusistatistik.com/resimler/eposta.png',
     },
     {
       name: 'Facebook',
       url: 'https://www.facebook.com/profile.php?id=61577855105088',
-      icon: 'https://www.fokusistatistik.com/assets/img/facebook.png',
+      icon: 'https://static.fokusistatistik.com/resimler/facebook.png',
     },
     {
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/company/fokusistatistik',
-      icon: 'https://www.fokusistatistik.com/assets/img/ln.png',
+      icon: 'https://static.fokusistatistik.com/resimler/ln.png',
     },
     {
       name: 'Twitter',
       url: 'https://twitter.com/fokusistatistik',
-      icon: 'https://www.fokusistatistik.com/assets/img/twitter.png',
+      icon: 'https://static.fokusistatistik.com/resimler/twitter.png',
     },
     {
       name: 'Telegram',
       url: 'https://t.me/fokusistatistikbot',
-      icon: 'https://www.fokusistatistik.com/assets/img/telegram.png',
+      icon: 'https://static.fokusistatistik.com/resimler/telegram.png',
     },
     {
       name: 'Asistanlar',
       url: 'https://asistan.fokusistatistik.com/',
-      icon: 'https://www.fokusistatistik.com/assets/img/asistanfokus.png',
+      icon: 'https://static.fokusistatistik.com/resimler/asistanfokus.png',
     },
     {
       name: 'WhatsApp',
       url: 'https://wa.me/905354040712?text=merhaba%20fokusistatistik',
-      icon: 'https://www.fokusistatistik.com/assets/img/whatsapp.png',
+      icon: 'https://static.fokusistatistik.com/resimler/whatsapp.png',
     },
     {
       name: 'YouTube',
       url: 'https://www.youtube.com/@fokusistatistik',
-      icon: 'https://www.fokusistatistik.com/assets/img/youtube.png',
+      icon: 'https://static.fokusistatistik.com/resimler/youtube.png',
     },
     {
       name: 'GitHub',
       url: 'https://github.com/fokusistatistik',
-      icon: 'https://www.fokusistatistik.com/assets/img/github.png',
+      icon: 'https://static.fokusistatistik.com/resimler/github.png',
     },
   ];
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black text-white py-12 mt-20">
+    <footer className="bg-gradient-to-b from-gray-900 to-black text-white py-6 mt-10">
       <div className="container mx-auto px-4">
         {/* Social Icons */}
-        <div className="flex flex-wrap justify-center items-center gap-6 mb-8">
+        <div className="flex flex-wrap justify-center items-center gap-4 mb-4">
           {socialLinks.map((social) => (
             <a
               key={social.name}
@@ -69,22 +69,22 @@ export default function Footer() {
               title={social.name}
               target={social.name !== 'E-posta' ? '_blank' : undefined}
               rel={social.name !== 'E-posta' ? 'noopener noreferrer' : undefined}
-              className="hover:scale-110 transition-transform duration-200"
+              className="hover:scale-125 transition-all duration-300 ease-out"
             >
               <Image
                 src={social.icon}
                 alt={social.name}
-                width={26}
-                height={26}
-                className="opacity-80 hover:opacity-100 transition"
+                width={22}
+                height={22}
+                className="opacity-80 hover:opacity-100 transition md:w-[27px] md:h-[27px]"
               />
             </a>
           ))}
         </div>
 
         {/* Quick Links */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-center md:text-left">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-4 max-w-5xl mx-auto px-6">
+          <div className="text-center md:text-left">
             <h3 className="font-bold text-[#ffc107] mb-3">Kurumsal</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -103,19 +103,14 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/yapay-zeka-danismanligi" className="hover:text-[#ffc107] transition">
-                  YZ Danışmanlığı
-                </Link>
-              </li>
-              <li>
-                <Link href="/iletisim" className="hover:text-[#ffc107] transition">
-                  İletişim
-                </Link>
+                <a href="https://asistan.fokusistatistik.com/kartvizit.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffc107] transition">
+                  Dijital Kartvizit
+                </a>
               </li>
             </ul>
           </div>
 
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="font-bold text-[#ffc107] mb-3">Hizmetler</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -134,45 +129,19 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/demo" className="hover:text-[#ffc107] transition">
+                <a href="https://asistan.fokusistatistik.com/ucretsiz.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffc107] transition">
                   Demo Talep Et
-                </Link>
+                </a>
               </li>
-              <li>
-                <Link href="/analiz-formu" className="hover:text-[#ffc107] transition">
-                  Ücretsiz Analiz
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-[#ffc107] mb-3">Destek</h3>
-            <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/sss" className="hover:text-[#ffc107] transition">
                   S.S.S.
                 </Link>
               </li>
-              <li>
-                <Link href="/giris" className="hover:text-[#ffc107] transition">
-                  Giriş Yap
-                </Link>
-              </li>
-              <li>
-                <Link href="/profil" className="hover:text-[#ffc107] transition">
-                  Profilim
-                </Link>
-              </li>
-              <li>
-                <Link href="/siparisler" className="hover:text-[#ffc107] transition">
-                  Siparişlerim
-                </Link>
-              </li>
             </ul>
           </div>
 
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="font-bold text-[#ffc107] mb-3">Yasal</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -200,7 +169,7 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <hr className="border-gray-700 mb-6" />
+        <hr className="border-gray-700 mb-3" />
 
         {/* Copyright */}
         <div className="text-center text-sm text-gray-400">
@@ -209,12 +178,12 @@ export default function Footer() {
             <span className="mx-3">|</span>
             Tüm Hakları Saklıdır
           </p>
-          <p className="mt-2 text-xs">
+          <p className="mt-1 text-xs">
             Yapay Zeka ve Veri Bilimi ile İş Süreçlerinizi Optimize Edin
           </p>
-          <div className="flex flex-wrap justify-center gap-6 mt-4 text-xs">
+          <div className="flex flex-wrap justify-center gap-4 mt-2 text-xs">
             <span>🎯 22+ Yıllık Deneyim</span>
-            <span>🤖 9 Sanal Asistan</span>
+            <span>🤖 9 Dijital İşçi</span>
             <span>⏰ 7/24 Destek</span>
           </div>
         </div>

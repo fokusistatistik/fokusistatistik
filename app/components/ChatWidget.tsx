@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
 
 export default function ChatWidget() {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -10,7 +9,15 @@ export default function ChatWidget() {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showQuickReplies, setShowQuickReplies] = useState(true);
+  const [sessionId, setSessionId] = useState<string>('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const quickReplies = [
+    'İşletmeme Yapay Zekayı nasıl entegre ederim?',
+    'Ücretsiz Danışmanlık almak istiyorum',
+    'FOKUS Ekosistemi nedir?'
+  ];
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -20,18 +27,29 @@ export default function ChatWidget() {
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => {
+    // Generate unique session ID on component mount
+    const generateSessionId = () => {
+      const timestamp = Date.now();
+      const random = Math.random().toString(36).substring(2, 15);
+      return `web_${timestamp}_${random}`;
+    };
+    setSessionId(generateSessionId());
+  }, []);
+
   const toggleChat = () => {
     setIsChatOpen(!isChatOpen);
   };
 
-  const sendMessage = async () => {
-    const userMessage = inputValue.trim();
+  const sendMessage = async (message?: string) => {
+    const userMessage = message || inputValue.trim();
     if (!userMessage) return;
 
     // Kullanıcı mesajını ekle
     setMessages(prev => [...prev, { text: userMessage, sender: 'user' }]);
     setInputValue('');
     setIsLoading(true);
+    setShowQuickReplies(false);
 
     try {
       const response = await fetch('https://n8n.fokusistatistik.com/webhook/fokus216clasic250001', {
@@ -39,7 +57,11 @@ export default function ChatWidget() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ message: userMessage })
+        body: JSON.stringify({
+          message: userMessage,
+          kaynak: "web",
+          user_id: sessionId
+        })
       });
 
       const data = await response.json();
@@ -95,17 +117,48 @@ export default function ChatWidget() {
           box-shadow: 0 6px 16px rgba(134, 0, 0, 0.4);
         }
 
-        .chat-window {
+        .chat-tooltip {
+          position: absolute;
+          bottom: 70px;
+          right: 0;
+          background: white;
+          color: #333;
+          padding: 8px 16px;
+          border-radius: 12px;
+          font-size: 13px;
+          font-weight: 500;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+          white-space: nowrap;
+          animation: fadeIn 0.3s ease;
+          pointer-events: none;
+        }
+
+        .chat-tooltip::after {
+          content: '';
+          position: absolute;
+          bottom: -6px;
+          right: 20px;
+          width: 12px;
+          height: 12px;
+          background: white;
+          transform: rotate(45deg);
+          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-widget .chat-window {
           position: absolute;
           bottom: 80px;
           right: 0;
-          width: 380px;
-          height: 550px;
+          width: 380px !important;
+          min-width: 380px;
+          max-width: 380px;
+          height: 550px !important;
+          min-height: 550px;
           background: white;
           border-radius: 16px;
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-          display: flex;
-          flex-direction: column;
+          display: flex !important;
+          flex-direction: column !important;
           overflow: hidden;
           animation: slideUp 0.3s ease;
         }
@@ -121,13 +174,14 @@ export default function ChatWidget() {
           }
         }
 
-        .chat-header {
+        .chat-widget .chat-header {
           background: linear-gradient(135deg, #860000 0%, #b30000 100%);
           color: white;
           padding: 20px;
           display: flex;
           align-items: center;
           gap: 12px;
+          flex-shrink: 0;
         }
 
         .chat-header-avatar {
@@ -154,11 +208,12 @@ export default function ChatWidget() {
           opacity: 0.9;
         }
 
-        .chat-messages {
+        .chat-widget .chat-messages {
           flex: 1;
           padding: 20px;
           overflow-y: auto;
           background: #f8f9fa;
+          width: 100%;
         }
 
         .chat-messages::-webkit-scrollbar {
@@ -216,12 +271,14 @@ export default function ChatWidget() {
           border-bottom-right-radius: 4px;
         }
 
-        .chat-input-area {
+        .chat-widget .chat-input-area {
           padding: 16px;
           background: white;
           border-top: 1px solid #e9ecef;
           display: flex;
           gap: 12px;
+          flex-shrink: 0;
+          width: 100%;
         }
 
         .chat-input {
@@ -295,10 +352,39 @@ export default function ChatWidget() {
           }
         }
 
+        .quick-replies {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          padding: 0 16px 16px 16px;
+        }
+
+        .quick-reply-button {
+          background: white;
+          border: 1px solid #860000;
+          color: #860000;
+          padding: 10px 16px;
+          border-radius: 20px;
+          cursor: pointer;
+          font-size: 13px;
+          text-align: left;
+          transition: all 0.2s ease;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .quick-reply-button:hover {
+          background: #860000;
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(134, 0, 0, 0.2);
+        }
+
         @media (max-width: 480px) {
-          .chat-window {
-            width: calc(100vw - 32px);
-            height: calc(100vh - 120px);
+          .chat-widget .chat-window {
+            width: calc(100vw - 32px) !important;
+            min-width: calc(100vw - 32px);
+            max-width: calc(100vw - 32px);
+            height: calc(100vh - 120px) !important;
             max-height: 600px;
           }
         }
@@ -313,26 +399,27 @@ export default function ChatWidget() {
           {isChatOpen ? (
             '✕'
           ) : (
-            <Image
-              src="https://www.fokusistatistik.com/assets/img/fokus216kare.png"
-              alt="FOKUS216"
-              width={50}
-              height={50}
-              className="rounded-full"
-            />
+            <div className="relative">
+              <img
+                src="https://static.fokusistatistik.com/resimler/fokus216kare.png"
+                alt="FOKUS216"
+                className="w-12 h-12 rounded-full object-cover"
+              />
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
+            </div>
           )}
         </button>
 
         {isChatOpen && (
           <div className="chat-window">
             <div className="chat-header">
-              <div className="chat-header-avatar">
-                <Image
-                  src="https://www.fokusistatistik.com/assets/img/fokus216kare.png"
+              <div className="relative">
+                <img
+                  src="https://static.fokusistatistik.com/resimler/fokus216kare.png"
                   alt="FOKUS216"
-                  fill
-                  className="object-cover"
+                  className="w-12 h-12 rounded-full object-cover border-2 border-white"
                 />
+                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
               </div>
               <div className="chat-header-info">
                 <h3>FOKUS216</h3>
@@ -362,6 +449,20 @@ export default function ChatWidget() {
               <div ref={messagesEndRef} />
             </div>
 
+            {showQuickReplies && messages.length === 1 && (
+              <div className="quick-replies">
+                {quickReplies.map((reply, index) => (
+                  <button
+                    key={index}
+                    className="quick-reply-button"
+                    onClick={() => sendMessage(reply)}
+                  >
+                    {reply}
+                  </button>
+                ))}
+              </div>
+            )}
+
             <div className="chat-input-area">
               <input
                 type="text"
@@ -374,7 +475,7 @@ export default function ChatWidget() {
               />
               <button
                 className="send-button"
-                onClick={sendMessage}
+                onClick={() => sendMessage()}
                 disabled={isLoading || !inputValue.trim()}
                 aria-label="Gönder"
               >

@@ -24,81 +24,81 @@ const assistants: Assistant[] = [
     code: 'FOKUS001',
     name: 'Yönetici Sanal Asistanı',
     title: 'Yönetici Asistanı',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus001.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus001.png',
     shortDescription: 'Stok yönetimi, sipariş takibi ve müşteri analiziyle e-ticaret süreçlerinizi optimize eder.',
-    color: 'from-blue-500 to-blue-700'
+    color: 'from-[#860000] to-[#a30000]'
   },
   {
     id: 'fokus216',
     code: 'FOKUS216',
     name: 'Müşteri Hizmetleri Sanal Asistanı',
     title: 'Müşteri Hizmetleri',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus216.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus216.png',
     shortDescription: 'Müşteri sorularına anında yanıt verir, destek taleplerini yönetir ve memnuniyeti artırır.',
-    color: 'from-green-500 to-green-700'
+    color: 'from-[#6d0000] to-[#860000]'
   },
   {
     id: 'fokus314',
     code: 'FOKUS314',
     name: 'Veri Analisti Sanal Asistanı',
     title: 'Veri Analisti',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus314.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus314.png',
     shortDescription: 'Verilerinizi analiz eder, görselleştirir ve stratejik kararlar için raporlar sunar.',
-    color: 'from-purple-500 to-purple-700'
+    color: 'from-[#a30000] to-[#b30000]'
   },
   {
     id: 'fokus520',
     code: 'FOKUS520',
     name: 'Pazarlama Sanal Asistanı',
     title: 'Pazarlama & Lead Takip',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus520.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus520.png',
     shortDescription: 'Kampanya yönetimi, lead takibi ve müşteri skorlamasıyla pazarlama süreçlerinizi otomatikleştirir.',
-    color: 'from-orange-500 to-orange-700'
+    color: 'from-[#860000] to-[#6d0000]'
   },
   {
     id: 'fokus618',
     code: 'FOKUS618',
     name: 'Finans Sanal Asistanı',
     title: 'Finans & Fatura',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus618.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus618.png',
     shortDescription: 'Fatura işlemleri, gelir-gider takibi ve ödeme hatırlatmalarını otomatik yönetir.',
-    color: 'from-emerald-500 to-emerald-700'
+    color: 'from-[#5a0000] to-[#860000]'
   },
   {
     id: 'fokus707',
     code: 'FOKUS707',
     name: 'İnsan Kaynakları Sanal Asistanı',
     title: 'İnsan Kaynakları',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus707.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus707.png',
     shortDescription: 'Personel takibi, özlük dosyaları, izin yönetimi ve işe alım süreçlerini dijitalleştirir.',
-    color: 'from-cyan-500 to-cyan-700'
+    color: 'from-[#a30000] to-[#860000]'
   },
   {
     id: 'fokus717',
     code: 'FOKUS717',
     name: 'İçerik Tasarımı Sanal Asistanı',
     title: 'İçerik Tasarımı',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus717.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus717.png',
     shortDescription: 'Görsel içerik, video ve sunum oluşturarak yaratıcı süreçlerinizi hızlandırır.',
-    color: 'from-pink-500 to-pink-700'
+    color: 'from-[#6d0000] to-[#a30000]'
   },
   {
     id: 'fokus808',
     code: 'FOKUS808',
     name: 'Sosyal Medya Sanal Asistanı',
     title: 'Sosyal Medya & İletişim',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus808.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus808.png',
     shortDescription: 'Sosyal medya yönetimi, içerik planlaması ve etkileşim analiziyle dijital varlığınızı güçlendirir.',
-    color: 'from-violet-500 to-violet-700'
+    color: 'from-[#b30000] to-[#860000]'
   },
   {
     id: 'fokus999',
     code: 'FOKUS999',
     name: 'Joker Sanal Asistan',
     title: 'Joker Asistan',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus999.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus999.png',
     shortDescription: 'İşletmenizin her alanına uyum sağlayan, özelleştirilebilir dijital destek.',
-    color: 'from-red-500 to-red-700'
+    color: 'from-[#860000] to-[#b30000]'
   }
 ];
 
@@ -197,27 +197,27 @@ export default function Ekibimiz() {
               <div className="w-20 h-20 bg-[#860000] rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
                 1
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">İhtiyacınızı Belirleyin</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">İhtiyaçlarınız Tespit Edilir</h3>
               <p className="text-gray-600">
-                9 asistan arasından işletmenizin ihtiyacına uygun olanı seçin
+                İşletmenizin ihtiyaçları analiz edilir ve size özel çözümler belirlenir
               </p>
             </div>
             <div className="text-center">
               <div className="w-20 h-20 bg-[#860000] rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
                 2
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Paketi Seçin</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">En Uygun Asistanlar Seçilir</h3>
               <p className="text-gray-600">
-                Standart, Pro veya Premium paketlerden size uygun olanı tercih edin
+                İhtiyaçlarınıza göre en uygun FOKUS asistanları önerilir ve yapılandırılır
               </p>
             </div>
             <div className="text-center">
               <div className="w-20 h-20 bg-[#860000] rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
                 3
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Hemen Kullanmaya Başlayın</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Asistanlar Uygulanır</h3>
               <p className="text-gray-600">
-                Kurulum ve entegrasyon desteğiyle asistanınız dakikalar içinde aktif
+                Kurulum ve entegrasyon desteğiyle asistanlarınız hızla devreye alınır
               </p>
             </div>
           </div>
@@ -238,12 +238,14 @@ export default function Ekibimiz() {
             >
               Ücretsiz Analiz Talep Edin
             </Link>
-            <Link
-              href="/demo"
+            <a
+              href="https://asistan.fokusistatistik.com/ucretsiz.html"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-8 rounded-lg transition-all"
             >
               Demo Talep Edin
-            </Link>
+            </a>
             <Link
               href="/iletisim"
               className="bg-transparent border-2 border-[#860000] text-[#860000] hover:bg-[#860000] hover:text-white font-semibold py-4 px-8 rounded-lg transition-all"

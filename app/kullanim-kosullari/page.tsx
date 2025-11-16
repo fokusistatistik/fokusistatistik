@@ -86,7 +86,7 @@ export default function KullanimKosullari() {
                 <li>Mesafeli Satış Sözleşmesi kapsamında 1 ay cayma hakkı bulunmaktadır</li>
                 <li>Hizmetin ifasına başlanmışsa cayma hakkı kullanılamaz</li>
                 <li>Dijital içerik teslimi yapıldıysa iade mümkün değildir</li>
-                <li>İade talepleri info@fokusistatistik.com adresine bildirilmelidir</li>
+                <li>İade talepleri bilgi@fokusistatistik.com adresine bildirilmelidir</li>
               </ul>
 
               <h3 className="font-semibold text-gray-900 mt-4 mb-3">Kurumsal Müşteriler:</h3>
@@ -162,7 +162,7 @@ export default function KullanimKosullari() {
               Kullanım Koşulları hakkında sorularınız için bizimle iletişime geçebilirsiniz:
             </p>
             <div className="bg-gray-50 p-6 rounded-lg mt-4">
-              <p><strong>E-posta:</strong> <a href="mailto:info@fokusistatistik.com" className="text-[#860000] hover:underline">info@fokusistatistik.com</a></p>
+              <p><strong>E-posta:</strong> <a href="mailto:bilgi@fokusistatistik.com" className="text-[#860000] hover:underline">bilgi@fokusistatistik.com</a></p>
               <p><strong>Web Sitesi:</strong> <a href="https://www.fokusistatistik.com" className="text-[#860000] hover:underline">www.fokusistatistik.com</a></p>
             </div>
 

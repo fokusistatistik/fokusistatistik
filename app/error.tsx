@@ -86,10 +86,10 @@ export default function Error({
             </Link>
             <span className="hidden sm:inline text-gray-300">•</span>
             <a
-              href="mailto:info@fokusistatistik.com"
+              href="mailto:bilgi@fokusistatistik.com"
               className="text-[#860000] hover:underline font-semibold"
             >
-              ✉️ info@fokusistatistik.com
+              ✉️ bilgi@fokusistatistik.com
             </a>
             <span className="hidden sm:inline text-gray-300">•</span>
             <a

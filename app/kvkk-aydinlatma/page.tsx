@@ -27,7 +27,7 @@ export default function KVKKAydinlatma() {
               <br />
               Web sitesi: <a href="https://www.fokusistatistik.com" className="text-[#860000] hover:underline">www.fokusistatistik.com</a>
               <br />
-              E-posta: <a href="mailto:info@fokusistatistik.com" className="text-[#860000] hover:underline">info@fokusistatistik.com</a>
+              E-posta: <a href="mailto:bilgi@fokusistatistik.com" className="text-[#860000] hover:underline">bilgi@fokusistatistik.com</a>
             </p>
 
             <h2 className="text-2xl font-semibold text-[#860000] mt-8 mb-4">2. Kişisel Verilerin Toplanması</h2>
@@ -88,8 +88,8 @@ export default function KVKKAydinlatma() {
             <h2 className="text-2xl font-semibold text-[#860000] mt-8 mb-4">8. Başvuru</h2>
             <p>
               Bu haklarınızı kullanmak için{' '}
-              <a href="mailto:info@fokusistatistik.com" className="text-[#860000] hover:underline">
-                info@fokusistatistik.com
+              <a href="mailto:bilgi@fokusistatistik.com" className="text-[#860000] hover:underline">
+                bilgi@fokusistatistik.com
               </a>{' '}
               adresine e-posta gönderebilir veya KVKK Başvuru Formu'nu doldurup imzalayarak iletebilirsiniz.
             </p>
