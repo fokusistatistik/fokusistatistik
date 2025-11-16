@@ -32,6 +32,15 @@ const blogPosts = [
     image: 'https://static.fokusistatistik.com/blog/ai-kazanc.jpg',
   },
   {
+    slug: 'whatsapp-musteri-hizmetleri-botu',
+    title: 'WhatsApp Müşteri Hizmetleri Botu: Kurulum, Fiyat ve ROI Rehberi [2025]',
+    excerpt: 'WhatsApp müşteri hizmetleri botu ile 7/24 otomatik destek. Kurulum maliyeti, fiyat karşılaştırması, ROI hesaplama ve gerçek örnekler ile tam rehber.',
+    date: '2025-01-16',
+    readTime: '10 dakika',
+    category: 'Otomasyon',
+    image: 'https://static.fokusistatistik.com/blog/whatsapp-bot.jpg',
+  },
+  {
     slug: 'veri-analizi-rehberi',
     title: 'Veri Analizi Nedir? Başlangıçtan İleri Seviyeye Kapsamlı Rehber',
     excerpt: 'Veri analizinin temellerinden ileri tekniklerine kadar her şey. Araçlar, metodolojiler, örnekler ve başarı için ipuçları.',
