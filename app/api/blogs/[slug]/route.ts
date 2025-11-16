@@ -13,10 +13,10 @@ function checkAuth(request: NextRequest) {
 // GET - Get single blog
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
 
     // Metadata oku
     const data = await fs.readFile(BLOGS_FILE, 'utf-8');
@@ -47,14 +47,14 @@ export async function GET(
 // PUT - Update blog
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   if (!checkAuth(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   try {
-    const { slug } = params;
+    const { slug } = await params;
     const updates = await request.json();
 
     // Metadata oku
@@ -107,14 +107,14 @@ export async function PUT(
 // DELETE - Delete blog
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   if (!checkAuth(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   try {
-    const { slug } = params;
+    const { slug } = await params;
 
     // Metadata oku
     const data = await fs.readFile(BLOGS_FILE, 'utf-8');

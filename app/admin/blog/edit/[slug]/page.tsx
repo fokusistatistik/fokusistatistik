@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import AuthGuard from '@/components/admin/AuthGuard';
 import {
@@ -17,7 +17,8 @@ import {
   Hash,
 } from 'lucide-react';
 
-export default function EditBlogPage({ params }: { params: { slug: string } }) {
+export default function EditBlogPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [fetchLoading, setFetchLoading] = useState(true);
@@ -41,11 +42,11 @@ export default function EditBlogPage({ params }: { params: { slug: string } }) {
 
   useEffect(() => {
     fetchBlog();
-  }, [params.slug]);
+  }, [slug]);
 
   const fetchBlog = async () => {
     try {
-      const response = await fetch(`/api/blogs/${params.slug}`);
+      const response = await fetch(`/api/blogs/${slug}`);
       const data = await response.json();
 
       if (response.ok) {
@@ -93,7 +94,7 @@ export default function EditBlogPage({ params }: { params: { slug: string } }) {
         keywords: formData.keywords.split(',').map((kw) => kw.trim()).filter(Boolean),
       };
 
-      const response = await fetch(`/api/blogs/${params.slug}`, {
+      const response = await fetch(`/api/blogs/${slug}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
