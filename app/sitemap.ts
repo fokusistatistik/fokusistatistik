@@ -151,6 +151,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.85,
     },
+    {
+      url: `${baseUrl}/blog/yapay-zeka-maliyet-dusurme`,
+      lastModified: new Date('2025-01-18'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.85,
+    },
   ];
 
   return [...staticPages, ...assistantPages, ...blogPages];

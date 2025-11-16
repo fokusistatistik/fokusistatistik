@@ -50,6 +50,15 @@ const blogPosts = [
     image: 'https://static.fokusistatistik.com/blog/comparison.jpg',
   },
   {
+    slug: 'yapay-zeka-maliyet-dusurme',
+    title: 'Yapay Zeka ile İşletme Maliyetlerini Düşürme: Dijital İşçi Devrimi',
+    excerpt: 'Dijital işçi ile işletme maliyetlerini %40-80 düşürün. 8 farklı sektörde gerçek örnekler, ROI hesaplamaları ve adım adım maliyet düşürme stratejileri.',
+    date: '2025-01-18',
+    readTime: '14 dakika',
+    category: 'Maliyet Optimizasyonu',
+    image: 'https://static.fokusistatistik.com/blog/cost-reduction.jpg',
+  },
+  {
     slug: 'veri-analizi-rehberi',
     title: 'Veri Analizi Nedir? Başlangıçtan İleri Seviyeye Kapsamlı Rehber',
     excerpt: 'Veri analizinin temellerinden ileri tekniklerine kadar her şey. Araçlar, metodolojiler, örnekler ve başarı için ipuçları.',
