@@ -141,11 +141,11 @@ function SurveyContent() {
               Aldığınız hizmeti nasıl değerlendiriyorsunuz? <span className="text-[#860000] font-bold">*</span>
             </label>
 
-            <div className="flex justify-between bg-gray-50 p-5 rounded-xl border border-gray-200">
+            <div className="flex justify-between bg-gray-50 p-4 md:p-5 rounded-xl border border-gray-200">
               {ratingOptions.map((option) => (
                 <label
                   key={option.value}
-                  className={`flex-1 text-center cursor-pointer p-3 pb-8 rounded-lg transition-all relative ${
+                  className={`flex-1 text-center cursor-pointer px-1 py-2 pb-7 md:p-3 md:pb-8 rounded-lg transition-all relative ${
                     rating === option.value ? 'bg-[#860000]/5' : 'hover:bg-[#860000]/5 hover:-translate-y-0.5'
                   }`}
                 >
@@ -159,12 +159,12 @@ function SurveyContent() {
                     className="absolute bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 cursor-pointer accent-[#860000]"
                     required
                   />
-                  <span className={`block text-3xl md:text-4xl mb-2 transition-transform ${
+                  <span className={`block text-[28px] md:text-[32px] mb-2 transition-transform ${
                     rating === option.value ? 'scale-110' : ''
                   }`}>
                     {option.emoji}
                   </span>
-                  <span className={`block text-xs font-medium ${
+                  <span className={`block text-[11px] md:text-xs font-medium mb-2 ${
                     rating === option.value ? 'text-[#860000] font-semibold' : 'text-gray-600'
                   }`}>
                     {option.text}
@@ -229,9 +229,11 @@ function SurveyContent() {
             rel="noopener noreferrer"
             className="inline-block opacity-75 hover:opacity-100 transition-opacity"
           >
-            <div className="w-6 h-6 bg-[#860000] rounded-full flex items-center justify-center text-white text-xs font-bold">
-              F
-            </div>
+            <img
+              src="https://static.fokusistatistik.com/resimler/fokuslogo.png"
+              alt="FOKUS İstatistik"
+              className="h-6 w-auto"
+            />
           </a>
         </div>
       </div>
