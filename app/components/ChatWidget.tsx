@@ -313,26 +313,31 @@ export default function ChatWidget() {
           {isChatOpen ? (
             '✕'
           ) : (
-            <Image
-              src="https://static.fokusistatistik.com/resimler/fokus216kare.png"
-              alt="FOKUS216"
-              width={50}
-              height={50}
-              className="rounded-full"
-            />
+            <div className="relative">
+              <Image
+                src="https://static.fokusistatistik.com/resimler/fokus216kare.png"
+                alt="FOKUS216"
+                width={48}
+                height={48}
+                className="rounded-full"
+              />
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
+            </div>
           )}
         </button>
 
         {isChatOpen && (
           <div className="chat-window">
             <div className="chat-header">
-              <div className="chat-header-avatar">
+              <div className="relative">
                 <Image
                   src="https://static.fokusistatistik.com/resimler/fokus216kare.png"
                   alt="FOKUS216"
-                  fill
-                  className="object-cover"
+                  width={48}
+                  height={48}
+                  className="rounded-full border-2 border-white"
                 />
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
               </div>
               <div className="chat-header-info">
                 <h3>FOKUS216</h3>
