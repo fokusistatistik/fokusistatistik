@@ -5,6 +5,10 @@ import type { Metadata } from 'next';
 import fs from 'fs/promises';
 import path from 'path';
 
+// Force dynamic rendering so new blogs appear immediately
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface Blog {
   id: string;
   slug: string;
