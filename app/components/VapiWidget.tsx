@@ -1,27 +1,63 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Phone, X, Volume2 } from 'lucide-react';
+import { Phone, X, Volume2, PhoneOff } from 'lucide-react';
+import Vapi from '@vapi-ai/web';
 
 export default function VapiWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isVapiModalOpen, setIsVapiModalOpen] = useState(false);
+  const [isCallActive, setIsCallActive] = useState(false);
+  const [callStatus, setCallStatus] = useState<string>('');
   const [micPermission, setMicPermission] = useState<'unknown' | 'granted' | 'denied'>('unknown');
+  const vapiRef = useRef<any>(null);
+
+  // Vapi Configuration
+  const VAPI_PUBLIC_KEY = '803df5c1-1a3a-4c20-a663-aaec4b67293f';
+  const ASSISTANT_ID = '0f0f02b2-7d79-42fe-b1e7-e5dd12be1262';
 
   useEffect(() => {
     checkMicrophonePermission();
 
-    // ESC tuşu ile modal kapatma
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isVapiModalOpen) {
-        closeVapiModal();
+    // Vapi instance oluştur
+    if (!vapiRef.current) {
+      vapiRef.current = new Vapi(VAPI_PUBLIC_KEY);
+
+      // Event listeners
+      vapiRef.current.on('call-start', () => {
+        console.log('Call started');
+        setIsCallActive(true);
+        setCallStatus('Bağlantı kuruldu');
+      });
+
+      vapiRef.current.on('call-end', () => {
+        console.log('Call ended');
+        setIsCallActive(false);
+        setCallStatus('');
+      });
+
+      vapiRef.current.on('speech-start', () => {
+        setCallStatus('Konuşuyor...');
+      });
+
+      vapiRef.current.on('speech-end', () => {
+        setCallStatus('Dinliyor...');
+      });
+
+      vapiRef.current.on('error', (error: any) => {
+        console.error('Vapi error:', error);
+        setCallStatus('Hata oluştu');
+        setIsCallActive(false);
+      });
+    }
+
+    // Cleanup
+    return () => {
+      if (vapiRef.current && isCallActive) {
+        vapiRef.current.stop();
       }
     };
-
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [isVapiModalOpen]);
+  }, []);
 
   const checkMicrophonePermission = async () => {
     try {
@@ -59,24 +95,33 @@ export default function VapiWidget() {
     }
   };
 
-  const openVapiModal = async () => {
+  const startCall = async () => {
+    if (!vapiRef.current) {
+      alert('Vapi başlatılamadı. Lütfen sayfayı yenileyin.');
+      return;
+    }
+
     if (micPermission !== 'granted') {
-      const userConfirm = confirm('Sesli asistan için mikrofon izni gerekli. İzin vermek ister misiniz?');
-
-      if (!userConfirm) return;
-
       const permissionGranted = await requestMicrophonePermission();
       if (!permissionGranted) return;
     }
 
-    setIsVapiModalOpen(true);
-    setIsOpen(false);
-    document.body.style.overflow = 'hidden';
+    try {
+      setCallStatus('Bağlanıyor...');
+      await vapiRef.current.start(ASSISTANT_ID);
+    } catch (error: any) {
+      console.error('Call start error:', error);
+      alert('Arama başlatılamadı: ' + (error.message || 'Bilinmeyen hata'));
+      setCallStatus('');
+    }
   };
 
-  const closeVapiModal = () => {
-    setIsVapiModalOpen(false);
-    document.body.style.overflow = 'auto';
+  const endCall = () => {
+    if (vapiRef.current) {
+      vapiRef.current.stop();
+      setIsCallActive(false);
+      setCallStatus('');
+    }
   };
 
   const toggleWidget = () => {
@@ -175,23 +220,47 @@ export default function VapiWidget() {
               </div>
             </div>
 
-            {/* Vapi Integration Placeholder */}
+            {/* Vapi Call Controls */}
             <div className="bg-gradient-to-br from-[#860000] to-[#a30000] rounded-xl p-6 text-white text-center">
-              <Volume2 className="w-12 h-12 mx-auto mb-3 animate-pulse" />
-              <h4 className="font-semibold mb-2">Sesli Görüşme Başlat</h4>
-              <p className="text-sm text-white/90 mb-4">
-                Mikrofon izni vererek sesli asistanımızla konuşabilirsiniz
-              </p>
-              <button
-                onClick={openVapiModal}
-                className="bg-white text-[#860000] px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition shadow-md w-full flex items-center justify-center gap-2"
-              >
-                <Phone className="w-5 h-5" />
-                <span>Görüşmeyi Başlat</span>
-              </button>
-              <p className="text-xs text-white/70 mt-3">
-                Vapi teknolojisi ile güçlendirilmiştir
-              </p>
+              {!isCallActive ? (
+                <>
+                  <Volume2 className="w-12 h-12 mx-auto mb-3 animate-pulse" />
+                  <h4 className="font-semibold mb-2">Sesli Görüşme Başlat</h4>
+                  <p className="text-sm text-white/90 mb-4">
+                    Mikrofon izni vererek sesli asistanımızla konuşabilirsiniz
+                  </p>
+                  <button
+                    onClick={startCall}
+                    className="bg-white text-[#860000] px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition shadow-md w-full flex items-center justify-center gap-2"
+                  >
+                    <Phone className="w-5 h-5" />
+                    <span>Görüşmeyi Başlat</span>
+                  </button>
+                  <p className="text-xs text-white/70 mt-3">
+                    Vapi teknolojisi ile güçlendirilmiştir
+                  </p>
+                </>
+              ) : (
+                <>
+                  <div className="relative">
+                    <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center">
+                      <Volume2 className="w-12 h-12 animate-pulse" />
+                    </div>
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full border-4 border-white/30 animate-ping"></div>
+                  </div>
+                  <h4 className="font-semibold mb-2 text-lg">Görüşme Aktif</h4>
+                  {callStatus && (
+                    <p className="text-sm text-white/90 mb-4">{callStatus}</p>
+                  )}
+                  <button
+                    onClick={endCall}
+                    className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition shadow-md w-full flex items-center justify-center gap-2"
+                  >
+                    <PhoneOff className="w-5 h-5" />
+                    <span>Görüşmeyi Sonlandır</span>
+                  </button>
+                </>
+              )}
             </div>
 
             {/* Footer */}
@@ -207,62 +276,6 @@ export default function VapiWidget() {
         </div>
       )}
 
-      {/* VAPI Modal */}
-      {isVapiModalOpen && (
-        <div
-          className="fixed inset-0 bg-black/70 z-[10000] flex items-center justify-center p-4"
-          onClick={closeVapiModal}
-        >
-          <div
-            className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Header */}
-            <div className="bg-gradient-to-r from-[#860000] to-[#a30000] text-white p-4 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="relative">
-                  <Image
-                    src="https://static.fokusistatistik.com/asistanlar/fokus520.png"
-                    alt="FOKUS520"
-                    width={40}
-                    height={40}
-                    className="rounded-full border-2 border-white"
-                  />
-                  <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg">FOKUS520 Sesli Asistan</h3>
-                  <p className="text-xs text-white/90">Pazarlama & Lead Takip</p>
-                </div>
-              </div>
-              <button
-                onClick={closeVapiModal}
-                className="hover:bg-white/20 rounded-full p-2 transition"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-
-            {/* VAPI iframe */}
-            <div className="relative w-full h-[600px]">
-              <iframe
-                src="https://vapi.ai?demo=true&shareKey=803df5c1-1a3a-4c20-a663-aaec4b67293f&assistantId=0f0f02b2-7d79-42fe-b1e7-e5dd12be1262"
-                className="w-full h-full border-0"
-                allow="microphone; autoplay; camera"
-                allowFullScreen
-                title="FOKUS520 Sesli Asistan"
-              />
-            </div>
-
-            {/* Modal Footer */}
-            <div className="bg-gray-50 p-4 border-t border-gray-200 text-center">
-              <p className="text-sm text-gray-600">
-                🎯 Mikrofon izni verdiğinizden emin olun. ESC tuşu ile kapatabilirsiniz.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
 
       <style jsx>{`
         @keyframes slideInUp {
