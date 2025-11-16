@@ -1,1 +1,39 @@
-[]
+[
+  {
+    "id": "blog-001-yapay-zeka-isletme-verimliligi",
+    "slug": "yapay-zeka-isletme-verimliligi",
+    "title": "2025'te Yapay Zeka ile İşletme Verimliliği: Dijital Dönüşüm Rehberi",
+    "description": "Yapay zeka teknolojileri artık sadece büyük şirketlerin değil, her ölçekteki işletmenin erişebileceği dijital dönüşüm araçları haline geldi. Bu rehberde, yapay zeka destekli sanal asistanlar ve dijital işçiler kullanarak işletme süreçlerinizi nasıl optimize edebileceğinizi, verimliliğinizi nasıl artırabileceğinizi keşfedeceksiniz.",
+    "coverImage": "https://static.fokusistatistik.com/logolar/fokuslogo1.png",
+    "tags": [
+      "Yapay Zeka",
+      "Dijital Dönüşüm",
+      "İşletme Verimliliği",
+      "Sanal Asistan",
+      "Dijital İşçi",
+      "Otomasyon",
+      "İş Süreçleri",
+      "Müşteri Deneyimi"
+    ],
+    "keywords": [
+      "yapay zeka",
+      "dijital dönüşüm",
+      "işletme verimliliği",
+      "sanal asistan",
+      "dijital işçi",
+      "iş süreci otomasyonu",
+      "müşteri deneyimi",
+      "veri analizi",
+      "pazarlama otomasyonu",
+      "içerik stratejisi",
+      "öngörülü bakım",
+      "AI transformation",
+      "business efficiency"
+    ],
+    "category": "Dijital Dönüşüm",
+    "publishedDate": "2025-01-19",
+    "updatedDate": "2025-01-19",
+    "author": "FOKUS İstatistik",
+    "readTime": "18 dakika"
+  }
+]

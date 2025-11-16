@@ -39,72 +39,8 @@ interface Blog {
 }
 
 async function getBlogs(): Promise<Blog[]> {
-  // Statik blog listesi
-  const staticBlogs: Blog[] = [
-    {
-      slug: 'yapay-zeka-ile-kazanc',
-      title: '2025\'te Yapay Zeka ile Kazanç: İşletmeler İçin 7 Kanıtlanmış Yöntem',
-      description: 'Yapay zeka teknolojileri ile işletmenizin karlılığını nasıl artırabilirsiniz? Maliyet tasarrufu, gelir artışı ve verimlilik kazanımları için detaylı rehber.',
-      date: '2025-01-15',
-      readTime: '8 dakika',
-      category: 'Yapay Zeka',
-      image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
-    },
-    {
-      slug: 'whatsapp-musteri-hizmetleri-botu',
-      title: 'WhatsApp Müşteri Hizmetleri Botu: Kurulum, Fiyat ve ROI Rehberi [2025]',
-      description: 'WhatsApp müşteri hizmetleri botu ile 7/24 otomatik destek. Kurulum maliyeti, fiyat karşılaştırması, ROI hesaplama ve gerçek örnekler ile tam rehber.',
-      date: '2025-01-16',
-      readTime: '10 dakika',
-      category: 'Otomasyon',
-      image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
-    },
-    {
-      slug: 'sanal-asistan-vs-gercek-personel',
-      title: 'Sanal Asistan vs Gerçek Personel: 12 Aylık Maliyet Karşılaştırması [2025]',
-      description: 'Sanal asistan mı yoksa gerçek personel mi? Detaylı maliyet analizi, verimlilik karşılaştırması ve işletmeniz için doğru seçim rehberi. Gerçek rakamlarla.',
-      date: '2025-01-17',
-      readTime: '12 dakika',
-      category: 'Karşılaştırma',
-      image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
-    },
-    {
-      slug: 'yapay-zeka-maliyet-dusurme',
-      title: 'Yapay Zeka ile İşletme Maliyetlerini Düşürme: Dijital İşçi Devrimi',
-      description: 'Dijital işçi ile işletme maliyetlerini %40-80 düşürün. 8 farklı sektörde gerçek örnekler, ROI hesaplamaları ve adım adım maliyet düşürme stratejileri.',
-      date: '2025-01-18',
-      readTime: '14 dakika',
-      category: 'Maliyet Optimizasyonu',
-      image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
-    },
-    {
-      slug: 'veri-analizi-rehberi',
-      title: 'Veri Analizi Nedir? Başlangıçtan İleri Seviyeye Kapsamlı Rehber',
-      description: 'Veri analizinin temellerinden ileri tekniklerine kadar her şey. Araçlar, metodolojiler, örnekler ve başarı için ipuçları.',
-      date: '2025-01-14',
-      readTime: '10 dakika',
-      category: 'Veri Analizi',
-      image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
-    },
-    {
-      slug: 'chatgpt-is-surecleri',
-      title: 'ChatGPT\'yi İş Süreçlerine Entegre Etme: Pratik Rehber ve Örnekler',
-      description: 'ChatGPT ve benzeri AI araçlarını iş süreçlerinize nasıl entegre edersiniz? Müşteri hizmetlerinden içerik üretimine 15+ kullanım senaryosu.',
-      date: '2025-01-13',
-      readTime: '12 dakika',
-      category: 'ChatGPT',
-      image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
-    },
-    {
-      slug: 'kucuk-isletmeler-icin-yapay-zeka',
-      title: 'Küçük İşletmeler İçin Uygun Fiyatlı Yapay Zeka Çözümleri',
-      description: 'Sınırlı bütçeyle yapay zekadan nasıl faydalanılır? Küçük ve orta ölçekli işletmeler için maliyet-etkin AI stratejileri ve araçlar.',
-      date: '2025-01-12',
-      readTime: '7 dakika',
-      category: 'KOBİ',
-      image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
-    },
-  ];
+  // Statik blog listesi - şablon bloglar kaldırıldı
+  const staticBlogs: Blog[] = [];
 
   // Dinamik blogları dosyadan oku
   try {
