@@ -129,6 +129,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/blog" className="hover:text-[#ffc107] transition">
+                  Blog & Rehberler
+                </Link>
+              </li>
+              <li>
                 <a href="https://asistan.fokusistatistik.com/ucretsiz.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffc107] transition">
                   Demo Talep Et
                 </a>

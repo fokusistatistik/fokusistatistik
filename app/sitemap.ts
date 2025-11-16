@@ -125,5 +125,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  return [...staticPages, ...assistantPages];
+  // Blog sayfaları
+  const blogPages = [
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: currentDate,
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog/yapay-zeka-ile-kazanc`,
+      lastModified: new Date('2025-01-15'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/blog/whatsapp-musteri-hizmetleri-botu`,
+      lastModified: new Date('2025-01-16'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/blog/sanal-asistan-vs-gercek-personel`,
+      lastModified: new Date('2025-01-17'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.85,
+    },
+  ];
+
+  return [...staticPages, ...assistantPages, ...blogPages];
 }
