@@ -65,7 +65,7 @@ export default function ChatWidget() {
       });
 
       const data = await response.json();
-      const botReply = data.output || 'Üzgünüm, bir hata oluştu.';
+      const botReply = data.reply || 'Üzgünüm, bir hata oluştu.';
 
       setMessages(prev => [...prev, { text: botReply, sender: 'bot' }]);
     } catch (error) {
