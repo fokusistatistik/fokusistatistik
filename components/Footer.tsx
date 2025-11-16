@@ -8,52 +8,52 @@ export default function Footer() {
     {
       name: 'Instagram',
       url: 'https://www.instagram.com/fokusistatistik/',
-      icon: 'https://www.fokusistatistik.com/assets/img/instagram.png',
+      icon: 'https://static.fokusistatistik.com/resimler/instagram.png',
     },
     {
       name: 'E-posta',
       url: 'mailto:bilgi@fokusistatistik.com',
-      icon: 'https://www.fokusistatistik.com/assets/img/eposta.png',
+      icon: 'https://static.fokusistatistik.com/resimler/eposta.png',
     },
     {
       name: 'Facebook',
       url: 'https://www.facebook.com/profile.php?id=61577855105088',
-      icon: 'https://www.fokusistatistik.com/assets/img/facebook.png',
+      icon: 'https://static.fokusistatistik.com/resimler/facebook.png',
     },
     {
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/company/fokusistatistik',
-      icon: 'https://www.fokusistatistik.com/assets/img/ln.png',
+      icon: 'https://static.fokusistatistik.com/resimler/ln.png',
     },
     {
       name: 'Twitter',
       url: 'https://twitter.com/fokusistatistik',
-      icon: 'https://www.fokusistatistik.com/assets/img/twitter.png',
+      icon: 'https://static.fokusistatistik.com/resimler/twitter.png',
     },
     {
       name: 'Telegram',
       url: 'https://t.me/fokusistatistikbot',
-      icon: 'https://www.fokusistatistik.com/assets/img/telegram.png',
+      icon: 'https://static.fokusistatistik.com/resimler/telegram.png',
     },
     {
       name: 'Asistanlar',
       url: 'https://asistan.fokusistatistik.com/',
-      icon: 'https://www.fokusistatistik.com/assets/img/asistanfokus.png',
+      icon: 'https://static.fokusistatistik.com/resimler/asistanfokus.png',
     },
     {
       name: 'WhatsApp',
       url: 'https://wa.me/905354040712?text=merhaba%20fokusistatistik',
-      icon: 'https://www.fokusistatistik.com/assets/img/whatsapp.png',
+      icon: 'https://static.fokusistatistik.com/resimler/whatsapp.png',
     },
     {
       name: 'YouTube',
       url: 'https://www.youtube.com/@fokusistatistik',
-      icon: 'https://www.fokusistatistik.com/assets/img/youtube.png',
+      icon: 'https://static.fokusistatistik.com/resimler/youtube.png',
     },
     {
       name: 'GitHub',
       url: 'https://github.com/fokusistatistik',
-      icon: 'https://www.fokusistatistik.com/assets/img/github.png',
+      icon: 'https://static.fokusistatistik.com/resimler/github.png',
     },
   ];
 

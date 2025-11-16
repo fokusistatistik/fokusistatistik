@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
 
 export default function ChatWidget() {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -313,26 +312,27 @@ export default function ChatWidget() {
           {isChatOpen ? (
             '✕'
           ) : (
-            <Image
-              src="https://www.fokusistatistik.com/assets/img/fokus216kare.png"
-              alt="FOKUS216"
-              width={50}
-              height={50}
-              className="rounded-full"
-            />
+            <div className="relative">
+              <img
+                src="https://static.fokusistatistik.com/resimler/fokus216kare.png"
+                alt="FOKUS216"
+                className="w-12 h-12 rounded-full object-cover"
+              />
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
+            </div>
           )}
         </button>
 
         {isChatOpen && (
           <div className="chat-window">
             <div className="chat-header">
-              <div className="chat-header-avatar">
-                <Image
-                  src="https://www.fokusistatistik.com/assets/img/fokus216kare.png"
+              <div className="relative">
+                <img
+                  src="https://static.fokusistatistik.com/resimler/fokus216kare.png"
                   alt="FOKUS216"
-                  fill
-                  className="object-cover"
+                  className="w-12 h-12 rounded-full object-cover border-2 border-white"
                 />
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
               </div>
               <div className="chat-header-info">
                 <h3>FOKUS216</h3>
