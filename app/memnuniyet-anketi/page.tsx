@@ -230,7 +230,7 @@ function SurveyContent() {
             className="inline-block opacity-75 hover:opacity-100 transition-opacity"
           >
             <img
-              src="https://static.fokusistatistik.com/resimler/fokuslogo.png"
+              src="https://static.fokusistatistik.com/logolar/fokuslogo1.png"
               alt="FOKUS İstatistik"
               className="h-6 w-auto"
             />

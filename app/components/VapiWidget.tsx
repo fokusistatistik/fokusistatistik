@@ -8,6 +8,7 @@ import Vapi from '@vapi-ai/web';
 export default function VapiWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
+  const [isConnecting, setIsConnecting] = useState(false);
   const [callStatus, setCallStatus] = useState<string>('');
   const [micPermission, setMicPermission] = useState<'unknown' | 'granted' | 'denied'>('unknown');
   const vapiRef = useRef<any>(null);
@@ -26,12 +27,14 @@ export default function VapiWidget() {
       // Event listeners
       vapiRef.current.on('call-start', () => {
         console.log('Call started');
+        setIsConnecting(false);
         setIsCallActive(true);
-        setCallStatus('Bağlantı kuruldu');
+        setCallStatus('Bağlandı! Konuşabilirsiniz');
       });
 
       vapiRef.current.on('call-end', () => {
         console.log('Call ended');
+        setIsConnecting(false);
         setIsCallActive(false);
         setCallStatus('');
       });
@@ -47,6 +50,7 @@ export default function VapiWidget() {
       vapiRef.current.on('error', (error: any) => {
         console.error('Vapi error:', error);
         setCallStatus('Hata oluştu');
+        setIsConnecting(false);
         setIsCallActive(false);
       });
     }
@@ -101,18 +105,28 @@ export default function VapiWidget() {
       return;
     }
 
-    if (micPermission !== 'granted') {
-      const permissionGranted = await requestMicrophonePermission();
-      if (!permissionGranted) return;
-    }
-
     try {
-      setCallStatus('Bağlanıyor...');
+      setIsConnecting(true);
+      setCallStatus('Hazırlanıyor...');
+
+      if (micPermission !== 'granted') {
+        setCallStatus('Mikrofon izni bekleniyor...');
+        const permissionGranted = await requestMicrophonePermission();
+        if (!permissionGranted) {
+          setIsConnecting(false);
+          setCallStatus('');
+          return;
+        }
+      }
+
+      setCallStatus('Sesli asistana bağlanıyor...');
       await vapiRef.current.start(ASSISTANT_ID);
+      // call-start event'i setIsConnecting(false) yapacak
     } catch (error: any) {
       console.error('Call start error:', error);
-      alert('Arama başlatılamadı: ' + (error.message || 'Bilinmeyen hata'));
+      setIsConnecting(false);
       setCallStatus('');
+      alert('Arama başlatılamadı: ' + (error.message || 'Bilinmeyen hata'));
     }
   };
 
@@ -222,7 +236,7 @@ export default function VapiWidget() {
 
             {/* Vapi Call Controls */}
             <div className="bg-gradient-to-br from-[#860000] to-[#a30000] rounded-xl p-6 text-white text-center">
-              {!isCallActive ? (
+              {!isCallActive && !isConnecting ? (
                 <>
                   <Volume2 className="w-12 h-12 mx-auto mb-3 animate-pulse" />
                   <h4 className="font-semibold mb-2">Sesli Görüşme Başlat</h4>
@@ -238,6 +252,19 @@ export default function VapiWidget() {
                   </button>
                   <p className="text-xs text-white/70 mt-3">
                     Vapi teknolojisi ile güçlendirilmiştir
+                  </p>
+                </>
+              ) : isConnecting ? (
+                <>
+                  <div className="relative mb-4">
+                    <div className="w-20 h-20 mx-auto rounded-full border-4 border-white/30 border-t-white animate-spin"></div>
+                  </div>
+                  <h4 className="font-semibold mb-2 text-lg">Bağlanıyor</h4>
+                  {callStatus && (
+                    <p className="text-sm text-white/90 mb-4">{callStatus}</p>
+                  )}
+                  <p className="text-xs text-white/70">
+                    Lütfen mikrofon izni verin ve bekleyin...
                   </p>
                 </>
               ) : (
