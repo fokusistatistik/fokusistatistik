@@ -24,28 +24,34 @@ export async function POST(request: NextRequest) {
     const { action } = await request.json();
 
     if (action === 'backup') {
-      // Git'e blogları commit et
+      // Git'e blogları commit et (mevcut durum - silinen bloglar dahil)
       try {
-        // Content klasörünü stage'e ekle
-        await execAsync('git add content/');
+        // Content klasörünü stage'e ekle (-A ile silinen dosyalar da dahil)
+        await execAsync('git add -A content/');
 
         // Commit yap
         const timestamp = new Date().toISOString();
-        await execAsync(`git commit -m "chore: Backup blogs - ${timestamp}"`);
+        const commitMsg = `chore: Backup blogs - ${timestamp}
 
-        // Push yap (isteğe bağlı)
-        // await execAsync('git push');
+Mevcut blog durumu yedeklendi.
+- Yeni bloglar eklendi
+- Değiştirilen bloglar güncellendi
+- Silinen bloglar kaldırıldı
+
+Bu commit, content/ klasörünün tam güncel halini yansıtır.`;
+
+        await execAsync(`git commit -m "${commitMsg.replace(/\n/g, ' ')}"`);
 
         return NextResponse.json({
           success: true,
-          message: 'Bloglar başarıyla yedeklendi (git commit)',
+          message: 'Bloglar başarıyla yedeklendi (mevcut durum git\'e commit edildi)',
         });
       } catch (error: any) {
         // Eğer değişiklik yoksa commit hatası verir, onu yakalayalım
         if (error.message.includes('nothing to commit')) {
           return NextResponse.json({
             success: true,
-            message: 'Yedeklenecek yeni değişiklik yok',
+            message: 'Yedeklenecek yeni değişiklik yok - zaten güncel',
           });
         }
         throw error;

@@ -48,7 +48,7 @@ async function getBlogs(): Promise<Blog[]> {
       date: '2025-01-15',
       readTime: '8 dakika',
       category: 'Yapay Zeka',
-      image: 'https://static.fokusistatistik.com/blog/ai-kazanc.jpg',
+      image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
     },
     {
       slug: 'whatsapp-musteri-hizmetleri-botu',
@@ -57,7 +57,7 @@ async function getBlogs(): Promise<Blog[]> {
       date: '2025-01-16',
       readTime: '10 dakika',
       category: 'Otomasyon',
-      image: 'https://static.fokusistatistik.com/blog/whatsapp-bot.jpg',
+      image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
     },
     {
       slug: 'sanal-asistan-vs-gercek-personel',
@@ -66,7 +66,7 @@ async function getBlogs(): Promise<Blog[]> {
       date: '2025-01-17',
       readTime: '12 dakika',
       category: 'Karşılaştırma',
-      image: 'https://static.fokusistatistik.com/blog/comparison.jpg',
+      image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
     },
     {
       slug: 'yapay-zeka-maliyet-dusurme',
@@ -75,7 +75,7 @@ async function getBlogs(): Promise<Blog[]> {
       date: '2025-01-18',
       readTime: '14 dakika',
       category: 'Maliyet Optimizasyonu',
-      image: 'https://static.fokusistatistik.com/blog/cost-reduction.jpg',
+      image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
     },
     {
       slug: 'veri-analizi-rehberi',
@@ -84,7 +84,7 @@ async function getBlogs(): Promise<Blog[]> {
       date: '2025-01-14',
       readTime: '10 dakika',
       category: 'Veri Analizi',
-      image: 'https://static.fokusistatistik.com/blog/veri-analizi.jpg',
+      image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
     },
     {
       slug: 'chatgpt-is-surecleri',
@@ -93,7 +93,7 @@ async function getBlogs(): Promise<Blog[]> {
       date: '2025-01-13',
       readTime: '12 dakika',
       category: 'ChatGPT',
-      image: 'https://static.fokusistatistik.com/blog/chatgpt.jpg',
+      image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
     },
     {
       slug: 'kucuk-isletmeler-icin-yapay-zeka',
@@ -102,7 +102,7 @@ async function getBlogs(): Promise<Blog[]> {
       date: '2025-01-12',
       readTime: '7 dakika',
       category: 'KOBİ',
-      image: 'https://static.fokusistatistik.com/blog/kobi-ai.jpg',
+      image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
     },
   ];
 
@@ -134,28 +134,13 @@ export default async function BlogPage() {
   const blogPosts = await getBlogs();
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 via-[#860000] to-gray-900 text-white py-20 px-4 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '32px 32px'
-          }}></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <div className="mb-6">
-            <img
-              src="https://static.fokusistatistik.com/logolar/fokuslogo1.png"
-              alt="FOKUS"
-              className="w-20 h-20 mx-auto mb-4 opacity-90"
-            />
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
+      {/* Hero Section - Minimal & Clean */}
+      <section className="bg-white border-b border-gray-200 py-12 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
             FOKUS Blog
           </h1>
-          <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-gray-600">
             Yapay Zeka, Veri Analizi ve Dijital Dönüşüm Rehberleri
           </p>
         </div>
@@ -170,13 +155,12 @@ export default async function BlogPage() {
               href={`/blog/${post.slug}`}
               className="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 hover:border-[#860000]/30 flex flex-col"
             >
-              {/* Cover Image - 3:2 aspect ratio (400x600) */}
-              <div className="relative overflow-hidden bg-gray-100" style={{ aspectRatio: '3/2' }}>
+              {/* Cover Image - 16:9 aspect ratio (1200x675 px önerilen) */}
+              <div className="relative overflow-hidden bg-gray-100" style={{ aspectRatio: '16/9' }}>
                 <img
                   src={post.coverImage || post.image || 'https://static.fokusistatistik.com/logolar/fokuslogo1.png'}
                   alt={post.title}
-                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                  style={{ objectFit: 'contain' }}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
 

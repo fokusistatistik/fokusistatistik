@@ -212,20 +212,34 @@ export default function NewBlogPage() {
                         <ImageIcon className="w-4 h-4" />
                         Kapak Görseli URL
                       </label>
+                      <div className="mb-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                        <p className="text-sm text-blue-800">
+                          <strong>📐 Önerilen Boyut:</strong> 1200x675 px (16:9 oran)
+                          <br />
+                          <strong>💡 Mobil & Masaüstü:</strong> Bu boyut tüm cihazlarda optimize görünür
+                          <br />
+                          <strong>🎨 Format:</strong> JPG, PNG veya WebP
+                        </p>
+                      </div>
                       <input
                         type="url"
                         name="coverImage"
                         value={formData.coverImage}
                         onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#860000] focus:border-transparent outline-none"
-                        placeholder="https://example.com/image.jpg"
+                        placeholder="https://example.com/image.jpg (boş bırakırsanız FOKUS logosu kullanılır)"
                       />
                       {formData.coverImage && (
-                        <img
-                          src={formData.coverImage}
-                          alt="Cover preview"
-                          className="mt-3 w-full max-w-md h-48 object-cover rounded-lg"
-                        />
+                        <div className="mt-3">
+                          <p className="text-xs text-gray-600 mb-2">Önizleme (16:9 oran):</p>
+                          <div className="relative w-full max-w-md" style={{ aspectRatio: '16/9' }}>
+                            <img
+                              src={formData.coverImage}
+                              alt="Cover preview"
+                              className="w-full h-full object-cover rounded-lg border border-gray-200"
+                            />
+                          </div>
+                        </div>
                       )}
                     </div>
 
