@@ -13,6 +13,9 @@ import {
   Tag,
   Eye,
   Search,
+  Download,
+  Upload,
+  Save,
 } from 'lucide-react';
 
 interface Blog {
@@ -71,6 +74,76 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleBackupToGit = async () => {
+    try {
+      const response = await fetch('/api/blogs/backup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'backup' }),
+      });
+      const data = await response.json();
+      alert(data.message || 'Yedekleme başarılı!');
+    } catch (error) {
+      alert('Yedekleme başarısız oldu');
+    }
+  };
+
+  const handleExport = async () => {
+    try {
+      const response = await fetch('/api/blogs/backup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'export' }),
+      });
+      const data = await response.json();
+
+      // JSON dosyası olarak indir
+      const blob = new Blob([JSON.stringify(data.data, null, 2)], {
+        type: 'application/json',
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `blogs-backup-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      alert('Dışa aktarma başarısız oldu');
+    }
+  };
+
+  const handleImport = () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'application/json';
+    input.onchange = async (e: any) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      try {
+        const text = await file.text();
+        const blogs = JSON.parse(text);
+
+        const response = await fetch('/api/blogs/backup', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ blogs }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          alert(data.message);
+          fetchBlogs(); // Listeyi yenile
+        } else {
+          alert(data.error || 'Geri yükleme başarısız');
+        }
+      } catch (error) {
+        alert('Dosya okunamadı veya geçersiz format');
+      }
+    };
+    input.click();
+  };
+
   const filteredBlogs = blogs.filter(
     (blog) =>
       blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -122,13 +195,39 @@ export default function AdminDashboard() {
                 />
               </div>
             </div>
-            <button
-              onClick={() => router.push('/admin/blog/new')}
-              className="flex items-center gap-2 px-6 py-2 bg-[#860000] text-white rounded-lg hover:bg-[#a30000] transition font-semibold"
-            >
-              <Plus className="w-5 h-5" />
-              Yeni Blog Ekle
-            </button>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={handleBackupToGit}
+                className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition text-sm font-medium"
+                title="Blogları Git'e yedekle"
+              >
+                <Save className="w-4 h-4" />
+                Git Yedekle
+              </button>
+              <button
+                onClick={handleExport}
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-medium"
+                title="Blogları JSON olarak indir"
+              >
+                <Download className="w-4 h-4" />
+                Dışa Aktar
+              </button>
+              <button
+                onClick={handleImport}
+                className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition text-sm font-medium"
+                title="JSON dosyasından geri yükle"
+              >
+                <Upload className="w-4 h-4" />
+                İçe Aktar
+              </button>
+              <button
+                onClick={() => router.push('/admin/blog/new')}
+                className="flex items-center gap-2 px-6 py-2 bg-[#860000] text-white rounded-lg hover:bg-[#a30000] transition font-semibold"
+              >
+                <Plus className="w-5 h-5" />
+                Yeni Blog Ekle
+              </button>
+            </div>
           </div>
 
           {/* Stats */}

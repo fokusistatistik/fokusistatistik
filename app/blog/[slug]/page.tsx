@@ -145,22 +145,58 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           {blog.description}
         </div>
 
-        {/* Content */}
-        <div
-          className="prose prose-lg max-w-none
-            prose-headings:text-gray-900 prose-headings:font-bold
-            prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-            prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-            prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6
-            prose-ul:my-6 prose-li:text-gray-700 prose-li:my-2
-            prose-strong:text-gray-900 prose-strong:font-bold
-            prose-a:text-[#860000] prose-a:no-underline hover:prose-a:underline
-            prose-blockquote:border-l-4 prose-blockquote:border-[#860000] prose-blockquote:pl-6 prose-blockquote:italic
-            prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm
-            prose-pre:bg-gray-900 prose-pre:text-gray-100
-            prose-img:rounded-lg prose-img:shadow-lg"
-          dangerouslySetInnerHTML={{ __html: blog.content || '' }}
-        />
+        {/* Content - Isolated HTML rendering */}
+        <div className="blog-content-wrapper">
+          <style jsx>{`
+            .blog-content-wrapper {
+              /* Isolate the blog content from the rest of the page */
+              all: initial;
+              display: block;
+              font-family: inherit;
+              line-height: 1.6;
+              color: #374151;
+            }
+
+            /* Reset all elements inside blog content */
+            .blog-content-wrapper * {
+              margin: revert;
+              padding: revert;
+              border: revert;
+            }
+
+            /* Prevent layout-breaking styles */
+            .blog-content-wrapper :global(html),
+            .blog-content-wrapper :global(body),
+            .blog-content-wrapper :global(main),
+            .blog-content-wrapper :global(header),
+            .blog-content-wrapper :global(footer),
+            .blog-content-wrapper :global(nav) {
+              all: unset !important;
+              display: block !important;
+            }
+
+            /* Safe typography */
+            .blog-content-wrapper :global(h1) { font-size: 2.25rem; font-weight: 700; margin: 2rem 0 1rem; }
+            .blog-content-wrapper :global(h2) { font-size: 1.875rem; font-weight: 700; margin: 1.75rem 0 1rem; }
+            .blog-content-wrapper :global(h3) { font-size: 1.5rem; font-weight: 600; margin: 1.5rem 0 0.75rem; }
+            .blog-content-wrapper :global(p) { margin: 1rem 0; line-height: 1.75; }
+            .blog-content-wrapper :global(ul), .blog-content-wrapper :global(ol) { margin: 1rem 0; padding-left: 1.5rem; }
+            .blog-content-wrapper :global(li) { margin: 0.5rem 0; }
+            .blog-content-wrapper :global(a) { color: #860000; text-decoration: underline; }
+            .blog-content-wrapper :global(strong) { font-weight: 700; }
+            .blog-content-wrapper :global(em) { font-style: italic; }
+            .blog-content-wrapper :global(code) { background: #f3f4f6; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875rem; }
+            .blog-content-wrapper :global(pre) { background: #1f2937; color: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
+            .blog-content-wrapper :global(blockquote) { border-left: 4px solid #860000; padding-left: 1rem; font-style: italic; margin: 1.5rem 0; }
+            .blog-content-wrapper :global(img) { max-width: 100%; height: auto; border-radius: 0.5rem; margin: 1.5rem 0; }
+            .blog-content-wrapper :global(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+            .blog-content-wrapper :global(th), .blog-content-wrapper :global(td) { border: 1px solid #e5e7eb; padding: 0.75rem; text-align: left; }
+            .blog-content-wrapper :global(th) { background: #f9fafb; font-weight: 600; }
+          `}</style>
+          <div
+            dangerouslySetInnerHTML={{ __html: blog.content || '' }}
+          />
+        </div>
 
         {/* Tags */}
         {blog.tags && blog.tags.length > 0 && (

@@ -135,71 +135,73 @@ export default async function BlogPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#860000] to-[#a30000] text-white py-16 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+      <section className="relative bg-gradient-to-br from-gray-900 via-[#860000] to-gray-900 text-white py-20 px-4 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+            backgroundSize: '32px 32px'
+          }}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <div className="mb-6">
+            <img
+              src="https://static.fokusistatistik.com/logolar/fokuslogo1.png"
+              alt="FOKUS"
+              className="w-20 h-20 mx-auto mb-4 opacity-90"
+            />
+          </div>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
             FOKUS Blog
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
             Yapay Zeka, Veri Analizi ve Dijital Dönüşüm Rehberleri
           </p>
         </div>
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="max-w-6xl mx-auto py-16 px-4">
-        <div className="grid md:grid-cols-2 gap-8">
+      <section className="max-w-7xl mx-auto py-12 px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {blogPosts.map((post) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-[#860000]/20"
+              className="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 hover:border-[#860000]/30 flex flex-col"
             >
-              {/* Cover Image */}
-              <div className="aspect-video bg-gradient-to-br from-[#860000]/10 to-[#a30000]/10 relative overflow-hidden">
-                {(post.coverImage || post.image) ? (
-                  <img
-                    src={post.coverImage || post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                ) : (
-                  <>
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#860000] to-[#a30000] opacity-10 group-hover:opacity-20 transition-opacity"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-6xl opacity-20">📊</div>
-                    </div>
-                  </>
-                )}
+              {/* Cover Image - 3:2 aspect ratio (400x600) */}
+              <div className="relative overflow-hidden bg-gray-100" style={{ aspectRatio: '3/2' }}>
+                <img
+                  src={post.coverImage || post.image || 'https://static.fokusistatistik.com/logolar/fokuslogo1.png'}
+                  alt={post.title}
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                  style={{ objectFit: 'contain' }}
+                />
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
-                  <span className="inline-block bg-[#860000]/10 text-[#860000] px-3 py-1 rounded-full font-medium">
+              <div className="p-4 flex-1 flex flex-col">
+                <div className="mb-2">
+                  <span className="inline-block bg-[#860000]/10 text-[#860000] px-2 py-1 rounded-md text-xs font-medium">
                     {post.category}
                   </span>
-                  <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    <span>{new Date(post.publishedDate || post.date || '').toLocaleDateString('tr-TR')}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    <span>{post.readTime}</span>
-                  </div>
                 </div>
 
-                <h2 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#860000] transition-colors">
+                <h2 className="text-base font-bold text-gray-900 mb-2 group-hover:text-[#860000] transition-colors line-clamp-2">
                   {post.title}
                 </h2>
 
-                <p className="text-gray-600 mb-4 line-clamp-3">
+                <p className="text-sm text-gray-600 mb-3 line-clamp-2 flex-1">
                   {post.description}
                 </p>
 
-                <div className="flex items-center text-[#860000] font-semibold group-hover:gap-2 transition-all">
-                  <span>Devamını Oku</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <div className="flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
+                  <div className="flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    <span>{post.readTime}</span>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-[#860000] group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             </Link>
