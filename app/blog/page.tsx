@@ -21,73 +21,109 @@ export const metadata: Metadata = {
   },
 };
 
-const blogPosts = [
-  {
-    slug: 'yapay-zeka-ile-kazanc',
-    title: '2025\'te Yapay Zeka ile Kazanç: İşletmeler İçin 7 Kanıtlanmış Yöntem',
-    excerpt: 'Yapay zeka teknolojileri ile işletmenizin karlılığını nasıl artırabilirsiniz? Maliyet tasarrufu, gelir artışı ve verimlilik kazanımları için detaylı rehber.',
-    date: '2025-01-15',
-    readTime: '8 dakika',
-    category: 'Yapay Zeka',
-    image: 'https://static.fokusistatistik.com/blog/ai-kazanc.jpg',
-  },
-  {
-    slug: 'whatsapp-musteri-hizmetleri-botu',
-    title: 'WhatsApp Müşteri Hizmetleri Botu: Kurulum, Fiyat ve ROI Rehberi [2025]',
-    excerpt: 'WhatsApp müşteri hizmetleri botu ile 7/24 otomatik destek. Kurulum maliyeti, fiyat karşılaştırması, ROI hesaplama ve gerçek örnekler ile tam rehber.',
-    date: '2025-01-16',
-    readTime: '10 dakika',
-    category: 'Otomasyon',
-    image: 'https://static.fokusistatistik.com/blog/whatsapp-bot.jpg',
-  },
-  {
-    slug: 'sanal-asistan-vs-gercek-personel',
-    title: 'Sanal Asistan vs Gerçek Personel: 12 Aylık Maliyet Karşılaştırması [2025]',
-    excerpt: 'Sanal asistan mı yoksa gerçek personel mi? Detaylı maliyet analizi, verimlilik karşılaştırması ve işletmeniz için doğru seçim rehberi. Gerçek rakamlarla.',
-    date: '2025-01-17',
-    readTime: '12 dakika',
-    category: 'Karşılaştırma',
-    image: 'https://static.fokusistatistik.com/blog/comparison.jpg',
-  },
-  {
-    slug: 'yapay-zeka-maliyet-dusurme',
-    title: 'Yapay Zeka ile İşletme Maliyetlerini Düşürme: Dijital İşçi Devrimi',
-    excerpt: 'Dijital işçi ile işletme maliyetlerini %40-80 düşürün. 8 farklı sektörde gerçek örnekler, ROI hesaplamaları ve adım adım maliyet düşürme stratejileri.',
-    date: '2025-01-18',
-    readTime: '14 dakika',
-    category: 'Maliyet Optimizasyonu',
-    image: 'https://static.fokusistatistik.com/blog/cost-reduction.jpg',
-  },
-  {
-    slug: 'veri-analizi-rehberi',
-    title: 'Veri Analizi Nedir? Başlangıçtan İleri Seviyeye Kapsamlı Rehber',
-    excerpt: 'Veri analizinin temellerinden ileri tekniklerine kadar her şey. Araçlar, metodolojiler, örnekler ve başarı için ipuçları.',
-    date: '2025-01-14',
-    readTime: '10 dakika',
-    category: 'Veri Analizi',
-    image: 'https://static.fokusistatistik.com/blog/veri-analizi.jpg',
-  },
-  {
-    slug: 'chatgpt-is-surecleri',
-    title: 'ChatGPT\'yi İş Süreçlerine Entegre Etme: Pratik Rehber ve Örnekler',
-    excerpt: 'ChatGPT ve benzeri AI araçlarını iş süreçlerinize nasıl entegre edersiniz? Müşteri hizmetlerinden içerik üretimine 15+ kullanım senaryosu.',
-    date: '2025-01-13',
-    readTime: '12 dakika',
-    category: 'ChatGPT',
-    image: 'https://static.fokusistatistik.com/blog/chatgpt.jpg',
-  },
-  {
-    slug: 'kucuk-isletmeler-icin-yapay-zeka',
-    title: 'Küçük İşletmeler İçin Uygun Fiyatlı Yapay Zeka Çözümleri',
-    excerpt: 'Sınırlı bütçeyle yapay zekadan nasıl faydalanılır? Küçük ve orta ölçekli işletmeler için maliyet-etkin AI stratejileri ve araçlar.',
-    date: '2025-01-12',
-    readTime: '7 dakika',
-    category: 'KOBİ',
-    image: 'https://static.fokusistatistik.com/blog/kobi-ai.jpg',
-  },
-];
+interface Blog {
+  id?: string;
+  slug: string;
+  title: string;
+  description: string;
+  date?: string;
+  publishedDate?: string;
+  readTime: string;
+  category: string;
+  image?: string;
+  coverImage?: string;
+}
 
-export default function BlogPage() {
+async function getBlogs(): Promise<Blog[]> {
+  // Statik blog listesi
+  const staticBlogs: Blog[] = [
+    {
+      slug: 'yapay-zeka-ile-kazanc',
+      title: '2025\'te Yapay Zeka ile Kazanç: İşletmeler İçin 7 Kanıtlanmış Yöntem',
+      description: 'Yapay zeka teknolojileri ile işletmenizin karlılığını nasıl artırabilirsiniz? Maliyet tasarrufu, gelir artışı ve verimlilik kazanımları için detaylı rehber.',
+      date: '2025-01-15',
+      readTime: '8 dakika',
+      category: 'Yapay Zeka',
+      image: 'https://static.fokusistatistik.com/blog/ai-kazanc.jpg',
+    },
+    {
+      slug: 'whatsapp-musteri-hizmetleri-botu',
+      title: 'WhatsApp Müşteri Hizmetleri Botu: Kurulum, Fiyat ve ROI Rehberi [2025]',
+      description: 'WhatsApp müşteri hizmetleri botu ile 7/24 otomatik destek. Kurulum maliyeti, fiyat karşılaştırması, ROI hesaplama ve gerçek örnekler ile tam rehber.',
+      date: '2025-01-16',
+      readTime: '10 dakika',
+      category: 'Otomasyon',
+      image: 'https://static.fokusistatistik.com/blog/whatsapp-bot.jpg',
+    },
+    {
+      slug: 'sanal-asistan-vs-gercek-personel',
+      title: 'Sanal Asistan vs Gerçek Personel: 12 Aylık Maliyet Karşılaştırması [2025]',
+      description: 'Sanal asistan mı yoksa gerçek personel mi? Detaylı maliyet analizi, verimlilik karşılaştırması ve işletmeniz için doğru seçim rehberi. Gerçek rakamlarla.',
+      date: '2025-01-17',
+      readTime: '12 dakika',
+      category: 'Karşılaştırma',
+      image: 'https://static.fokusistatistik.com/blog/comparison.jpg',
+    },
+    {
+      slug: 'yapay-zeka-maliyet-dusurme',
+      title: 'Yapay Zeka ile İşletme Maliyetlerini Düşürme: Dijital İşçi Devrimi',
+      description: 'Dijital işçi ile işletme maliyetlerini %40-80 düşürün. 8 farklı sektörde gerçek örnekler, ROI hesaplamaları ve adım adım maliyet düşürme stratejileri.',
+      date: '2025-01-18',
+      readTime: '14 dakika',
+      category: 'Maliyet Optimizasyonu',
+      image: 'https://static.fokusistatistik.com/blog/cost-reduction.jpg',
+    },
+    {
+      slug: 'veri-analizi-rehberi',
+      title: 'Veri Analizi Nedir? Başlangıçtan İleri Seviyeye Kapsamlı Rehber',
+      description: 'Veri analizinin temellerinden ileri tekniklerine kadar her şey. Araçlar, metodolojiler, örnekler ve başarı için ipuçları.',
+      date: '2025-01-14',
+      readTime: '10 dakika',
+      category: 'Veri Analizi',
+      image: 'https://static.fokusistatistik.com/blog/veri-analizi.jpg',
+    },
+    {
+      slug: 'chatgpt-is-surecleri',
+      title: 'ChatGPT\'yi İş Süreçlerine Entegre Etme: Pratik Rehber ve Örnekler',
+      description: 'ChatGPT ve benzeri AI araçlarını iş süreçlerinize nasıl entegre edersiniz? Müşteri hizmetlerinden içerik üretimine 15+ kullanım senaryosu.',
+      date: '2025-01-13',
+      readTime: '12 dakika',
+      category: 'ChatGPT',
+      image: 'https://static.fokusistatistik.com/blog/chatgpt.jpg',
+    },
+    {
+      slug: 'kucuk-isletmeler-icin-yapay-zeka',
+      title: 'Küçük İşletmeler İçin Uygun Fiyatlı Yapay Zeka Çözümleri',
+      description: 'Sınırlı bütçeyle yapay zekadan nasıl faydalanılır? Küçük ve orta ölçekli işletmeler için maliyet-etkin AI stratejileri ve araçlar.',
+      date: '2025-01-12',
+      readTime: '7 dakika',
+      category: 'KOBİ',
+      image: 'https://static.fokusistatistik.com/blog/kobi-ai.jpg',
+    },
+  ];
+
+  // API'den dinamik blogları çek
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const response = await fetch(`${baseUrl}/api/blogs`, {
+      cache: 'no-store',
+    });
+
+    if (response.ok) {
+      const dynamicBlogs: Blog[] = await response.json();
+      // Dinamik blogları en üstte göster, sonra statik bloglar
+      return [...dynamicBlogs, ...staticBlogs];
+    }
+  } catch (error) {
+    console.error('Error fetching dynamic blogs:', error);
+  }
+
+  // API hatası durumunda sadece statik blogları göster
+  return staticBlogs;
+}
+
+export default async function BlogPage() {
+  const blogPosts = await getBlogs();
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
@@ -111,12 +147,22 @@ export default function BlogPage() {
               href={`/blog/${post.slug}`}
               className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-[#860000]/20"
             >
-              {/* Image Placeholder */}
+              {/* Cover Image */}
               <div className="aspect-video bg-gradient-to-br from-[#860000]/10 to-[#a30000]/10 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#860000] to-[#a30000] opacity-10 group-hover:opacity-20 transition-opacity"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-6xl opacity-20">📊</div>
-                </div>
+                {(post.coverImage || post.image) ? (
+                  <img
+                    src={post.coverImage || post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                ) : (
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#860000] to-[#a30000] opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-6xl opacity-20">📊</div>
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Content */}
@@ -127,7 +173,7 @@ export default function BlogPage() {
                   </span>
                   <div className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
-                    <span>{new Date(post.date).toLocaleDateString('tr-TR')}</span>
+                    <span>{new Date(post.publishedDate || post.date || '').toLocaleDateString('tr-TR')}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Clock className="w-4 h-4" />
@@ -140,7 +186,7 @@ export default function BlogPage() {
                 </h2>
 
                 <p className="text-gray-600 mb-4 line-clamp-3">
-                  {post.excerpt}
+                  {post.description}
                 </p>
 
                 <div className="flex items-center text-[#860000] font-semibold group-hover:gap-2 transition-all">
