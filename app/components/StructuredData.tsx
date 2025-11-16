@@ -13,8 +13,8 @@ export function OrganizationSchema({ type = 'ProfessionalService' }: Organizatio
     description:
       'Yapay zeka tabanlı sanal asistanlar, veri analizi, istatistiksel danışmanlık ve dijital dönüşüm çözümleri sunuyoruz. 9 farklı sanal asistan ile iş süreçlerinizi otomatikleştirin.',
     url: 'https://fokusistatistik.com',
-    logo: 'https://static.fokusistatistik.com/logolar/logobeyaz.png',
-    image: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
+    logo: 'https://static.fokusistatistik.com/resimler/logobeyaz.png',
+    image: 'https://static.fokusistatistik.com/resimler/fokuslogo1.png',
     email: 'bilgi@fokusistatistik.com',
     telephone: '+905354040712',
     address: {
@@ -106,7 +106,7 @@ export function ServiceSchema({ name, description, url, image }: ServiceSchemaPr
     },
     serviceType: name,
     url,
-    image: image || 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
+    image: image || 'https://static.fokusistatistik.com/resimler/fokuslogo1.png',
     areaServed: {
       '@type': 'Country',
       name: 'Türkiye',

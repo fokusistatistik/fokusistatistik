@@ -14,13 +14,13 @@
       "type": "image/x-icon"
     },
     {
-      "src": "https://static.fokusistatistik.com/logolar/faviconfokus.png",
+      "src": "https://static.fokusistatistik.com/resimler/faviconfokus.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "https://static.fokusistatistik.com/logolar/faviconfokus.png",
+      "src": "https://static.fokusistatistik.com/resimler/faviconfokus.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

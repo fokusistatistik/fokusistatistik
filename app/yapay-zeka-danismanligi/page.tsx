@@ -57,7 +57,7 @@ export default function YapayZekaDanismanligi() {
             <div className="w-24 h-24 bg-gradient-to-br from-[#860000] to-[#a30000] rounded-full flex items-center justify-center shadow-xl p-4">
               <div className="relative w-full h-full">
                 <Image
-                  src="https://static.fokusistatistik.com/logolar/logobeyaz.png"
+                  src="https://static.fokusistatistik.com/resimler/logobeyaz.png"
                   alt="FOKUS Logo"
                   fill
                   className="object-contain"

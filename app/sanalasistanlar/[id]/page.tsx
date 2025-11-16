@@ -96,9 +96,9 @@ const assistantsData: Record<string, AssistantData> = {
     videoUrl: 'https://www.youtube.com/embed/fckfRsZJtiM',
     image: 'https://static.fokusistatistik.com/asistanlar/fokus001.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus001/',
-    testQrImage: 'https://static.fokusistatistik.com/qrkodlar/testet001.png',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet001.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
-    requestQrImage: 'https://static.fokusistatistik.com/qrkodlar/talepet.png',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -278,9 +278,9 @@ const assistantsData: Record<string, AssistantData> = {
     videoUrl: 'https://www.youtube.com/embed/VwVeSnsK0lA',
     image: 'https://static.fokusistatistik.com/asistanlar/fokus216.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus216/',
-    testQrImage: 'https://static.fokusistatistik.com/qrkodlar/testet216.png',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet216.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
-    requestQrImage: 'https://static.fokusistatistik.com/qrkodlar/talepet.png',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -442,9 +442,9 @@ const assistantsData: Record<string, AssistantData> = {
     videoUrl: 'https://www.youtube.com/embed/oePHh9TU4qg',
     image: 'https://static.fokusistatistik.com/asistanlar/fokus314.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus314/',
-    testQrImage: 'https://static.fokusistatistik.com/qrkodlar/testet314.png',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet314.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
-    requestQrImage: 'https://static.fokusistatistik.com/qrkodlar/talepet.png',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -624,9 +624,9 @@ const assistantsData: Record<string, AssistantData> = {
     videoUrl: 'https://www.youtube.com/embed/Wzwc3HCEDrU',
     image: 'https://static.fokusistatistik.com/asistanlar/fokus520.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus520/',
-    testQrImage: 'https://static.fokusistatistik.com/qrkodlar/testet520.png',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet520.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
-    requestQrImage: 'https://static.fokusistatistik.com/qrkodlar/talepet.png',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -791,9 +791,9 @@ const assistantsData: Record<string, AssistantData> = {
     videoUrl: 'https://www.youtube.com/embed/4WS0b82IJ38',
     image: 'https://static.fokusistatistik.com/asistanlar/fokus618.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus618/',
-    testQrImage: 'https://static.fokusistatistik.com/qrkodlar/testet618.png',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet618.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
-    requestQrImage: 'https://static.fokusistatistik.com/qrkodlar/talepet.png',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -977,9 +977,9 @@ const assistantsData: Record<string, AssistantData> = {
     videoUrl: 'https://www.youtube.com/embed/AA0L2nleZXU',
     image: 'https://static.fokusistatistik.com/asistanlar/fokus707.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus707/',
-    testQrImage: 'https://static.fokusistatistik.com/qrkodlar/testet707.png',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet707.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
-    requestQrImage: 'https://static.fokusistatistik.com/qrkodlar/talepet.png',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -1178,9 +1178,9 @@ const assistantsData: Record<string, AssistantData> = {
     videoUrl: 'https://www.youtube.com/embed/Bt3ZmrE1MqU',
     image: 'https://static.fokusistatistik.com/asistanlar/fokus717.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus717/',
-    testQrImage: 'https://static.fokusistatistik.com/qrkodlar/testet717.png',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet717.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
-    requestQrImage: 'https://static.fokusistatistik.com/qrkodlar/talepet.png',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -1359,9 +1359,9 @@ const assistantsData: Record<string, AssistantData> = {
     videoUrl: 'https://www.youtube.com/embed/PWFR6mPbhGM',
     image: 'https://static.fokusistatistik.com/asistanlar/fokus808.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus808/',
-    testQrImage: 'https://static.fokusistatistik.com/qrkodlar/testet808.png',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet808.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
-    requestQrImage: 'https://static.fokusistatistik.com/qrkodlar/talepet.png',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [
       {
         name: 'STANDART',
@@ -1539,9 +1539,9 @@ const assistantsData: Record<string, AssistantData> = {
     videoUrl: 'https://www.youtube.com/embed/cnZqBpW5bdc',
     image: 'https://static.fokusistatistik.com/asistanlar/fokus999.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus999/',
-    testQrImage: 'https://static.fokusistatistik.com/qrkodlar/testet999.png',
+    testQrImage: 'https://static.fokusistatistik.com/resimler/testet999.png',
     requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
-    requestQrImage: 'https://static.fokusistatistik.com/qrkodlar/talepet.png',
+    requestQrImage: 'https://static.fokusistatistik.com/resimler/talepet.png',
     packages: [],
     priceNote:
       'FOKUS999, işletmenizin her alanına uyum sağlayan özel bir asistandır. Fiyatlandırma, projenizin kapsamına ve ihtiyaçlarınıza göre belirlenir. Detaylı bilgi ve teklif almak için bizimle iletişime geçin.',

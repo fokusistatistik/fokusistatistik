@@ -100,7 +100,7 @@ function GirisContent() {
       user: 'Admin User',
       email: 'admin@fokusistatistik.com',
       userId: 'admin-temp-001',
-      picture: 'https://static.fokusistatistik.com/logolar/logobeyaz.png',
+      picture: 'https://static.fokusistatistik.com/resimler/logobeyaz.png',
       isNewUser: false,
       token: generateSecureToken(),
       timestamp: Date.now(),
@@ -199,7 +199,7 @@ function GirisContent() {
                     <>
                       <div className="relative w-5 h-5">
                         <Image
-                          src="https://static.fokusistatistik.com/logolar/google.png"
+                          src="https://static.fokusistatistik.com/resimler/google.png"
                           alt="Google"
                           fill
                           className="object-contain"
