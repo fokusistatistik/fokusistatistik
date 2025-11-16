@@ -214,9 +214,11 @@ export default function NewBlogPage() {
                       </label>
                       <div className="mb-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                         <p className="text-sm text-blue-800">
-                          <strong>📐 Önerilen Boyut:</strong> 1200x675 px (16:9 oran)
+                          <strong>📐 Önerilen Boyut:</strong> 1200x600 px (2:1 oran - kompakt)
                           <br />
-                          <strong>💡 Mobil & Masaüstü:</strong> Bu boyut tüm cihazlarda optimize görünür
+                          <strong>💡 Kullanım:</strong> Sadece blog listesinde görünür (blog içinde GÖRÜNMEZ)
+                          <br />
+                          <strong>📱 Uyumluluk:</strong> Mobil & masaüstü optimize
                           <br />
                           <strong>🎨 Format:</strong> JPG, PNG veya WebP
                         </p>
@@ -231,8 +233,8 @@ export default function NewBlogPage() {
                       />
                       {formData.coverImage && (
                         <div className="mt-3">
-                          <p className="text-xs text-gray-600 mb-2">Önizleme (16:9 oran):</p>
-                          <div className="relative w-full max-w-md" style={{ aspectRatio: '16/9' }}>
+                          <p className="text-xs text-gray-600 mb-2">Önizleme (2:1 oran - blog listesinde böyle görünecek):</p>
+                          <div className="relative w-full max-w-md" style={{ aspectRatio: '2/1' }}>
                             <img
                               src={formData.coverImage}
                               alt="Cover preview"

@@ -103,17 +103,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Article */}
       <article className="max-w-4xl mx-auto px-4 py-8">
-        {/* Cover Image */}
-        {blog.coverImage && (
-          <div className="aspect-video w-full mb-8 rounded-2xl overflow-hidden shadow-lg">
-            <img
-              src={blog.coverImage}
-              alt={blog.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        )}
-
         {/* Category Badge */}
         <div className="mb-4">
           <span className="inline-block px-4 py-2 bg-[#860000] text-white text-sm font-semibold rounded-full">

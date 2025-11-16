@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
-import { exec } from 'child_process';
-import { promisify } from 'util';
-
-const execAsync = promisify(exec);
 
 function checkAuth(request: NextRequest) {
   const session = request.cookies.get('admin_session');
@@ -14,7 +10,7 @@ function checkAuth(request: NextRequest) {
 const BLOGS_FILE = path.join(process.cwd(), 'content', 'blogs-metadata.json');
 const CONTENT_DIR = path.join(process.cwd(), 'content', 'blog');
 
-// POST - Backup blogs to git
+// POST - Backup blogs to git or export
 export async function POST(request: NextRequest) {
   if (!checkAuth(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -24,38 +20,11 @@ export async function POST(request: NextRequest) {
     const { action } = await request.json();
 
     if (action === 'backup') {
-      // Git'e blogları commit et (mevcut durum - silinen bloglar dahil)
-      try {
-        // Content klasörünü stage'e ekle (-A ile silinen dosyalar da dahil)
-        await execAsync('git add -A content/');
-
-        // Commit yap
-        const timestamp = new Date().toISOString();
-        const commitMsg = `chore: Backup blogs - ${timestamp}
-
-Mevcut blog durumu yedeklendi.
-- Yeni bloglar eklendi
-- Değiştirilen bloglar güncellendi
-- Silinen bloglar kaldırıldı
-
-Bu commit, content/ klasörünün tam güncel halini yansıtır.`;
-
-        await execAsync(`git commit -m "${commitMsg.replace(/\n/g, ' ')}"`);
-
-        return NextResponse.json({
-          success: true,
-          message: 'Bloglar başarıyla yedeklendi (mevcut durum git\'e commit edildi)',
-        });
-      } catch (error: any) {
-        // Eğer değişiklik yoksa commit hatası verir, onu yakalayalım
-        if (error.message.includes('nothing to commit')) {
-          return NextResponse.json({
-            success: true,
-            message: 'Yedeklenecek yeni değişiklik yok - zaten güncel',
-          });
-        }
-        throw error;
-      }
+      // Git yedekleme - manuel olarak yapılmalı (execAsync güvenlik sorunu)
+      return NextResponse.json({
+        success: true,
+        message: 'Git yedekleme için "Dışa Aktar" butonunu kullanın ve dosyayı manuel olarak commit edin. Alternatif olarak production\'da otomatik yedekleme yapılır.',
+      });
     }
 
     if (action === 'export') {

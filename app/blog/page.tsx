@@ -155,8 +155,8 @@ export default async function BlogPage() {
               href={`/blog/${post.slug}`}
               className="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 hover:border-[#860000]/30 flex flex-col"
             >
-              {/* Cover Image - 16:9 aspect ratio (1200x675 px önerilen) */}
-              <div className="relative overflow-hidden bg-gray-100" style={{ aspectRatio: '16/9' }}>
+              {/* Cover Image - 2:1 aspect ratio (1200x600 px önerilen) - Kompakt */}
+              <div className="relative overflow-hidden bg-gray-100" style={{ aspectRatio: '2/1' }}>
                 <img
                   src={post.coverImage || post.image || 'https://static.fokusistatistik.com/logolar/fokuslogo1.png'}
                   alt={post.title}
@@ -165,7 +165,7 @@ export default async function BlogPage() {
               </div>
 
               {/* Content */}
-              <div className="p-4 flex-1 flex flex-col">
+              <div className="p-3 flex-1 flex flex-col">
                 <div className="mb-2">
                   <span className="inline-block bg-[#860000]/10 text-[#860000] px-2 py-1 rounded-md text-xs font-medium">
                     {post.category}
