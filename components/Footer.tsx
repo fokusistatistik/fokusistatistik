@@ -169,6 +169,11 @@ export default function Footer() {
                   Çerez Politikası
                 </Link>
               </li>
+              <li>
+                <Link href="/admin" className="hover:text-[#ffc107] transition">
+                  Yönetim Paneli
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

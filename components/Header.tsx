@@ -130,6 +130,9 @@ export default function Header() {
             <Link href="/iletisim" className={`py-1 border-b-2 transition ${isActive('/iletisim') ? 'border-white font-semibold' : 'border-transparent hover:border-white hover:text-gray-100'}`}>
               İletişim
             </Link>
+            <Link href="/blog" className={`py-1 border-b-2 transition ${isActive('/blog') ? 'border-white font-semibold' : 'border-transparent hover:border-white hover:text-gray-100'}`}>
+              Blog
+            </Link>
 
             {/* Search */}
             <button
@@ -230,6 +233,9 @@ export default function Header() {
               </Link>
               <Link href="/iletisim" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/iletisim') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 İletişim
+              </Link>
+              <Link href="/blog" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/blog') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
+                Blog
               </Link>
 
               <Link
