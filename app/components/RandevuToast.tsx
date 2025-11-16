@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { X, Sparkles } from 'lucide-react';
 
 export default function RandevuToast() {
@@ -70,10 +71,16 @@ export default function RandevuToast() {
 
         {/* Content */}
         <div className="pr-6">
-          {/* Icon + Badge */}
+          {/* FOKUS216 Image + Badge */}
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#860000] to-[#a30000] flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-white" />
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#860000]/20 flex-shrink-0">
+              <Image
+                src="https://static.fokusistatistik.com/resimler/fokus216kare.png"
+                alt="FOKUS216"
+                width={40}
+                height={40}
+                className="object-cover"
+              />
             </div>
             <span className="text-[10px] font-semibold text-[#860000] uppercase tracking-wider">
               Özel Fırsat
