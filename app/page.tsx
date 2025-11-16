@@ -15,6 +15,7 @@ import {
   Clock,
   Target,
 } from 'lucide-react';
+import RandevuToast from './components/RandevuToast';
 
 export default function Home() {
   // CTA toast and floating button removed per user request
@@ -111,6 +112,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      {/* Randevu Toast Notification */}
+      <RandevuToast />
+
       <main className="flex-grow">
         {/* Assistants Section */}
         <section className="py-12 bg-gray-50">
