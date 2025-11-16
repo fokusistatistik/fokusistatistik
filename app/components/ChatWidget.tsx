@@ -10,6 +10,7 @@ export default function ChatWidget() {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showQuickReplies, setShowQuickReplies] = useState(true);
+  const [sessionId, setSessionId] = useState<string>('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const quickReplies = [
@@ -25,6 +26,16 @@ export default function ChatWidget() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    // Generate unique session ID on component mount
+    const generateSessionId = () => {
+      const timestamp = Date.now();
+      const random = Math.random().toString(36).substring(2, 15);
+      return `web_${timestamp}_${random}`;
+    };
+    setSessionId(generateSessionId());
+  }, []);
 
   const toggleChat = () => {
     setIsChatOpen(!isChatOpen);
@@ -46,7 +57,11 @@ export default function ChatWidget() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ message: userMessage, kaynak: "web" })
+        body: JSON.stringify({
+          message: userMessage,
+          kaynak: "web",
+          user_id: sessionId
+        })
       });
 
       const data = await response.json();
