@@ -110,7 +110,7 @@ export default function SanalAsistanVsPersonelPage() {
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li className="flex justify-between">
                     <span>Yıllık Maliyet:</span>
-                    <span className="font-bold text-green-600">48.000 - 96.000 TL</span>
+                    <span className="font-bold text-green-600">Düşük</span>
                   </li>
                   <li className="flex justify-between">
                     <span>Çalışma Saati:</span>
@@ -118,7 +118,7 @@ export default function SanalAsistanVsPersonelPage() {
                   </li>
                   <li className="flex justify-between">
                     <span>Kurulum Süresi:</span>
-                    <span className="font-semibold">10-20 gün</span>
+                    <span className="font-semibold">Kısa</span>
                   </li>
                   <li className="flex justify-between">
                     <span>Ölçeklenme:</span>
@@ -130,7 +130,7 @@ export default function SanalAsistanVsPersonelPage() {
 
             <div className="mt-6 bg-green-100 p-4 rounded-lg">
               <p className="font-bold text-green-900 text-lg">
-                💰 Potansiyel Tasarruf: 324.000 - 504.000 TL/yıl (%77-84 maliyet azalması)
+                💰 Önemli Maliyet Tasarrufu Potansiyeli
               </p>
             </div>
           </section>
