@@ -77,16 +77,16 @@ export default function YapayZekaIleKazancPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Yapay Zeka İle Kazanç Neden Bu Kadar Önemli?</h2>
 
             <p className="text-gray-700 leading-relaxed mb-4">
-              2025 yılında yapay zeka ve dijital işçiler, işletmelerin rekabet avantajı elde etmesinin en kritik araçları arasında yer alıyor. McKinsey'in araştırmasına göre, yapay zeka teknolojilerini etkin kullanan şirketler, rakiplerine göre <strong>%20-30 daha yüksek karlılık</strong> elde ediyor.
+              2025 yılında yapay zeka ve dijital işçiler, işletmelerin rekabet avantajı elde etmesinin en kritik araçları arasında yer alıyor. Sektör araştırmalarına göre, yapay zeka teknolojilerini etkin kullanan şirketler, rakiplerine göre <strong>önemli ölçüde daha yüksek karlılık</strong> elde ediyor.
             </p>
 
             <div className="bg-blue-50 border-l-4 border-blue-500 p-6 my-8">
-              <h3 className="text-xl font-bold text-blue-900 mb-3">İstatistiklerle Yapay Zeka Etkisi</h3>
+              <h3 className="text-xl font-bold text-blue-900 mb-3">Yapay Zekanın İşletmelere Etkisi</h3>
               <ul className="space-y-2 text-blue-900">
-                <li>• <strong>%40 maliyet azalması</strong> - Sanal asistanlar ile personel giderleri</li>
-                <li>• <strong>%60 zaman tasarrufu</strong> - AI otomasyon ile tekrarlayan işler</li>
-                <li>• <strong>%35 gelir artışı</strong> - 7/24 müşteri hizmeti ve satış desteği</li>
-                <li>• <strong>%50 hata azalması</strong> - Dijital işçiler ile manuel işlemler</li>
+                <li>• <strong>Önemli maliyet azalması</strong> - Sanal asistanlar ile personel giderleri</li>
+                <li>• <strong>Kayda değer zaman tasarrufu</strong> - AI otomasyon ile tekrarlayan işler</li>
+                <li>• <strong>Gelir artışı</strong> - 7/24 müşteri hizmeti ve satış desteği</li>
+                <li>• <strong>Hata oranında ciddi azalma</strong> - Dijital işçiler ile manuel işlemler</li>
               </ul>
             </div>
 
@@ -103,7 +103,7 @@ export default function YapayZekaIleKazancPage() {
               </div>
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-2">Sanal Asistanlar ile Personel Maliyetlerini Azaltın</h2>
-                <p className="text-lg text-gray-600">Yıllık %40-60 maliyet tasarrufu potansiyeli</p>
+                <p className="text-lg text-gray-600">Önemli ölçüde maliyet tasarrufu potansiyeli</p>
               </div>
             </div>
 
@@ -111,37 +111,37 @@ export default function YapayZekaIleKazancPage() {
               <strong>Sanal asistanlar</strong> veya <strong>dijital işçiler</strong>, işletmenizin en büyük gider kalemlerinden biri olan personel maliyetlerini dramatik şekilde azaltmanın en etkili yoludur. Geleneksel bir çalışan için ödediğiniz maaş, SSK, yemek, yol, izin gibi maliyetlerin yanı sıra işe alım, eğitim ve yönetim süreçleri de önemli zaman ve kaynak gerektirir.
             </p>
 
-            <h3 className="text-2xl font-bold text-gray-900 mb-3 mt-6">Gerçek Maliyet Karşılaştırması</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3 mt-6">Maliyet Karşılaştırması</h3>
 
             <div className="grid md:grid-cols-2 gap-6 my-6">
               <div className="bg-red-50 p-6 rounded-xl border-2 border-red-200">
-                <h4 className="font-bold text-red-900 mb-3 text-lg">Geleneksel Çalışan (Aylık)</h4>
+                <h4 className="font-bold text-red-900 mb-3 text-lg">Geleneksel Çalışan</h4>
                 <ul className="space-y-2 text-red-800">
-                  <li>• Brüt Maaş: 25.000 TL</li>
-                  <li>• SSK İşveren Payı: 5.000 TL</li>
-                  <li>• Yemek + Yol: 3.000 TL</li>
-                  <li>• Ofis Maliyeti: 2.000 TL</li>
-                  <li className="font-bold text-lg pt-2 border-t border-red-300">Toplam: ~35.000 TL/ay</li>
-                  <li className="font-bold text-xl">Yıllık: 420.000 TL</li>
+                  <li>• Brüt maaş giderleri</li>
+                  <li>• SSK işveren payı</li>
+                  <li>• Yemek ve yol masrafları</li>
+                  <li>• Ofis ve ekipman maliyeti</li>
+                  <li>• İşe alım ve eğitim giderleri</li>
+                  <li className="font-bold text-lg pt-2 border-t border-red-300">Toplam: Yüksek aylık maliyet</li>
                 </ul>
               </div>
 
               <div className="bg-green-50 p-6 rounded-xl border-2 border-green-200">
-                <h4 className="font-bold text-green-900 mb-3 text-lg">Sanal Asistan (Aylık)</h4>
+                <h4 className="font-bold text-green-900 mb-3 text-lg">Sanal Asistan</h4>
                 <ul className="space-y-2 text-green-800">
-                  <li>• Platform Ücreti: 3.000 TL</li>
-                  <li>• Entegrasyon: 500 TL</li>
-                  <li>• Bakım: 500 TL</li>
-                  <li>• Yan Maliyet: 0 TL</li>
-                  <li className="font-bold text-lg pt-2 border-t border-green-300">Toplam: ~4.000 TL/ay</li>
-                  <li className="font-bold text-xl">Yıllık: 48.000 TL</li>
+                  <li>• Platform abonelik ücreti</li>
+                  <li>• Tek seferlik entegrasyon</li>
+                  <li>• Minimal bakım gideri</li>
+                  <li>• Yan maliyet yok</li>
+                  <li>• Eğitim maliyeti yok</li>
+                  <li className="font-bold text-lg pt-2 border-t border-green-300">Toplam: Düşük aylık maliyet</li>
                 </ul>
               </div>
             </div>
 
             <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 my-6">
               <p className="text-yellow-900 font-bold text-xl">
-                💰 Yıllık Tasarruf: 372.000 TL (%88 maliyet azalması)
+                💰 Sonuç: Önemli ölçüde maliyet tasarrufu sağlanabilir
               </p>
             </div>
 
@@ -197,7 +197,7 @@ export default function YapayZekaIleKazancPage() {
                 2
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">AI Otomasyon ile Verimliliği %60 Artırın</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">AI Otomasyon ile Verimliliği Önemli Ölçüde Artırın</h2>
                 <p className="text-lg text-gray-600">Tekrarlayan işleri otomatikleştirerek zaman ve para kazanın</p>
               </div>
             </div>
@@ -215,7 +215,7 @@ export default function YapayZekaIleKazancPage() {
                   Manuel veri girişi, Excel raporları, dashboard güncellemeleri
                 </p>
                 <p className="text-green-700 font-semibold text-sm">
-                  ⏱️ Tasarruf: Günde 3-4 saat → Yıllık 750+ saat
+                  ⏱️ Tasarruf: Günlük saatler, yıllık önemli zaman kazancı
                 </p>
               </div>
 
@@ -225,7 +225,7 @@ export default function YapayZekaIleKazancPage() {
                   Gelen mail sınıflandırma, otomatik yanıtlar, takip e-postaları
                 </p>
                 <p className="text-green-700 font-semibold text-sm">
-                  ⏱️ Tasarruf: Günde 2 saat → Yıllık 500+ saat
+                  ⏱️ Tasarruf: Günlük ciddi zaman tasarrufu
                 </p>
               </div>
 
@@ -235,7 +235,7 @@ export default function YapayZekaIleKazancPage() {
                   Takvim senkronizasyonu, otomatik hatırlatmalar, toplantı notları
                 </p>
                 <p className="text-green-700 font-semibold text-sm">
-                  ⏱️ Tasarruf: Günde 1 saat → Yıllık 250+ saat
+                  ⏱️ Tasarruf: Günlük zaman kazancı
                 </p>
               </div>
 
@@ -245,38 +245,38 @@ export default function YapayZekaIleKazancPage() {
                   Otomatik fatura oluşturma, ödeme hatırlatmaları, muhasebe entegrasyonu
                 </p>
                 <p className="text-green-700 font-semibold text-sm">
-                  ⏱️ Tasarruf: Günde 2 saat → Yıllık 500+ saat
+                  ⏱️ Tasarruf: Önemli zaman ve maliyet tasarrufu
                 </p>
               </div>
             </div>
 
             <div className="bg-green-50 p-6 rounded-xl my-6">
-              <h4 className="font-bold text-green-900 mb-3">💡 Gerçek Örnek: E-Ticaret Şirketi</h4>
+              <h4 className="font-bold text-green-900 mb-3">💡 İş Örneği: E-Ticaret Şirketi</h4>
               <p className="text-gray-700 mb-3">
-                100 kişilik e-ticaret şirketi, sipariş işleme, stok yönetimi ve müşteri bilgilendirme süreçlerini AI ile otomatikleştirdi.
+                Bir e-ticaret şirketi, sipariş işleme, stok yönetimi ve müşteri bilgilendirme süreçlerini AI ile otomatikleştirdi.
               </p>
               <div className="grid md:grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="font-semibold text-gray-900">Öncesi:</p>
                   <ul className="text-gray-700 space-y-1 mt-2">
-                    <li>• 5 personel tam zamanlı</li>
-                    <li>• Günde 8 saat işlem</li>
-                    <li>• %5 hata oranı</li>
-                    <li>• Aylık 150.000 TL maliyet</li>
+                    <li>• Çok sayıda personel tam zamanlı</li>
+                    <li>• Mesai saatleri ile sınırlı</li>
+                    <li>• Yüksek hata oranı</li>
+                    <li>• Önemli personel maliyeti</li>
                   </ul>
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900">Sonrası:</p>
                   <ul className="text-green-700 space-y-1 mt-2">
-                    <li>✓ 1 personel + AI sistem</li>
+                    <li>✓ Minimal personel + AI sistem</li>
                     <li>✓ 7/24 otomatik işlem</li>
-                    <li>✓ %0.5 hata oranı</li>
-                    <li>✓ Aylık 40.000 TL maliyet</li>
+                    <li>✓ Çok düşük hata oranı</li>
+                    <li>✓ Önemli ölçüde düşük maliyet</li>
                   </ul>
                 </div>
               </div>
               <p className="font-bold text-green-900 mt-4 text-lg">
-                📊 Sonuç: Aylık 110.000 TL tasarruf, yıllık 1.320.000 TL kazanç!
+                📊 Sonuç: Önemli aylık ve yıllık maliyet tasarrufu sağlandı
               </p>
             </div>
           </section>
@@ -302,9 +302,9 @@ export default function YapayZekaIleKazancPage() {
             <div className="bg-red-50 border-l-4 border-red-500 p-6 my-6">
               <h4 className="font-bold text-red-900 mb-3">❌ Mesai Dışı Kayıp Fırsatlar</h4>
               <ul className="space-y-2 text-red-800">
-                <li>• Müşterilerin <strong>%67'si</strong> anında yanıt alamadığında rakip firmaya gidiyor</li>
-                <li>• E-ticaret sitelerinde gece satışları toplam satışların <strong>%30-40'ını</strong> oluşturuyor</li>
-                <li>• Hafta sonu sorularına yanıt vermeyen işletmeler <strong>%25 potansiyel gelir</strong> kaybediyor</li>
+                <li>• Müşterilerin önemli bir kısmı anında yanıt alamadığında rakip firmaya gidiyor</li>
+                <li>• E-ticaret sitelerinde gece satışları toplam satışların önemli bir bölümünü oluşturuyor</li>
+                <li>• Hafta sonu sorularına yanıt vermeyen işletmeler kayda değer potansiyel gelir kaybediyor</li>
               </ul>
             </div>
 
@@ -362,21 +362,21 @@ export default function YapayZekaIleKazancPage() {
               </div>
             </div>
 
-            <h3 className="text-2xl font-bold text-gray-900 mb-3 mt-6">Gelir Artışı Hesaplama</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3 mt-6">Gelir Artışı Potansiyeli</h3>
 
             <div className="bg-blue-50 p-6 rounded-xl">
               <p className="text-gray-700 mb-4">
-                Örnek: Aylık 500.000 TL cirosu olan bir online mağaza için:
+                Örnek senaryo: Orta ölçekli bir online mağaza için:
               </p>
               <div className="space-y-3 text-gray-800">
-                <p>📊 Mevcut mesai dışı trafik: <strong>%35</strong></p>
-                <p>📊 Mesai dışı dönüşüm kaybı: <strong>%60</strong></p>
-                <p>📊 Potansiyel kayıp gelir: 500.000 × 0.35 × 0.60 = <strong className="text-red-600">105.000 TL/ay</strong></p>
+                <p>📊 Mesai dışı saatlerde önemli miktarda ziyaretçi trafiği var</p>
+                <p>📊 Bu saatlerde müşteri hizmeti olmadığı için dönüşüm kaybı yaşanıyor</p>
+                <p>📊 Potansiyel kayıp gelir önemli boyutlarda olabilir</p>
                 <p className="pt-3 border-t border-blue-200 font-bold text-lg">
-                  💰 7/24 AI asistan ile ekstra gelir: <strong className="text-green-600">~80.000 TL/ay</strong>
+                  💰 7/24 AI asistan ile kayda değer ek gelir elde edilebilir
                 </p>
                 <p className="font-bold text-xl text-green-600">
-                  🎯 Yıllık ek gelir: 960.000 TL
+                  🎯 Yıllık bazda önemli gelir artışı sağlanabilir
                 </p>
               </div>
             </div>
@@ -390,7 +390,7 @@ export default function YapayZekaIleKazancPage() {
               </div>
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-2">Veri Analizi ile Kararları Optimize Edin</h2>
-                <p className="text-lg text-gray-600">Veriye dayalı kararlar ile %20-30 daha fazla karlılık</p>
+                <p className="text-lg text-gray-600">Veriye dayalı kararlar ile önemli karlılık artışı</p>
               </div>
             </div>
 
@@ -407,10 +407,10 @@ export default function YapayZekaIleKazancPage() {
                   Satış Tahmini
                 </h4>
                 <p className="text-purple-800 text-sm mb-3">
-                  AI, geçmiş satış verilerinizi analiz ederek gelecek dönem satışlarını %85-90 doğrulukla tahmin edebilir.
+                  AI, geçmiş satış verilerinizi analiz ederek gelecek dönem satışlarını yüksek doğrulukla tahmin edebilir.
                 </p>
                 <p className="text-purple-900 font-semibold text-sm">
-                  💡 Sonuç: Doğru stok yönetimi, %15-20 maliyet tasarrufu
+                  💡 Sonuç: Doğru stok yönetimi, önemli maliyet tasarrufu
                 </p>
               </div>
 
@@ -423,7 +423,7 @@ export default function YapayZekaIleKazancPage() {
                   Müşterilerinizi davranışlarına göre otomatik segmentlere ayırarak hedefli pazarlama yapın.
                 </p>
                 <p className="text-blue-900 font-semibold text-sm">
-                  💡 Sonuç: Pazarlama ROI'si %30-40 artış
+                  💡 Sonuç: Pazarlama ROI'sinde kayda değer artış
                 </p>
               </div>
 
@@ -436,7 +436,7 @@ export default function YapayZekaIleKazancPage() {
                   AI, rakip fiyatları, talep esnekliğini ve pazar koşullarını analiz ederek optimal fiyat önerir.
                 </p>
                 <p className="text-green-900 font-semibold text-sm">
-                  💡 Sonuç: Kar marjı %10-15 artış
+                  💡 Sonuç: Kar marjında artış
                 </p>
               </div>
 
@@ -449,22 +449,22 @@ export default function YapayZekaIleKazancPage() {
                   Hangi müşterilerin kaybedileceğini önceden tahmin ederek önlem alın.
                 </p>
                 <p className="text-orange-900 font-semibold text-sm">
-                  💡 Sonuç: Müşteri kaybı %25-30 azalma
+                  💡 Sonuç: Müşteri kaybında azalma
                 </p>
               </div>
             </div>
 
             <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 my-6">
-              <h4 className="font-bold text-yellow-900 mb-3">🎯 Case Study: Perakende Zinciri</h4>
+              <h4 className="font-bold text-yellow-900 mb-3">🎯 İş Örneği: Perakende Zinciri</h4>
               <p className="text-gray-700 mb-3">
-                50 şubeli perakende zinciri, AI destekli talep tahmini ve stok optimizasyonu sistemi kurdu.
+                Çok şubeli bir perakende zinciri, AI destekli talep tahmini ve stok optimizasyonu sistemi kurdu.
               </p>
               <div className="space-y-2 text-gray-800">
-                <p>• Stok maliyetleri <strong className="text-green-600">%18 azaldı</strong></p>
-                <p>• Ürün mevcudiyeti <strong className="text-green-600">%95'e yükseldi</strong></p>
-                <p>• Fire oranı <strong className="text-green-600">%40 düştü</strong></p>
+                <p>• Stok maliyetlerinde <strong className="text-green-600">önemli azalma</strong></p>
+                <p>• Ürün mevcudiyetinde <strong className="text-green-600">ciddi iyileşme</strong></p>
+                <p>• Fire oranında <strong className="text-green-600">kayda değer düşüş</strong></p>
                 <p className="pt-2 font-bold text-lg">
-                  💰 Yıllık tasarruf: 2.5 Milyon TL
+                  💰 Yıllık bazda önemli tasarruf sağlandı
                 </p>
               </div>
             </div>
@@ -503,8 +503,8 @@ export default function YapayZekaIleKazancPage() {
                     <ul className="text-purple-800 space-y-1">
                       <li>• Manuel e-posta gönderimi</li>
                       <li>• Tek tip içerik</li>
-                      <li>• %2-3 açılma oranı</li>
-                      <li>• %0.5 dönüşüm</li>
+                      <li>• Düşük açılma oranı</li>
+                      <li>• Düşük dönüşüm</li>
                     </ul>
                   </div>
                   <div>
@@ -512,8 +512,8 @@ export default function YapayZekaIleKazancPage() {
                     <ul className="text-green-800 space-y-1">
                       <li>✓ Otomatik tetikleme</li>
                       <li>✓ Kişiselleştirilmiş içerik</li>
-                      <li>✓ %18-25 açılma oranı</li>
-                      <li>✓ %3-5 dönüşüm</li>
+                      <li>✓ Yüksek açılma oranı</li>
+                      <li>✓ Yüksek dönüşüm</li>
                     </ul>
                   </div>
                 </div>
@@ -525,7 +525,7 @@ export default function YapayZekaIleKazancPage() {
                   Potansiyel müşterilerinizi satın almaya hazır hale getiren otomatik içerik serisi
                 </p>
                 <p className="text-green-700 font-semibold text-sm">
-                  📊 Sonuç: Lead dönüşüm oranı %30-50 artış, satış döngüsü %25 kısalma
+                  📊 Sonuç: Lead dönüşüm oranında önemli artış, satış döngüsü kısalması
                 </p>
               </div>
 
@@ -535,23 +535,23 @@ export default function YapayZekaIleKazancPage() {
                   İçerik planlama, otomatik paylaşım, engagement takibi, reklam optimizasyonu
                 </p>
                 <p className="text-green-700 font-semibold text-sm">
-                  📊 Sonuç: Günde 3 saat zaman tasarrufu, %40 daha fazla etkileşim
+                  📊 Sonuç: Günlük zaman tasarrufu, daha fazla etkileşim
                 </p>
               </div>
             </div>
 
             <div className="bg-green-50 p-6 rounded-xl my-6">
-              <h4 className="font-bold text-green-900 mb-3">💡 Gerçek Örnek: SaaS Şirketi</h4>
+              <h4 className="font-bold text-green-900 mb-3">💡 İş Örneği: B2B SaaS Şirketi</h4>
               <p className="text-gray-700 mb-3">
-                B2B SaaS şirketi, pazarlama otomasyonu platformu kurarak lead generation ve nurturing süreçlerini otomatikleştirdi.
+                Bir B2B SaaS şirketi, pazarlama otomasyonu platformu kurarak lead generation ve nurturing süreçlerini otomatikleştirdi.
               </p>
               <div className="space-y-2 text-gray-800">
-                <p>• Aylık lead sayısı <strong className="text-green-600">250'den 680'e çıktı</strong> (%172 artış)</p>
-                <p>• Lead-to-customer dönüşüm oranı <strong className="text-green-600">%8'den %15'e yükseldi</strong></p>
-                <p>• Pazarlama ekibi verimliliği <strong className="text-green-600">%60 arttı</strong></p>
-                <p>• Müşteri edinme maliyeti (CAC) <strong className="text-green-600">%35 düştü</strong></p>
+                <p>• Aylık lead sayısında <strong className="text-green-600">önemli artış</strong></p>
+                <p>• Lead-to-customer dönüşüm oranında <strong className="text-green-600">kayda değer yükseliş</strong></p>
+                <p>• Pazarlama ekibi verimliliğinde <strong className="text-green-600">ciddi artış</strong></p>
+                <p>• Müşteri edinme maliyetinde (CAC) <strong className="text-green-600">azalma</strong></p>
                 <p className="pt-2 border-t border-green-200 font-bold text-lg">
-                  💰 Pazarlama ROI iki katına çıktı: %250'den %520'ye
+                  💰 Pazarlama ROI'sinde önemli ölçüde artış sağlandı
                 </p>
               </div>
             </div>
@@ -559,8 +559,8 @@ export default function YapayZekaIleKazancPage() {
             <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 my-6">
               <h4 className="font-bold text-yellow-900 mb-3">⚡ Hızlı Kazanç: İlk 30 Günde Uygulayın</h4>
               <ol className="space-y-2 text-gray-800">
-                <li><strong>1. Hafta:</strong> Terk edilmiş sepet e-posta otomasyonu (ortalama %15-20 geri kazanım)</li>
-                <li><strong>2. Hafta:</strong> Hoş geldin e-posta serisi (yeni müşteri engagement %40 artış)</li>
+                <li><strong>1. Hafta:</strong> Terk edilmiş sepet e-posta otomasyonu (önemli geri kazanım potansiyeli)</li>
+                <li><strong>2. Hafta:</strong> Hoş geldin e-posta serisi (yeni müşteri engagement artışı)</li>
                 <li><strong>3. Hafta:</strong> Müşteri segmentasyonu ve hedefli kampanyalar</li>
                 <li><strong>4. Hafta:</strong> WhatsApp müşteri hizmetleri botu entegrasyonu</li>
               </ol>
@@ -574,7 +574,7 @@ export default function YapayZekaIleKazancPage() {
                 6
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">İçerik Üretimi ile Organik Trafiği %50 Artırın</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">İçerik Üretimi ile Organik Trafiği Artırın</h2>
                 <p className="text-lg text-gray-600">ChatGPT ve AI yazma araçları ile SEO odaklı içerik stratejisi</p>
               </div>
             </div>
@@ -592,8 +592,8 @@ export default function YapayZekaIleKazancPage() {
                   AI ile hızlı taslak oluşturup uzman editörlükle zenginleştirin
                 </p>
                 <ul className="text-sm text-blue-800 space-y-1">
-                  <li>• Zaman tasarrufu: %70</li>
-                  <li>• Aylık üretim kapasitesi: 4 yazıdan 20+ yazıya</li>
+                  <li>• Önemli zaman tasarrufu</li>
+                  <li>• Aylık üretim kapasitesinde önemli artış</li>
                   <li>• SEO optimizasyon kolaylığı</li>
                   <li>• Tutarlı kalite ve ton</li>
                 </ul>
@@ -605,7 +605,7 @@ export default function YapayZekaIleKazancPage() {
                   Günlük paylaşımlar, hashtag stratejileri, görsel metinleri
                 </p>
                 <ul className="text-sm text-purple-800 space-y-1">
-                  <li>• Günde 5 dakika yerine 30 saniye</li>
+                  <li>• Çok hızlı içerik üretimi</li>
                   <li>• Tutarlı marka sesi</li>
                   <li>• Platform-spesifik optimizasyon</li>
                   <li>• A/B test varyasyonları</li>
@@ -618,7 +618,7 @@ export default function YapayZekaIleKazancPage() {
                   E-ticaret için SEO odaklı, özgün ürün metinleri
                 </p>
                 <ul className="text-sm text-green-800 space-y-1">
-                  <li>• 100 ürün yazımı: 1 saatte</li>
+                  <li>• Toplu ürün içeriği hızlı üretimi</li>
                   <li>• Özgün içerik (duplicate content yok)</li>
                   <li>• Anahtar kelime optimizasyonu</li>
                   <li>• Dönüşüm odaklı copywriting</li>
@@ -647,20 +647,20 @@ export default function YapayZekaIleKazancPage() {
                 <div className="bg-white p-4 rounded-lg">
                   <p className="font-semibold text-gray-900 mb-2">Ay 1-2: Temel Oluşturma</p>
                   <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Haftalık 2 blog yazısı (anahtar kelime araştırması ile)</li>
+                    <li>• Haftalık düzenli blog yazısı (anahtar kelime araştırması ile)</li>
                     <li>• Günlük sosyal medya içeriği</li>
-                    <li>• 10 sık sorulan soru sayfası</li>
-                    <li className="text-green-700 font-semibold pt-2">→ Beklenen trafik artışı: %15-20</li>
+                    <li>• Sık sorulan soru sayfaları</li>
+                    <li className="text-green-700 font-semibold pt-2">→ İlk trafik artışı görülmeye başlar</li>
                   </ul>
                 </div>
 
                 <div className="bg-white p-4 rounded-lg">
                   <p className="font-semibold text-gray-900 mb-2">Ay 3-4: Momentum Kazanma</p>
                   <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Haftalık 3-4 blog yazısı</li>
-                    <li>• Uzun formatlı rehberler (3000+ kelime)</li>
+                    <li>• Artan sıklıkta blog yazısı</li>
+                    <li>• Uzun formatlı rehberler</li>
                     <li>• Video içerik transkriptleri</li>
-                    <li className="text-green-700 font-semibold pt-2">→ Beklenen trafik artışı: %35-40</li>
+                    <li className="text-green-700 font-semibold pt-2">→ Trafik artışı ivmelenir</li>
                   </ul>
                 </div>
 
@@ -670,25 +670,25 @@ export default function YapayZekaIleKazancPage() {
                     <li>• Sektörel derinlik yazıları</li>
                     <li>• Vaka çalışmaları ve whitepaperlar</li>
                     <li>• Misafir blog yazıları (backlink stratejisi)</li>
-                    <li className="text-green-700 font-semibold pt-2">→ Beklenen trafik artışı: %50-60</li>
+                    <li className="text-green-700 font-semibold pt-2">→ Kayda değer organik trafik artışı</li>
                   </ul>
                 </div>
               </div>
             </div>
 
             <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 my-6">
-              <h4 className="font-bold text-yellow-900 mb-3">📈 Case Study: E-Ticaret Sitesi</h4>
+              <h4 className="font-bold text-yellow-900 mb-3">📈 İş Örneği: E-Ticaret Sitesi</h4>
               <p className="text-gray-700 mb-3">
-                Kozmetik ürünleri satan e-ticaret sitesi, AI destekli içerik stratejisi uyguladı.
+                Bir kozmetik e-ticaret sitesi, AI destekli içerik stratejisi uyguladı.
               </p>
               <div className="space-y-2 text-gray-800">
-                <p>• Aylık blog yazısı sayısı: <strong className="text-blue-600">2'den 24'e çıktı</strong></p>
-                <p>• Organik trafik 6 ayda <strong className="text-green-600">%58 arttı</strong></p>
-                <p>• Anahtar kelime sıralaması: <strong className="text-green-600">180 yeni keyword ilk sayfada</strong></p>
-                <p>• Organik dönüşüm oranı <strong className="text-green-600">%1.2'den %2.8'e yükseldi</strong></p>
-                <p>• İçerik üretim maliyeti <strong className="text-green-600">%65 azaldı</strong></p>
+                <p>• Aylık blog yazısı sayısında <strong className="text-blue-600">önemli artış</strong></p>
+                <p>• Organik trafikte <strong className="text-green-600">kayda değer artış</strong></p>
+                <p>• Anahtar kelime sıralamasında <strong className="text-green-600">ciddi iyileşme</strong></p>
+                <p>• Organik dönüşüm oranında <strong className="text-green-600">önemli yükseliş</strong></p>
+                <p>• İçerik üretim maliyetinde <strong className="text-green-600">azalma</strong></p>
                 <p className="pt-2 border-t border-yellow-200 font-bold text-lg">
-                  💰 6 aylık ek gelir (organik trafik): 485.000 TL
+                  💰 Organik trafik ile önemli ölçüde ek gelir sağlandı
                 </p>
               </div>
             </div>
@@ -701,7 +701,7 @@ export default function YapayZekaIleKazancPage() {
                 7
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Tahmine Dayalı Bakım ile Arıza Maliyetlerini %70 Düşürün</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">Tahmine Dayalı Bakım ile Arıza Maliyetlerini Önemli Ölçüde Düşürün</h2>
                 <p className="text-lg text-gray-600">IoT ve AI ile ekipman arızalarını önceden tespit edin</p>
               </div>
             </div>
@@ -741,7 +741,7 @@ export default function YapayZekaIleKazancPage() {
                 <h4 className="font-bold text-green-900 mb-3">Tahmine Dayalı Bakım (AI)</h4>
                 <p className="text-sm text-green-800 mb-3">Veriye dayalı öngörüsel bakım</p>
                 <ul className="text-sm text-green-700 space-y-1">
-                  <li>✓ %70-90 arıza önleme</li>
+                  <li>✓ Yüksek oranda arıza önleme</li>
                   <li>✓ Optimal bakım zamanlaması</li>
                   <li>✓ Minimum duruş süresi</li>
                   <li>✓ Maksimum ekipman ömrü</li>
@@ -810,40 +810,40 @@ export default function YapayZekaIleKazancPage() {
             </div>
 
             <div className="bg-green-50 p-6 rounded-xl my-6">
-              <h4 className="font-bold text-green-900 mb-3">💡 Gerçek Örnek: Üretim Tesisi</h4>
+              <h4 className="font-bold text-green-900 mb-3">💡 İş Örneği: Üretim Tesisi</h4>
               <p className="text-gray-700 mb-3">
-                150 makineli üretim tesisi, kritik ekipmanlarına IoT sensörleri ve AI analiz sistemi kurdu.
+                Büyük bir üretim tesisi, kritik ekipmanlarına IoT sensörleri ve AI analiz sistemi kurdu.
               </p>
               <div className="grid md:grid-cols-2 gap-4 text-sm mb-4">
                 <div>
-                  <p className="font-semibold text-gray-900 mb-2">12 Ay Önce (Reaktif Bakım):</p>
+                  <p className="font-semibold text-gray-900 mb-2">Öncesi (Reaktif Bakım):</p>
                   <ul className="text-gray-700 space-y-1">
-                    <li>• 18 beklenmedik arıza</li>
-                    <li>• 240 saat üretim kaybı</li>
-                    <li>• Acil onarım: 850.000 TL</li>
-                    <li>• Üretim kaybı: 1.200.000 TL</li>
-                    <li className="font-bold pt-2">Toplam: 2.050.000 TL</li>
+                    <li>• Sık beklenmedik arızalar</li>
+                    <li>• Uzun üretim duruş süreleri</li>
+                    <li>• Yüksek acil onarım maliyeti</li>
+                    <li>• Önemli üretim kaybı</li>
+                    <li className="font-bold pt-2">Toplam: Yüksek yıllık maliyet</li>
                   </ul>
                 </div>
                 <div>
-                  <p className="font-semibold text-green-900 mb-2">12 Ay Sonra (AI Bakım):</p>
+                  <p className="font-semibold text-green-900 mb-2">Sonrası (AI Bakım):</p>
                   <ul className="text-green-700 space-y-1">
-                    <li>✓ 2 beklenmedik arıza</li>
-                    <li>✓ 28 saat üretim kaybı</li>
-                    <li>✓ Planlanmış bakım: 180.000 TL</li>
-                    <li>✓ AI sistem maliyeti: 120.000 TL</li>
-                    <li>✓ Üretim kaybı: 140.000 TL</li>
-                    <li className="font-bold pt-2">Toplam: 440.000 TL</li>
+                    <li>✓ Çok az beklenmedik arıza</li>
+                    <li>✓ Minimal üretim kaybı</li>
+                    <li>✓ Düşük planlanmış bakım maliyeti</li>
+                    <li>✓ AI sistem yatırımı</li>
+                    <li>✓ Çok az üretim kaybı</li>
+                    <li className="font-bold pt-2">Toplam: Düşük yıllık maliyet</li>
                   </ul>
                 </div>
               </div>
               <div className="border-t border-green-200 pt-4">
                 <p className="font-bold text-green-900 text-lg mb-2">
-                  💰 Yıllık Tasarruf: 1.610.000 TL (%78.5 maliyet azalması)
+                  💰 Önemli ölçüde yıllık maliyet tasarrufu sağlandı
                 </p>
                 <p className="text-gray-700 text-sm">
                   + Müşteri memnuniyeti artışı (teslimat sürelerinde istikrar)<br/>
-                  + Ekipman ömrü %20-30 uzama<br/>
+                  + Ekipman ömründe uzama<br/>
                   + Çalışan güvenliği artışı
                 </p>
               </div>
@@ -890,18 +890,18 @@ export default function YapayZekaIleKazancPage() {
             <div className="bg-gray-50 p-6 rounded-xl my-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">📌 Hızlı Özet: 7 Yöntem</h3>
               <ol className="space-y-2 text-gray-700">
-                <li><strong>1.</strong> Sanal asistanlar ile personel maliyetlerini %40-60 azaltın</li>
-                <li><strong>2.</strong> AI otomasyon ile verimliliği %60 artırın</li>
-                <li><strong>3.</strong> 7/24 müşteri hizmeti ile satışları %30-40 yükseltin</li>
+                <li><strong>1.</strong> Sanal asistanlar ile personel maliyetlerini önemli ölçüde azaltın</li>
+                <li><strong>2.</strong> AI otomasyon ile verimliliği ciddi şekilde artırın</li>
+                <li><strong>3.</strong> 7/24 müşteri hizmeti ile satışları yükseltin</li>
                 <li><strong>4.</strong> Veri analizi ile kararları optimize edin</li>
-                <li><strong>5.</strong> Pazarlama otomasyonu ile ROI'yi iki katına çıkarın</li>
-                <li><strong>6.</strong> İçerik üretimi ile organik trafiği %50 artırın</li>
-                <li><strong>7.</strong> Tahmine dayalı bakım ile arıza maliyetlerini %70 düşürün</li>
+                <li><strong>5.</strong> Pazarlama otomasyonu ile ROI'yi artırın</li>
+                <li><strong>6.</strong> İçerik üretimi ile organik trafiği artırın</li>
+                <li><strong>7.</strong> Tahmine dayalı bakım ile arıza maliyetlerini önemli ölçüde düşürün</li>
               </ol>
             </div>
 
             <p className="text-gray-700 leading-relaxed mb-4">
-              Unutmayın, yapay zeka yatırımının geri dönüşü genellikle <strong>3-6 ay</strong> gibi kısa bir sürede görülmeye başlar. Erken hareket eden işletmeler, hem maliyet avantajı hem de pazar liderliği kazanıyor.
+              Unutmayın, yapay zeka yatırımının geri dönüşü genellikle kısa bir sürede görülmeye başlar. Erken hareket eden işletmeler, hem maliyet avantajı hem de pazar liderliği kazanıyor.
             </p>
 
             <div className="bg-[#860000]/10 border-2 border-[#860000]/20 p-6 rounded-xl">

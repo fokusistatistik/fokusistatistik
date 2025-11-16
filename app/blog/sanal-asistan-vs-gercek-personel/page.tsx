@@ -65,7 +65,7 @@ export default function SanalAsistanVsPersonelPage() {
           </h1>
 
           <p className="text-xl text-gray-600 leading-relaxed">
-            İşletmeniz için yeni bir eleman mı alacaksınız? Yoksa sanal asistan teknolojisine mi yatırım yapacaksınız? Bu kritik karar, işletmenizin maliyetlerini, verimliliğini ve rekabet gücünü doğrudan etkiliyor. Bu kapsamlı rehberde, gerçek rakamlarla her iki seçeneğin 12 aylık maliyetini, avantajlarını ve dezavantajlarını analiz ediyoruz.
+            İşletmeniz için yeni bir eleman mı alacaksınız? Yoksa sanal asistan teknolojisine mi yatırım yapacaksınız? Bu kritik karar, işletmenizin maliyetlerini, verimliliğini ve rekabet gücünü doğrudan etkiliyor. Bu kapsamlı rehberde, her iki seçeneğin 12 aylık maliyetini, avantajlarını ve dezavantajlarını analiz ediyoruz.
           </p>
         </header>
 
@@ -74,7 +74,7 @@ export default function SanalAsistanVsPersonelPage() {
 
           {/* Hızlı Özet */}
           <section className="mb-12 bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-8 border-2 border-blue-200">
-            <h2 className="text-2xl font-bold text-blue-900 mb-4">⚡ Hızlı Özet: 2025 Rakamları</h2>
+            <h2 className="text-2xl font-bold text-blue-900 mb-4">⚡ Hızlı Özet</h2>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white p-5 rounded-lg">
@@ -85,15 +85,15 @@ export default function SanalAsistanVsPersonelPage() {
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li className="flex justify-between">
                     <span>Yıllık Maliyet:</span>
-                    <span className="font-bold text-red-600">420.000 - 600.000 TL</span>
+                    <span className="font-bold text-red-600">Yüksek</span>
                   </li>
                   <li className="flex justify-between">
                     <span>Çalışma Saati:</span>
-                    <span className="font-semibold">40 saat/hafta</span>
+                    <span className="font-semibold">Mesai saatleri</span>
                   </li>
                   <li className="flex justify-between">
                     <span>Kurulum Süresi:</span>
-                    <span className="font-semibold">30-45 gün</span>
+                    <span className="font-semibold">Uzun</span>
                   </li>
                   <li className="flex justify-between">
                     <span>Ölçeklenme:</span>

@@ -68,7 +68,7 @@ export default function WhatsAppBotPage() {
           </h1>
 
           <p className="text-xl text-gray-600 leading-relaxed">
-            WhatsApp'ın Türkiye'de 50 milyonu aşkın aktif kullanıcısı bulunuyor. Müşterileriniz zaten her gün WhatsApp kullanıyor - peki siz onlara bu platformda 7/24 hizmet sunabiliyor musunuz? Bu kapsamlı rehberde, WhatsApp müşteri hizmetleri botunun ne olduğunu, nasıl çalıştığını, kurulum maliyetlerini ve işletmenize sağlayacağı katma değeri öğreneceksiniz.
+            WhatsApp Türkiye'de çok geniş bir kullanıcı kitlesine sahiptir. Müşterileriniz zaten her gün WhatsApp kullanıyor - peki siz onlara bu platformda 7/24 hizmet sunabiliyor musunuz? Bu kapsamlı rehberde, WhatsApp müşteri hizmetleri botunun ne olduğunu, nasıl çalıştığını, kurulum maliyetlerini ve işletmenize sağlayacağı katma değeri öğreneceksiniz.
           </p>
         </header>
 
@@ -84,13 +84,13 @@ export default function WhatsAppBotPage() {
             </p>
 
             <div className="bg-green-50 border-l-4 border-green-500 p-6 my-8">
-              <h3 className="text-xl font-bold text-green-900 mb-3">📊 WhatsApp İstatistikleri (Türkiye - 2025)</h3>
+              <h3 className="text-xl font-bold text-green-900 mb-3">📊 WhatsApp'ın İş Dünyasında Önemi (2025)</h3>
               <ul className="space-y-2 text-green-900">
-                <li>• <strong>50+ milyon</strong> aktif WhatsApp kullanıcısı</li>
-                <li>• Kullanıcıların <strong>%73'ü</strong> işletmelerle WhatsApp üzerinden iletişim kurmayı tercih ediyor</li>
-                <li>• WhatsApp mesajlarının <strong>%98 açılma oranı</strong> (E-posta: %20)</li>
-                <li>• Ortalama yanıt bekleme süresi: <strong>90 saniye</strong> (müşteri beklentisi)</li>
-                <li>• <strong>%64</strong> müşteri, 24 saat içinde yanıt alamadığında rakip firmaya geçiyor</li>
+                <li>• Türkiye'de <strong>çok geniş</strong> aktif WhatsApp kullanıcı kitlesi</li>
+                <li>• Kullanıcıların <strong>büyük çoğunluğu</strong> işletmelerle WhatsApp üzerinden iletişim kurmayı tercih ediyor</li>
+                <li>• WhatsApp mesajları <strong>çok yüksek açılma oranına</strong> sahip (e-postaya kıyasla)</li>
+                <li>• Müşteriler <strong>hızlı yanıt</strong> bekliyor</li>
+                <li>• Müşterilerin <strong>önemli bir kısmı</strong>, zamanında yanıt alamadığında rakip firmaya geçiyor</li>
               </ul>
             </div>
 
@@ -206,73 +206,37 @@ export default function WhatsAppBotPage() {
 
             <div className="grid md:grid-cols-2 gap-6 my-6">
               <div className="bg-red-50 p-6 rounded-xl border-2 border-red-200">
-                <h3 className="font-bold text-red-900 mb-4 text-lg">❌ Geleneksel Müşteri Hizmeti (Aylık)</h3>
+                <h3 className="font-bold text-red-900 mb-4 text-lg">❌ Geleneksel Müşteri Hizmeti</h3>
                 <div className="space-y-3 text-red-800">
-                  <div className="flex justify-between items-center">
-                    <span>2 Personel Maaşı:</span>
-                    <span className="font-semibold">40.000 TL</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>SSK + Yan Haklar:</span>
-                    <span className="font-semibold">12.000 TL</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Ofis Maliyeti:</span>
-                    <span className="font-semibold">4.000 TL</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Telefon Sistemi:</span>
-                    <span className="font-semibold">2.500 TL</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Eğitim ve Yönetim:</span>
-                    <span className="font-semibold">3.000 TL</span>
-                  </div>
-                  <div className="border-t-2 border-red-300 pt-3 mt-3 flex justify-between items-center">
-                    <span className="font-bold text-lg">Toplam Aylık:</span>
-                    <span className="font-bold text-xl">61.500 TL</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-bold text-lg">Yıllık Maliyet:</span>
-                    <span className="font-bold text-2xl">738.000 TL</span>
+                  <ul className="space-y-2">
+                    <li>• Çoklu personel maaş giderleri</li>
+                    <li>• SSK ve yan haklar</li>
+                    <li>• Ofis masrafları</li>
+                    <li>• Telefon sistemi maliyeti</li>
+                    <li>• Eğitim ve yönetim giderleri</li>
+                  </ul>
+                  <div className="border-t-2 border-red-300 pt-3 mt-3">
+                    <p className="font-bold text-lg">Toplam: Yüksek aylık ve yıllık maliyet</p>
                   </div>
                   <div className="bg-red-100 p-3 rounded-lg mt-4">
-                    <p className="text-sm font-semibold">Çalışma Saati: 09:00-18:00 (Hafta içi)</p>
-                    <p className="text-sm">Eş zamanlı görüşme: Maksimum 2 kişi</p>
+                    <p className="text-sm font-semibold">Çalışma Saati: Mesai saatleri ile sınırlı</p>
+                    <p className="text-sm">Eş zamanlı görüşme: Sınırlı kapasite</p>
                   </div>
                 </div>
               </div>
 
               <div className="bg-green-50 p-6 rounded-xl border-2 border-green-200">
-                <h3 className="font-bold text-green-900 mb-4 text-lg">✅ WhatsApp Bot Çözümü (Aylık)</h3>
+                <h3 className="font-bold text-green-900 mb-4 text-lg">✅ WhatsApp Bot Çözümü</h3>
                 <div className="space-y-3 text-green-800">
-                  <div className="flex justify-between items-center">
-                    <span>Platform Ücreti:</span>
-                    <span className="font-semibold">2.500 TL</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>WhatsApp API:</span>
-                    <span className="font-semibold">1.500 TL</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>AI İşleme:</span>
-                    <span className="font-semibold">1.000 TL</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Bakım ve Destek:</span>
-                    <span className="font-semibold">500 TL</span>
-                  </div>
-                  <div className="flex justify-between items-center text-gray-500">
-                    <span>Ek Maliyet:</span>
-                    <span className="font-semibold">0 TL</span>
-                  </div>
-                  <div className="border-t-2 border-green-300 pt-3 mt-3 flex justify-between items-center">
-                    <span className="font-bold text-lg">Toplam Aylık:</span>
-                    <span className="font-bold text-xl">5.500 TL</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-bold text-lg">Yıllık Maliyet:</span>
-                    <span className="font-bold text-2xl">66.000 TL</span>
+                  <ul className="space-y-2">
+                    <li>• Platform abonelik ücreti</li>
+                    <li>• WhatsApp API kullanımı</li>
+                    <li>• AI işleme maliyeti</li>
+                    <li>• Bakım ve destek</li>
+                    <li>• Ek personel maliyeti yok</li>
+                  </ul>
+                  <div className="border-t-2 border-green-300 pt-3 mt-3">
+                    <p className="font-bold text-lg">Toplam: Önemli ölçüde düşük aylık maliyet</p>
                   </div>
                   <div className="bg-green-100 p-3 rounded-lg mt-4">
                     <p className="text-sm font-semibold">Çalışma Saati: 7/24 (365 gün)</p>
@@ -283,12 +247,12 @@ export default function WhatsAppBotPage() {
             </div>
 
             <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 my-6">
-              <h3 className="font-bold text-yellow-900 text-2xl mb-3">💰 Yıllık Tasarruf: 672.000 TL</h3>
+              <h3 className="font-bold text-yellow-900 text-2xl mb-3">💰 Önemli Yıllık Maliyet Tasarrufu</h3>
               <p className="text-gray-800 text-lg">
-                Maliyet Azalma Oranı: <strong className="text-green-600">%91</strong>
+                WhatsApp bot çözümü, geleneksel yönteme kıyasla <strong className="text-green-600">çok daha düşük maliyetlidir</strong>
               </p>
               <p className="text-gray-700 mt-3 text-sm">
-                * Orta ölçekli işletme için hesaplanmıştır. Büyük işletmelerde tasarruf oranı daha yüksek olabilir.
+                * İşletme büyüklüğüne göre tasarruf oranı değişebilir.
               </p>
             </div>
           </section>
@@ -305,17 +269,17 @@ export default function WhatsAppBotPage() {
               <div className="border-l-4 border-blue-500 pl-6 py-2">
                 <h3 className="font-bold text-blue-900 mb-2 text-xl">1️⃣ Kurulum Ücreti (Tek Seferlik)</h3>
                 <div className="text-gray-700 space-y-2">
-                  <p><strong>Temel Kurulum:</strong> 15.000 - 30.000 TL</p>
+                  <p><strong>Temel Kurulum:</strong> Uygun fiyat aralığı</p>
                   <ul className="list-disc list-inside ml-4 text-sm space-y-1">
                     <li>WhatsApp Business API entegrasyonu</li>
-                    <li>Temel akış tasarımı (10-15 senaryo)</li>
+                    <li>Temel akış tasarımı</li>
                     <li>Mevcut sistemlerle entegrasyon</li>
                     <li>Test ve devreye alma</li>
                   </ul>
-                  <p className="mt-3"><strong>Gelişmiş Kurulum:</strong> 40.000 - 80.000 TL</p>
+                  <p className="mt-3"><strong>Gelişmiş Kurulum:</strong> Daha kapsamlı yatırım</p>
                   <ul className="list-disc list-inside ml-4 text-sm space-y-1">
                     <li>Özel AI model eğitimi</li>
-                    <li>Karmaşık iş akışları (50+ senaryo)</li>
+                    <li>Karmaşık iş akışları</li>
                     <li>CRM, ERP, e-ticaret entegrasyonları</li>
                     <li>Çok dilli destek</li>
                     <li>Analytics ve raporlama dashboard</li>
@@ -328,11 +292,11 @@ export default function WhatsAppBotPage() {
                 <div className="grid md:grid-cols-3 gap-4 mt-4">
                   <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
                     <h4 className="font-bold text-gray-900 mb-2">Başlangıç</h4>
-                    <p className="text-3xl font-bold text-[#860000] mb-2">2.500 TL<span className="text-sm text-gray-600">/ay</span></p>
+                    <p className="text-2xl font-bold text-[#860000] mb-2">Uygun fiyat<span className="text-sm text-gray-600"></span></p>
                     <ul className="text-sm text-gray-700 space-y-1">
-                      <li>• 1.000 mesaj/ay</li>
+                      <li>• Sınırlı mesaj kotası</li>
                       <li>• Temel AI özellikler</li>
-                      <li>• Tek kullanıcı</li>
+                      <li>• Sınırlı kullanıcı</li>
                       <li>• E-posta destek</li>
                     </ul>
                   </div>
@@ -340,11 +304,11 @@ export default function WhatsAppBotPage() {
                   <div className="bg-[#860000]/5 p-4 rounded-lg border-2 border-[#860000]">
                     <div className="inline-block bg-[#860000] text-white px-2 py-1 rounded text-xs font-bold mb-2">POPÜLER</div>
                     <h4 className="font-bold text-gray-900 mb-2">Profesyonel</h4>
-                    <p className="text-3xl font-bold text-[#860000] mb-2">5.500 TL<span className="text-sm text-gray-600">/ay</span></p>
+                    <p className="text-2xl font-bold text-[#860000] mb-2">Orta seviye<span className="text-sm text-gray-600"></span></p>
                     <ul className="text-sm text-gray-700 space-y-1">
-                      <li>• 10.000 mesaj/ay</li>
+                      <li>• Yüksek mesaj kotası</li>
                       <li>• Gelişmiş AI + NLP</li>
-                      <li>• 5 kullanıcı</li>
+                      <li>• Çoklu kullanıcı</li>
                       <li>• Öncelikli destek</li>
                       <li>• Analytics dashboard</li>
                     </ul>
@@ -352,7 +316,7 @@ export default function WhatsAppBotPage() {
 
                   <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
                     <h4 className="font-bold text-gray-900 mb-2">Kurumsal</h4>
-                    <p className="text-3xl font-bold text-[#860000] mb-2">Özel<span className="text-sm text-gray-600"></span></p>
+                    <p className="text-2xl font-bold text-[#860000] mb-2">Özel fiyat<span className="text-sm text-gray-600"></span></p>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Sınırsız mesaj</li>
                       <li>• Özel AI modelleri</li>
@@ -384,15 +348,15 @@ export default function WhatsAppBotPage() {
                         </tr>
                         <tr>
                           <td className="py-2">Şirket Tarafından Başlatılan (Pazarlama)</td>
-                          <td className="text-right font-semibold">~0.50 TL</td>
+                          <td className="text-right font-semibold">Ücretli</td>
                         </tr>
                         <tr>
                           <td className="py-2">Hizmet Mesajları (Sipariş, randevu bilgisi)</td>
-                          <td className="text-right font-semibold">~0.20 TL</td>
+                          <td className="text-right font-semibold">Ücretli</td>
                         </tr>
                         <tr>
                           <td className="py-2">Kimlik Doğrulama Mesajları (OTP)</td>
-                          <td className="text-right font-semibold">~0.30 TL</td>
+                          <td className="text-right font-semibold">Ücretli</td>
                         </tr>
                       </tbody>
                     </table>
@@ -415,48 +379,34 @@ export default function WhatsAppBotPage() {
               <div className="bg-white p-5 rounded-lg mb-4">
                 <h4 className="font-semibold text-gray-900 mb-3">Başlangıç Durumu:</h4>
                 <ul className="text-gray-700 space-y-2 text-sm">
-                  <li>• Günlük ortalama 150 müşteri mesajı</li>
-                  <li>• 2 tam zamanlı müşteri temsilcisi (toplam 50.000 TL/ay)</li>
-                  <li>• Ortalama yanıt süresi: 45 dakika</li>
-                  <li>• Mesai dışı kayıp fırsat: Aylık ~80 potansiyel satış</li>
-                  <li>• Ortalama sepet değeri: 850 TL</li>
+                  <li>• Yoğun günlük müşteri mesajı trafiği</li>
+                  <li>• Birden fazla tam zamanlı müşteri temsilcisi gerekiyor</li>
+                  <li>• Uzun ortalama yanıt süresi</li>
+                  <li>• Mesai dışı kayıp satış fırsatları</li>
+                  <li>• Yüksek personel maliyeti</li>
                 </ul>
               </div>
 
               <div className="bg-white p-5 rounded-lg mb-4">
-                <h4 className="font-semibold text-green-900 mb-3">WhatsApp Bot Sonrası (3 Ay):</h4>
+                <h4 className="font-semibold text-green-900 mb-3">WhatsApp Bot Sonrası:</h4>
                 <ul className="text-green-700 space-y-2 text-sm">
-                  <li>✓ Günlük 150 mesajın %70'i bot tarafından otomatik çözülüyor (105 mesaj)</li>
-                  <li>✓ 1 müşteri temsilcisi yeterli oluyor (tasarruf: 25.000 TL/ay)</li>
-                  <li>✓ Bot maliyeti: 5.500 TL/ay + 3.000 TL mesaj ücreti</li>
-                  <li>✓ Ortalama yanıt süresi: 30 saniye</li>
-                  <li>✓ 7/24 hizmet sayesinde mesai dışı satış: Aylık +60 satış</li>
-                  <li>✓ Müşteri memnuniyeti %40 artış</li>
+                  <li>✓ Mesajların büyük çoğunluğu bot tarafından otomatik çözülüyor</li>
+                  <li>✓ Daha az personel gerekiyor, önemli tasarruf</li>
+                  <li>✓ Uygun bot maliyeti</li>
+                  <li>✓ Çok hızlı yanıt süresi (saniyeler içinde)</li>
+                  <li>✓ 7/24 hizmet sayesinde mesai dışı satış artışı</li>
+                  <li>✓ Müşteri memnuniyetinde önemli artış</li>
                 </ul>
               </div>
 
               <div className="bg-green-100 p-5 rounded-lg">
-                <h4 className="font-bold text-green-900 mb-3 text-lg">💰 Aylık Kazanç Hesabı:</h4>
+                <h4 className="font-bold text-green-900 mb-3 text-lg">💰 Kazanç Özeti:</h4>
                 <div className="space-y-2 text-gray-800">
-                  <div className="flex justify-between">
-                    <span>Personel maliyet tasarrufu:</span>
-                    <span className="font-semibold">+25.000 TL</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>WhatsApp bot maliyeti:</span>
-                    <span className="font-semibold text-red-600">-8.500 TL</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Ek satış geliri (60 × 850):</span>
-                    <span className="font-semibold">+51.000 TL</span>
-                  </div>
-                  <div className="flex justify-between border-t-2 border-green-300 pt-2 mt-2 font-bold text-lg">
-                    <span>Net Aylık Kazanç:</span>
-                    <span className="text-green-600">+67.500 TL</span>
-                  </div>
-                  <div className="flex justify-between font-bold text-xl mt-3">
-                    <span>Yıllık Net Kazanç:</span>
-                    <span className="text-green-600">810.000 TL</span>
+                  <p>• Personel maliyet tasarrufu: <strong className="text-green-600">Önemli</strong></p>
+                  <p>• WhatsApp bot maliyeti: <strong className="text-gray-600">Düşük</strong></p>
+                  <p>• Ek satış geliri artışı: <strong className="text-green-600">Kayda değer</strong></p>
+                  <div className="border-t-2 border-green-300 pt-2 mt-2 font-bold text-lg">
+                    <p className="text-green-600">Net Sonuç: Önemli aylık ve yıllık kazanç</p>
                   </div>
                 </div>
               </div>
@@ -464,10 +414,10 @@ export default function WhatsAppBotPage() {
               <div className="bg-yellow-50 p-4 rounded-lg mt-4">
                 <p className="font-bold text-yellow-900 mb-2">⏱️ Amortisman Süresi:</p>
                 <p className="text-gray-800">
-                  Kurulum maliyeti (40.000 TL) ÷ Aylık kazanç (67.500 TL) = <strong className="text-green-600">0.6 ay (yaklaşık 18 gün)</strong>
+                  WhatsApp bot yatırımınız <strong className="text-green-600">kısa sürede kendini amorti eder</strong> ve sonrasında sürekli kazanç sağlar.
                 </p>
                 <p className="text-sm text-gray-600 mt-2">
-                  WhatsApp bot yatırımınız ortalama 1 aydan kısa sürede kendini amorti eder ve sonrasında sürekli kazanç sağlar.
+                  Personel tasarrufu ve ek satışlar sayesinde, ilk yatırım hızla geri dönüş sağlar.
                 </p>
               </div>
             </div>
@@ -480,10 +430,10 @@ export default function WhatsAppBotPage() {
             <div className="bg-purple-50 p-6 rounded-lg mb-6">
               <h3 className="font-bold text-purple-900 mb-3">Şirket Profili:</h3>
               <ul className="text-purple-800 space-y-1 text-sm">
-                <li>• 5 şubeli güzellik salonu zinciri (İstanbul)</li>
-                <li>• Aylık 2.500+ randevu</li>
-                <li>• 3 personel sadece telefon ve randevu yönetimi ile uğraşıyordu</li>
-                <li>• Günlük 200+ arama ve WhatsApp mesajı</li>
+                <li>• Çok şubeli güzellik salonu zinciri</li>
+                <li>• Yoğun aylık randevu trafiği</li>
+                <li>• Birden fazla personel sadece telefon ve randevu yönetimi ile uğraşıyordu</li>
+                <li>• Yoğun günlük arama ve mesaj trafiği</li>
               </ul>
             </div>
 
@@ -492,7 +442,7 @@ export default function WhatsAppBotPage() {
               <ul className="text-red-800 space-y-2">
                 <li>❌ Mesai saatleri dışında randevu alamayan müşteriler rakip salonlara gidiyordu</li>
                 <li>❌ Telefon hatları sürekli meşgul, müşteriler ulaşamıyordu</li>
-                <li>❌ Randevu hatırlatma manuel yapılıyor, unutulmalar oluyordu (no-show oranı %18)</li>
+                <li>❌ Randevu hatırlatma manuel yapılıyor, unutulmalar oluyordu (yüksek no-show oranı)</li>
                 <li>❌ Fiyat, hizmet bilgisi için her seferinde personel müdahale ediyordu</li>
               </ul>
             </div>
@@ -510,34 +460,34 @@ export default function WhatsAppBotPage() {
               </ul>
             </div>
 
-            <h3 className="font-bold text-gray-900 mb-3 text-xl">Sonuçlar (6 Ay Sonra):</h3>
+            <h3 className="font-bold text-gray-900 mb-3 text-xl">Sonuçlar:</h3>
             <div className="bg-green-50 p-5 rounded-lg">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="font-semibold text-green-900 mb-3">Operasyonel İyileştirmeler:</h4>
                   <ul className="text-green-800 space-y-2 text-sm">
-                    <li>• <strong>%82</strong> randevu WhatsApp bot üzerinden alınıyor</li>
-                    <li>• No-show oranı <strong>%18'den %4'e düştü</strong></li>
-                    <li>• Randevu personeli ihtiyacı <strong>3'ten 1'e</strong> düştü</li>
-                    <li>• Müşteri memnuniyeti <strong>%35 arttı</strong></li>
+                    <li>• Randevuların büyük çoğunluğu WhatsApp bot üzerinden alınıyor</li>
+                    <li>• No-show oranında <strong>ciddi düşüş</strong></li>
+                    <li>• Randevu personeli ihtiyacı <strong>önemli ölçüde azaldı</strong></li>
+                    <li>• Müşteri memnuniyetinde <strong>kayda değer artış</strong></li>
                   </ul>
                 </div>
                 <div>
                   <h4 className="font-semibold text-green-900 mb-3">Finansal Sonuçlar:</h4>
                   <ul className="text-green-800 space-y-2 text-sm">
-                    <li>• Personel tasarrufu: <strong>40.000 TL/ay</strong></li>
-                    <li>• Mesai dışı randevular: <strong>+180/ay</strong></li>
-                    <li>• Ek gelir: <strong>~135.000 TL/ay</strong></li>
-                    <li>• Bot maliyeti: <strong>-7.500 TL/ay</strong></li>
+                    <li>• <strong>Önemli personel tasarrufu</strong></li>
+                    <li>• Mesai dışı randevularda <strong>artış</strong></li>
+                    <li>• <strong>Kayda değer ek gelir</strong></li>
+                    <li>• <strong>Düşük bot işletme maliyeti</strong></li>
                   </ul>
                 </div>
               </div>
               <div className="border-t border-green-200 mt-4 pt-4">
                 <p className="font-bold text-green-900 text-xl">
-                  💰 Toplam Aylık Net Kazanç: <span className="text-2xl">167.500 TL</span>
+                  💰 Önemli Aylık ve Yıllık Net Kazanç
                 </p>
                 <p className="text-green-800 mt-2 text-sm">
-                  Yıllık bazda <strong>2.010.000 TL</strong> ek kazanç ve verimlilik artışı sağlandı.
+                  Hem maliyet tasarrufu hem de ek gelir artışı ile kayda değer verimlilik artışı elde edildi.
                 </p>
               </div>
             </div>
