@@ -46,7 +46,7 @@ export default function ChatWidget() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ message: userMessage })
+        body: JSON.stringify({ message: userMessage, kaynak: "web" })
       });
 
       const data = await response.json();

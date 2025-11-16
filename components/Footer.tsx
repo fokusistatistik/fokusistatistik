@@ -103,7 +103,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="https://asistan.fokusistatistik.com/kartvizit" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffc107] transition">
+                <a href="https://asistan.fokusistatistik.com/kartvizit.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#ffc107] transition">
                   Dijital Kartvizit
                 </a>
               </li>
