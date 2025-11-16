@@ -80,9 +80,9 @@ export const metadata: Metadata = {
   themeColor: "#860000",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   icons: {
-    icon: "https://static.fokusistatistik.com/resimler/favicon.png",
-    apple: "https://static.fokusistatistik.com/resimler/favicon.png",
-    shortcut: "https://static.fokusistatistik.com/resimler/favicon.png",
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
+    shortcut: "/favicon.ico",
   },
   openGraph: {
     type: "website",
