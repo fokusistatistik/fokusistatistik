@@ -197,27 +197,27 @@ export default function Ekibimiz() {
               <div className="w-20 h-20 bg-[#860000] rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
                 1
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">İhtiyacınızı Belirleyin</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">İhtiyaçlarınız Tespit Edilir</h3>
               <p className="text-gray-600">
-                9 asistan arasından işletmenizin ihtiyacına uygun olanı seçin
+                İşletmenizin ihtiyaçları analiz edilir ve size özel çözümler belirlenir
               </p>
             </div>
             <div className="text-center">
               <div className="w-20 h-20 bg-[#860000] rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
                 2
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Paketi Seçin</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">En Uygun Asistanlar Seçilir</h3>
               <p className="text-gray-600">
-                Standart, Pro veya Premium paketlerden size uygun olanı tercih edin
+                İhtiyaçlarınıza göre en uygun FOKUS asistanları önerilir ve yapılandırılır
               </p>
             </div>
             <div className="text-center">
               <div className="w-20 h-20 bg-[#860000] rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
                 3
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Hemen Kullanmaya Başlayın</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Asistanlar Uygulanır</h3>
               <p className="text-gray-600">
-                Kurulum ve entegrasyon desteğiyle asistanınız dakikalar içinde aktif
+                Kurulum ve entegrasyon desteğiyle asistanlarınız hızla devreye alınır
               </p>
             </div>
           </div>
@@ -238,12 +238,14 @@ export default function Ekibimiz() {
             >
               Ücretsiz Analiz Talep Edin
             </Link>
-            <Link
+            <a
               href="https://asistan.fokusistatistik.com/ucretsiz.html"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-8 rounded-lg transition-all"
             >
               Demo Talep Edin
-            </Link>
+            </a>
             <Link
               href="/iletisim"
               className="bg-transparent border-2 border-[#860000] text-[#860000] hover:bg-[#860000] hover:text-white font-semibold py-4 px-8 rounded-lg transition-all"

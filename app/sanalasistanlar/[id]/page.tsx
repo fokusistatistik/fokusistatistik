@@ -1595,7 +1595,7 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
                       src={displayAssistant.image}
                       alt={displayAssistant.title}
                       fill
-                      className="object-contain"
+                      className="object-contain rounded-[50%]"
                     />
                   </div>
                 </div>

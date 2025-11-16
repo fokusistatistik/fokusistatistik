@@ -65,8 +65,8 @@ export default function SanalAsistanlar() {
   return (
     <main className="min-h-screen bg-white">
       {/* Banner */}
-      <div className="w-full">
-        <div className="w-full relative">
+      <div className="w-full px-4">
+        <div className="w-full relative overflow-hidden rounded-xl">
           <Image
             src="https://static.fokusistatistik.com/resimler/bannerasistanlar.png"
             alt="FOKUS Asistanları Banner"
@@ -395,6 +395,8 @@ export default function SanalAsistanlar() {
           <div className="flex flex-col items-center">
             <a
               href="https://asistan.fokusistatistik.com/ucretsiz.html"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-[#860000] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-[#a30000] transition shadow-lg hover:shadow-xl hover:-translate-y-1"
             >
               Demo Talep Et
