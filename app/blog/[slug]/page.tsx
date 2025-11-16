@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Calendar, Clock, ArrowLeft, Tag } from 'lucide-react';
 import type { Metadata } from 'next';
+import fs from 'fs/promises';
+import path from 'path';
 
 interface Blog {
   id: string;
@@ -21,19 +23,32 @@ interface Blog {
 
 async function getBlog(slug: string): Promise<Blog | null> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const response = await fetch(`${baseUrl}/api/blogs/${slug}`, {
-      cache: 'no-store',
-    });
+    const BLOGS_FILE = path.join(process.cwd(), 'content', 'blogs-metadata.json');
+    const CONTENT_DIR = path.join(process.cwd(), 'content', 'blog');
 
-    if (!response.ok) {
+    // Read metadata
+    const data = await fs.readFile(BLOGS_FILE, 'utf-8');
+    const blogs = JSON.parse(data);
+    const blog = blogs.find((b: any) => b.slug === slug);
+
+    if (!blog) {
       return null;
     }
 
-    const data = await response.json();
-    return data;
+    // Read content
+    let content = '';
+    try {
+      content = await fs.readFile(
+        path.join(CONTENT_DIR, `${slug}.html`),
+        'utf-8'
+      );
+    } catch (error) {
+      content = '';
+    }
+
+    return { ...blog, content };
   } catch (error) {
-    console.error('Error fetching blog:', error);
+    console.error('Error reading blog:', error);
     return null;
   }
 }

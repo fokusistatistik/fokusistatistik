@@ -102,24 +102,28 @@ async function getBlogs(): Promise<Blog[]> {
     },
   ];
 
-  // API'den dinamik blogları çek
+  // Dinamik blogları dosyadan oku
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const response = await fetch(`${baseUrl}/api/blogs`, {
-      cache: 'no-store',
+    const fs = await import('fs/promises');
+    const path = await import('path');
+    const BLOGS_FILE = path.join(process.cwd(), 'content', 'blogs-metadata.json');
+
+    const data = await fs.readFile(BLOGS_FILE, 'utf-8');
+    const dynamicBlogs: Blog[] = JSON.parse(data);
+
+    // Dinamik blogları en üstte göster (en yeni tarihten eskiye), sonra statik bloglar
+    const sortedDynamicBlogs = dynamicBlogs.sort((a, b) => {
+      const dateA = new Date(a.publishedDate || '').getTime();
+      const dateB = new Date(b.publishedDate || '').getTime();
+      return dateB - dateA; // En yeni önce
     });
 
-    if (response.ok) {
-      const dynamicBlogs: Blog[] = await response.json();
-      // Dinamik blogları en üstte göster, sonra statik bloglar
-      return [...dynamicBlogs, ...staticBlogs];
-    }
+    return [...sortedDynamicBlogs, ...staticBlogs];
   } catch (error) {
-    console.error('Error fetching dynamic blogs:', error);
+    console.error('Error reading dynamic blogs:', error);
+    // Dosya okunamadıysa sadece statik blogları göster
+    return staticBlogs;
   }
-
-  // API hatası durumunda sadece statik blogları göster
-  return staticBlogs;
 }
 
 export default async function BlogPage() {
