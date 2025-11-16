@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     url: 'https://fokusistatistik.com/yapay-zeka-danismanligi',
     images: [
       {
-        url: 'https://www.fokusistatistik.com/assets/img/fokus-ekosistem-og.jpg',
+        url: 'https://static.fokusistatistik.com/resimler/fokus-ekosistem-og.jpg',
         width: 1200,
         height: 630,
         alt: 'FOKUS Yapay Zeka Danışmanlığı',
@@ -57,7 +57,7 @@ export default function YapayZekaDanismanligi() {
             <div className="w-24 h-24 bg-gradient-to-br from-[#860000] to-[#a30000] rounded-full flex items-center justify-center shadow-xl p-4">
               <div className="relative w-full h-full">
                 <Image
-                  src="https://www.fokusistatistik.com/assets/img/logobeyaz.png"
+                  src="https://static.fokusistatistik.com/logolar/logobeyaz.png"
                   alt="FOKUS Logo"
                   fill
                   className="object-contain"

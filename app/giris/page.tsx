@@ -100,7 +100,7 @@ function GirisContent() {
       user: 'Admin User',
       email: 'admin@fokusistatistik.com',
       userId: 'admin-temp-001',
-      picture: 'https://www.fokusistatistik.com/assets/img/logobeyaz.png',
+      picture: 'https://static.fokusistatistik.com/logolar/logobeyaz.png',
       isNewUser: false,
       token: generateSecureToken(),
       timestamp: Date.now(),

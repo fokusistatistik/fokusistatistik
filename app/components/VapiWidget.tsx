@@ -98,7 +98,7 @@ export default function VapiWidget() {
           ) : (
             <div className="relative">
               <Image
-                src="https://www.fokusistatistik.com/assets/img/fokus520.png"
+                src="https://static.fokusistatistik.com/asistanlar/fokus520.png"
                 alt="FOKUS520"
                 width={48}
                 height={48}
@@ -120,7 +120,7 @@ export default function VapiWidget() {
             <div className="flex items-center gap-3">
               <div className="relative">
                 <Image
-                  src="https://www.fokusistatistik.com/assets/img/fokus520.png"
+                  src="https://static.fokusistatistik.com/asistanlar/fokus520.png"
                   alt="FOKUS520"
                   width={48}
                   height={48}
@@ -222,7 +222,7 @@ export default function VapiWidget() {
               <div className="flex items-center gap-3">
                 <div className="relative">
                   <Image
-                    src="https://www.fokusistatistik.com/assets/img/fokus520.png"
+                    src="https://static.fokusistatistik.com/asistanlar/fokus520.png"
                     alt="FOKUS520"
                     width={40}
                     height={40}

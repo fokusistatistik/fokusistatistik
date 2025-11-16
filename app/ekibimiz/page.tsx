@@ -24,7 +24,7 @@ const assistants: Assistant[] = [
     code: 'FOKUS001',
     name: 'Yönetici Sanal Asistanı',
     title: 'Yönetici Asistanı',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus001.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus001.png',
     shortDescription: 'Stok yönetimi, sipariş takibi ve müşteri analiziyle e-ticaret süreçlerinizi optimize eder.',
     color: 'from-[#860000] to-[#a30000]'
   },
@@ -33,7 +33,7 @@ const assistants: Assistant[] = [
     code: 'FOKUS216',
     name: 'Müşteri Hizmetleri Sanal Asistanı',
     title: 'Müşteri Hizmetleri',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus216.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus216.png',
     shortDescription: 'Müşteri sorularına anında yanıt verir, destek taleplerini yönetir ve memnuniyeti artırır.',
     color: 'from-[#6d0000] to-[#860000]'
   },
@@ -42,7 +42,7 @@ const assistants: Assistant[] = [
     code: 'FOKUS314',
     name: 'Veri Analisti Sanal Asistanı',
     title: 'Veri Analisti',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus314.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus314.png',
     shortDescription: 'Verilerinizi analiz eder, görselleştirir ve stratejik kararlar için raporlar sunar.',
     color: 'from-[#a30000] to-[#b30000]'
   },
@@ -51,7 +51,7 @@ const assistants: Assistant[] = [
     code: 'FOKUS520',
     name: 'Pazarlama Sanal Asistanı',
     title: 'Pazarlama & Lead Takip',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus520.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus520.png',
     shortDescription: 'Kampanya yönetimi, lead takibi ve müşteri skorlamasıyla pazarlama süreçlerinizi otomatikleştirir.',
     color: 'from-[#860000] to-[#6d0000]'
   },
@@ -60,7 +60,7 @@ const assistants: Assistant[] = [
     code: 'FOKUS618',
     name: 'Finans Sanal Asistanı',
     title: 'Finans & Fatura',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus618.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus618.png',
     shortDescription: 'Fatura işlemleri, gelir-gider takibi ve ödeme hatırlatmalarını otomatik yönetir.',
     color: 'from-[#5a0000] to-[#860000]'
   },
@@ -69,7 +69,7 @@ const assistants: Assistant[] = [
     code: 'FOKUS707',
     name: 'İnsan Kaynakları Sanal Asistanı',
     title: 'İnsan Kaynakları',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus707.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus707.png',
     shortDescription: 'Personel takibi, özlük dosyaları, izin yönetimi ve işe alım süreçlerini dijitalleştirir.',
     color: 'from-[#a30000] to-[#860000]'
   },
@@ -78,7 +78,7 @@ const assistants: Assistant[] = [
     code: 'FOKUS717',
     name: 'İçerik Tasarımı Sanal Asistanı',
     title: 'İçerik Tasarımı',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus717.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus717.png',
     shortDescription: 'Görsel içerik, video ve sunum oluşturarak yaratıcı süreçlerinizi hızlandırır.',
     color: 'from-[#6d0000] to-[#a30000]'
   },
@@ -87,7 +87,7 @@ const assistants: Assistant[] = [
     code: 'FOKUS808',
     name: 'Sosyal Medya Sanal Asistanı',
     title: 'Sosyal Medya & İletişim',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus808.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus808.png',
     shortDescription: 'Sosyal medya yönetimi, içerik planlaması ve etkileşim analiziyle dijital varlığınızı güçlendirir.',
     color: 'from-[#b30000] to-[#860000]'
   },
@@ -96,7 +96,7 @@ const assistants: Assistant[] = [
     code: 'FOKUS999',
     name: 'Joker Sanal Asistan',
     title: 'Joker Asistan',
-    image: 'https://www.fokusistatistik.com/assets/img/fokus999.png',
+    image: 'https://static.fokusistatistik.com/asistanlar/fokus999.png',
     shortDescription: 'İşletmenizin her alanına uyum sağlayan, özelleştirilebilir dijital destek.',
     color: 'from-[#860000] to-[#b30000]'
   }

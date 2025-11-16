@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     url: 'https://fokusistatistik.com/sanalasistanlar',
     images: [
       {
-        url: 'https://www.fokusistatistik.com/assets/img/bannerasistanlar.png',
+        url: 'https://static.fokusistatistik.com/resimler/bannerasistanlar.png',
         width: 1200,
         height: 630,
         alt: 'FOKUS Sanal Asistanlar - 9 Farklı AI Asistan',

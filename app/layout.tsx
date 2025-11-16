@@ -80,9 +80,9 @@ export const metadata: Metadata = {
   themeColor: "#860000",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   icons: {
-    icon: "https://www.fokusistatistik.com/assets/img/favicon.png",
-    apple: "https://www.fokusistatistik.com/assets/img/favicon.png",
-    shortcut: "https://www.fokusistatistik.com/assets/img/favicon.png",
+    icon: "https://static.fokusistatistik.com/logolar/faviconfokus.png",
+    apple: "https://static.fokusistatistik.com/logolar/faviconfokus.png",
+    shortcut: "https://static.fokusistatistik.com/logolar/faviconfokus.png",
   },
   openGraph: {
     type: "website",
@@ -93,7 +93,7 @@ export const metadata: Metadata = {
     description: "Türkiye'nin en kapsamlı yapay zeka danışmanlık platformu. 9 farklı sanal asistan ile dijital dönüşümünüzü hızlandırın. ChatGPT, veri analizi, istatistik ve otomasyon çözümleri.",
     images: [
       {
-        url: "https://www.fokusistatistik.com/assets/img/fokus-ekosistem-og.jpg",
+        url: "https://static.fokusistatistik.com/resimler/fokus-ekosistem-og.jpg",
         width: 1200,
         height: 630,
         alt: "FOKUS İstatistik - Yapay Zeka ve Sanal Asistan Ekosistemi",
@@ -104,7 +104,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FOKUS İstatistik | Yapay Zeka Danışmanlığı & Sanal Asistan",
     description: "9 farklı AI sanal asistan ile dijital dönüşümünüzü hızlandırın. ChatGPT, veri analizi ve otomasyon çözümleri.",
-    images: ["https://www.fokusistatistik.com/assets/img/fokus-ekosistem-og.jpg"],
+    images: ["https://static.fokusistatistik.com/resimler/fokus-ekosistem-og.jpg"],
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,

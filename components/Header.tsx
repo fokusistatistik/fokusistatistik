@@ -49,7 +49,7 @@ export default function Header() {
           <Link href="/" className="flex items-center space-x-1.5 hover:opacity-90 transition">
             <div className="relative w-[73px] h-[73px] -my-2">
               <Image
-                src="https://www.fokusistatistik.com/assets/img/logobeyaz.png"
+                src="https://static.fokusistatistik.com/logolar/logobeyaz.png"
                 alt="FOKUS Logo"
                 fill
                 className="object-contain"
@@ -106,7 +106,7 @@ export default function Header() {
                     className="flex items-center px-3 py-1 hover:bg-[#860000] transition text-xs font-bold"
                   >
                     <Image
-                      src="https://www.fokusistatistik.com/assets/img/favicon.png"
+                      src="https://static.fokusistatistik.com/logolar/faviconfokus.png"
                       alt="FOKUS"
                       width={14}
                       height={14}
@@ -208,7 +208,7 @@ export default function Header() {
                     className="flex items-center hover:text-gray-200 transition py-1 text-sm font-bold"
                   >
                     <Image
-                      src="https://www.fokusistatistik.com/assets/img/favicon.png"
+                      src="https://static.fokusistatistik.com/logolar/faviconfokus.png"
                       alt="FOKUS"
                       width={18}
                       height={18}
