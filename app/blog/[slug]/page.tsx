@@ -68,14 +68,44 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  const baseUrl = 'https://fokusistatistik.com';
+  const canonicalUrl = `${baseUrl}/blog/${slug}`;
+
   return {
     title: `${blog.title} | FOKUS Blog`,
     description: blog.description,
     keywords: blog.keywords,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
+      type: 'article',
+      title: blog.title,
+      description: blog.description,
+      url: canonicalUrl,
+      siteName: 'FOKUS İstatistik',
+      locale: 'tr_TR',
+      images: blog.coverImage ? [
+        {
+          url: blog.coverImage,
+          width: 1200,
+          height: 600,
+          alt: blog.title,
+        }
+      ] : [],
+      publishedTime: blog.publishedDate,
+      modifiedTime: blog.updatedDate,
+      authors: [blog.author],
+      section: blog.category,
+      tags: blog.tags,
+    },
+    twitter: {
+      card: 'summary_large_image',
       title: blog.title,
       description: blog.description,
       images: blog.coverImage ? [blog.coverImage] : [],
+      creator: '@fokusistatistik',
+      site: '@fokusistatistik',
     },
   };
 }
@@ -88,8 +118,50 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     notFound();
   }
 
+  const baseUrl = 'https://fokusistatistik.com';
+  const canonicalUrl = `${baseUrl}/blog/${slug}`;
+
+  // BlogPosting Schema Markup
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: blog.title,
+    description: blog.description,
+    image: blog.coverImage,
+    datePublished: blog.publishedDate,
+    dateModified: blog.updatedDate,
+    author: {
+      '@type': 'Organization',
+      name: blog.author,
+      url: baseUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'FOKUS İstatistik',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+    },
+    keywords: blog.keywords.join(', '),
+    articleSection: blog.category,
+    articleBody: blog.content,
+    timeRequired: blog.readTime,
+    inLanguage: 'tr-TR',
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+
       {/* Back Button */}
       <div className="max-w-4xl mx-auto px-4 pt-8">
         <Link

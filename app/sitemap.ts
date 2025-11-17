@@ -1,6 +1,14 @@
 import { MetadataRoute } from 'next';
+import fs from 'fs/promises';
+import path from 'path';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+interface Blog {
+  slug: string;
+  publishedDate: string;
+  updatedDate: string;
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://fokusistatistik.com';
   const currentDate = new Date();
 
@@ -125,7 +133,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  // Blog sayfaları
+  // Blog sayfaları - Blog listesi sayfası
   const blogPages = [
     {
       url: `${baseUrl}/blog`,
@@ -133,31 +141,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily' as const,
       priority: 0.9,
     },
-    {
-      url: `${baseUrl}/blog/yapay-zeka-ile-kazanc`,
-      lastModified: new Date('2025-01-15'),
-      changeFrequency: 'monthly' as const,
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/whatsapp-musteri-hizmetleri-botu`,
-      lastModified: new Date('2025-01-16'),
-      changeFrequency: 'monthly' as const,
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/sanal-asistan-vs-gercek-personel`,
-      lastModified: new Date('2025-01-17'),
-      changeFrequency: 'monthly' as const,
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/yapay-zeka-maliyet-dusurme`,
-      lastModified: new Date('2025-01-18'),
-      changeFrequency: 'monthly' as const,
-      priority: 0.85,
-    },
   ];
 
-  return [...staticPages, ...assistantPages, ...blogPages];
+  // Dinamik blog yazıları
+  let dynamicBlogPages: MetadataRoute.Sitemap = [];
+  try {
+    const BLOGS_FILE = path.join(process.cwd(), 'content', 'blogs-metadata.json');
+    const data = await fs.readFile(BLOGS_FILE, 'utf-8');
+    const blogs: Blog[] = JSON.parse(data);
+
+    dynamicBlogPages = blogs.map((blog) => ({
+      url: `${baseUrl}/blog/${blog.slug}`,
+      lastModified: new Date(blog.updatedDate || blog.publishedDate),
+      changeFrequency: 'monthly' as const,
+      priority: 0.85,
+    }));
+  } catch (error) {
+    console.error('Error reading blogs for sitemap:', error);
+  }
+
+  return [...staticPages, ...assistantPages, ...blogPages, ...dynamicBlogPages];
 }
