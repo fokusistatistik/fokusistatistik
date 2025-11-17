@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
     const { username, password } = await request.json();
 
     // n8n webhook'a istek gönder
-    const webhookUrl = 'https://n8n.fokusistatistik.com/webhook-test/fokusistatistiktest';
+    const webhookUrl = 'https://n8n.fokusistatistik.com/webhook/fokusistatistik';
 
     const response = await fetch(webhookUrl, {
       method: 'POST',
@@ -15,16 +15,14 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({ username, password }),
     });
 
-    if (!response.ok) {
+    // 200 response kontrolü - başka status kodlarında giriş başarısız
+    if (response.status !== 200) {
       return NextResponse.json(
         { success: false, message: 'Giriş başarısız' },
         { status: 401 }
       );
     }
 
-    const data = await response.json();
-
-    // Şimdilik tüm girişleri onayla (kullanıcının istediği gibi)
     // Başarılı yanıt gelirse session token oluştur
     const sessionToken = Buffer.from(`${username}:${Date.now()}`).toString('base64');
 
