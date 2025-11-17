@@ -123,8 +123,9 @@ export default function Fiyatlandirma() {
                     <span className="text-5xl font-bold text-gray-900">
                       {plan.price}
                     </span>
-                    <span className="text-gray-600">TL/ay</span>
+                    <span className="text-gray-600">TL</span>
                   </div>
+                  <p className="text-sm text-gray-500 mt-1">'den başlayan fiyatlarla</p>
                 </div>
 
                 {/* CTA Button */}
