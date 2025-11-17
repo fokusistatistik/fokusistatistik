@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
     const { username, password } = await request.json();
 
     // n8n webhook'a istek gönder
-    const webhookUrl = 'https://n8n.fokusistatistik.com/webhook/fokusistatistik';
+    const webhookUrl = 'https://n8n.fokusistatistik.com/webhook/fokusistatistikblog';
 
     const response = await fetch(webhookUrl, {
       method: 'POST',

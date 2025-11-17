@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Lock, User, AlertCircle } from 'lucide-react';
+import { User, Lock, AlertCircle } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -44,8 +44,12 @@ export default function AdminLoginPage() {
       <div className="max-w-md w-full">
         {/* Logo ve Başlık */}
         <div className="text-center mb-8">
-          <div className="inline-block bg-white p-4 rounded-full mb-4">
-            <Lock className="w-12 h-12 text-[#860000]" />
+          <div className="inline-block bg-white p-4 rounded-2xl mb-4">
+            <img
+              src="https://static.fokusistatistik.com/logolar/fokuslogo1.png"
+              alt="FOKUS Logo"
+              className="w-16 h-16 object-contain"
+            />
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">
             FOKUS Admin Panel
@@ -55,7 +59,7 @@ export default function AdminLoginPage() {
 
         {/* Login Form */}
         <div className="bg-white rounded-2xl shadow-2xl p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6 max-w-[500px] mx-auto">
             {/* Hata Mesajı */}
             {error && (
               <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
