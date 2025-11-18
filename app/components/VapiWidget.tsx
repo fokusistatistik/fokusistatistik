@@ -26,14 +26,12 @@ export default function VapiWidget() {
 
       // Event listeners
       vapiRef.current.on('call-start', () => {
-        console.log('Call started');
         setIsConnecting(false);
         setIsCallActive(true);
         setCallStatus('Bağlandı! Konuşabilirsiniz');
       });
 
       vapiRef.current.on('call-end', () => {
-        console.log('Call ended');
         setIsConnecting(false);
         setIsCallActive(false);
         setCallStatus('');

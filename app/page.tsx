@@ -118,40 +118,8 @@ export default function Home() {
       <RandevuToast />
 
       <main className="flex-grow">
-        {/* Assistants Section */}
-        <section className="py-12 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl lg:text-4xl font-bold text-center mb-12 text-gray-800">
-              FOKUS Ekosistemi | <span className="text-[#860000]">Modüler Sanal Asistanlar Çağı</span>
-            </h2>
-
-            <div className="flex flex-wrap justify-center items-center gap-5 max-w-5xl mx-auto">
-              {assistants.map((assistant) => (
-                <Link
-                  key={assistant.code}
-                  href={`/sanalasistanlar/${assistant.code}`}
-                  className="flex flex-col items-center text-center group"
-                >
-                  <div className="relative w-[115px] h-[115px] mb-3 group-hover:scale-110 transition-transform duration-300">
-                    <Image
-                      src={assistant.image}
-                      alt={assistant.title}
-                      fill
-                      className="object-contain rounded-[50%]"
-                    />
-                  </div>
-                  <span className="font-semibold text-gray-700 group-hover:text-[#860000] transition text-sm">
-                    {assistant.title}
-                  </span>
-                  <span className="text-xs text-gray-500 italic mt-1">{assistant.name}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#860000] via-[#a03333] to-[#6b0000] text-white py-16 lg:py-24 my-8 mx-4 lg:mx-auto max-w-7xl rounded-3xl shadow-2xl overflow-hidden">
+        <section className="relative bg-gradient-to-br from-[#860000] via-[#a03333] to-[#6b0000] text-white py-16 lg:py-24 my-8 mx-4 lg:mx-auto max-w-7xl rounded-3xl shadow-2xl overflow-hidden mt-8">
           <div className="absolute inset-0 bg-black/10"></div>
 
           <div className="container mx-auto px-6 relative z-10">
@@ -185,6 +153,38 @@ export default function Home() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Assistants Section */}
+        <section className="py-12 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-center mb-12 text-gray-800">
+              FOKUS Ekosistemi | <span className="text-[#860000]">Modüler Sanal Asistanlar Çağı</span>
+            </h2>
+
+            <div className="flex flex-wrap justify-center items-center gap-5 max-w-5xl mx-auto">
+              {assistants.map((assistant) => (
+                <Link
+                  key={assistant.code}
+                  href={`/sanalasistanlar/${assistant.code}`}
+                  className="flex flex-col items-center text-center group"
+                >
+                  <div className="relative w-[115px] h-[115px] mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <Image
+                      src={assistant.image}
+                      alt={assistant.title}
+                      fill
+                      className="object-contain rounded-[50%]"
+                    />
+                  </div>
+                  <span className="font-semibold text-gray-700 group-hover:text-[#860000] transition text-sm">
+                    {assistant.title}
+                  </span>
+                  <span className="text-xs text-gray-500 italic mt-1">{assistant.name}</span>
+                </Link>
+              ))}
             </div>
           </div>
         </section>

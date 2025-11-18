@@ -24,7 +24,6 @@ function GirisContent() {
     } else if (authSuccess === 'success' && sessionData) {
       try {
         const decoded = JSON.parse(decodeURIComponent(sessionData));
-        console.log('✅ Authentication successful:', decoded);
 
         // Session'ı localStorage'a kaydet
         const fullSessionData = {
@@ -41,8 +40,6 @@ function GirisContent() {
         };
 
         localStorage.setItem('fokus520Session', JSON.stringify(fullSessionData));
-        console.log('💾 Session saved to localStorage');
-        console.log('🆕 Is new user:', decoded.isNewUser);
 
         // Yeni kullanıcı mı kontrol et
         const isNewUser = decoded.isNewUser === true;
@@ -82,7 +79,6 @@ function GirisContent() {
   }, [searchParams, router]);
 
   const handleGoogleSignIn = () => {
-    console.log('🚀 Starting Google Sign In...');
     setIsLoading(true);
     setStatusMessage('Google ile giriş başlatılıyor...');
 
@@ -91,7 +87,6 @@ function GirisContent() {
   };
 
   const handleAdminLogin = () => {
-    console.log('🔧 Admin bypass login...');
     setIsLoading(true);
     setStatusMessage('✅ Admin olarak giriş yapılıyor...');
 

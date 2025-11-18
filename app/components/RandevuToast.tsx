@@ -38,7 +38,6 @@ export default function RandevuToast() {
   };
 
   const trackClick = () => {
-    console.log('Randevu Toast CTA clicked');
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'click', {
         event_category: 'Toast',

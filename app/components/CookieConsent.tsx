@@ -31,7 +31,6 @@ export default function CookieConsent() {
     // Hide banner with animation
     setIsVisible(false);
 
-    console.log('Cookie consent accepted');
   };
 
   if (!isVisible) return null;

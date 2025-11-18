@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getGoogleAuthUrl } from '@/lib/google-auth';
 
 export async function GET(request: NextRequest) {
-  console.log('🚀 Google Auth başlatılıyor...');
 
   try {
     // State parametresi (isteğe bağlı)
@@ -12,7 +11,6 @@ export async function GET(request: NextRequest) {
     // Google OAuth URL'i oluştur
     const authUrl = getGoogleAuthUrl(state);
 
-    console.log('🔐 Google OAuth URL:', authUrl);
 
     // Google'a yönlendir
     return NextResponse.redirect(authUrl);

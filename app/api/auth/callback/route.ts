@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { exchangeCodeForToken } from '@/lib/google-auth';
 
 export async function GET(request: NextRequest) {
-  console.log('📥 OAuth Callback alındı');
 
   try {
     const searchParams = request.nextUrl.searchParams;
@@ -10,7 +9,6 @@ export async function GET(request: NextRequest) {
     const error = searchParams.get('error');
     const state = searchParams.get('state');
 
-    console.log('🔍 Callback params:', { code: !!code, error, state });
 
     // Hata kontrolü
     if (error) {
@@ -29,10 +27,8 @@ export async function GET(request: NextRequest) {
     }
 
     // Code'u webhook'a gönder ve token al
-    console.log(`🔄 Webhook'a gönderiliyor...`);
     const webhookResponse = await exchangeCodeForToken(code);
 
-    console.log('📦 Webhook response:', webhookResponse);
 
     // Response kontrolü
     if (!webhookResponse || webhookResponse.success !== true) {
@@ -49,13 +45,6 @@ export async function GET(request: NextRequest) {
         new URL('/giris?error=user_info_missing', request.url)
       );
     }
-
-    console.log('✅ Authentication başarılı!');
-    console.log('👤 User:', {
-      email: webhookResponse.userInfo.email,
-      name: webhookResponse.userInfo.name,
-      userId: webhookResponse.userId
-    });
 
     // Session data'yı URL'e encode et
     const sessionData = {

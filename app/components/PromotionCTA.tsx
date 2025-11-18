@@ -50,11 +50,9 @@ export default function PromotionCTA() {
   };
 
   const trackToastClick = () => {
-    console.log('Toast CTA clicked - Randevu Sistemi Campaign');
   };
 
   const trackFloatingClick = () => {
-    console.log('Floating CTA clicked - Ücretsiz Deneme Campaign');
   };
 
   return (

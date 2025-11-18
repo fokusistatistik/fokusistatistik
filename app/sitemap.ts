@@ -81,6 +81,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/referanslar`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.75,
+    },
+    {
       url: `${baseUrl}/memnuniyet-anketi`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,

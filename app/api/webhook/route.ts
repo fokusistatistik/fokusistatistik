@@ -6,7 +6,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
 
     // Log webhook data (you can process this data as needed)
-    console.log('Webhook received:', body);
 
     // Forward to n8n
     if (process.env.N8N_WEBHOOK_URL) {

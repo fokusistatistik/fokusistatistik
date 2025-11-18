@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Check, Star } from 'lucide-react';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Fiyatlandırma | FOKUS Sanal Asistan Paketleri',
@@ -75,8 +76,78 @@ export default function Fiyatlandirma() {
     },
   ];
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Paketler arasındaki fark nedir?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Standart paket temel özellikleri içerirken, Pro paket daha gelişmiş entegrasyonlar ve öncelikli destek sunar. Premium paket ise kurumsal düzeyde özelleştirmeler ve 7/24 destek içerir.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Ücretsiz deneme nasıl çalışır?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Standart pakette 1 ay ücretsiz deneme hakkınız vardır. Kredi kartı bilgisi gerekmez ve deneme sonunda otomatik ücretlendirme yapılmaz.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Paket değişikliği yapabilir miyim?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Evet, istediğiniz zaman paket yükseltme veya düşürme yapabilirsiniz. Değişiklik bir sonraki faturalandırma döneminde geçerli olur.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'İptal politikanız nedir?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'İstediğiniz zaman iptal edebilirsiniz. İptal talebiniz sonrası mevcut dönem sonuna kadar hizmet alabilirsiniz, ardından aboneliğiniz sonlandırılır.',
+        },
+      },
+    ],
+  };
+
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: plans.map((plan, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Product',
+        name: `${plan.name} Paket - FOKUS Sanal Asistan`,
+        description: plan.description,
+        offers: {
+          '@type': 'Offer',
+          price: plan.price.replace('.', ''),
+          priceCurrency: 'TRY',
+          availability: 'https://schema.org/InStock',
+          url: 'https://fokusistatistik.com/fiyatlandirma',
+        },
+      },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4">
+      <Script
+        id="faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <Script
+        id="product-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <section className="text-center mb-16">

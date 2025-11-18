@@ -32,8 +32,6 @@ export function getGoogleAuthUrl(state?: string): string {
  * Authorization code'u webhook'a gönder ve token al
  */
 export async function exchangeCodeForToken(code: string): Promise<any> {
-  console.log('🔐 Exchanging code for token...');
-  console.log('📤 Webhook URL:', GOOGLE_CONFIG.webhookUrl);
 
   const tokenData = {
     code: code,
@@ -44,7 +42,6 @@ export async function exchangeCodeForToken(code: string): Promise<any> {
     environment: process.env.NODE_ENV
   };
 
-  console.log('📤 Sending to webhook:', tokenData);
 
   const response = await fetch(GOOGLE_CONFIG.webhookUrl, {
     method: 'POST',
@@ -54,14 +51,12 @@ export async function exchangeCodeForToken(code: string): Promise<any> {
     body: JSON.stringify(tokenData)
   });
 
-  console.log('📥 Webhook response status:', response.status);
 
   if (!response.ok) {
     throw new Error(`Webhook error: ${response.status} ${response.statusText}`);
   }
 
   const text = await response.text();
-  console.log('📥 Webhook response text:', text);
 
   try {
     const parsed = JSON.parse(text);
@@ -74,7 +69,6 @@ export async function exchangeCodeForToken(code: string): Promise<any> {
       data = parsed.json || parsed;
     }
 
-    console.log('✅ Parsed webhook response:', data);
     return data;
 
   } catch (e) {
