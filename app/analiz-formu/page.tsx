@@ -142,12 +142,13 @@ export default function AnalizFormu() {
     }
   ];
 
-  const handleCheckboxChange = (value: string) => {
+  const handleCheckboxChange = (categoryIdx: number, itemIdx: number, value: string) => {
+    const uniqueId = `${categoryIdx}-${itemIdx}`;
     setFormData(prev => ({
       ...prev,
-      secilenler: prev.secilenler.includes(value)
-        ? prev.secilenler.filter(v => v !== value)
-        : [...prev.secilenler, value]
+      secilenler: prev.secilenler.includes(uniqueId)
+        ? prev.secilenler.filter(v => v !== uniqueId)
+        : [...prev.secilenler, uniqueId]
     }));
   };
 
@@ -198,6 +199,16 @@ export default function AnalizFormu() {
         console.warn('⚠️ reCAPTCHA kullanılamıyor - Güvenliksiz modda devam ediliyor');
       }
 
+      // Unique ID'leri gerçek değerlere çevir (backend için)
+      const selectedItems = formData.secilenler.map(uniqueId => {
+        const [catIdx, itemIdx] = uniqueId.split('-').map(Number);
+        const item = categories[catIdx]?.items[itemIdx];
+        return item ? { id: item.value, label: item.label } : null;
+      }).filter(Boolean);
+
+      const selectedValues = selectedItems.map(item => item!.id);
+      const selectedLabels = selectedItems.map(item => item!.label).join(', ');
+
       // API endpoint'e gönder (rate limiting + reCAPTCHA doğrulaması)
       const response = await fetch('/api/analysis', {
         method: 'POST',
@@ -205,8 +216,8 @@ export default function AnalizFormu() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          secilenler: formData.secilenler,
-          secilenlerDetay: formData.secilenler.join(', '),
+          secilenler: selectedValues,
+          secilenlerDetay: selectedLabels,
           adsoyad: formData.adsoyad,
           email: formData.email,
           telefon: formData.telefon,
@@ -298,17 +309,20 @@ export default function AnalizFormu() {
                   <span className="text-[#860000] group-open:rotate-180 transition-transform">▼</span>
                 </summary>
                 <div className="p-4 space-y-3 bg-white">
-                  {category.items.map((item, itemIdx) => (
-                    <label key={itemIdx} className="flex items-start gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors">
-                      <input
-                        type="checkbox"
-                        checked={formData.secilenler.includes(item.value)}
-                        onChange={() => handleCheckboxChange(item.value)}
-                        className="mt-1 w-4 h-4 text-[#860000] border-gray-300 rounded focus:ring-[#860000]"
-                      />
-                      <span className="text-gray-700 text-sm">{item.label}</span>
-                    </label>
-                  ))}
+                  {category.items.map((item, itemIdx) => {
+                    const uniqueId = `${idx}-${itemIdx}`;
+                    return (
+                      <label key={uniqueId} className="flex items-start gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors">
+                        <input
+                          type="checkbox"
+                          checked={formData.secilenler.includes(uniqueId)}
+                          onChange={() => handleCheckboxChange(idx, itemIdx, item.value)}
+                          className="mt-1 w-4 h-4 text-[#860000] border-gray-300 rounded focus:ring-[#860000]"
+                        />
+                        <span className="text-gray-700 text-sm">{item.label}</span>
+                      </label>
+                    );
+                  })}
                 </div>
               </details>
             ))}
