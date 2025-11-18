@@ -118,47 +118,8 @@ export default function Home() {
       <RandevuToast />
 
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#860000] via-[#a03333] to-[#6b0000] text-white py-16 lg:py-24 my-8 mx-4 lg:mx-auto max-w-7xl rounded-3xl shadow-2xl overflow-hidden mt-8">
-          <div className="absolute inset-0 bg-black/10"></div>
-
-          <div className="container mx-auto px-6 relative z-10">
-            <div className="max-w-5xl mx-auto text-center">
-              <h1 className="text-xl lg:text-3xl font-medium mb-8 leading-relaxed">
-                Yapay Zekâ Dalgasına Katılın — FOKUS ile Dijitalleşin, Daha Hızlı, Daha Kârlı Olun
-              </h1>
-
-              <div className="flex flex-col md:flex-row gap-6 justify-center">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition shadow-xl flex-1 max-w-md">
-                  <Link
-                    href="/analiz-formu"
-                    className="block bg-white text-[#860000] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition mb-3"
-                  >
-                    Ücretsiz İhtiyaç Analizi
-                  </Link>
-                  <p className="text-sm text-gray-200">
-                    Hangi sanal asistana ihtiyacınız olduğunu anında analiz edelim.
-                  </p>
-                </div>
-
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition shadow-xl flex-1 max-w-md">
-                  <a
-                    href="https://asistan.fokusistatistik.com/ucretsiz.html" target="_blank" rel="noopener noreferrer"
-                    className="block bg-white text-[#860000] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition mb-3"
-                  >
-                    Ücretsiz Danışmanlık
-                  </a>
-                  <p className="text-sm text-gray-200">
-                    Formu doldurun, ücretsiz danışmanlık için randevu oluşturalım.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Assistants Section */}
-        <section className="py-12 bg-gray-50">
+        <section className="py-16 bg-white mt-8">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl lg:text-4xl font-bold text-center mb-12 text-gray-800">
               FOKUS Ekosistemi | <span className="text-[#860000]">Modüler Sanal Asistanlar Çağı</span>
@@ -185,6 +146,51 @@ export default function Home() {
                   <span className="text-xs text-gray-500 italic mt-1">{assistant.name}</span>
                 </Link>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Hero CTA Section */}
+        <section className="relative bg-gradient-to-br from-[#860000] via-[#a03333] to-[#6b0000] text-white py-16 lg:py-20 my-8 mx-4 lg:mx-auto max-w-7xl rounded-3xl shadow-2xl overflow-hidden">
+          <div className="absolute inset-0 bg-black/10"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="max-w-5xl mx-auto text-center">
+              <h2 className="text-2xl lg:text-4xl font-bold mb-4 leading-relaxed">
+                Yapay Zekâ Dalgasına Katılın
+              </h2>
+              <p className="text-lg lg:text-xl mb-10 text-gray-100 max-w-3xl mx-auto">
+                FOKUS ile Dijitalleşin, Daha Hızlı, Daha Kârlı Olun
+              </p>
+
+              <div className="flex flex-col md:flex-row gap-6 justify-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 shadow-xl flex-1 max-w-md border border-white/20">
+                  <Link
+                    href="/analiz-formu"
+                    className="block bg-white text-[#860000] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-200 mb-3 shadow-lg"
+                  >
+                    Ücretsiz İhtiyaç Analizi
+                  </Link>
+                  <p className="text-sm text-gray-100">
+                    Hangi sanal asistana ihtiyacınız olduğunu anında analiz edelim.
+                  </p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 shadow-xl flex-1 max-w-md border border-white/20">
+                  <a
+                    href="https://asistan.fokusistatistik.com/ucretsiz.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block bg-white text-[#860000] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-200 mb-3 shadow-lg"
+                  >
+                    Ücretsiz Danışmanlık
+                  </a>
+                  <p className="text-sm text-gray-100">
+                    Formu doldurun, ücretsiz danışmanlık için randevu oluşturalım.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
