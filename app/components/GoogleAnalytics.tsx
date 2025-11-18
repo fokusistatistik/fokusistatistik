@@ -3,6 +3,14 @@
 import Script from 'next/script';
 import { useEffect, useState } from 'react';
 
+// Google Analytics için TypeScript tip tanımlamaları
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
+}
+
 export default function GoogleAnalytics() {
   const [hasConsent, setHasConsent] = useState(false);
   // Google Tag (Ana etiket - birden fazla hedefe veri gönderir)
