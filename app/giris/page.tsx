@@ -228,7 +228,7 @@ function GirisContent() {
                     Kullanım Koşulları
                   </Link>{' '}
                   ve{' '}
-                  <Link href="/gizlilik" className="text-[#860000] hover:underline">
+                  <Link href="/gizlilik-politikasi" className="text-[#860000] hover:underline">
                     Gizlilik Politikası
                   </Link>
                   &apos;nı kabul etmiş olursunuz.

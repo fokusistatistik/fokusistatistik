@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
-    "@vapi-ai/web": "^2.5.0",
+    "@vapi-ai/web": "^2.5.1",
     "axios": "^1.13.2",
     "lucide-react": "^0.553.0",
     "next": "16.0.1",
