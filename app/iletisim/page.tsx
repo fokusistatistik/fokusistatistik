@@ -49,14 +49,13 @@ export default function Iletisim() {
         return;
       }
 
-      // 3. reCAPTCHA v3 kontrolü
-      if (!executeRecaptcha) {
-        showToast('Güvenlik doğrulaması yüklenemedi. Lütfen sayfayı yenileyin.', 'error', 6000);
-        setIsSubmitting(false);
-        return;
+      // 3. reCAPTCHA v3 kontrolü (Opsiyonel - Graceful Degradation)
+      let recaptchaToken = null;
+      if (executeRecaptcha) {
+        recaptchaToken = await executeRecaptcha('contact_form');
+      } else {
+        console.warn('⚠️ reCAPTCHA kullanılamıyor - Güvenliksiz modda devam ediliyor');
       }
-
-      const recaptchaToken = await executeRecaptcha('contact_form');
 
       // API endpoint'e gönder (rate limiting + reCAPTCHA doğrulaması)
       const response = await fetch('/api/contact', {
@@ -66,7 +65,7 @@ export default function Iletisim() {
         },
         body: JSON.stringify({
           ...formData,
-          recaptchaToken, // Backend'de doğrulanacak
+          recaptchaToken, // Backend'de doğrulanacak (null ise skip edilir)
         }),
       });
 

@@ -38,34 +38,37 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { recaptchaToken, ...formData } = body;
 
-    // 3️⃣ reCAPTCHA Doğrulaması
-    if (!recaptchaToken) {
-      return NextResponse.json(
-        { success: false, error: 'reCAPTCHA token eksik' },
-        { status: 400 }
-      );
-    }
+    // 3️⃣ reCAPTCHA Doğrulaması (Opsiyonel - Graceful Degradation)
+    let recaptchaScore = null;
+    const hasRecaptchaSecret = !!process.env.RECAPTCHA_SECRET_KEY;
 
-    const recaptchaResult = await verifyRecaptcha(recaptchaToken);
+    if (recaptchaToken && hasRecaptchaSecret) {
+      // reCAPTCHA aktif - doğrulama yap
+      const recaptchaResult = await verifyRecaptcha(recaptchaToken);
 
-    if (!recaptchaResult.success) {
-      return NextResponse.json(
-        { success: false, error: 'reCAPTCHA doğrulaması başarısız' },
-        { status: 400 }
-      );
-    }
+      if (!recaptchaResult.success) {
+        return NextResponse.json(
+          { success: false, error: 'reCAPTCHA doğrulaması başarısız' },
+          { status: 400 }
+        );
+      }
 
-    // Bot kontrolü - Güvenlik: Threshold 0.6'ya yükseltildi (0.5'ten daha güvenli)
-    if (isBot(recaptchaResult.score, 0.6)) {
-      console.warn('Bot detected:', {
-        ip: clientIP,
-        score: recaptchaResult.score,
-        action: recaptchaResult.action,
-      });
-      return NextResponse.json(
-        { success: false, error: 'Spam tespit edildi' },
-        { status: 403 }
-      );
+      // Bot kontrolü - Güvenlik: Threshold 0.6'ya yükseltildi (0.5'ten daha güvenli)
+      if (isBot(recaptchaResult.score, 0.6)) {
+        console.warn('Bot detected:', {
+          ip: clientIP,
+          score: recaptchaResult.score,
+          action: recaptchaResult.action,
+        });
+        return NextResponse.json(
+          { success: false, error: 'Spam tespit edildi' },
+          { status: 403 }
+        );
+      }
+
+      recaptchaScore = recaptchaResult.score;
+    } else if (!hasRecaptchaSecret) {
+      console.warn('⚠️ reCAPTCHA secret key tanımlanmamış - Güvenliksiz modda çalışıyor');
     }
 
     // 4️⃣ n8n Webhook'a Forward Et
@@ -83,7 +86,7 @@ export async function POST(request: NextRequest) {
         ...formData,
         metadata: {
           ip: clientIP,
-          recaptchaScore: recaptchaResult.score,
+          recaptchaScore: recaptchaScore,
           timestamp: new Date().toISOString(),
         },
       }),

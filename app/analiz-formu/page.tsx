@@ -186,14 +186,13 @@ export default function AnalizFormu() {
         return;
       }
 
-      // 3. reCAPTCHA v3 kontrolü
-      if (!executeRecaptcha) {
-        alert('Güvenlik doğrulaması yüklenemedi. Lütfen sayfayı yenileyin.');
-        setIsLoading(false);
-        return;
+      // 3. reCAPTCHA v3 kontrolü (Opsiyonel - Graceful Degradation)
+      let recaptchaToken = null;
+      if (executeRecaptcha) {
+        recaptchaToken = await executeRecaptcha('analysis_form');
+      } else {
+        console.warn('⚠️ reCAPTCHA kullanılamıyor - Güvenliksiz modda devam ediliyor');
       }
-
-      const recaptchaToken = await executeRecaptcha('analysis_form');
 
       // API endpoint'e gönder (rate limiting + reCAPTCHA doğrulaması)
       const response = await fetch('/api/analysis', {
@@ -209,7 +208,7 @@ export default function AnalizFormu() {
           telefon: formData.telefon,
           kurum: formData.kurum,
           adres: formData.adres,
-          recaptchaToken, // Backend'de doğrulanacak
+          recaptchaToken, // Backend'de doğrulanacak (null ise skip edilir)
         })
       });
 
