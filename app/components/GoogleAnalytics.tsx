@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 export default function GoogleAnalytics() {
   const [hasConsent, setHasConsent] = useState(false);
-  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX';
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-WNKZVMGKBF';
 
   useEffect(() => {
     // Check if user has accepted cookies
@@ -43,6 +43,7 @@ export default function GoogleAnalytics() {
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}', {
               page_path: window.location.pathname,
+              anonymize_ip: true
             });
           `,
         }}
