@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import Image from 'next/image';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 interface FormData {
   secilenler: string[];
@@ -18,6 +19,7 @@ interface Category {
 }
 
 export default function AnalizFormu() {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [formData, setFormData] = useState<FormData>({
     secilenler: [],
     adsoyad: '',
@@ -30,6 +32,15 @@ export default function AnalizFormu() {
   const [showResults, setShowResults] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [analysisResults, setAnalysisResults] = useState<any>(null);
+
+  // Spam koruması - Honeypot ve Timestamp
+  const [honeypot, setHoneypot] = useState('');
+  const [formStartTime, setFormStartTime] = useState(0);
+
+  useEffect(() => {
+    // Form yüklendiğinde zamanı kaydet
+    setFormStartTime(Date.now());
+  }, []);
 
   const categories: Category[] = [
     {
@@ -156,7 +167,36 @@ export default function AnalizFormu() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://n8n.fokusistatistik.com/webhook/analizformu', {
+      // 🛡️ SPAM KORUMALARI
+
+      // 1. Honeypot kontrolü - Bot görünmez alanı doldurmuşsa engelle
+      if (honeypot) {
+        console.warn('Spam detected: honeypot filled');
+        alert('Form gönderimi başarısız oldu. Lütfen tekrar deneyin.');
+        setIsLoading(false);
+        return;
+      }
+
+      // 2. Timestamp kontrolü - 3 saniyeden kısa sürede gönderilmişse bot
+      const timeTaken = Date.now() - formStartTime;
+      if (timeTaken < 3000) {
+        console.warn('Spam detected: form submitted too quickly');
+        alert('Lütfen formu doldurduktan sonra gönderin.');
+        setIsLoading(false);
+        return;
+      }
+
+      // 3. reCAPTCHA v3 kontrolü
+      if (!executeRecaptcha) {
+        alert('Güvenlik doğrulaması yüklenemedi. Lütfen sayfayı yenileyin.');
+        setIsLoading(false);
+        return;
+      }
+
+      const recaptchaToken = await executeRecaptcha('analysis_form');
+
+      // API endpoint'e gönder (rate limiting + reCAPTCHA doğrulaması)
+      const response = await fetch('/api/analysis', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -168,16 +208,21 @@ export default function AnalizFormu() {
           email: formData.email,
           telefon: formData.telefon,
           kurum: formData.kurum,
-          adres: formData.adres
+          adres: formData.adres,
+          recaptchaToken, // Backend'de doğrulanacak
         })
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        const data = await response.json();
         setAnalysisResults(data);
         setShowResults(true);
+        setHoneypot(''); // Reset honeypot
+        setFormStartTime(Date.now()); // Reset timestamp
       } else {
-        alert('Form gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
+        // Rate limit veya spam hatası göster
+        alert(data.error || 'Form gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
       }
     } catch (error) {
       console.error('Form gönderme hatası:', error);
@@ -229,6 +274,18 @@ export default function AnalizFormu() {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8">
+          {/* 🍯 Honeypot - Görünmez alan (botlar için tuzak) */}
+          <input
+            type="text"
+            name="website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            className="absolute -left-[9999px]"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
+
           {/* Categories */}
           <div className="space-y-4 mb-8">
             {categories.map((category, idx) => (

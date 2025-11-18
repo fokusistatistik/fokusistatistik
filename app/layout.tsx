@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import CookieConsent from "@/app/components/CookieConsent";
 import GoogleAnalytics from "@/app/components/GoogleAnalytics";
 import { OrganizationSchema } from "@/app/components/StructuredData";
+import RecaptchaProvider from "@/app/components/RecaptchaProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -119,18 +120,20 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className="antialiased pt-16">
-        <OrganizationSchema type="ProfessionalService" />
-        <GoogleAnalytics />
-        <Header />
-        <div className="w-full flex justify-center">
-          <div className="w-full lg:w-[75%]">
-            {children}
+        <RecaptchaProvider>
+          <OrganizationSchema type="ProfessionalService" />
+          <GoogleAnalytics />
+          <Header />
+          <div className="w-full flex justify-center">
+            <div className="w-full lg:w-[75%]">
+              {children}
+            </div>
           </div>
-        </div>
-        <Footer />
-        <ChatWidget />
-        <VapiWidget />
-        <CookieConsent />
+          <Footer />
+          <ChatWidget />
+          <VapiWidget />
+          <CookieConsent />
+        </RecaptchaProvider>
       </body>
     </html>
   );

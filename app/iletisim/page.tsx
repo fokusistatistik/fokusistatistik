@@ -1,11 +1,13 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useToast } from '@/app/hooks/useToast';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 export default function Iletisim() {
   const { showToast, ToastContainer } = useToast();
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -14,20 +16,65 @@ export default function Iletisim() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Spam koruması - Honeypot ve Timestamp
+  const [honeypot, setHoneypot] = useState('');
+  const [formStartTime, setFormStartTime] = useState(0);
+
+  useEffect(() => {
+    // Form yüklendiğinde zamanı kaydet
+    setFormStartTime(Date.now());
+  }, []);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // n8n webhook'a gönder
-      if (process.env.NEXT_PUBLIC_N8N_CONTACT_WEBHOOK) {
-        await fetch(process.env.NEXT_PUBLIC_N8N_CONTACT_WEBHOOK, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
+      // 🛡️ SPAM KORUMALARI
+
+      // 1. Honeypot kontrolü - Bot görünmez alanı doldurmuşsa engelle
+      if (honeypot) {
+        console.warn('Spam detected: honeypot filled');
+        showToast('Form gönderimi başarısız oldu. Lütfen tekrar deneyin.', 'error', 6000);
+        setIsSubmitting(false);
+        return;
+      }
+
+      // 2. Timestamp kontrolü - 2 saniyeden kısa sürede gönderilmişse bot
+      const timeTaken = Date.now() - formStartTime;
+      if (timeTaken < 2000) {
+        console.warn('Spam detected: form submitted too quickly');
+        showToast('Lütfen formu doldurduktan sonra gönderin.', 'error', 6000);
+        setIsSubmitting(false);
+        return;
+      }
+
+      // 3. reCAPTCHA v3 kontrolü
+      if (!executeRecaptcha) {
+        showToast('Güvenlik doğrulaması yüklenemedi. Lütfen sayfayı yenileyin.', 'error', 6000);
+        setIsSubmitting(false);
+        return;
+      }
+
+      const recaptchaToken = await executeRecaptcha('contact_form');
+
+      // API endpoint'e gönder (rate limiting + reCAPTCHA doğrulaması)
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken, // Backend'de doğrulanacak
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        // Rate limit veya spam hatası
+        throw new Error(result.error || 'Form gönderilemedi');
       }
 
       showToast('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.', 'success', 6000);
@@ -37,7 +84,10 @@ export default function Iletisim() {
         email: '',
         message: '',
       });
+      setHoneypot(''); // Reset honeypot
+      setFormStartTime(Date.now()); // Reset timestamp
     } catch (error) {
+      console.error('Form submission error:', error);
       showToast('Bir hata oluştu. Lütfen daha sonra tekrar deneyin.', 'error', 6000);
     } finally {
       setIsSubmitting(false);
@@ -140,6 +190,18 @@ export default function Iletisim() {
                 <div className="bg-gradient-to-br from-gray-50 to-white border-2 border-[#860000] rounded-2xl p-8 shadow-xl">
                   <h2 className="text-2xl font-bold mb-6 text-gray-800">İletişim Formu</h2>
                   <form onSubmit={handleSubmit} className="space-y-5">
+                    {/* 🍯 Honeypot - Görünmez alan (botlar için tuzak) */}
+                    <input
+                      type="text"
+                      name="website"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      className="absolute -left-[9999px]"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                    />
+
                     <div>
                       <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">
                         Ad Soyad
