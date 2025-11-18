@@ -119,9 +119,9 @@ export default function Home() {
 
       <main className="flex-grow">
         {/* Assistants Section */}
-        <section className="py-16 bg-white mt-8">
+        <section className="pt-12 pb-8 bg-white mt-4">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl lg:text-4xl font-bold text-center mb-12 text-gray-800">
+            <h2 className="text-3xl lg:text-4xl font-bold text-center mb-10 text-gray-800">
               FOKUS Ekosistemi | <span className="text-[#860000]">Modüler Sanal Asistanlar Çağı</span>
             </h2>
 
@@ -151,13 +151,13 @@ export default function Home() {
         </section>
 
         {/* Hero CTA Section */}
-        <section className="relative bg-gradient-to-br from-[#860000] via-[#a03333] to-[#6b0000] text-white py-16 lg:py-20 my-8 mx-4 lg:mx-auto max-w-7xl rounded-3xl shadow-2xl overflow-hidden">
+        <section className="relative bg-gradient-to-br from-[#860000] via-[#a03333] to-[#6b0000] text-white py-12 lg:py-14 my-6 mx-4 lg:mx-auto max-w-7xl rounded-3xl shadow-2xl overflow-hidden">
           <div className="absolute inset-0 bg-black/10"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
 
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-5xl mx-auto text-center">
-              <h2 className="text-2xl lg:text-4xl font-bold mb-4 leading-relaxed">
+              <h2 className="text-2xl lg:text-4xl font-bold mb-3 leading-relaxed">
                 Yapay Zekâ Dalgasına Katılın
               </h2>
               <p className="text-lg lg:text-xl mb-10 text-gray-100 max-w-3xl mx-auto">
