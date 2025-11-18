@@ -29,7 +29,7 @@ export function middleware(request: NextRequest) {
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "img-src 'self' data: https: blob:",
       "font-src 'self' https://fonts.gstatic.com",
-      "connect-src 'self' https://www.google-analytics.com https://n8n.fokusistatistik.com https://asistan.fokusistatistik.com https://static.fokusistatistik.com",
+      "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.google.com https://n8n.fokusistatistik.com https://asistan.fokusistatistik.com https://static.fokusistatistik.com",
       "frame-src 'self' https://www.google.com https://www.youtube.com",
       "media-src 'self' https://static.fokusistatistik.com",
       "object-src 'none'",
