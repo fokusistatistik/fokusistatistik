@@ -52,7 +52,11 @@ export default function Iletisim() {
       // 3. reCAPTCHA v3 kontrolü (Opsiyonel - Graceful Degradation)
       let recaptchaToken = null;
       if (executeRecaptcha) {
-        recaptchaToken = await executeRecaptcha('contact_form');
+        try {
+          recaptchaToken = await executeRecaptcha('contact_form');
+        } catch (error) {
+          console.warn('⚠️ reCAPTCHA kullanılamıyor - Güvenliksiz modda devam ediliyor', error);
+        }
       } else {
         console.warn('⚠️ reCAPTCHA kullanılamıyor - Güvenliksiz modda devam ediliyor');
       }

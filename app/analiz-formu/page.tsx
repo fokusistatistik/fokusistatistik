@@ -189,7 +189,11 @@ export default function AnalizFormu() {
       // 3. reCAPTCHA v3 kontrolü (Opsiyonel - Graceful Degradation)
       let recaptchaToken = null;
       if (executeRecaptcha) {
-        recaptchaToken = await executeRecaptcha('analysis_form');
+        try {
+          recaptchaToken = await executeRecaptcha('analysis_form');
+        } catch (error) {
+          console.warn('⚠️ reCAPTCHA kullanılamıyor - Güvenliksiz modda devam ediliyor', error);
+        }
       } else {
         console.warn('⚠️ reCAPTCHA kullanılamıyor - Güvenliksiz modda devam ediliyor');
       }
