@@ -1,7 +1,26 @@
 {
   "name": "fokusistatistik",
   "version": "0.1.0",
+  "description": "FOKUS İstatistik ve YZ Danışmanlığı - Modern AI destekli iş süreçleri otomasyon platformu. 9 farklı sanal asistan ile dijital dönüşüm hizmeti.",
+  "author": "FOKUS İstatistik ve YZ Danışmanlığı <bilgi@fokusistatistik.com>",
+  "license": "UNLICENSED",
   "private": true,
+  "homepage": "https://fokusistatistik.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fokusistatistik/fokusistatistik.git"
+  },
+  "keywords": [
+    "nextjs",
+    "typescript",
+    "saas",
+    "ai",
+    "automation",
+    "virtual-assistant",
+    "analytics",
+    "recaptcha",
+    "google-analytics"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
