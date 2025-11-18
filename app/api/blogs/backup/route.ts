@@ -1,10 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
+import { jwtVerify } from 'jose';
 
-function checkAuth(request: NextRequest) {
-  const session = request.cookies.get('admin_session');
-  return !!session;
+// Güvenlik: JWT token doğrulaması
+async function checkAuth(request: NextRequest): Promise<boolean> {
+  const sessionCookie = request.cookies.get('admin_session');
+
+  if (!sessionCookie) {
+    return false;
+  }
+
+  try {
+    const secret = new TextEncoder().encode(
+      process.env.JWT_SECRET || 'default-secret-change-in-production-12345678901234567890'
+    );
+
+    const { payload } = await jwtVerify(sessionCookie.value, secret);
+
+    if (!payload.username || !payload.role || payload.role !== 'admin') {
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('JWT verification failed:', error);
+    return false;
+  }
 }
 
 const BLOGS_FILE = path.join(process.cwd(), 'content', 'blogs-metadata.json');
@@ -12,7 +34,7 @@ const CONTENT_DIR = path.join(process.cwd(), 'content', 'blog');
 
 // POST - Backup blogs to git or export
 export async function POST(request: NextRequest) {
-  if (!checkAuth(request)) {
+  if (!(await checkAuth(request))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
@@ -66,7 +88,7 @@ export async function POST(request: NextRequest) {
 
 // PUT - Restore blogs from backup
 export async function PUT(request: NextRequest) {
-  if (!checkAuth(request)) {
+  if (!(await checkAuth(request))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

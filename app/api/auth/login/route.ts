@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkRateLimit, getClientIP } from '@/lib/rateLimiter';
+import { SignJWT } from 'jose';
 
 export async function POST(request: NextRequest) {
   try {
@@ -64,8 +65,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Başarılı yanıt gelirse session token oluştur
-    const sessionToken = Buffer.from(`${username}:${Date.now()}`).toString('base64');
+    // Güvenlik: Güçlü JWT token oluştur
+    const secret = new TextEncoder().encode(
+      process.env.JWT_SECRET || 'default-secret-change-in-production-12345678901234567890'
+    );
+
+    const sessionToken = await new SignJWT({ username, role: 'admin' })
+      .setProtectedHeader({ alg: 'HS256' })
+      .setIssuedAt()
+      .setExpirationTime('7d')
+      .setJti(crypto.randomUUID())
+      .sign(secret);
 
     // Response oluştur ve cookie set et
     const res = NextResponse.json({
