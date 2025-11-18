@@ -55,8 +55,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Bot kontrolü (skor 0.5'ten düşükse bot)
-    if (isBot(recaptchaResult.score, 0.5)) {
+    // Bot kontrolü - Güvenlik: Threshold 0.7'ye yükseltildi (kritik form için daha yüksek güvenlik)
+    if (isBot(recaptchaResult.score, 0.7)) {
       console.warn('Bot detected on analysis form:', {
         ip: clientIP,
         score: recaptchaResult.score,

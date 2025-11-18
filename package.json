@@ -31,6 +31,7 @@
     "@headlessui/react": "^2.2.9",
     "@vapi-ai/web": "^2.5.1",
     "axios": "^1.13.2",
+    "isomorphic-dompurify": "^2.32.0",
     "lucide-react": "^0.553.0",
     "next": "16.0.1",
     "next-pwa": "^5.6.0",

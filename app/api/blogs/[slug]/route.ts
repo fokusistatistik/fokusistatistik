@@ -5,6 +5,22 @@ import path from 'path';
 const BLOGS_FILE = path.join(process.cwd(), 'content', 'blogs-metadata.json');
 const CONTENT_DIR = path.join(process.cwd(), 'content', 'blog');
 
+// Güvenlik: Path traversal saldırılarını önle
+function sanitizeSlug(slug: string): string {
+  // Sadece harf, rakam, tire ve alt çizgiye izin ver
+  if (!/^[a-zA-Z0-9_-]+$/.test(slug)) {
+    throw new Error('Geçersiz slug formatı');
+  }
+
+  // Normalize et ve path traversal kontrolü
+  const normalized = path.normalize(slug);
+  if (normalized.includes('..') || normalized.includes('/') || normalized.includes('\\')) {
+    throw new Error('Güvenlik ihlali tespit edildi');
+  }
+
+  return normalized;
+}
+
 function checkAuth(request: NextRequest) {
   const session = request.cookies.get('admin_session');
   return !!session;
@@ -18,10 +34,13 @@ export async function GET(
   try {
     const { slug } = await params;
 
+    // Güvenlik: Slug sanitizasyonu
+    const safeSlug = sanitizeSlug(slug);
+
     // Metadata oku
     const data = await fs.readFile(BLOGS_FILE, 'utf-8');
     const blogs = JSON.parse(data);
-    const blog = blogs.find((b: any) => b.slug === slug);
+    const blog = blogs.find((b: any) => b.slug === safeSlug);
 
     if (!blog) {
       return NextResponse.json({ error: 'Blog bulunamadı' }, { status: 404 });
@@ -31,7 +50,7 @@ export async function GET(
     let content = '';
     try {
       content = await fs.readFile(
-        path.join(CONTENT_DIR, `${slug}.html`),
+        path.join(CONTENT_DIR, `${safeSlug}.html`),
         'utf-8'
       );
     } catch (error) {
@@ -57,10 +76,14 @@ export async function PUT(
     const { slug } = await params;
     const updates = await request.json();
 
+    // Güvenlik: Slug sanitizasyonu
+    const safeSlug = sanitizeSlug(slug);
+    const newSafeSlug = updates.slug ? sanitizeSlug(updates.slug) : safeSlug;
+
     // Metadata oku
     const data = await fs.readFile(BLOGS_FILE, 'utf-8');
     const blogs = JSON.parse(data);
-    const blogIndex = blogs.findIndex((b: any) => b.slug === slug);
+    const blogIndex = blogs.findIndex((b: any) => b.slug === safeSlug);
 
     if (blogIndex === -1) {
       return NextResponse.json({ error: 'Blog bulunamadı' }, { status: 404 });
@@ -70,7 +93,7 @@ export async function PUT(
     blogs[blogIndex] = {
       ...blogs[blogIndex],
       ...updates,
-      slug: updates.slug || blogs[blogIndex].slug,
+      slug: newSafeSlug,
       updatedDate: new Date().toISOString(),
     };
 
@@ -78,9 +101,9 @@ export async function PUT(
     await fs.writeFile(BLOGS_FILE, JSON.stringify(blogs, null, 2));
 
     // Eğer slug değiştiyse eski dosyayı sil
-    if (updates.slug && updates.slug !== slug) {
+    if (newSafeSlug !== safeSlug) {
       try {
-        await fs.unlink(path.join(CONTENT_DIR, `${slug}.html`));
+        await fs.unlink(path.join(CONTENT_DIR, `${safeSlug}.html`));
       } catch (error) {
         // Eski dosya yoksa devam et
       }
@@ -89,7 +112,7 @@ export async function PUT(
     // İçerik dosyasını güncelle
     if (updates.content !== undefined) {
       await fs.writeFile(
-        path.join(CONTENT_DIR, `${updates.slug || slug}.html`),
+        path.join(CONTENT_DIR, `${newSafeSlug}.html`),
         updates.content
       );
     }
@@ -116,10 +139,13 @@ export async function DELETE(
   try {
     const { slug } = await params;
 
+    // Güvenlik: Slug sanitizasyonu
+    const safeSlug = sanitizeSlug(slug);
+
     // Metadata oku
     const data = await fs.readFile(BLOGS_FILE, 'utf-8');
     const blogs = JSON.parse(data);
-    const filteredBlogs = blogs.filter((b: any) => b.slug !== slug);
+    const filteredBlogs = blogs.filter((b: any) => b.slug !== safeSlug);
 
     if (blogs.length === filteredBlogs.length) {
       return NextResponse.json({ error: 'Blog bulunamadı' }, { status: 404 });
@@ -130,7 +156,7 @@ export async function DELETE(
 
     // İçerik dosyasını sil
     try {
-      await fs.unlink(path.join(CONTENT_DIR, `${slug}.html`));
+      await fs.unlink(path.join(CONTENT_DIR, `${safeSlug}.html`));
     } catch (error) {
       // Dosya yoksa devam et
     }

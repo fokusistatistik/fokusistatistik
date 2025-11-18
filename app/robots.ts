@@ -10,18 +10,21 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: [
           '/api/',
+          '/admin/',
+          '/admin/*',
           '/dashboard',
           '/profil',
           '/siparisler',
           '/giris',
           '/*.json$',
           '/private/',
+          '/content/',
         ],
       },
       {
         userAgent: 'Googlebot',
         allow: '/',
-        disallow: ['/api/', '/dashboard', '/profil', '/siparisler', '/giris'],
+        disallow: ['/api/', '/admin/', '/dashboard', '/profil', '/siparisler', '/giris', '/content/'],
       },
       {
         userAgent: 'Googlebot-Image',

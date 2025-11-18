@@ -1,8 +1,49 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { checkRateLimit, getClientIP } from '@/lib/rateLimiter';
 
 export async function POST(request: NextRequest) {
   try {
     const { username, password } = await request.json();
+
+    // Güvenlik: IP bazlı rate limiting (5 deneme / 15 dakika)
+    const clientIP = getClientIP(request);
+    const ipRateLimit = checkRateLimit(`login:ip:${clientIP}`, {
+      maxRequests: 5,
+      windowMs: 15 * 60 * 1000,
+    });
+
+    if (!ipRateLimit.allowed) {
+      return NextResponse.json(
+        { success: false, message: 'Çok fazla başarısız deneme. 15 dakika bekleyin.' },
+        { status: 429 }
+      );
+    }
+
+    // Güvenlik: Username bazlı rate limiting (10 deneme / saat)
+    if (username) {
+      const userRateLimit = checkRateLimit(`login:user:${username}`, {
+        maxRequests: 10,
+        windowMs: 60 * 60 * 1000,
+      });
+
+      if (!userRateLimit.allowed) {
+        return NextResponse.json(
+          { success: false, message: 'Bu hesap geçici olarak kilitlendi.' },
+          { status: 429 }
+        );
+      }
+    }
+
+    // Güvenlik: Input validation
+    if (!username || !password || typeof username !== 'string' || typeof password !== 'string') {
+      return NextResponse.json(
+        { success: false, message: 'Geçersiz giriş bilgileri' },
+        { status: 400 }
+      );
+    }
+
+    // Güvenlik: 1 saniye gecikme (brute force zorlaştırma)
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     // n8n webhook'a istek gönder
     const webhookUrl = 'https://n8n.fokusistatistik.com/webhook/fokusistatistikblog';
