@@ -31,7 +31,7 @@ export default function AnalizFormu() {
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [showToast, setShowToast] = useState(false);
-  const [analysisResults, setAnalysisResults] = useState<any>(null);
+  const [analysisResults, setAnalysisResults] = useState<string>('');
 
   // Spam koruması - Honeypot ve Timestamp
   const [honeypot, setHoneypot] = useState('');
@@ -206,37 +206,39 @@ export default function AnalizFormu() {
         return item ? { id: item.value, label: item.label } : null;
       }).filter(Boolean);
 
-      const selectedValues = selectedItems.map(item => item!.id);
       const selectedLabels = selectedItems.map(item => item!.label).join(', ');
 
-      // API endpoint'e gönder (rate limiting + reCAPTCHA doğrulaması)
-      const response = await fetch('/api/analysis', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          secilenler: selectedValues,
-          secilenlerDetay: selectedLabels,
-          adsoyad: formData.adsoyad,
-          email: formData.email,
-          telefon: formData.telefon,
-          kurum: formData.kurum,
-          adres: formData.adres,
-          recaptchaToken, // Backend'de doğrulanacak (null ise skip edilir)
-        })
+      // FormData oluştur (statik HTML ile uyumlu)
+      const formDataToSend = new FormData();
+
+      // Checkbox değerlerini ekle (HTML formu gibi)
+      selectedItems.forEach(item => {
+        formDataToSend.append('secilenler[]', item!.id);
       });
 
-      const data = await response.json();
+      formDataToSend.append('secilenlerDetay', selectedLabels);
+      formDataToSend.append('adsoyad', formData.adsoyad);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('telefon', formData.telefon);
+      formDataToSend.append('kurum', formData.kurum);
+      formDataToSend.append('adres', formData.adres);
+
+      // Direkt n8n webhook'a gönder (statik HTML ile aynı)
+      const response = await fetch('https://n8n.fokusistatistik.com/webhook/fokusanalizform', {
+        method: 'POST',
+        body: formDataToSend
+      });
+
+      // HTML response al (statik HTML ile aynı)
+      const htmlString = await response.text();
 
       if (response.ok) {
-        setAnalysisResults(data);
+        setAnalysisResults(htmlString);
         setShowResults(true);
         setHoneypot(''); // Reset honeypot
         setFormStartTime(Date.now()); // Reset timestamp
       } else {
-        // Rate limit veya spam hatası göster
-        alert(data.error || 'Form gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
+        alert('Form gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
       }
     } catch (error) {
       console.error('Form gönderme hatası:', error);
@@ -256,7 +258,9 @@ export default function AnalizFormu() {
       adres: ''
     });
     setShowResults(false);
-    setAnalysisResults(null);
+    setAnalysisResults('');
+    setHoneypot('');
+    setFormStartTime(Date.now());
   };
 
   return (
@@ -401,24 +405,12 @@ export default function AnalizFormu() {
           )}
         </form>
 
-        {/* Results */}
+        {/* Results - HTML Response (statik HTML ile aynı) */}
         {showResults && analysisResults && (
-          <div className="bg-white rounded-2xl shadow-lg p-8 mt-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Analiz Sonuçları</h2>
-            <div className="prose max-w-none">
-              {analysisResults.message && <p className="text-gray-700">{analysisResults.message}</p>}
-              {analysisResults.recommendations && (
-                <div className="mt-4">
-                  <h3 className="font-semibold text-gray-900">Önerilen Asistanlar:</h3>
-                  <ul className="list-disc list-inside text-gray-700">
-                    {analysisResults.recommendations.map((rec: string, idx: number) => (
-                      <li key={idx}>{rec}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </div>
+          <div
+            className="bg-white rounded-2xl shadow-lg p-8 mt-8"
+            dangerouslySetInnerHTML={{ __html: analysisResults }}
+          />
         )}
       </div>
 
