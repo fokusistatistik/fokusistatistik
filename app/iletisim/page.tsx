@@ -61,26 +61,22 @@ export default function Iletisim() {
         console.warn('⚠️ reCAPTCHA kullanılamıyor - Güvenliksiz modda devam ediliyor');
       }
 
-      // API endpoint'e gönder (rate limiting + reCAPTCHA doğrulaması)
-      const response = await fetch('/api/contact', {
+      // Direkt n8n webhook'a gönder (statik HTML ile uyumlu)
+      const response = await fetch('https://n8n.fokusistatistik.com/webhook/form1', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          recaptchaToken, // Backend'de doğrulanacak (null ise skip edilir)
-        }),
+        body: JSON.stringify(formData),
       });
 
       const result = await response.json();
 
       if (!response.ok) {
-        // Rate limit veya spam hatası
-        throw new Error(result.error || 'Form gönderilemedi');
+        throw new Error(result.message || 'Form gönderilemedi');
       }
 
-      showToast('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.', 'success', 6000);
+      showToast(result.message || 'Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.', 'success', 6000);
       setFormData({
         name: '',
         phone: '',
