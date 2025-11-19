@@ -206,8 +206,6 @@ export default function AnalizFormu() {
         return item ? { id: item.value, label: item.label } : null;
       }).filter(Boolean);
 
-      const selectedLabels = selectedItems.map(item => item!.label).join(', ');
-
       // FormData oluştur (statik HTML ile uyumlu)
       const formDataToSend = new FormData();
 
@@ -216,7 +214,8 @@ export default function AnalizFormu() {
         formDataToSend.append('secilenler[]', item!.id);
       });
 
-      formDataToSend.append('secilenlerDetay', selectedLabels);
+      // secilenlerDetay JSON formatında gönder (statik HTML ile aynı)
+      formDataToSend.append('secilenlerDetay', JSON.stringify(selectedItems));
       formDataToSend.append('adsoyad', formData.adsoyad);
       formDataToSend.append('email', formData.email);
       formDataToSend.append('telefon', formData.telefon);
