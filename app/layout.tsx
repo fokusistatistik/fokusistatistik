@@ -78,8 +78,6 @@ export const metadata: Metadata = {
     canonical: 'https://fokusistatistik.com',
   },
   manifest: "/manifest.json",
-  themeColor: "#860000",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   icons: {
     icon: "/favicon.ico",
     apple: "/favicon.ico",
@@ -114,6 +112,17 @@ export const metadata: Metadata = {
     'color-scheme': 'light only',
   },
 };
+
+// Next.js 15+ viewport configuration
+export function generateViewport() {
+  return {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    themeColor: '#860000',
+    colorScheme: 'light',
+  };
+}
 
 export default function RootLayout({
   children,
