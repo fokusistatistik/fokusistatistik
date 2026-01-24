@@ -273,12 +273,12 @@ export default function Iletisim() {
                       className="w-full bg-[#860000] text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#6b0000] transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                       {isSubmitting ? (
-                        'Gönderiliyor...'
+                        <span>Gönderiliyor...</span>
                       ) : (
-                        <>
+                        <span className="flex items-center gap-2">
                           <Send className="w-5 h-5" />
-                          Gönder
-                        </>
+                          <span>Gönder</span>
+                        </span>
                       )}
                     </button>
                   </form>
