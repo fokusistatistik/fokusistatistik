@@ -22,11 +22,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Force light mode - prevent browser/OS dark mode from affecting the site */
+html {
+  color-scheme: light only;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -34,15 +34,6 @@ body {
   color: var(--foreground);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
-}
-
-html {
-  overflow-x: hidden;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
 }
 
 /* Prevent horizontal overflow on all elements */
