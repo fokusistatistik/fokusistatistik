@@ -83,7 +83,8 @@ export default function Footer() {
         </div>
 
         {/* Quick Links */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-4 max-w-5xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-4 md:w-[80%] md:mx-auto px-6">
+          {/* Kurumsal - Sol tarafa dayalı */}
           <div className="text-center md:text-left">
             <h3 className="font-bold text-[#ffc107] mb-3">Kurumsal</h3>
             <ul className="space-y-2 text-sm">
@@ -115,7 +116,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="text-center md:text-left">
+          {/* Hizmetler - Ortada */}
+          <div className="text-center">
             <h3 className="font-bold text-[#ffc107] mb-3">Hizmetler</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -151,7 +153,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="text-center md:text-left">
+          {/* Yasal - Sağ tarafa dayalı */}
+          <div className="text-center md:text-right">
             <h3 className="font-bold text-[#ffc107] mb-3">Yasal</h3>
             <ul className="space-y-2 text-sm">
               <li>
