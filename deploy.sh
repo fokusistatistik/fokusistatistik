@@ -1,64 +1,72 @@
 #!/bin/bash
 
 # ==========================================
-# 🚀 GÜVENLİ GÜNCELLEME SCRİPTİ (SIMPLE v2)
+# 🚀 FOKUS CLEAN DEPLOYMENT SCRIPT (FINAL)
 # ==========================================
 
-# 1. DEĞİŞKENLER
-PROJE_YOLU="/home/emrebostanoglu/react-projects/fokus-website/fokusistatistik-claude-virtual-assistants-statistics-011CV23jAzbd7JbWtX5PNpMs"
-BRANCH_ADI="FOKUSVersiyon001"
-PM2_NAME="fokus-website-prod" # PM2 process adı
+# 1. TANIMLAR
+USER="emrebostanoglu"
+PROJE="/home/emrebostanoglu/react-projects/fokus-website/fokusistatistik-claude-virtual-assistants-statistics-011CV23jAzbd7JbWtX5PNpMs"
+# DİKKAT: Doğru repo adresi buraya girildi
+REPO_URL="https://github.com/fokusistatistik/fokusistatistik.git"
+BRANCH="FOKUSVersiyon001"
 
-# Hata durumunda scripti durdur
+# Hata durumunda durdur
 set -e
 
-echo "🔧 İzinler ayarlanıyor..."
-# Klasör varsa izin düzelt
-if [ -d "$PROJE_YOLU" ]; then
-    sudo chown -R emrebostanoglu:emrebostanoglu "$PROJE_YOLU"
+echo "⚡ TEMİZLİK VE GÜNCELLEME BAŞLATILIYOR..."
+
+# 2. PROFİLİ YÜKLE VE DİZİNE GİT
+echo "🔧 Ortam hazırlanıyor..."
+# Root yetkisi gerekebilir, script sudo ile çalıştırılmalı
+if [ -d "$PROJE" ]; then
+    chown -R $USER:$USER "$PROJE"
 else
-    echo "❌ HATA: Proje yolu bulunamadı: $PROJE_YOLU"
+    echo "❌ HATA: Proje yolu bulunamadı: $PROJE"
     exit 1
 fi
 
-# 2. PROJE KLASÖRÜNE GİT
-echo "📂 Proje dizinine gidiliyor..."
-cd "$PROJE_YOLU"
+cd "$PROJE"
 
-# 3. GITHUB'DAN GÜNCELLEMEYİ ÇEK
-echo "⬇️  $BRANCH_ADI dalından güncel kodlar çekiliyor..."
-sudo -u emrebostanoglu git fetch origin "$BRANCH_ADI"
-# Sunucudaki yerel değişiklikleri ez ve Git ile eşitle
-sudo -u emrebostanoglu git reset --hard "origin/$BRANCH_ADI"
+# 3. GITHUB BAĞLANTISINI DÜZELT (Eskisini sil, yenisini yaz)
+echo "� Repo adresi düzeltiliyor: $REPO_URL"
+sudo -u $USER git remote set-url origin $REPO_URL
 
-# 4. PAKETLERİ GÜNCELLE
-echo "📦 Bağımlılıklar güncelleniyor..."
-sudo -u emrebostanoglu npm install
+# 4. ESKİYİ SİL VE YENİYİ ÇEK (Reset --hard)
+echo "⬇️  Kodlar çekiliyor ($BRANCH)..."
+# Önce fetch yapıyoruz
+sudo -u $USER git fetch origin $BRANCH
+# SONRA ESKİ KODLARI EZİP GEÇİYORUZ (Hard Reset)
+sudo -u $USER git reset --hard "origin/$BRANCH"
 
-# 5. BUILD AL
-echo "🏗️  Build alınıyor (Production)..."
-# Temiz build için
-sudo -u emrebostanoglu rm -rf .next
+# 5. TEMİZ KURULUM VE BUILD
+echo "📦 Paketler yükleniyor..."
+sudo -u $USER npm install
 
-if sudo -u emrebostanoglu NODE_ENV=production npm run build; then
-    echo "🚀 Build Başarılı! Servis yenileniyor..."
+echo "🧹 Eski build dosyaları siliniyor (.next)..."
+sudo -u $USER rm -rf .next
+
+echo "🏗️  Sıfırdan Build alınıyor..."
+if sudo -u $USER NODE_ENV=production npm run build; then
+    echo "✅ Build Başarılı! PM2 güncelleniyor..."
     
-    # PM2 Restart (Varsa restart et, yoksa başlat)
-    if sudo -u emrebostanoglu pm2 list | grep -q "$PM2_NAME"; then
-        sudo -u emrebostanoglu pm2 restart "$PM2_NAME"
+    # PM2 sürecini bul ve yeniden başlat
+    # sudo -i -u ile kullanıcının full environment'ını yüklüyoruz
+    if sudo -i -u $USER pm2 list | grep -q "fokus-website-prod"; then
+        sudo -i -u $USER pm2 restart fokus-website-prod
     else
-        echo "⚠️  PM2 servisi yok, başlatılıyor..."
-        sudo -u emrebostanoglu pm2 start npm --name "$PM2_NAME" -- start
+        echo "⚠️ Süreç yok, sıfırdan başlatılıyor..."
+        # Start komutunu proje dizininde çalıştırmak önemli
+        sudo -i -u $USER pm2 start npm --name "fokus-website-prod" --cwd "$PROJE" -- start
     fi
     
-    sudo -u emrebostanoglu pm2 save
-    
+    sudo -i -u $USER pm2 save
     echo "------------------------------------------------"
-    echo "✅ GÜNCELLEME BAŞARIYLA TAMAMLANDI!"
-    echo "� Branch: $BRANCH_ADI"
-    echo "� Commit: $(git log -1 --format='%h - %s')"
+    echo "🎉 SİTE SIFIRDAN DERLENDİ VE YAYINA ALINDI!"
+    echo "📍 Branch: $BRANCH"
+    echo "📍 Commit: $(git log -1 --format='%h - %s')"
     echo "------------------------------------------------"
 else
-    echo "❌ BUILD HATASI! İşlem iptal edildi."
+    echo "❌ HATA: Build sırasında bir sorun oluştu!"
     exit 1
 fi
