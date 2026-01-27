@@ -63,7 +63,22 @@ Bu doküman, `27-01-2026` tarihinde geçici olarak devre dışı bırakılan fiy
 
 ## 5. Sayfa Dosyası Durumu
 
-Fiyatlandırma sayfası dosyası (`app/fiyatlandirma/page.tsx`) **silinmemiştir**. Sadece bağlantılar kaldırılmıştır. Eğer sayfaya doğrudan URL (domain.com/fiyatlandirma) üzerinden gidilirse sayfa hala çalışacaktır. Eğer sayfanın tamamen erişilemez olmasını istiyorsanız, klasör adını değiştirebilir (örn: `_fiyatlandirma`) veya `middleware.ts` üzerinden yönlendirme ekleyebilirsiniz.
+## 5. Sayfa Dosyası Durumu
+
+Fiyatlandırma sayfası dosyası **SİLİNMEMİŞTİR** ancak güvenlik ve gizlilik nedeniyle klasör adı değiştirilmiştir.
+
+**Mevcut (Gizli) Klasör Yolu:**
+`app/fiyat-teklifi-ozel-x7932kd-2025/page.tsx`
+
+**Erişim Adresi:**
+`https://fokusistatistik.com/fiyat-teklifi-ozel-x7932kd-2025`
+
+**Geri Getirme (Restore) İşlemi:**
+Fiyatlandırma sayfasını tekrar `/fiyatlandirma` adresinde yayınlamak için:
+1. `app/fiyat-teklifi-ozel-x7932kd-2025` klasörünün adını `app/fiyatlandirma` olarak değiştirin.
+2. Yukarıdaki (1, 2, 3, 4. maddeler) bağlantı ekleme işlemlerini uygulayın.
+
+Eğer sayfanın tamamen erişilemez olmasını istiyorsanız, klasör adını daha da karmaşıklaştırabilir veya `middleware.ts` üzerinden yönlendirme ekleyebilirsiniz. Şimdilik "gizli link" (unlisted) olarak çalışmaktadır.
 
 ## 6. Sanal Asistan Paket Fiyatları ve Dipnotlar (app/sanalasistanlar/[id]/page.tsx)
 

@@ -19,6 +19,8 @@ export default function robots(): MetadataRoute.Robots {
           '/*.json$',
           '/private/',
           '/content/',
+          '/fiyat-teklifi-ozel-x7932kd-2025',
+          '/fiyat-teklifi-ozel-x7932kd-2025/',
         ],
       },
       {
