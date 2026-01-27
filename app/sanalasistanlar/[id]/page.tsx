@@ -230,100 +230,80 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
 
         {/* Pricing Table */}
         {displayAssistant?.packages && displayAssistant.packages.length > 0 && (
-        <section className="py-12 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl lg:text-3xl font-bold mb-6 text-center text-gray-800">
-                {displayAssistant.code} {displayAssistant.title.toUpperCase()} - PAKETLERİ
-              </h2>
+          <section className="py-12 bg-gray-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-6xl mx-auto">
+                <h2 className="text-2xl lg:text-3xl font-bold mb-6 text-center text-gray-800">
+                  {displayAssistant.code} {displayAssistant.title.toUpperCase()} - PAKETLERİ
+                </h2>
 
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse bg-white shadow-md text-sm rounded-lg overflow-hidden">
-                  <thead>
-                    <tr className="bg-[#860000] text-white">
-                      <th className="p-2 text-left font-semibold text-xs">ÖZELLİK</th>
-                      {displayAssistant.packages.map((pkg) => (
-                        <th key={pkg.name} className="p-2 text-center font-semibold text-xs">
-                          {pkg.name}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {featureKeys.map((featureKey, index) => (
-                      <tr
-                        key={featureKey}
-                        className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}
-                      >
-                        <td className="p-2 border-b text-xs border-gray-200 font-medium text-gray-700">
-                          {featureKey}
-                        </td>
-                        {displayAssistant.packages.map((pkg) => {
-                          const value = pkg.features[featureKey];
-                          return (
-                            <td key={pkg.name} className="p-2 border-b border-gray-200 text-center text-xs">
-                              {typeof value === 'boolean' ? (
-                                value ? (
-                                  <CheckCircle2 className="w-4 h-4 text-green-600 mx-auto" />
-                                ) : (
-                                  <X className="w-4 h-4 text-red-600 mx-auto" />
-                                )
-                              ) : (
-                                <span className="text-gray-700">{value}</span>
-                              )}
-                            </td>
-                          );
-                        })}
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse bg-white shadow-md text-sm rounded-lg overflow-hidden">
+                    <thead>
+                      <tr className="bg-[#860000] text-white">
+                        <th className="p-2 text-left font-semibold text-xs">ÖZELLİK</th>
+                        {displayAssistant.packages.map((pkg) => (
+                          <th key={pkg.name} className="p-2 text-center font-semibold text-xs">
+                            {pkg.name}
+                          </th>
+                        ))}
                       </tr>
-                    ))}
-
-                    {/* Monthly Price Row */}
-                    <tr className="bg-[#ffc107]">
-                      <td className="p-2 text-xs font-bold text-gray-800">Aylık Plan*</td>
-                      {displayAssistant.packages.map((pkg) => (
-                        <td key={pkg.name} className="p-2 text-xs text-center font-bold text-gray-800">
-                          {pkg.monthlyPrice}
-                        </td>
+                    </thead>
+                    <tbody>
+                      {featureKeys.map((featureKey, index) => (
+                        <tr
+                          key={featureKey}
+                          className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}
+                        >
+                          <td className="p-2 border-b text-xs border-gray-200 font-medium text-gray-700">
+                            {featureKey}
+                          </td>
+                          {displayAssistant.packages.map((pkg) => {
+                            const value = pkg.features[featureKey];
+                            return (
+                              <td key={pkg.name} className="p-2 border-b border-gray-200 text-center text-xs">
+                                {typeof value === 'boolean' ? (
+                                  value ? (
+                                    <CheckCircle2 className="w-4 h-4 text-green-600 mx-auto" />
+                                  ) : (
+                                    <X className="w-4 h-4 text-red-600 mx-auto" />
+                                  )
+                                ) : (
+                                  <span className="text-gray-700">{value}</span>
+                                )}
+                              </td>
+                            );
+                          })}
+                        </tr>
                       ))}
-                    </tr>
 
-                    {/* Yearly Price Row */}
-                    <tr className="bg-[#ffc107]">
-                      <td className="p-2 text-xs font-bold text-gray-800">Yıllık Plan*</td>
-                      {displayAssistant.packages.map((pkg) => (
-                        <td key={pkg.name} className="p-2 text-xs text-center font-bold text-gray-800">
-                          {pkg.yearlyPrice}
-                        </td>
-                      ))}
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
 
-              <div className="mt-4 bg-white rounded-xl p-4 text-xs border border-gray-200">
-                <p className="text-gray-700 leading-relaxed">{displayAssistant.priceNote}</p>
+                    </tbody>
+                  </table>
+                </div>
+
+
               </div>
             </div>
-          </div>
-        </section>
+          </section>
         )}
 
         {/* Price Note for non-packaged assistants */}
         {displayAssistant?.packages && displayAssistant.packages.length === 0 && displayAssistant.priceNote && (
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-gray-50 rounded-xl p-8 border border-gray-200">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Özel Fiyatlandırma</h2>
-                <p className="text-gray-700 leading-relaxed text-center">{displayAssistant.priceNote}</p>
+          <section className="py-16 bg-white">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-gray-50 rounded-xl p-8 border border-gray-200">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Özel Fiyatlandırma</h2>
+                  <p className="text-gray-700 leading-relaxed text-center">{displayAssistant.priceNote}</p>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
         )}
       </main>
 
-      
+
     </div>
   );
 }

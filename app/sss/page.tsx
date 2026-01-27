@@ -195,7 +195,7 @@ export default function SSS() {
     },
     {
       question: 'Periyodik bakımlar dışında veri analizi ve sistem yenileme hizmeti sunuyor musunuz?',
-      answer: 'Evet, periyodik bakımın ötesinde ihtiyaç duyulan veri analizi, sistem güncellemesi ve iyileştirme hizmetlerini de sağlıyoruz. Bu kapsamda verilen servis hizmetleri, 31.12.2025 tarihine kadar geçerli olmak üzere 1.000 TL + çıkabilecek ek masraflar + KDV şeklinde ücretlendirilir. Tüm hizmetler şeffaf bir şekilde belgelendirilir ve onayınıza sunularak gerçekleştirilir.',
+      answer: 'Evet, periyodik bakımın ötesinde ihtiyaç duyulan veri analizi, sistem güncellemesi ve iyileştirme hizmetlerini de sağlıyoruz. Bu kapsamda verilen servis hizmetleri için ücretlendirme proje bazlı olarak belirlenir. Tüm hizmetler şeffaf bir şekilde belgelendirilir ve onayınıza sunularak gerçekleştirilir.',
     },
     {
       question: 'Kendi sistemimizi kullanıyoruz. Siz uyum sağlayabilir misiniz?',
@@ -216,81 +216,79 @@ export default function SSS() {
       <FAQSchema faqs={faqs} />
       <div className="min-h-screen flex flex-col">
         <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-[#860000] via-[#a50000] to-[#6b0000] text-white py-16 lg:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <HelpCircle className="w-16 h-16 mx-auto mb-6 text-[#ffc107]" />
-              <h1 className="text-3xl lg:text-5xl font-bold mb-6">
-                Sıkça Sorulan Sorular (SSS)
-              </h1>
-              <p className="text-xl text-gray-200 leading-relaxed">
-                FOKUS İstatistik SSS sayfası ile sıkça sorulan gizlilik, sektörler, veri bilimi danışmanlığı, sanal asistanlar ve güvenlik konularına yanıtlar. Veri odaklı dijital dönüşümde tüm sorularınızın cevabı burada.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Accordion */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <div
-                    key={index}
-                    className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition"
-                  >
-                    <button
-                      onClick={() => toggleAccordion(index)}
-                      className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition"
-                    >
-                      <h3 className="text-lg font-semibold text-gray-800 pr-4">
-                        {faq.question}
-                      </h3>
-                      <ChevronDown
-                        className={`w-6 h-6 text-[#860000] flex-shrink-0 transition-transform duration-300 ${
-                          openIndex === index ? 'rotate-180' : ''
-                        }`}
-                      />
-                    </button>
-                    <div
-                      className={`overflow-hidden transition-all duration-300 ${
-                        openIndex === index ? 'max-h-[1000px]' : 'max-h-0'
-                      }`}
-                    >
-                      <div className="p-6 pt-0 text-gray-700 leading-relaxed whitespace-pre-line border-t border-gray-100">
-                        {faq.answer}
-                      </div>
-                    </div>
-                  </div>
-                ))}
+          {/* Hero Section */}
+          <section className="bg-gradient-to-br from-[#860000] via-[#a50000] to-[#6b0000] text-white py-16 lg:py-20">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <HelpCircle className="w-16 h-16 mx-auto mb-6 text-[#ffc107]" />
+                <h1 className="text-3xl lg:text-5xl font-bold mb-6">
+                  Sıkça Sorulan Sorular (SSS)
+                </h1>
+                <p className="text-xl text-gray-200 leading-relaxed">
+                  FOKUS İstatistik SSS sayfası ile sıkça sorulan gizlilik, sektörler, veri bilimi danışmanlığı, sanal asistanlar ve güvenlik konularına yanıtlar. Veri odaklı dijital dönüşümde tüm sorularınızın cevabı burada.
+                </p>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* CTA Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center bg-gradient-to-br from-[#860000] to-[#6b0000] text-white rounded-3xl p-12 shadow-2xl">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-                Başka Sorularınız mı Var?
-              </h2>
-              <p className="text-lg text-gray-200 mb-8">
-                Burası size yardımcı olmak için burada. Herhangi bir sorunuz varsa, bizimle iletişime geçmekten çekinmeyin.
-              </p>
-              <a
-                href="mailto:bilgi@fokusistatistik.com"
-                className="inline-block bg-white text-[#860000] px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition shadow-xl"
-              >
-                Bize Ulaşın
-              </a>
+          {/* FAQ Accordion */}
+          <section className="py-16 bg-white">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <div className="space-y-4">
+                  {faqs.map((faq, index) => (
+                    <div
+                      key={index}
+                      className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition"
+                    >
+                      <button
+                        onClick={() => toggleAccordion(index)}
+                        className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition"
+                      >
+                        <h3 className="text-lg font-semibold text-gray-800 pr-4">
+                          {faq.question}
+                        </h3>
+                        <ChevronDown
+                          className={`w-6 h-6 text-[#860000] flex-shrink-0 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''
+                            }`}
+                        />
+                      </button>
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-[1000px]' : 'max-h-0'
+                          }`}
+                      >
+                        <div className="p-6 pt-0 text-gray-700 leading-relaxed whitespace-pre-line border-t border-gray-100">
+                          {faq.answer}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-        </section>
-      </main>
-    </div>
+          </section>
+
+          {/* CTA Section */}
+          <section className="py-16 bg-gray-50">
+            <div className="container mx-auto px-4">
+              <div className="max-w-3xl mx-auto text-center bg-gradient-to-br from-[#860000] to-[#6b0000] text-white rounded-3xl p-12 shadow-2xl">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+                  Başka Sorularınız mı Var?
+                </h2>
+                <p className="text-lg text-gray-200 mb-8">
+                  Burası size yardımcı olmak için burada. Herhangi bir sorunuz varsa, bizimle iletişime geçmekten çekinmeyin.
+                </p>
+                <a
+                  href="mailto:bilgi@fokusistatistik.com"
+                  className="inline-block bg-white text-[#860000] px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition shadow-xl"
+                >
+                  Bize Ulaşın
+                </a>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
     </>
   );
 }

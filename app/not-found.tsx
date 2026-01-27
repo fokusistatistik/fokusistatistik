@@ -66,13 +66,7 @@ export default function NotFound() {
             >
               YZ Danışmanlığı
             </Link>
-            <span className="text-gray-300">•</span>
-            <Link
-              href="/fiyatlandirma"
-              className="text-sm text-gray-600 hover:text-[#860000] transition-colors"
-            >
-              Fiyatlandırma
-            </Link>
+
             <span className="text-gray-300">•</span>
             <Link
               href="https://asistan.fokusistatistik.com/ucretsiz.html"

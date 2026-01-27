@@ -124,9 +124,7 @@ export default function Header() {
             <Link href="/yapay-zeka-danismanligi" className={`py-1 border-b-2 transition ${isActive('/yapay-zeka-danismanligi') ? 'border-white font-semibold' : 'border-transparent hover:border-white hover:text-gray-100'}`}>
               YZ Danışmanlığı
             </Link>
-            <Link href="/fiyatlandirma" className={`py-1 border-b-2 transition ${isActive('/fiyatlandirma') ? 'border-white font-semibold' : 'border-transparent hover:border-white hover:text-gray-100'}`}>
-              Fiyatlandırma
-            </Link>
+
             <Link href="/blog" className={`py-1 border-b-2 transition ${isActive('/blog') ? 'border-white font-semibold' : 'border-transparent hover:border-white hover:text-gray-100'}`}>
               Blog
             </Link>
@@ -228,9 +226,7 @@ export default function Header() {
               <Link href="/yapay-zeka-danismanligi" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/yapay-zeka-danismanligi') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 YZ Danışmanlığı
               </Link>
-              <Link href="/fiyatlandirma" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/fiyatlandirma') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
-                Fiyatlandırma
-              </Link>
+
               <Link href="/blog" onClick={() => setIsMenuOpen(false)} className={`transition py-1.5 ${isActive('/blog') ? 'font-bold text-yellow-300' : 'hover:text-gray-200'}`}>
                 Blog
               </Link>

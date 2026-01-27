@@ -130,11 +130,7 @@ export default function Footer() {
                   Sanal Asistanlar
                 </Link>
               </li>
-              <li>
-                <Link href="/fiyatlandirma" className="hover:text-[#ffc107] transition">
-                  Fiyatlandırma
-                </Link>
-              </li>
+
               <li>
                 <Link href="/blog" className="hover:text-[#ffc107] transition">
                   Blog & Rehberler
