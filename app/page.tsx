@@ -17,6 +17,7 @@ import {
   Clock,
   Target,
 } from 'lucide-react';
+import { FAQSchema } from '@/app/components/StructuredData';
 
 export default function Home() {
   const [showToast, setShowToast] = useState(false);
@@ -133,8 +134,46 @@ export default function Home() {
     },
   ];
 
+  // SEO-optimized FAQ for voice search and long-tail keywords
+  const homeFaqs = [
+    {
+      question: 'Personel maliyetlerimi nasıl azaltırım?',
+      answer: 'Yapay zeka destekli sanal asistanlarla personel maliyetlerini %40\'a kadar azaltabilirsiniz. FOKUS asistanlar, SSK primi, yemek, yol gibi ek maliyetler olmadan 7/24 çalışır. Müşteri hizmetleri, veri analizi, pazarlama ve finans süreçlerini otomatikleştirerek hem maliyet düşürür hem de verimliliği artırırsınız.',
+    },
+    {
+      question: 'Yapay zekayı işimde nasıl kullanırım?',
+      answer: 'FOKUS ekosistemi ile yapay zekayı işinizde kolayca kullanabilirsiniz. 9 farklı sanal asistan sayesinde müşteri hizmetleri, veri analizi, içerik üretimi, finans yönetimi ve pazarlama süreçlerinizi otomatikleştirebilirsiniz. Teknik bilgiye ihtiyaç duymadan, kurulum sonrası hemen kullanmaya başlayabilirsiniz. ChatGPT tabanlı sistemlerimiz, işletmenize özel eğitilir ve ihtiyaçlarınıza göre özelleştirilir.',
+    },
+    {
+      question: 'Chatbot ne işe yarar?',
+      answer: 'Chatbot, müşterilerinizle 7/24 iletişim kuran, tekrarlayan soruları yanıtlayan ve iş süreçlerinizi otomatikleştiren yapay zeka asistanıdır. FOKUS chatbotları; randevu alma, sipariş takibi, müşteri desteği, ön bilgilendirme ve lead toplama gibi görevleri üstlenir. WhatsApp, web sitesi ve mobil uygulamalara entegre edilebilir. Bir chatbot ile personel maliyetlerinden tasarruf eder, müşteri memnuniyetini artırır ve satış fırsatlarını kaçırmazsınız.',
+    },
+    {
+      question: 'Veri analizi neden önemli?',
+      answer: 'Veri analizi, iş kararlarınızı tahmine değil, gerçek verilere dayandırmanızı sağlar. Müşteri davranışlarını anlar, satış trendlerini önceden görür, maliyetleri optimize eder ve gelir artırma fırsatlarını keşfedersiniz. FOKUS veri analizi hizmetleri ile karmaşık verileri anlaşılır panolara dönüştürür, otomatik raporlar oluşturur ve yapay zeka destekli tahminlemelerle geleceğe hazırlanırsınız. Küçük işletmelerden büyük kurumlara kadar her ölçekte işletme için kritik öneme sahiptir.',
+    },
+    {
+      question: 'FOKUS sanal asistanlar nasıl çalışır?',
+      answer: 'FOKUS ekosistemi 9 farklı uzmanlık alanına sahip yapay zeka asistanından oluşur. Her asistan (FOKUS001-999) belirli bir görevi üstlenir: Yönetim, müşteri hizmetleri, veri analizi, pazarlama, finans, insan kaynakları, içerik tasarımı ve sosyal medya. Bu asistanlar ChatGPT teknolojisi ile işletmenize özel eğitilir, mevcut sistemlerinize entegre edilir ve birbirleriyle koordineli çalışarak iş süreçlerinizi otomatikleştirir. Kurulum 1-5 iş günü sürer ve teknik bilgiye ihtiyaç duymadan kullanmaya başlarsınız.',
+    },
+    {
+      question: 'Yapay zeka danışmanlığı nedir?',
+      answer: 'Yapay zeka danışmanlığı, işletmenizin iş süreçlerini analiz edip, yapay zeka teknolojilerini (ChatGPT, veri analizi, otomasyon) en etkili şekilde kullanmanızı sağlayan profesyonel hizmettir. FOKUS İstatistik olarak; ihtiyaç analizi, özel sanal asistan geliştirme, sistem entegrasyonu, veri bilimi çözümleri ve eğitim hizmetleri sunuyoruz. Amacımız, yapay zekayı işletmeniz için anlamlı ve ölçülebilir sonuçlar üreten bir araç haline getirmektir.',
+    },
+    {
+      question: 'İş verimliliğini nasıl artırırım?',
+      answer: 'İş verimliliğini artırmanın en etkili yolu, tekrarlayan görevleri otomasyona geçirmektir. FOKUS sistemleri ile randevu yönetimi, müşteri iletişimi, veri girişi, fatura oluşturma, raporlama ve sosyal medya paylaşımı gibi zaman alan işlerinizi otomatikleştirebilirsiniz. Yapay zeka asistanlar 7/24 çalışarak insan hatalarını azaltır, süreç sürelerini kısaltır ve ekibinizin daha stratejik işlere odaklanmasını sağlar. Sonuç: Daha az çaba, daha çok çıktı.',
+    },
+    {
+      question: 'Sanal asistan maliyeti ne kadar?',
+      answer: 'FOKUS sanal asistan hizmetleri esnek paketlerle sunulmaktadır. Tek bir asistandan tüm ekosisteme kadar ölçeklenebilir çözümlerimiz vardır. Aylık abonelik modelimiz sayesinde yüksek başlangıç maliyeti olmadan hemen kullanmaya başlayabilirsiniz. Gerçek bir personel maliyetinin (maaş + SGK + yan haklar) %10-20\'si kadar bir bütçeyle 7/24 çalışan yapay zeka asistana sahip olursunuz. Detaylı fiyatlandırma için ücretsiz analiz görüşmesi talep edebilirsiniz.',
+    },
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <FAQSchema faqs={homeFaqs} />
+      <div className="min-h-screen flex flex-col">
 
       {/* Toast Notification */}
       {showToast && (
@@ -233,7 +272,7 @@ export default function Home() {
               <div className="flex flex-col md:flex-row gap-6 justify-center">
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition shadow-xl flex-1 max-w-md">
                   <Link
-                    href="/analiz"
+                    href="/analiz-formu"
                     className="block bg-white text-[#860000] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition mb-3"
                   >
                     Ücretsiz İhtiyaç Analizi
@@ -354,6 +393,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-    </div>
+      </div>
+    </>
   );
 }

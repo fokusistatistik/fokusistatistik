@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { CheckCircle2, X } from 'lucide-react';
 import { notFound } from 'next/navigation';
+import { ServiceSchema, BreadcrumbSchema } from '@/app/components/StructuredData';
 
 interface AssistantPackage {
   name: string;
@@ -1576,9 +1577,23 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
   const featureKeys = Object.keys(displayAssistant.packages[0].features);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <ServiceSchema
+        name={`${displayAssistant.name} - ${displayAssistant.title}`}
+        description={displayAssistant.description}
+        url={`https://fokusistatistik.com/sanalasistanlar/${assistantId}`}
+        image={`https://www.fokusistatistik.com/assets/img/${assistantId}.png`}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Ana Sayfa', url: 'https://fokusistatistik.com' },
+          { name: 'Sanal Asistanlar', url: 'https://fokusistatistik.com/sanalasistanlar' },
+          { name: displayAssistant.name, url: `https://fokusistatistik.com/sanalasistanlar/${assistantId}` },
+        ]}
+      />
+      <div className="min-h-screen flex flex-col">
 
-      <main className="flex-grow">
+        <main className="flex-grow">
         {/* Hero Section with Image */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
@@ -1778,8 +1793,9 @@ export default function AssistantDetail({ params }: { params: { id: string } }) 
         </section>
       </main>
 
-      
-    </div>
+
+      </div>
+    </>
   );
 }
 

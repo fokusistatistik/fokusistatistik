@@ -5,29 +5,224 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Chrome, Mail, Lock, ArrowRight, Shield, Zap } from 'lucide-react';
+import WelcomeModal from '@/app/components/WelcomeModal';
+import { toast } from 'sonner';
 
 export default function GirisPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [isSigningUp, setIsSigningUp] = useState(false);
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+  const [checkingUser, setCheckingUser] = useState(false);
 
+  // Check auth flow when authenticated
   useEffect(() => {
-    if (status === 'authenticated') {
-      router.push('/dashboard');
-    }
-  }, [status, router]);
+    if (status === 'authenticated' && session && !checkingUser && !showWelcomeModal) {
+      // Get the auth flow from localStorage
+      const authFlow = localStorage.getItem('authFlow');
 
-  const handleGoogleSignIn = async () => {
-    setIsLoading(true);
+      if (authFlow === 'login') {
+        handleLoginFlow();
+      } else if (authFlow === 'signup') {
+        handleSignUpFlow();
+      } else {
+        // Fallback: check user registration (backward compatibility)
+        checkUserRegistration();
+      }
+    }
+  }, [status, session]);
+
+  // LOGIN FLOW - For existing users
+  const handleLoginFlow = async () => {
+    setCheckingUser(true);
+    console.log('🔐 Processing login for:', session?.user?.email);
+    console.log('🌐 Calling POST /api/auth/login');
+
     try {
-      await signIn('google', { callbackUrl: '/dashboard' });
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+      });
+
+      console.log('📡 Login API response status:', response.status, response.statusText);
+
+      const data = await response.json();
+      console.log('📋 Login response data:', data);
+
+      if (data.success) {
+        // Successful login - redirect to dashboard
+        const firstName = session?.user?.name?.split(' ')[0] || 'tekrar';
+        toast.success(`Hoş geldiniz ${firstName}!`);
+        localStorage.removeItem('authFlow'); // Clean up
+        router.push('/dashboard');
+      } else if (data.userNotFound) {
+        // User not found - suggest sign up
+        toast.error('Kullanıcı bulunamadı. Lütfen önce kayıt olun.');
+        localStorage.removeItem('authFlow');
+      } else {
+        // Other error
+        toast.error(data.error || 'Giriş başarısız');
+        localStorage.removeItem('authFlow');
+      }
+    } catch (error) {
+      console.error('❌ Login error:', error);
+      toast.error('Giriş sırasında bir hata oluştu.');
+      localStorage.removeItem('authFlow');
+    } finally {
+      setCheckingUser(false);
+    }
+  };
+
+  // SIGN UP FLOW - For new users
+  const handleSignUpFlow = async () => {
+    setCheckingUser(true);
+    console.log('📝 Processing sign up for:', session?.user?.email);
+    console.log('🌐 Calling GET /api/auth/signup (check)');
+
+    try {
+      // Check if user can sign up (not already registered)
+      const response = await fetch('/api/auth/signup');
+
+      console.log('📡 Signup check API response status:', response.status, response.statusText);
+
+      const data = await response.json();
+      console.log('📋 Sign up check response data:', data);
+
+      if (data.canSignUp) {
+        // Show welcome modal
+        console.log('✅ User can sign up - showing welcome modal');
+        setShowWelcomeModal(true);
+      } else if (data.alreadyExists) {
+        // User already exists
+        toast.error('Bu e-posta zaten kayıtlı. Lütfen giriş yapın.');
+        localStorage.removeItem('authFlow');
+      } else {
+        toast.error(data.error || 'Kayıt kontrolü başarısız');
+        localStorage.removeItem('authFlow');
+      }
+    } catch (error) {
+      console.error('❌ Sign up check error:', error);
+      toast.error('Kayıt kontrolü sırasında bir hata oluştu.');
+      localStorage.removeItem('authFlow');
+    } finally {
+      setCheckingUser(false);
+    }
+  };
+
+  // FALLBACK - Backward compatibility with old flow
+  const checkUserRegistration = async () => {
+    setCheckingUser(true);
+    console.log('🔍 Checking user registration for:', session?.user?.email);
+
+    try {
+      const response = await fetch('/api/user/register');
+      const data = await response.json();
+
+      console.log('📋 User check response:', data);
+
+      if (data.success) {
+        if (data.isNewUser || !data.isRegistered) {
+          // New user - show welcome modal
+          console.log('✨ New user detected - showing welcome modal');
+          setShowWelcomeModal(true);
+        } else {
+          // Existing user - redirect to dashboard
+          console.log('✅ Existing user - redirecting to dashboard');
+          toast.success(`Hoş geldiniz ${session?.user?.name || 'tekrar'}!`);
+          router.push('/dashboard');
+        }
+      } else {
+        // Error checking - assume new user
+        console.warn('⚠️ User check failed - showing welcome modal as fallback');
+        setShowWelcomeModal(true);
+      }
+    } catch (error) {
+      console.error('❌ User check error:', error);
+      // On error, show modal to be safe
+      toast.error('Kullanıcı kontrolü başarısız, lütfen tekrar deneyin.');
+      setShowWelcomeModal(true);
+    } finally {
+      setCheckingUser(false);
+    }
+  };
+
+  const handleWelcomeAccept = async (emailSubscription: boolean) => {
+    console.log('📝 Registering new user:', {
+      email: session?.user?.email,
+      name: session?.user?.name,
+      emailSubscription,
+    });
+    console.log('🌐 Calling POST /api/auth/signup (register)');
+
+    try {
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          acceptedTerms: true,
+          emailSubscription,
+        }),
+      });
+
+      console.log('📡 Signup register API response status:', response.status, response.statusText);
+
+      const data = await response.json();
+      console.log('📋 Sign up response data:', data);
+
+      if (data.success) {
+        const firstName = session?.user?.name?.split(' ')[0] || 'Kullanıcı';
+        toast.success(`Hoş geldiniz ${firstName}! Hesabınız oluşturuldu. 🎉`);
+        setShowWelcomeModal(false);
+        localStorage.removeItem('authFlow'); // Clean up
+
+        // Redirect to profile for completion
+        console.log('✅ Sign up successful - redirecting to profile');
+        setTimeout(() => {
+          router.push('/profil');
+        }, 1500);
+      } else {
+        console.error('❌ Sign up failed:', data.error);
+        toast.error(data.error || 'Kayıt sırasında bir hata oluştu.');
+      }
+    } catch (error) {
+      console.error('❌ Sign up error:', error);
+      toast.error('Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.');
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setIsLoading(true);
+    console.log('🔐 User selected: LOGIN');
+
+    // Store auth flow in localStorage
+    localStorage.setItem('authFlow', 'login');
+
+    try {
+      await signIn('google', { callbackUrl: '/giris' });
     } catch (error) {
       console.error('Login error:', error);
+      localStorage.removeItem('authFlow');
       setIsLoading(false);
     }
   };
 
-  if (status === 'loading') {
+  const handleGoogleSignUp = async () => {
+    setIsSigningUp(true);
+    console.log('📝 User selected: SIGN UP');
+
+    // Store auth flow in localStorage
+    localStorage.setItem('authFlow', 'signup');
+
+    try {
+      await signIn('google', { callbackUrl: '/giris' });
+    } catch (error) {
+      console.error('Sign up error:', error);
+      localStorage.removeItem('authFlow');
+      setIsSigningUp(false);
+    }
+  };
+
+  if (status === 'loading' || checkingUser) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
@@ -117,18 +312,50 @@ export default function GirisPage() {
               </div>
 
               <div className="space-y-4">
-                {/* Google Login */}
+                {/* Google Login - For existing users */}
                 <button
-                  onClick={handleGoogleSignIn}
-                  disabled={isLoading}
-                  className="w-full flex items-center justify-center space-x-3 bg-white border-2 border-gray-300 hover:border-[#860000] text-gray-700 font-semibold py-4 px-6 rounded-xl transition group disabled:opacity-50 disabled:cursor-not-allowed"
+                  onClick={handleGoogleLogin}
+                  disabled={isLoading || isSigningUp}
+                  className="w-full flex items-center justify-center space-x-3 bg-[#860000] hover:bg-[#b30000] text-white font-semibold py-4 px-6 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
                 >
                   {isLoading ? (
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#860000]"></div>
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                      <span>Giriş yapılıyor...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Chrome className="w-5 h-5" />
+                      <span>Giriş Yap (Google)</span>
+                    </>
+                  )}
+                </button>
+
+                {/* Divider */}
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-300"></div>
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 bg-white text-gray-500">veya</span>
+                  </div>
+                </div>
+
+                {/* Google Sign Up - For new users */}
+                <button
+                  onClick={handleGoogleSignUp}
+                  disabled={isLoading || isSigningUp}
+                  className="w-full flex items-center justify-center space-x-3 bg-white border-2 border-gray-300 hover:border-[#860000] text-gray-700 font-semibold py-4 px-6 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSigningUp ? (
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#860000]"></div>
+                      <span>Kayıt yapılıyor...</span>
+                    </>
                   ) : (
                     <>
                       <Chrome className="w-5 h-5 text-[#860000]" />
-                      <span>Google ile Giriş Yap</span>
+                      <span>Kayıt Ol (Google)</span>
                     </>
                   )}
                 </button>
@@ -141,23 +368,18 @@ export default function GirisPage() {
                     Kullanım Koşulları
                   </Link>{' '}
                   ve{' '}
-                  <Link href="/gizlilik" className="text-[#860000] hover:underline">
+                  <Link href="/gizlilik-politikasi" className="text-[#860000] hover:underline">
                     Gizlilik Politikası
                   </Link>
                   &apos;nı kabul etmiş olursunuz.
                 </p>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-gray-200 text-center">
-                <p className="text-sm text-gray-600">
-                  Hesabınız yok mu?{' '}
-                  <button
-                    onClick={handleGoogleSignIn}
-                    disabled={isLoading}
-                    className="text-[#860000] font-semibold hover:underline disabled:opacity-50"
-                  >
-                    Hemen Kaydolun
-                  </button>
+              <div className="mt-6 text-center">
+                <p className="text-xs text-gray-500">
+                  <strong>Giriş Yap:</strong> Mevcut kullanıcılar için
+                  <br />
+                  <strong>Kayıt Ol:</strong> Yeni kullanıcılar için (1 ay ücretsiz)
                 </p>
               </div>
             </div>
@@ -172,7 +394,18 @@ export default function GirisPage() {
         </div>
       </main>
 
-      
+      {/* Welcome Modal for New Users */}
+      {showWelcomeModal && session && (
+        <WelcomeModal
+          isOpen={showWelcomeModal}
+          userInfo={{
+            name: session.user?.name,
+            email: session.user?.email,
+            image: session.user?.image,
+          }}
+          onAccept={handleWelcomeAccept}
+        />
+      )}
     </div>
   );
 }

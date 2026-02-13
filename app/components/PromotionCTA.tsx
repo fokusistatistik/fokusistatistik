@@ -9,23 +9,40 @@ export default function PromotionCTA() {
   const [isFloatingClosing, setIsFloatingClosing] = useState(false);
 
   useEffect(() => {
+    // Check if user has dismissed all promotions permanently
+    const promotionDismissed = localStorage.getItem('fokusPromotionDismissed');
+
+    if (promotionDismissed === 'true') {
+      // User has permanently dismissed all promotions - don't show anything
+      return;
+    }
+
     const toastSeen = localStorage.getItem('fokusToastSeen');
     const floatingCtaDismissed = localStorage.getItem('fokusFloatingCtaDismissed');
 
-    if (!toastSeen) {
+    // Check if toast has already been shown in this session (prevents duplicates on page changes)
+    const toastShownThisSession = sessionStorage.getItem('fokusToastShownThisSession');
+
+    if (!toastSeen && !toastShownThisSession) {
+      // Mark that we're showing toast in this session
+      sessionStorage.setItem('fokusToastShownThisSession', 'true');
+
       // Show toast after 5 seconds
       const timer = setTimeout(() => {
         setShowToast(true);
 
         // Auto-hide after 15 seconds
-        setTimeout(() => {
+        const autoCloseTimer = setTimeout(() => {
           closeToast();
         }, 15000);
+
+        // Clean up auto-close timer if component unmounts
+        return () => clearTimeout(autoCloseTimer);
       }, 5000);
 
       return () => clearTimeout(timer);
-    } else if (!floatingCtaDismissed) {
-      // If toast was already seen but floating CTA wasn't dismissed, show it
+    } else if (toastSeen && !floatingCtaDismissed) {
+      // Toast was already seen, show floating CTA
       setShowFloatingCta(true);
     }
   }, []);
@@ -45,7 +62,9 @@ export default function PromotionCTA() {
     setTimeout(() => {
       setShowFloatingCta(false);
       setIsFloatingClosing(false);
+      // Mark ALL promotions as dismissed permanently
       localStorage.setItem('fokusFloatingCtaDismissed', 'true');
+      localStorage.setItem('fokusPromotionDismissed', 'true');
     }, 300);
   };
 

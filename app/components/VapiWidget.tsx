@@ -1,151 +1,226 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
-import { Phone, X, Volume2 } from 'lucide-react';
 
 export default function VapiWidget() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleWidget = () => {
-    setIsOpen(!isOpen);
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
   };
 
   return (
     <>
-      {/* Floating Button - Sol Alt */}
-      <button
-        onClick={toggleWidget}
-        className="fixed bottom-6 left-6 z-[9998] bg-gradient-to-br from-[#860000] to-[#a30000] text-white rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 flex items-center justify-center group"
-        style={{ width: '64px', height: '64px' }}
-        aria-label="FOKUS520 Sesli Asistan"
-      >
-        {isOpen ? (
-          <X className="w-7 h-7" />
-        ) : (
-          <div className="relative">
-            <Image
-              src="https://www.fokusistatistik.com/assets/img/fokus520.png"
-              alt="FOKUS520"
-              width={48}
-              height={48}
-              className="rounded-full"
-            />
-            <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center animate-pulse">
-              <Volume2 className="w-3 h-3 text-white" />
-            </div>
-          </div>
-        )}
-      </button>
+      <style jsx global>{`
+        .voice-assistant-container {
+          position: fixed;
+          bottom: 80px;
+          left: 20px;
+          z-index: 9998;
+          text-align: center;
+          user-select: none;
+        }
 
-      {/* Widget Penceresi */}
-      {isOpen && (
-        <div className="fixed bottom-24 left-6 z-[9998] w-[380px] max-w-[calc(100vw-3rem)] bg-white rounded-2xl shadow-2xl overflow-hidden animate-slideInUp">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-[#860000] to-[#a30000] text-white p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <Image
-                  src="https://www.fokusistatistik.com/assets/img/fokus520.png"
-                  alt="FOKUS520"
-                  width={48}
-                  height={48}
-                  className="rounded-full border-2 border-white"
-                />
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg">FOKUS520</h3>
-                <p className="text-xs text-white/90">Sesli Asistan - Pazarlama & Lead</p>
-              </div>
-            </div>
-            <button
-              onClick={toggleWidget}
-              className="hover:bg-white/20 rounded-full p-1.5 transition"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
+        .voice-assistant-btn {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 12px rgba(134, 0, 0, 0.3);
+          overflow: hidden;
+        }
 
-          {/* Content */}
-          <div className="p-6 bg-gray-50">
-            <div className="bg-white rounded-xl p-4 shadow-sm mb-4 border-l-4 border-[#860000]">
-              <div className="flex items-start gap-3">
-                <Phone className="w-6 h-6 text-[#860000] mt-1 flex-shrink-0" />
-                <div>
-                  <h4 className="font-semibold text-gray-800 mb-2">
-                    Sesli Asistan ile Konuşun
-                  </h4>
-                  <p className="text-sm text-gray-600 mb-3">
-                    FOKUS520, pazarlama ve lead takip konularında size yardımcı olacak yapay zeka destekli sesli asistanınız.
-                  </p>
-                  <ul className="space-y-1.5 text-sm text-gray-700 mb-4">
-                    <li className="flex items-center gap-2">
-                      <span className="text-green-600 font-bold">✓</span>
-                      <span>Lead yönetimi ve takibi</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-green-600 font-bold">✓</span>
-                      <span>Pazarlama kampanya analizi</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-green-600 font-bold">✓</span>
-                      <span>Müşteri segmentasyonu</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-green-600 font-bold">✓</span>
-                      <span>Performans raporları</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+        .voice-assistant-btn:hover {
+          transform: scale(1.15);
+          box-shadow: 0 6px 16px rgba(134, 0, 0, 0.4);
+        }
 
-            {/* Vapi Integration Placeholder */}
-            <div className="bg-gradient-to-br from-[#860000] to-[#a30000] rounded-xl p-6 text-white text-center">
-              <Volume2 className="w-12 h-12 mx-auto mb-3 animate-pulse" />
-              <h4 className="font-semibold mb-2">Sesli Görüşme Başlat</h4>
-              <p className="text-sm text-white/90 mb-4">
-                Mikrofon izni vererek sesli asistanımızla konuşabilirsiniz
-              </p>
-              <button className="bg-white text-[#860000] px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition shadow-md w-full flex items-center justify-center gap-2">
-                <Phone className="w-5 h-5" />
-                <span>Görüşmeyi Başlat</span>
-              </button>
-              <p className="text-xs text-white/70 mt-3">
-                Vapi teknolojisi ile güçlendirilmiştir
-              </p>
-            </div>
+        .voice-assistant-btn img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
 
-            {/* Footer */}
-            <div className="mt-4 text-center">
-              <a
-                href="/sanalasistanlar/fokus520"
-                className="text-sm text-[#860000] hover:underline font-medium"
-              >
-                FOKUS520 hakkında detaylı bilgi →
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
+        .voice-assistant-text {
+          display: none;
+        }
 
-      <style jsx>{`
-        @keyframes slideInUp {
+        .voice-modal {
+          display: none;
+          position: fixed;
+          inset: 0;
+          z-index: 10000;
+          background: rgba(0, 0, 0, 0.7);
+          backdrop-filter: blur(4px);
+          animation: fadeIn 0.3s ease;
+        }
+
+        .voice-modal.open {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .voice-modal-content {
+          background: white;
+          border-radius: 16px;
+          width: 90%;
+          max-width: 800px;
+          max-height: 90vh;
+          overflow: hidden;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+          animation: slideUp 0.3s ease;
+        }
+
+        .voice-modal-header {
+          background: linear-gradient(135deg, #860000 0%, #b30000 100%);
+          color: white;
+          padding: 20px 24px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .voice-modal-header h3 {
+          margin: 0;
+          font-size: 20px;
+          font-weight: 600;
+        }
+
+        .close-btn {
+          background: rgba(255, 255, 255, 0.2);
+          border: none;
+          border-radius: 50%;
+          width: 36px;
+          height: 36px;
+          color: white;
+          font-size: 24px;
+          cursor: pointer;
+          transition: background 0.2s ease;
+          display: flex;
+          align-items: center;
+          justify-center;
+        }
+
+        .close-btn:hover {
+          background: rgba(255, 255, 255, 0.3);
+        }
+
+        .voice-modal-body {
+          padding: 0;
+          min-height: 500px;
+          max-height: calc(90vh - 80px);
+        }
+
+        .voice-modal-body iframe {
+          width: 100%;
+          height: 500px;
+          border: none;
+          display: block;
+        }
+
+        @keyframes fadeIn {
           from {
-            transform: translateY(20px);
             opacity: 0;
           }
           to {
-            transform: translateY(0);
             opacity: 1;
           }
         }
 
-        .animate-slideInUp {
-          animation: slideInUp 0.3s ease-out;
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .voice-assistant-container {
+            bottom: 70px;
+            left: 15px;
+          }
+
+          .voice-assistant-btn {
+            width: 40px;
+            height: 40px;
+          }
+
+          .voice-modal-content {
+            width: 95%;
+            max-height: 95vh;
+          }
+
+          .voice-modal-header h3 {
+            font-size: 16px;
+          }
+
+          .voice-modal-body iframe {
+            height: 400px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .voice-assistant-btn {
+            width: 38px;
+            height: 38px;
+          }
+
+          .voice-modal-body iframe {
+            height: 350px;
+          }
         }
       `}</style>
+
+      {/* Sesli Asistan Butonu */}
+      <div className="voice-assistant-container">
+        <div className="voice-assistant-btn" onClick={openModal}>
+          <img
+            src="https://static.fokusistatistik.com/resimler/FOKUS520profil.png"
+            alt="FOKUS Sesli Asistan"
+          />
+        </div>
+        <div className="voice-assistant-text">
+          Sanal Asistanla<br />Sesli Görüş
+        </div>
+      </div>
+
+      {/* Sesli Asistan Modal */}
+      <div
+        id="voiceModal"
+        className={`voice-modal ${isOpen ? 'open' : ''}`}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            closeModal();
+          }
+        }}
+      >
+        <div className="voice-modal-content">
+          <div className="voice-modal-header">
+            <h3>Benimle konuşmak için lütfen düğmeye basın</h3>
+            <button className="close-btn" onClick={closeModal}>
+              ×
+            </button>
+          </div>
+          <div className="voice-modal-body">
+            <iframe
+              id="voiceFrame"
+              src={isOpen ? "https://asistan.fokusistatistik.com/sesliasistan520.html" : ""}
+              allowFullScreen
+              title="FOKUS520 Sesli Asistan"
+            />
+          </div>
+        </div>
+      </div>
     </>
   );
 }

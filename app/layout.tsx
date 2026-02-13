@@ -7,57 +7,79 @@ import Footer from "@/components/Footer";
 import PromotionCTA from "@/app/components/PromotionCTA";
 import CookieConsent from "@/app/components/CookieConsent";
 import GoogleAnalytics from "@/app/components/GoogleAnalytics";
+import ToastProvider from "@/components/ToastProvider";
 import { OrganizationSchema } from "@/app/components/StructuredData";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://fokusistatistik.com'),
   title: {
-    default: "FOKUS İstatistik ve YZ Danışmanlığı | Yapay Zeka, Sanal Asistan, Veri Analizi",
+    default: "FOKUS İstatistik | Yapay Zeka ile Maliyet Düşürme, Personel Verimliliği ve İş Otomasyonu",
     template: "%s | FOKUS İstatistik",
   },
-  description: "Türkiye'nin lider yapay zeka danışmanlık şirketi. 9 farklı sanal asistan ile iş süreçlerinizi dijitalleştirin. ChatGPT tabanlı çözümler, veri analizi, istatistiksel danışmanlık, dijital dönüşüm hizmetleri. Yönetim, müşteri hizmetleri, pazarlama, finans otomasyonu.",
+  description: "Yapay zeka ile personel maliyetlerini %40 azaltın. 9 AI sanal asistan ile iş süreçlerinizi otomatikleştirin: müşteri hizmetleri chatbot, veri analizi, pazarlama otomasyonu. ChatGPT tabanlı çözümler, işletmeler için yapay zeka danışmanlığı. İş verimliliğini artırın, kazancınızı yükseltin.",
   keywords: [
-    // Ana keywords
+    // Ana keywords (Yüksek Rekabet)
     "yapay zeka danışmanlığı",
     "sanal asistan",
     "yapay zeka",
-    "istatistik",
+    "chatbot",
     "veri analizi",
     "dijital dönüşüm",
-    "chatgpt",
-    // İş süreçleri
-    "iş süreçleri otomasyonu",
-    "dijital otomasyon",
-    "akıllı asistan",
-    "ai danışmanlık",
-    // Hizmetler
-    "veri bilimi",
-    "istatistiksel danışmanlık",
-    "veri görselleştirme",
-    "iş zekası",
-    "büyük veri analizi",
-    "machine learning",
-    "derin öğrenme",
-    // Sektörler
+    "istatistik danışmanlığı",
+
+    // Long-tail keywords (Düşük Rekabet, Yüksek Dönüşüm)
+    "yapay zeka ile maliyet düşürme",
+    "personel maliyetlerini azaltma",
+    "yapay zeka ile iş verimliliği",
+    "chatbot ile müşteri hizmetleri",
+    "işletmeler için yapay zeka",
+    "küçük işletme veri analizi",
+    "şirket verimlilik artırma",
+    "iş süreçleri otomasyonu çözümleri",
+    "personel verimliliği artırma yöntemleri",
+    "dijital dönüşüm danışmanlığı",
+
+    // Sorgu Bazlı (Voice Search / Question-based)
+    "yapay zekayı işimde nasıl kullanırım",
+    "personel maliyetlerimi nasıl azaltırım",
+    "chatbot ne işe yarar",
+    "veri analizi neden önemli",
+    "müşteri hizmetlerinde yapay zeka",
+    "sanal asistan ile para kazanma",
+    "yapay zeka ile kazanç artırma",
+    "iş geliştirme stratejileri yapay zeka",
+
+    // İş Süreçleri
     "müşteri hizmetleri otomasyonu",
     "pazarlama otomasyonu",
     "finans otomasyonu",
     "insan kaynakları otomasyonu",
-    "yönetim asistanı",
+    "yönetim asistanı yapay zeka",
+    "dijital otomasyon çözümleri",
+
     // Teknolojiler
-    "openai",
-    "gpt-4",
-    "doğal dil işleme",
-    "nlp",
-    "chatbot",
-    "sesli asistan",
-    "konuşma yapay zekası",
-    // Türkçe
-    "yapay zeka türkiye",
+    "chatgpt işletme",
+    "openai türkiye",
+    "gpt-4 danışmanlık",
+    "ai chatbot türkçe",
     "sanal asistan türkçe",
-    "chatgpt türkçe",
-    "veri analizi hizmeti",
+    "sesli asistan türkiye",
+
+    // Hizmetler
+    "veri bilimi danışmanlığı",
+    "istatistiksel danışmanlık",
+    "veri görselleştirme hizmetleri",
+    "iş zekası çözümleri",
+    "büyük veri analizi",
+    "machine learning danışmanlık",
+
+    // Sektörel
+    "kobi yapay zeka çözümleri",
+    "e-ticaret chatbot",
+    "sağlık sektörü veri analizi",
+    "finans sektörü yapay zeka",
+    "eğitim sektörü otomasyon",
   ],
   authors: [{ name: "FOKUS İstatistik ve YZ Danışmanlığı", url: "https://fokusistatistik.com" }],
   creator: "FOKUS İstatistik",
@@ -123,6 +145,7 @@ export default function RootLayout({
       <body className="antialiased">
         <OrganizationSchema type="ProfessionalService" />
         <GoogleAnalytics />
+        <ToastProvider />
         <Header />
         <SessionProvider>
           {children}

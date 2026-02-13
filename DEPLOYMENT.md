@@ -2,23 +2,46 @@
 
 Bu döküman, FOKUS İstatistik web sitesinin **test.fokusistatistik.com** adresine deploy edilmesi için gerekli adımları içerir.
 
+## ⚡ Önemli Not: OAuth Webhook ile Yönetiliyor
+
+Bu projede **Google OAuth sürecini n8n webhook üzerinden yönetiyorsunuz**, bu nedenle GOOGLE_CLIENT_SECRET backend'de gerekli değildir.
+
 ## 📋 Gereksinimler
 
-- Node.js 18+
+- Node.js 20+
 - npm veya yarn
-- Vercel / Netlify hesabı (önerilen) veya kendi sunucu
-- Google OAuth credentials
-- İyzico API credentials (opsiyonel - ödeme için)
+- PM2 (process manager)
+- Nginx/Apache (reverse proxy)
+- SSL Certificate (HTTPS zorunlu)
+- n8n instance (webhook'lar için)
 
 ## 🔧 Environment Variables
 
-Deployment platformunuzda (Vercel, Netlify, vb.) aşağıdaki environment variable'ları ayarlayın:
-
-### 1. NextAuth Ayarları
+Sunucunuzda `.env.local` dosyası oluşturun:
 
 ```bash
+cp .env.local.template .env.local
+nano .env.local
+```
+
+### Minimum Gerekli Değişkenler:
+
+```bash
+# NextAuth (Temel)
 NEXTAUTH_URL=https://test.fokusistatistik.com
-NEXTAUTH_SECRET=<güçlü-random-string>
+NEXTAUTH_SECRET=YOUR_SECRET_HERE  # openssl rand -base64 32
+
+# n8n Webhook (Backend)
+N8N_WEBHOOK_URL=https://n8n.fokusistatistik.com
+
+# Sentry Error Tracking
+NEXT_PUBLIC_SENTRY_DSN=https://196e6d84f952f2459e7c02e17e563b46@o4510357778333696.ingest.de.sentry.io/4510357789343824
+
+# Google Analytics
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-WNKZVMGKBF
+
+# Environment
+NODE_ENV=production
 ```
 
 **NEXTAUTH_SECRET oluşturmak için:**
@@ -26,64 +49,70 @@ NEXTAUTH_SECRET=<güçlü-random-string>
 openssl rand -base64 32
 ```
 
-### 2. Google OAuth
+> **Önemli:** Google OAuth webhook üzerinden yönetildiği için GOOGLE_CLIENT_ID/SECRET burada gerekli değil!
 
-Google Cloud Console'da (https://console.cloud.google.com):
-1. Yeni OAuth 2.0 Client ID oluşturun
-2. **Authorized redirect URIs** ekleyin:
-   - `https://test.fokusistatistik.com/api/auth/callback/google`
-3. Client ID ve Secret'i kaydedin
+## 🚀 Sunucu Kurulumu
+
+### 1. Dependencies Yükle
 
 ```bash
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
+cd /path/to/fokusistatistik
+npm install
 ```
 
-### 3. n8n Webhook (Opsiyonel)
+### 2. Build
 
 ```bash
-N8N_WEBHOOK_URL=https://n8n.fokusistatistik.com/webhook/user-events
+npm run build
 ```
 
-> **Not:** Webhook URL'leri kodda hard-coded olduğu için bu değişken şu anda kullanılmıyor.
-
-### 4. İyzico Payment (Opsiyonel)
+### 3. PM2 ile Başlat
 
 ```bash
-IYZICO_API_KEY=your-production-api-key
-IYZICO_SECRET_KEY=your-production-secret-key
-IYZICO_BASE_URL=https://api.iyzipay.com
+# PM2 kur (ilk kez)
+npm install -g pm2
+
+# Start
+pm2 start npm --name "fokusistatistik" -- start
+
+# Auto-restart on reboot
+pm2 save
+pm2 startup
+
+# Status kontrol
+pm2 status
+pm2 logs fokusistatistik
 ```
 
-> **Önemli:** Sandbox yerine production URL kullanın!
+### 4. Nginx Reverse Proxy
 
-## 🌐 Vercel ile Deploy
+```nginx
+server {
+    listen 443 ssl http2;
+    server_name test.fokusistatistik.com;
 
-### 1. Vercel CLI ile Deploy
+    ssl_certificate /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
 
 ```bash
-# Vercel CLI kurulumu (ilk kez)
-npm i -g vercel
-
-# Login
-vercel login
-
-# Deploy
-vercel
-
-# Production deploy
-vercel --prod
+# Config test ve reload
+nginx -t
+systemctl reload nginx
 ```
-
-### 2. GitHub Entegrasyonu
-
-1. Vercel dashboard'da "Add New Project" tıklayın
-2. GitHub reposunu seçin
-3. Environment Variables ekleyin (yukarıdaki listeden)
-4. Domain ayarları:
-   - Custom domain: `test.fokusistatistik.com`
-   - DNS ayarlarınızı Vercel'in verdiği CNAME ile güncelleyin
-5. Deploy'a tıklayın
 
 ## 🎯 Deploy Sonrası Kontrol Listesi
 
@@ -95,17 +124,201 @@ vercel --prod
 - [ ] PWA manifest yükleniyor
 - [ ] SSL sertifikası aktif
 
-## 🔍 Webhook URL'leri
+## 🔗 n8n Webhook Entegrasyonu
 
-Proje içinde kullanılan webhook URL'leri:
+### ⚠️ Test Mode - Webhook Endpoint'leri
+
+**Tüm webhook'lar şu an TEST modunda:**
+- Test URL: `webhook-test/`
+- Production URL: `webhook/` (backend hazır olunca değiştirilecek)
+
+---
+
+### 1. Login Webhook - Mevcut Kullanıcı Girişi
+
+**Endpoint:** `https://n8n.fokusistatistik.com/webhook-test/fokuswebsitelogin`
+
+**Method:** POST
+
+**Request Body:**
+```javascript
+{
+  "action": "login",
+  "email": "user@example.com",
+  "googleId": "123456789",
+  "name": "John Doe",
+  "picture": "https://lh3.googleusercontent.com/...",
+  "loginAt": "2025-11-13T10:30:00.000Z",
+  "authMethod": "google"
+}
+```
+
+**Response (Başarılı):**
+```javascript
+{
+  "success": true,
+  "user": {
+    "email": "user@example.com",
+    "name": "John Doe",
+    "picture": "https://...",
+    "lastLogin": "2025-11-13T10:30:00.000Z",
+    // ... diğer kullanıcı verileri
+  }
+}
+```
+
+**Response (Kullanıcı Bulunamadı - 404):**
+```javascript
+{
+  "error": "User not found",
+  "message": "Please sign up first"
+}
+```
+
+---
+
+### 2. Sign Up Webhook - Yeni Kullanıcı Kaydı
+
+**Endpoint:** `https://n8n.fokusistatistik.com/webhook-test/fokuswebsitesignup`
+
+**Method:** POST
+
+#### 2a. Kullanıcı Kontrolü (Check)
+```javascript
+{
+  "action": "check",
+  "email": "user@example.com",
+  "googleId": "123456789"
+}
+
+// Response (Kullanıcı Varsa - 200):
+{
+  "exists": true,
+  "user": {...}
+}
+
+// Response (Kullanıcı Yoksa - 404):
+{
+  "exists": false
+}
+```
+
+#### 2b. Kullanıcı Kaydı (Register)
+```javascript
+{
+  "action": "register",
+  "email": "user@example.com",
+  "googleId": "123456789",
+  "name": "John Doe",
+  "displayName": "John Doe",
+  "picture": "https://lh3.googleusercontent.com/...",
+  "avatarUrl": "https://lh3.googleusercontent.com/...",
+  "emailSubscription": true,
+  "acceptedTerms": true,
+  "registeredAt": "2025-11-13T10:30:00.000Z",
+  "authMethod": "google",
+  "environment": "production"
+}
+
+// Response (Başarılı):
+{
+  "success": true,
+  "message": "User registered successfully",
+  "userId": "12345"
+}
+
+// Response (Kullanıcı Zaten Var - 409):
+{
+  "error": "User already exists"
+}
+```
+
+---
+
+### 3. Kullanıcı Yönetimi Webhook (Eski Sistem - Backward Compatibility)
+
+**Endpoint:** `https://n8n.fokusistatistik.com/webhook/fokuswebsitekullanicibilgileri`
+
+> ⚠️ Bu endpoint eski sistemi desteklemek için korunmuştur. Yeni implementasyonlar için yukarıdaki Login ve Sign Up webhook'larını kullanın.
+
+#### 1. Kullanıcı Kontrolü (Check)
+```javascript
+POST /webhook/fokuswebsitekullanicibilgileri
+{
+  "action": "check",
+  "email": "user@example.com",
+  "googleId": "123456789"
+}
+
+// Response (varsa):
+{ "exists": true, "user": {...} }
+
+// Response (yoksa):
+{ "exists": false }
+```
+
+#### 2. Kullanıcı Kaydı (Register)
+```javascript
+POST /webhook/fokuswebsitekullanicibilgileri
+{
+  "action": "register",
+  "email": "user@example.com",
+  "googleId": "123456789",
+  "name": "John Doe",
+  "picture": "https://...",
+  "emailSubscription": true,
+  "acceptedTerms": true,
+  "registeredAt": "2025-11-13T..."
+}
+
+// Response:
+{ "success": true, "message": "User registered" }
+```
+
+#### 3. Profil Getir (Get) - DEPRECATED
+```javascript
+POST /webhook/fokuswebsitekullanicibilgileri
+{
+  "action": "get",
+  "email": "user@example.com",
+  "googleId": "123456789"
+}
+
+// Response:
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "company": "ACME",
+  "birthYear": 1990,
+  "phone": "5551234567",
+  "kvkkConsent": true,
+  "emailSubscription": true,
+  "smsSubscription": false,
+  "profileCompleted": true
+}
+```
+
+#### 4. Profil Güncelle (Update) - DEPRECATED
+```javascript
+POST /webhook/fokuswebsitekullanicibilgileri
+{
+  "action": "update",
+  "email": "user@example.com",
+  "googleId": "123456789",
+  "firstName": "John",
+  "lastName": "Doe",
+  ...
+}
+
+// Response:
+{ "success": true, "message": "Profile updated" }
+```
+
+### Diğer Webhook'lar
 
 1. **Asistan Sayfaları**: `https://n8n.fokusistatistik.com/fokuswebsiteasistanlar`
-   - Lokasyon: `/app/sanalasistanlar/[id]/page.tsx:1534`
-   - Kullanım: Asistan detay verilerini çeker
-
-2. **Chat Widget**: `https://n8n.fokusistatistik.com/webhook/fokus216clasic250001`
-   - Lokasyon: `/app/components/ChatWidget.tsx:36`
-   - Kullanım: FOKUS216 chatbot yanıtları
+2. **Chat Widget**: iframe üzerinden (`https://asistan.fokusistatistik.com/chatbot216.html`)
+3. **Voice Widget**: iframe üzerinden (`https://asistan.fokusistatistik.com/sesliasistan520.html`)
 
 ## 🛠️ Lokal Geliştirme
 
@@ -158,5 +371,17 @@ Sorun yaşarsanız:
 
 ---
 
-**Son güncelleme:** 2025-11-11
+## 🎉 Yenilikler (v2.0 - 2025-11-13)
+
+- ✅ Mobil widget optimizasyonları (50px → 40-38px mobil)
+- ✅ Google OAuth onboarding (WelcomeModal)
+- ✅ Profil yönetim sistemi (tam fonksiyonel)
+- ✅ Touch-friendly form elemanları (44px min)
+- ✅ Dashboard demo data uyarısı
+- ✅ n8n webhook entegrasyonu (kullanıcı yönetimi)
+- ✅ Sentry error tracking
+- ✅ Production-ready optimizasyonlar
+
+**Son güncelleme:** 2025-11-13
+**Versiyon:** 2.0 (commit: 273df12)
 **Deploy hedef:** test.fokusistatistik.com

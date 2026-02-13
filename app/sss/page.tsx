@@ -219,7 +219,7 @@ export default function SSS() {
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-[#860000] via-[#a50000] to-[#6b0000] text-white py-16 lg:py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
+            <div className="content-container text-center">
               <HelpCircle className="w-16 h-16 mx-auto mb-6 text-[#ffc107]" />
               <h1 className="text-3xl lg:text-5xl font-bold mb-6">
                 Sıkça Sorulan Sorular (SSS)
@@ -234,7 +234,7 @@ export default function SSS() {
         {/* FAQ Accordion */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+            <div className="content-container">
               <div className="space-y-4">
                 {faqs.map((faq, index) => (
                   <div
