@@ -52,15 +52,15 @@ if sudo -u $USER NODE_ENV=production npm run build; then
     
     # PM2 sürecini bul ve yeniden başlat
     # sudo -i -u ile kullanıcının full environment'ını yüklüyoruz
-    if sudo -i -u $USER pm2 list | grep -q "fokus-website-prod"; then
-        sudo -i -u $USER pm2 restart fokus-website-prod
+    if pm2 list | grep -q "fokus-website"; then
+        pm2 restart fokus-website
     else
         echo "⚠️ Süreç yok, sıfırdan başlatılıyor..."
         # Start komutunu proje dizininde çalıştırmak önemli
-        sudo -i -u $USER pm2 start npm --name "fokus-website-prod" --cwd "$PROJE" -- start
+        pm2 start npm --name "fokus-website" --cwd "$PROJE" -- start
     fi
     
-    sudo -i -u $USER pm2 save
+    pm2 save
     echo "------------------------------------------------"
     echo "🎉 SİTE SIFIRDAN DERLENDİ VE YAYINA ALINDI!"
     echo "📍 Branch: $BRANCH"
