@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import ChatWidget from "@/app/components/ChatWidget";
-import VapiWidget from "@/app/components/VapiWidget";
+// import VapiWidget from "@/app/components/VapiWidget";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/app/components/CookieConsent";
 import GoogleAnalytics from "@/app/components/GoogleAnalytics";
@@ -143,7 +143,7 @@ export default function RootLayout({
           </div>
           <Footer />
           <ChatWidget />
-          <VapiWidget />
+          {/* <VapiWidget /> */}
           <CookieConsent />
         </RecaptchaProvider>
       </body>

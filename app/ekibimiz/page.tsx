@@ -229,20 +229,22 @@ export default function Ekibimiz() {
             Hangi Asistan İşinize Yarar?
           </h2>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Ücretsiz analiz formunu doldurun, size özel asistan önerilerimizi alın
+            Sanal asistanlarımızın işletmenize sağlayacağı faydaları keşfetmek için iletişime geçin
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {/* 
             <Link
               href="/analiz-formu"
               className="bg-[#860000] hover:bg-[#b30000] text-white font-semibold py-4 px-8 rounded-lg transition-all transform hover:scale-105"
             >
               Ücretsiz Analiz Talep Edin
             </Link>
+            */}
             <a
               href="https://asistan.fokusistatistik.com/ucretsiz.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-8 rounded-lg transition-all"
+              className="bg-[#860000] hover:bg-[#b30000] text-white font-semibold py-4 px-8 rounded-lg transition-all transform hover:scale-105 shadow-lg"
             >
               Demo Talep Edin
             </a>

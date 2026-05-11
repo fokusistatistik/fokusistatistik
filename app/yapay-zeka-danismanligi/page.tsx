@@ -80,12 +80,14 @@ export default function YapayZekaDanismanligi() {
             >
               Ücretsiz Danışmanlık Talep Edin
             </Link>
+            {/* 
             <Link
               href="/analiz-formu"
               className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-8 rounded-lg transition-all"
             >
               İhtiyaç Analizi
             </Link>
+            */}
           </div>
         </section>
 

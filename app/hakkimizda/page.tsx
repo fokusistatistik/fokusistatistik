@@ -253,12 +253,14 @@ export default function Hakkimizda() {
             >
               Hemen İletişime Geçin
             </a>
+            {/* 
             <a
               href="/analiz-formu"
               className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-8 rounded-lg transition-all"
             >
               Ücretsiz Analiz Talep Edin
             </a>
+            */}
             <a
               href="/neden-biz"
               className="bg-transparent border-2 border-[#860000] text-[#860000] hover:bg-[#860000] hover:text-white font-semibold py-4 px-8 rounded-lg transition-all"

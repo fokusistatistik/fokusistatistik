@@ -15,7 +15,7 @@ import {
   Clock,
   Target,
 } from 'lucide-react';
-import RandevuToast from './components/RandevuToast';
+// import RandevuToast from './components/RandevuToast';
 
 // Note: metadata is handled in layout.tsx for this page
 
@@ -114,8 +114,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Randevu Toast Notification */}
-      <RandevuToast />
+      {/* Randevu Toast Notification removed per user request */}
 
       <main className="flex-grow">
         {/* Assistants Section */}
@@ -164,7 +163,8 @@ export default function Home() {
                 FOKUS ile Dijitalleşin, Daha Hızlı, Daha Kârlı Olun
               </p>
 
-              <div className="flex flex-col md:flex-row gap-6 justify-center">
+              <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
+                {/* 
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 shadow-xl flex-1 max-w-md border border-white/20">
                   <Link
                     href="/analiz-formu"
@@ -176,8 +176,9 @@ export default function Home() {
                     Hangi sanal asistana ihtiyacınız olduğunu anında analiz edelim.
                   </p>
                 </div>
+                */}
 
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 shadow-xl flex-1 max-w-md border border-white/20">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 shadow-xl flex-1 max-w-md border border-white/20 w-full">
                   <a
                     href="https://asistan.fokusistatistik.com/ucretsiz.html"
                     target="_blank"

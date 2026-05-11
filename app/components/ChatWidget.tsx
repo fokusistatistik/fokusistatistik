@@ -102,13 +102,13 @@ export default function ChatWidget() {
       });
 
       const data = await response.json();
-      const botReply = data.reply || 'Üzgünüm, bir hata oluştu.';
+      const botReply = data.reply || '**Değerli Ziyaretçimiz,**\n\nFOKUS216 Sanal Asistanımız şu anda sizlere daha iyi bir deneyim sunabilmek amacıyla **planlı bakım ve güncelleme** çalışmasındadır. 🛠️\n\nBu süreçte tüm soru, talep ve destek ihtiyaçlarınız için **[+90 535 404 07 12](tel:+905354040712)** numaralı telefon hattımızdan veya WhatsApp üzerinden bizlere ulaşarak doğrudan **canlı destek** alabilirsiniz.\n\nAnlayışınız için teşekkür ederiz. 🙏';
 
       setMessages(prev => [...prev, { text: botReply, sender: 'bot' }]);
     } catch (error) {
       console.error('Mesaj gönderme hatası:', error);
       setMessages(prev => [...prev, {
-        text: 'Üzgünüm, şu anda yanıt veremiyorum. Lütfen daha sonra tekrar deneyin.',
+        text: '**Değerli Ziyaretçimiz,**\n\nFOKUS216 Sanal Asistanımız şu anda sizlere daha iyi bir deneyim sunabilmek amacıyla **planlı bakım ve güncelleme** çalışmasındadır. 🛠️\n\nBu süreçte tüm soru, talep ve destek ihtiyaçlarınız için **[+90 535 404 07 12](tel:+905354040712)** numaralı telefon hattımızdan veya WhatsApp üzerinden bizlere ulaşarak doğrudan **canlı destek** alabilirsiniz.\n\nAnlayışınız için teşekkür ederiz. 🙏',
         sender: 'bot'
       }]);
     } finally {

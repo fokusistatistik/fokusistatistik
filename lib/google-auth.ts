@@ -7,7 +7,7 @@ export const GOOGLE_CONFIG = {
     ? `${process.env.NEXT_PUBLIC_URL}/api/auth/callback`
     : 'http://localhost:3000/api/auth/callback',
   scope: 'openid email profile',
-  webhookUrl: process.env.NEXT_PUBLIC_AUTH_WEBHOOK_URL || 'https://n8n.fokusistatistik.com/webhook-test/fokuswebuserauth'
+  webhookUrl: process.env.NEXT_PUBLIC_AUTH_WEBHOOK_URL || 'https://n8n.fokusistatistik.com/webhook/fokuswebuserauth'
 };
 
 /**

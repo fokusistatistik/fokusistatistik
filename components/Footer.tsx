@@ -35,11 +35,13 @@ export default function Footer() {
       url: 'https://t.me/fokusistatistikbot',
       icon: 'https://static.fokusistatistik.com/resimler/telegram.png',
     },
+    /*
     {
       name: 'Asistanlar',
       url: 'https://asistan.fokusistatistik.com/',
       icon: 'https://static.fokusistatistik.com/resimler/asistanfokus.png',
     },
+    */
     {
       name: 'WhatsApp',
       url: 'https://wa.me/905354040712?text=merhaba%20fokusistatistik',
