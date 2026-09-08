@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://fokusistatistik.com/analiz-formu',
   },
+  // Sayfa şimdilik UI'dan gizlendi (n8n webhook'u aktif değil), sonradan aktif edilebilir
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function AnalizFormuLayout({

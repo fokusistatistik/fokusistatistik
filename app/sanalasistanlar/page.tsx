@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { CheckCircle2 } from 'lucide-react';
+import { BreadcrumbSchema } from '@/app/components/StructuredData';
 
 export default function SanalAsistanlar() {
   const assistants = [
@@ -10,65 +11,72 @@ export default function SanalAsistanlar() {
       code: 'fokus001',
       name: 'FOKUS001',
       title: 'Yönetici Sanal Asistanı',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus001.png',
+      image: '/assets/cdn/asistanlar/fokus001.png',
     },
     {
       code: 'fokus216',
       name: 'FOKUS216',
       title: 'Müşteri Hizmetleri Sanal Asistanı',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus216.png',
+      image: '/assets/cdn/asistanlar/fokus216.png',
     },
     {
       code: 'fokus314',
       name: 'FOKUS314',
       title: 'Veri Analisti Sanal Asistanı',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus314.png',
+      image: '/assets/cdn/asistanlar/fokus314.png',
     },
     {
       code: 'fokus520',
       name: 'FOKUS520',
       title: 'Pazarlama & Lead Takip Sanal Asistanı',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus520.png',
+      image: '/assets/cdn/asistanlar/fokus520.png',
     },
     {
       code: 'fokus618',
       name: 'FOKUS618',
       title: 'Finans & Fatura Sanal Asistanı',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus618.png',
+      image: '/assets/cdn/asistanlar/fokus618.png',
     },
     {
       code: 'fokus707',
       name: 'FOKUS707',
       title: 'İnsan Kaynakları Sanal Asistanı',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus707.png',
+      image: '/assets/cdn/asistanlar/fokus707.png',
     },
     {
       code: 'fokus717',
       name: 'FOKUS717',
       title: 'İçerik Tasarımı Sanal Asistanı',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus717.png',
+      image: '/assets/cdn/asistanlar/fokus717.png',
     },
     {
       code: 'fokus808',
       name: 'FOKUS808',
       title: 'Sosyal Medya & İletişim Sanal Asistanı',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus808.png',
+      image: '/assets/cdn/asistanlar/fokus808.png',
     },
     {
       code: 'fokus999',
       name: 'FOKUS999',
       title: 'Joker Sanal Asistan',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus999.png',
+      image: '/assets/cdn/asistanlar/fokus999.png',
     },
   ];
 
   return (
+    <>
+    <BreadcrumbSchema
+      items={[
+        { name: 'Ana Sayfa', url: 'https://fokusistatistik.com' },
+        { name: 'Sanal Asistanlar', url: 'https://fokusistatistik.com/sanalasistanlar' },
+      ]}
+    />
     <main className="min-h-screen bg-white">
       {/* Banner */}
       <div className="w-full px-4">
         <div className="w-full relative overflow-hidden rounded-xl">
           <Image
-            src="https://static.fokusistatistik.com/resimler/bannerasistanlar.png"
+            src="/assets/cdn/resimler/bannerasistanlar.png"
             alt="FOKUS Asistanları Banner"
             width={1920}
             height={400}
@@ -88,7 +96,7 @@ export default function SanalAsistanlar() {
         </h2>
         <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
           <p className="text-lg mb-6">
-            <strong>"Beyaz yakalı planlar, mavi yakalı üretir. Peki, metal yakalılar ne yapar?"</strong>
+            <strong>&quot;Beyaz yakalı planlar, mavi yakalı üretir. Peki, metal yakalılar ne yapar?&quot;</strong>
             <br />
             Metal yakalı çalışanlar, insan gibi görev yapan ancak bir yazılım olarak çalışan dijital asistanlardır.
             Ofiste masa başında değil, bulutta görev alırlar. Karmaşık veri yapıları, manuel iş akışları ve yetersiz
@@ -383,6 +391,7 @@ export default function SanalAsistanlar() {
           Hazırsanız, bugün başlayabiliriz!
         </h2>
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          {/* Analiz formu şimdilik aktif değil, sonradan aktif edilebilir
           <div className="flex flex-col items-center">
             <a
               href="/analiz-formu"
@@ -392,6 +401,7 @@ export default function SanalAsistanlar() {
             </a>
             <p className="text-sm text-gray-600 mt-2">2 dakikada ücretsiz ihtiyaç analizini yapın</p>
           </div>
+          */}
           <div className="flex flex-col items-center">
             <a
               href="https://asistan.fokusistatistik.com/ucretsiz.html"
@@ -406,5 +416,6 @@ export default function SanalAsistanlar() {
         </div>
       </section>
     </main>
+    </>
   );
 }

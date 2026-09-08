@@ -1,120 +1,39 @@
-# Eksik Görseller Listesi
+# Görsel Varlıkları — Güncel Durum
 
-Bu dosya, projenin çalışması için gerekli olan eksik görselleri listeler.
+> Bu dosya birden fazla kez güncellendi: önce statik siteden geçiş öncesi
+> `public/assets/img/`'e PNG eklenmesi gerektiğini belirtiyordu, sonra harici
+> CDN mimarisini anlatıyordu. Artık her ikisi de geçmişte kaldı.
 
-## 📍 Konum: `/public/assets/img/`
+## Güncel Mimari: Yerel Görseller
 
-Tüm görselleri bu klasöre eklemelisiniz.
+Tüm görseller (logo, favicon, 9 asistan görseli, sosyal medya ikonları, OG image,
+"neden biz" fotoğrafları) `https://static.fokusistatistik.com` CDN'inden indirilip
+**`public/assets/cdn/`** altına yerleştirildi ve kod bunlara yerel path
+(`/assets/cdn/...`) üzerinden erişiyor. `next.config.ts`'deki harici `remotePatterns`
+kaldırıldı, artık gerekmiyor.
 
-## 🎯 Öncelikli Görseller
+Bu taşıma sırasında iki görsel URL'sinin canlıda zaten **404 verdiği** ortaya çıktı:
+- `resimler/fokus-ekosistem-og.jpg` — sitenin OG/Twitter card görseliydi, tüm
+  sayfalarda kırıktı.
+- `resimler/fokuslogo1.png` — `StructuredData.tsx`'teki fallback logo.
 
-### 1. Logo ve Brand
-- **logobeyaz.png** - Header'da kullanılan beyaz logo (önerilen boyut: 120x40 px)
-- **favicon.png** - Site ikonu (önerilen boyut: 32x32 px veya 48x48 px)
-- **asistanfokus.png** - Asistan ekosistem ikonu (26x26 px)
+İkisi de çalışan `logolar/fokuslogo1.png`'e yönlendirilerek düzeltildi.
 
-### 2. Sosyal Medya İkonları (Hepsi 26x26 px)
-- instagram.png
-- facebook.png
-- ln.png (LinkedIn)
-- twitter.png
-- telegram.png
-- whatsapp.png
-- youtube.png
-- github.png
-- eposta.png
+Eski placeholder SVG'ler (`public/assets/img/`, gerçek logo değil sadece "FOKUS"
+yazan kırmızı kutu) ve yanıltıcı README'si tamamen silindi.
 
-### 3. UI İkonları
-- **search.png** - Arama ikonu (20x20 px)
+## PWA İkonları
 
-## 🤖 Sanal Asistan Görselleri
+Artık gerçek dosyalar mevcut:
+- `public/icon-192x192.png`
+- `public/icon-512x512.png`
 
-Header dropdown menüsünde kullanılacak asistan görselleri (isteğe bağlı):
+İkisi de `public/assets/cdn/resimler/favicon.png`'deki marka logomark'ından
+(sharp ile) üretildi, maskable safe-zone için %30 padding bırakılarak. `manifest.json`
+gerçek dosyalara ve doğru boyutlara güncellendi.
 
-- fokus001.png - Yönetici Sanal Asistanı
-- fokus216.png - Müşteri Hizmetleri
-- fokus314.png - Veri Analisti
-- fokus520.png - Pazarlama & Lead
-- fokus618.png - Finans & Fatura
-- fokus707.png - İnsan Kaynakları
-- fokus717.png - İçerik Tasarımı
-- fokus808.png - Sosyal Medya
-- fokus999.png - Joker Asistan
+## Kalan Bilinen Eksik
 
-**Önerilen boyut**: 80x80 px veya 100x100 px (kare formatda)
-
-## 📱 PWA İkonları
-
-PWA (Progressive Web App) desteği için gerekli:
-
-- **icon-192x192.png** - 192x192 px boyutunda uygulama ikonu
-- **icon-512x512.png** - 512x512 px boyutunda uygulama ikonu
-
-Bu ikonlar `public/` klasörünün root'unda olmalı.
-
-## 🎨 Görsel Tasarım Önerileri
-
-### Renk Paleti
-Görselleri tasarlarken kurumsal renkleri kullanın:
-- Primary: #860000 (Koyu Kırmızı)
-- Accent: #ffc107 (Altın Sarısı)
-- Beyaz ve gri tonlar
-
-### Format Önerileri
-- **Logo**: PNG (transparent background)
-- **İkonlar**: PNG veya SVG
-- **Asistan Görselleri**: PNG veya JPG
-- **PWA İkonları**: PNG (maskable)
-
-### Boyut Optimizasyonu
-- Tüm görselleri web için optimize edin
-- Dosya boyutunu mümkün olduğunca küçük tutun
-- PNG24 veya WebP formatını tercih edin
-
-## ⚡ Geçici Çözüm
-
-Görseller hazır olana kadar:
-1. Placeholder görseller kullanabilirsiniz
-2. Emoji'ler gösterilmektedir (asistanlar için)
-3. Lucide React ikonları kullanılmaktadır (sosyal medya için alternatif)
-
-## 📝 Kontrol Listesi
-
-Görselleri ekledikçe işaretleyin:
-
-- [ ] logobeyaz.png
-- [ ] favicon.png
-- [ ] instagram.png
-- [ ] facebook.png
-- [ ] ln.png
-- [ ] twitter.png
-- [ ] telegram.png
-- [ ] whatsapp.png
-- [ ] youtube.png
-- [ ] github.png
-- [ ] eposta.png
-- [ ] search.png
-- [ ] asistanfokus.png
-- [ ] icon-192x192.png
-- [ ] icon-512x512.png
-- [ ] fokus001.png
-- [ ] fokus216.png
-- [ ] fokus314.png
-- [ ] fokus520.png
-- [ ] fokus618.png
-- [ ] fokus707.png
-- [ ] fokus717.png
-- [ ] fokus808.png
-- [ ] fokus999.png
-
-## 🔄 Güncelleme Sonrası
-
-Görselleri ekledikten sonra:
-1. Tarayıcı cache'ini temizleyin
-2. `npm run build` komutunu çalıştırın
-3. Tüm sayfaları kontrol edin
-4. PWA ikonlarının doğru göründüğünden emin olun
-
----
-
-**Not**: Görsellerin telif haklarına dikkat edin. Kullandığınız tüm görseller için gerekli izinlere sahip olduğunuzdan emin olun.
+`next-pwa` bağımlılığı `package.json`'da var ama `next.config.ts`'de entegre
+edilmemiş — PWA fiilen aktif değil, `public/manifest.json` elle yazılmış statik bir
+dosya. Bu, `next-pwa`'yı gerçekten entegre etmek isteniyorsa ayrı bir görev.

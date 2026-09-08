@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 import { jwtVerify } from 'jose';
+import { getJwtSecret } from '@/lib/jwt';
 
 const BLOGS_FILE = path.join(process.cwd(), 'content', 'blogs-metadata.json');
 const CONTENT_DIR = path.join(process.cwd(), 'content', 'blog');
@@ -15,9 +16,7 @@ async function checkAuth(request: NextRequest): Promise<boolean> {
   }
 
   try {
-    const secret = new TextEncoder().encode(
-      process.env.JWT_SECRET || 'default-secret-change-in-production-12345678901234567890'
-    );
+    const secret = getJwtSecret();
 
     const { payload } = await jwtVerify(sessionCookie.value, secret);
 
@@ -33,12 +32,12 @@ async function checkAuth(request: NextRequest): Promise<boolean> {
 }
 
 // GET - List all blogs
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const data = await fs.readFile(BLOGS_FILE, 'utf-8');
     const blogs = JSON.parse(data);
     return NextResponse.json({ blogs });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ blogs: [] });
   }
 }
@@ -57,7 +56,7 @@ export async function POST(request: NextRequest) {
     try {
       const data = await fs.readFile(BLOGS_FILE, 'utf-8');
       blogs = JSON.parse(data);
-    } catch (error) {
+    } catch {
       // Dosya yoksa boş array
       blogs = [];
     }

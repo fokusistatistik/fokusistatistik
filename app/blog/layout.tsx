@@ -6,6 +6,9 @@ export const metadata: Metadata = {
     template: '%s | FOKUS Blog',
   },
   description: 'Yapay zeka, veri analizi, ChatGPT ve dijital dönüşüm hakkında derinlikli makaleler, rehberler ve başarı hikayeleri.',
+  alternates: {
+    canonical: 'https://fokusistatistik.com/blog',
+  },
 };
 
 export default function BlogLayout({

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, TrendingUp, DollarSign, Users, Zap, BarChart3, CheckCircle2, Calendar } from 'lucide-react';
+import { ArrowLeft, TrendingUp, DollarSign, Users, Zap, BarChart3, Calendar } from 'lucide-react';
+import { BreadcrumbSchema } from '@/app/components/StructuredData';
 
 export const metadata: Metadata = {
   title: '2025\'te Yapay Zeka ile Kazanç: İşletmeler İçin 7 Kanıtlanmış Yöntem',
@@ -33,14 +34,56 @@ export const metadata: Metadata = {
 };
 
 export default function YapayZekaIleKazancPage() {
+  const canonicalUrl = 'https://fokusistatistik.com/blog/yapay-zeka-ile-kazanc';
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: '2025\'te Yapay Zeka ile Kazanç: İşletmeler İçin 7 Kanıtlanmış Yöntem',
+    description: 'Yapay zeka ve sanal asistanlar ile işletme karlılığını artırmanın 7 kanıtlanmış yöntemi. Dijital işçiler, AI otomasyon ve maliyet tasarrufu stratejileri. ROI hesaplamaları ve gerçek örneklerle.',
+    image: 'https://fokusistatistik.com/assets/cdn/logolar/fokuslogo1.png',
+    datePublished: '2025-01-15T09:00:00Z',
+    dateModified: '2025-01-15T09:00:00Z',
+    author: {
+      '@type': 'Organization',
+      name: 'FOKUS İstatistik',
+      url: 'https://fokusistatistik.com',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'FOKUS İstatistik',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://fokusistatistik.com/assets/cdn/logolar/fokuslogo1.png',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+    },
+    articleSection: 'Yapay Zeka',
+    timeRequired: 'PT8M',
+    inLanguage: 'tr-TR',
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Ana Sayfa', url: 'https://fokusistatistik.com' },
+          { name: 'Blog', url: 'https://fokusistatistik.com/blog' },
+          { name: 'Yapay Zeka ile Kazanç', url: canonicalUrl },
+        ]}
+      />
       {/* Breadcrumb */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <Link href="/blog" className="inline-flex items-center text-[#860000] hover:text-[#b30000] font-medium">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Blog'a Dön
+            Blog&apos;a Dön
           </Link>
         </div>
       </div>
@@ -61,7 +104,7 @@ export default function YapayZekaIleKazancPage() {
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-            2025'te Yapay Zeka ile Kazanç: İşletmeler İçin 7 Kanıtlanmış Yöntem
+            2025&apos;te Yapay Zeka ile Kazanç: İşletmeler İçin 7 Kanıtlanmış Yöntem
           </h1>
 
           <p className="text-xl text-gray-600 leading-relaxed">
@@ -423,7 +466,7 @@ export default function YapayZekaIleKazancPage() {
                   Müşterilerinizi davranışlarına göre otomatik segmentlere ayırarak hedefli pazarlama yapın.
                 </p>
                 <p className="text-blue-900 font-semibold text-sm">
-                  💡 Sonuç: Pazarlama ROI'sinde kayda değer artış
+                  💡 Sonuç: Pazarlama ROI&apos;sinde kayda değer artış
                 </p>
               </div>
 
@@ -477,7 +520,7 @@ export default function YapayZekaIleKazancPage() {
                 5
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Pazarlama Otomasyonu ile ROI'yi İki Katına Çıkarın</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">Pazarlama Otomasyonu ile ROI&apos;yi İki Katına Çıkarın</h2>
                 <p className="text-lg text-gray-600">Hedefli kampanyalar ve otomatik nurturing ile dönüşüm artışı</p>
               </div>
             </div>
@@ -551,7 +594,7 @@ export default function YapayZekaIleKazancPage() {
                 <p>• Pazarlama ekibi verimliliğinde <strong className="text-green-600">ciddi artış</strong></p>
                 <p>• Müşteri edinme maliyetinde (CAC) <strong className="text-green-600">azalma</strong></p>
                 <p className="pt-2 border-t border-green-200 font-bold text-lg">
-                  💰 Pazarlama ROI'sinde önemli ölçüde artış sağlandı
+                  💰 Pazarlama ROI&apos;sinde önemli ölçüde artış sağlandı
                 </p>
               </div>
             </div>
@@ -580,7 +623,7 @@ export default function YapayZekaIleKazancPage() {
             </div>
 
             <p className="text-gray-700 leading-relaxed mb-4">
-              <strong>ChatGPT</strong> ve benzeri yapay zeka yazma araçları, içerik üretim sürecinizi devrim niteliğinde değiştirebilir. Ancak önemli olan, AI'yı doğru stratejide kullanmak ve insan editörlüğü ile kaliteli, SEO uyumlu içerikler üretmektir.
+              <strong>ChatGPT</strong> ve benzeri yapay zeka yazma araçları, içerik üretim sürecinizi devrim niteliğinde değiştirebilir. Ancak önemli olan, AI&apos;yı doğru stratejide kullanmak ve insan editörlüğü ile kaliteli, SEO uyumlu içerikler üretmektir.
             </p>
 
             <h3 className="text-2xl font-bold text-gray-900 mb-3 mt-6">AI ile Üretebileceğiniz İçerik Türleri</h3>
@@ -870,12 +913,14 @@ export default function YapayZekaIleKazancPage() {
               >
                 Ücretsiz Danışmanlık Al
               </Link>
+              {/* Analiz formu şimdilik aktif değil, sonradan aktif edilebilir
               <Link
                 href="/analiz-formu"
                 className="bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-lg hover:bg-white/10 transition text-center"
               >
                 İhtiyaç Analizi Yap
               </Link>
+              */}
             </div>
           </section>
 
@@ -894,7 +939,7 @@ export default function YapayZekaIleKazancPage() {
                 <li><strong>2.</strong> AI otomasyon ile verimliliği ciddi şekilde artırın</li>
                 <li><strong>3.</strong> 7/24 müşteri hizmeti ile satışları yükseltin</li>
                 <li><strong>4.</strong> Veri analizi ile kararları optimize edin</li>
-                <li><strong>5.</strong> Pazarlama otomasyonu ile ROI'yi artırın</li>
+                <li><strong>5.</strong> Pazarlama otomasyonu ile ROI&apos;yi artırın</li>
                 <li><strong>6.</strong> İçerik üretimi ile organik trafiği artırın</li>
                 <li><strong>7.</strong> Tahmine dayalı bakım ile arıza maliyetlerini önemli ölçüde düşürün</li>
               </ol>

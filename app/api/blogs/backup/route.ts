@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 import { jwtVerify } from 'jose';
+import { getJwtSecret } from '@/lib/jwt';
 
 // Güvenlik: JWT token doğrulaması
 async function checkAuth(request: NextRequest): Promise<boolean> {
@@ -12,9 +13,7 @@ async function checkAuth(request: NextRequest): Promise<boolean> {
   }
 
   try {
-    const secret = new TextEncoder().encode(
-      process.env.JWT_SECRET || 'default-secret-change-in-production-12345678901234567890'
-    );
+    const secret = getJwtSecret();
 
     const { payload } = await jwtVerify(sessionCookie.value, secret);
 
@@ -31,6 +30,12 @@ async function checkAuth(request: NextRequest): Promise<boolean> {
 
 const BLOGS_FILE = path.join(process.cwd(), 'content', 'blogs-metadata.json');
 const CONTENT_DIR = path.join(process.cwd(), 'content', 'blog');
+
+interface BlogMetadata {
+  slug: string;
+  content?: string;
+  [key: string]: unknown;
+}
 
 // POST - Backup blogs to git or export
 export async function POST(request: NextRequest) {
@@ -52,11 +57,11 @@ export async function POST(request: NextRequest) {
     if (action === 'export') {
       // Tüm blogları ve içerikleri bir ZIP veya JSON olarak dışa aktar
       const blogsData = await fs.readFile(BLOGS_FILE, 'utf-8');
-      const blogs = JSON.parse(blogsData);
+      const blogs: BlogMetadata[] = JSON.parse(blogsData);
 
       // Her blog için içeriği de ekle
       const fullBackup = await Promise.all(
-        blogs.map(async (blog: any) => {
+        blogs.map(async (blog) => {
           try {
             const content = await fs.readFile(
               path.join(CONTENT_DIR, `${blog.slug}.html`),
@@ -102,9 +107,10 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    // Metadata dosyasını yaz
-    const metadata = blogs.map((blog: any) => {
-      const { content, ...meta } = blog;
+    // Metadata dosyasını yaz (content alanı hariç tutulur)
+    const metadata = blogs.map((blog: BlogMetadata) => {
+      const meta = { ...blog };
+      delete meta.content;
       return meta;
     });
 

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
-import { FAQSchema } from '@/app/components/StructuredData';
+import { FAQSchema, BreadcrumbSchema } from '@/app/components/StructuredData';
 
 interface FAQ {
   question: string;
@@ -214,6 +214,12 @@ export default function SSS() {
   return (
     <>
       <FAQSchema faqs={faqs} />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Ana Sayfa', url: 'https://fokusistatistik.com' },
+          { name: 'Sıkça Sorulan Sorular', url: 'https://fokusistatistik.com/sss' },
+        ]}
+      />
       <div className="min-h-screen flex flex-col">
         <main className="flex-grow">
           {/* Hero Section */}

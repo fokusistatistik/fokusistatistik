@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect, useCallback, use } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import AuthGuard from '@/components/admin/AuthGuard';
 import {
   ArrowLeft,
@@ -40,11 +41,7 @@ export default function EditBlogPage({ params }: { params: Promise<{ slug: strin
     publishedDate: new Date().toISOString().split('T')[0],
   });
 
-  useEffect(() => {
-    fetchBlog();
-  }, [slug]);
-
-  const fetchBlog = async () => {
+  const fetchBlog = useCallback(async () => {
     try {
       const response = await fetch(`/api/blogs/${slug}`);
       const data = await response.json();
@@ -68,12 +65,16 @@ export default function EditBlogPage({ params }: { params: Promise<{ slug: strin
       } else {
         setError('Blog yüklenemedi');
       }
-    } catch (error) {
+    } catch {
       setError('Blog yüklenirken hata oluştu');
     } finally {
       setFetchLoading(false);
     }
-  };
+  }, [slug]);
+
+  useEffect(() => {
+    fetchBlog();
+  }, [fetchBlog]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -108,7 +109,7 @@ export default function EditBlogPage({ params }: { params: Promise<{ slug: strin
         const data = await response.json();
         setError(data.error || 'Blog güncellenemedi');
       }
-    } catch (error) {
+    } catch {
       setError('Bir hata oluştu. Lütfen tekrar deneyin.');
     } finally {
       setLoading(false);
@@ -273,10 +274,12 @@ export default function EditBlogPage({ params }: { params: Promise<{ slug: strin
                         <div className="mt-3">
                           <p className="text-xs text-gray-600 mb-2">Önizleme (2:1 oran - blog listesinde böyle görünecek):</p>
                           <div className="relative w-full max-w-md" style={{ aspectRatio: '2/1' }}>
-                            <img
+                            <Image
                               src={formData.coverImage}
                               alt="Cover preview"
-                              className="w-full h-full object-cover rounded-lg border border-gray-200"
+                              fill
+                              unoptimized
+                              className="object-cover rounded-lg border border-gray-200"
                             />
                           </div>
                         </div>
@@ -409,11 +412,15 @@ export default function EditBlogPage({ params }: { params: Promise<{ slug: strin
                 <div className="max-w-4xl mx-auto">
                   {/* Cover Image */}
                   {formData.coverImage && (
-                    <img
-                      src={formData.coverImage}
-                      alt={formData.title}
-                      className="w-full h-64 object-cover rounded-lg mb-8"
-                    />
+                    <div className="relative w-full h-64 mb-8">
+                      <Image
+                        src={formData.coverImage}
+                        alt={formData.title}
+                        fill
+                        unoptimized
+                        className="object-cover rounded-lg"
+                      />
+                    </div>
                   )}
 
                   {/* Category Badge */}

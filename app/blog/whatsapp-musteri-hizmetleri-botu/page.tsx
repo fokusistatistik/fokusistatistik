@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, MessageCircle, Clock, DollarSign, Users, Zap, CheckCircle2, Calendar, TrendingUp, Shield, Smartphone } from 'lucide-react';
+import { ArrowLeft, MessageCircle, Users, CheckCircle2, Calendar, TrendingUp, Shield, Smartphone } from 'lucide-react';
+import { BreadcrumbSchema } from '@/app/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'WhatsApp Müşteri Hizmetleri Botu: Kurulum, Fiyat ve ROI Rehberi [2025]',
@@ -36,14 +37,56 @@ export const metadata: Metadata = {
 };
 
 export default function WhatsAppBotPage() {
+  const canonicalUrl = 'https://fokusistatistik.com/blog/whatsapp-musteri-hizmetleri-botu';
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: 'WhatsApp Müşteri Hizmetleri Botu: Kurulum, Fiyat ve ROI Rehberi [2025]',
+    description: 'WhatsApp müşteri hizmetleri botu ile 7/24 otomatik destek. Kurulum maliyeti, fiyat karşılaştırması, ROI hesaplama ve gerçek örnekler. KOBİ ve işletmeler için tam rehber.',
+    image: 'https://fokusistatistik.com/assets/cdn/logolar/fokuslogo1.png',
+    datePublished: '2025-01-16T09:00:00Z',
+    dateModified: '2025-01-16T09:00:00Z',
+    author: {
+      '@type': 'Organization',
+      name: 'FOKUS İstatistik',
+      url: 'https://fokusistatistik.com',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'FOKUS İstatistik',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://fokusistatistik.com/assets/cdn/logolar/fokuslogo1.png',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+    },
+    articleSection: 'Otomasyon',
+    timeRequired: 'PT10M',
+    inLanguage: 'tr-TR',
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Ana Sayfa', url: 'https://fokusistatistik.com' },
+          { name: 'Blog', url: 'https://fokusistatistik.com/blog' },
+          { name: 'WhatsApp Müşteri Hizmetleri Botu', url: canonicalUrl },
+        ]}
+      />
       {/* Breadcrumb */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <Link href="/blog" className="inline-flex items-center text-[#860000] hover:text-[#b30000] font-medium">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Blog'a Dön
+            Blog&apos;a Dön
           </Link>
         </div>
       </div>
@@ -68,7 +111,7 @@ export default function WhatsAppBotPage() {
           </h1>
 
           <p className="text-xl text-gray-600 leading-relaxed">
-            WhatsApp Türkiye'de çok geniş bir kullanıcı kitlesine sahiptir. Müşterileriniz zaten her gün WhatsApp kullanıyor - peki siz onlara bu platformda 7/24 hizmet sunabiliyor musunuz? Bu kapsamlı rehberde, WhatsApp müşteri hizmetleri botunun ne olduğunu, nasıl çalıştığını, kurulum maliyetlerini ve işletmenize sağlayacağı katma değeri öğreneceksiniz.
+            WhatsApp Türkiye&apos;de çok geniş bir kullanıcı kitlesine sahiptir. Müşterileriniz zaten her gün WhatsApp kullanıyor - peki siz onlara bu platformda 7/24 hizmet sunabiliyor musunuz? Bu kapsamlı rehberde, WhatsApp müşteri hizmetleri botunun ne olduğunu, nasıl çalıştığını, kurulum maliyetlerini ve işletmenize sağlayacağı katma değeri öğreneceksiniz.
           </p>
         </header>
 
@@ -84,9 +127,9 @@ export default function WhatsAppBotPage() {
             </p>
 
             <div className="bg-green-50 border-l-4 border-green-500 p-6 my-8">
-              <h3 className="text-xl font-bold text-green-900 mb-3">📊 WhatsApp'ın İş Dünyasında Önemi (2025)</h3>
+              <h3 className="text-xl font-bold text-green-900 mb-3">📊 WhatsApp&apos;ın İş Dünyasında Önemi (2025)</h3>
               <ul className="space-y-2 text-green-900">
-                <li>• Türkiye'de <strong>çok geniş</strong> aktif WhatsApp kullanıcı kitlesi</li>
+                <li>• Türkiye&apos;de <strong>çok geniş</strong> aktif WhatsApp kullanıcı kitlesi</li>
                 <li>• Kullanıcıların <strong>büyük çoğunluğu</strong> işletmelerle WhatsApp üzerinden iletişim kurmayı tercih ediyor</li>
                 <li>• WhatsApp mesajları <strong>çok yüksek açılma oranına</strong> sahip (e-postaya kıyasla)</li>
                 <li>• Müşteriler <strong>hızlı yanıt</strong> bekliyor</li>
@@ -494,7 +537,7 @@ export default function WhatsAppBotPage() {
 
             <div className="bg-gray-50 p-5 rounded-lg mt-6">
               <p className="text-gray-700 italic">
-                <strong>Salon Sahibi Yorumu:</strong> "WhatsApp botu kurmadan önce inanmakta zorlanıyordum. Şimdi müşterilerimiz gece 23:00'te bile randevu alabiliyor ve biz hiç müdahale etmiyoruz. No-show oranımızın bu kadar düşmesi beklediğimizin çok üstünde bir kazanç sağladı. Artık personelimiz asıl işlerine, müşteri deneyimine odaklanabiliyor."
+                <strong>Salon Sahibi Yorumu:</strong> &quot;WhatsApp botu kurmadan önce inanmakta zorlanıyordum. Şimdi müşterilerimiz gece 23:00&apos;te bile randevu alabiliyor ve biz hiç müdahale etmiyoruz. No-show oranımızın bu kadar düşmesi beklediğimizin çok üstünde bir kazanç sağladı. Artık personelimiz asıl işlerine, müşteri deneyimine odaklanabiliyor.&quot;
               </p>
             </div>
           </section>
@@ -693,7 +736,7 @@ export default function WhatsAppBotPage() {
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span><strong>%90'a varan</strong> maliyet tasarrufu</span>
+                    <span><strong>%90&apos;a varan</strong> maliyet tasarrufu</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />

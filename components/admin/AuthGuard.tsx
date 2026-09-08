@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
@@ -8,11 +8,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
-  const checkAuth = async () => {
+  const checkAuth = useCallback(async () => {
     try {
       const response = await fetch('/api/auth/session');
       const data = await response.json();
@@ -22,12 +18,16 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
       } else {
         router.push('/admin/login');
       }
-    } catch (error) {
+    } catch {
       router.push('/admin/login');
     } finally {
       setLoading(false);
     }
-  };
+  }, [router]);
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   if (loading) {
     return (

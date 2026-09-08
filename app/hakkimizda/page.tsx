@@ -1,14 +1,30 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { BreadcrumbSchema } from '@/app/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Hakkımızda | FOKUS İstatistik - Veri Bilimi ve Yapay Zeka Çözümleri',
   description: '22 yıllık deneyim ile veri bilimi, istatistik ve yapay zeka alanında öncü çözümler sunuyoruz. Akademik kökenli ekibimiz ve müşteri odaklı yaklaşımımızla yanınızdayız.',
   keywords: 'FOKUS İstatistik, hakkımızda, veri bilimi, istatistik, yapay zeka, sanal asistan, kurumsal kimlik',
+  openGraph: {
+    title: 'Hakkımızda | FOKUS İstatistik',
+    description: '22 yıllık deneyim ile veri bilimi, istatistik ve yapay zeka alanında öncü çözümler sunuyoruz.',
+    url: 'https://fokusistatistik.com/hakkimizda',
+  },
+  alternates: {
+    canonical: 'https://fokusistatistik.com/hakkimizda',
+  },
 };
 
 export default function Hakkimizda() {
   return (
+    <>
+    <BreadcrumbSchema
+      items={[
+        { name: 'Ana Sayfa', url: 'https://fokusistatistik.com' },
+        { name: 'Hakkımızda', url: 'https://fokusistatistik.com/hakkimizda' },
+      ]}
+    />
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Hero Section */}
@@ -16,7 +32,7 @@ export default function Hakkimizda() {
           <div className="inline-block mb-1">
             <div className="relative w-48 h-48 mx-auto">
               <Image
-                src="https://static.fokusistatistik.com/resimler/favicon.png"
+                src="/assets/cdn/resimler/favicon.png"
                 alt="FOKUS Logo"
                 fill
                 className="object-contain"
@@ -174,7 +190,7 @@ export default function Hakkimizda() {
                 <li>• Stratejik veri analizi ve raporlama</li>
                 <li>• İstatistiksel modelleme</li>
                 <li>• Tahminleme ve senaryo analizi</li>
-                <li>• Power BI, Python, R ile dashboard'lar</li>
+                <li>• Power BI, Python, R ile dashboard&apos;lar</li>
                 <li>• Performans takip sistemleri</li>
                 <li>• KPI tanımlama ve ölçümleme</li>
                 <li>• Veri görselleştirme ve sunum</li>
@@ -273,12 +289,13 @@ export default function Hakkimizda() {
         {/* Footer Quote */}
         <div className="mt-12 text-center">
           <blockquote className="text-xl italic text-gray-600 max-w-3xl mx-auto">
-            "Veriyi stratejiye, teknolojiyi değere, deneyimi güvene dönüştürüyoruz."
+            &quot;Veriyi stratejiye, teknolojiyi değere, deneyimi güvene dönüştürüyoruz.&quot;
             <br />
             <span className="text-[#860000] font-semibold">– FOKUS İstatistik</span>
           </blockquote>
         </div>
       </div>
     </div>
+    </>
   );
 }

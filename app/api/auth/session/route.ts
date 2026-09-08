@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { jwtVerify } from 'jose';
+import { getJwtSecret } from '@/lib/jwt';
 
 export async function GET(request: NextRequest) {
   const session = request.cookies.get('admin_session');
@@ -7,24 +9,18 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ authenticated: false }, { status: 401 });
   }
 
-  // Session token'ı decode et ve kontrol et
   try {
-    const decoded = Buffer.from(session.value, 'base64').toString();
-    const [username, timestamp] = decoded.split(':');
+    const { payload } = await jwtVerify(session.value, getJwtSecret());
 
-    // Token 7 günden eski mi kontrol et
-    const tokenAge = Date.now() - parseInt(timestamp);
-    const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 gün
-
-    if (tokenAge > maxAge) {
+    if (!payload.username || !payload.role || payload.role !== 'admin') {
       return NextResponse.json({ authenticated: false }, { status: 401 });
     }
 
     return NextResponse.json({
       authenticated: true,
-      user: { username },
+      user: { username: payload.username },
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ authenticated: false }, { status: 401 });
   }
 }

@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkRateLimit, getClientIP } from '@/lib/rateLimiter';
-import { verifyRecaptcha, isBot } from '@/lib/recaptcha';
 
 /**
  * İletişim formu API endpoint
  * - Rate limiting (3 istek/dakika)
- * - reCAPTCHA v3 doğrulaması
+ * - Honeypot + doldurma süresi kontrolü (sunucu tarafı, bypass edilemez)
  * - n8n webhook'a forward
  */
 export async function POST(request: NextRequest) {
@@ -36,42 +35,28 @@ export async function POST(request: NextRequest) {
 
     // 2️⃣ Request Body'yi Al
     const body = await request.json();
-    const { recaptchaToken, ...formData } = body;
+    const { honeypot, formStartTime, ...formData } = body;
 
-    // 3️⃣ reCAPTCHA Doğrulaması (Opsiyonel - Graceful Degradation)
-    let recaptchaScore = null;
-    const hasRecaptchaSecret = !!process.env.RECAPTCHA_SECRET_KEY;
-
-    if (recaptchaToken && hasRecaptchaSecret) {
-      // reCAPTCHA aktif - doğrulama yap
-      const recaptchaResult = await verifyRecaptcha(recaptchaToken);
-
-      if (!recaptchaResult.success) {
-        return NextResponse.json(
-          { success: false, error: 'reCAPTCHA doğrulaması başarısız' },
-          { status: 400 }
-        );
-      }
-
-      // Bot kontrolü - Güvenlik: Threshold 0.6'ya yükseltildi (0.5'ten daha güvenli)
-      if (isBot(recaptchaResult.score, 0.6)) {
-        console.warn('Bot detected:', {
-          ip: clientIP,
-          score: recaptchaResult.score,
-          action: recaptchaResult.action,
-        });
-        return NextResponse.json(
-          { success: false, error: 'Spam tespit edildi' },
-          { status: 403 }
-        );
-      }
-
-      recaptchaScore = recaptchaResult.score;
-    } else if (!hasRecaptchaSecret) {
-      console.warn('⚠️ reCAPTCHA secret key tanımlanmamış - Güvenliksiz modda çalışıyor');
+    // 3️⃣ Honeypot Kontrolü - Bot görünmez alanı doldurmuşsa engelle
+    if (honeypot) {
+      console.warn('Spam detected: honeypot filled', { ip: clientIP });
+      return NextResponse.json(
+        { success: false, error: 'Form gönderimi başarısız oldu' },
+        { status: 400 }
+      );
     }
 
-    // 4️⃣ n8n Webhook'a Forward Et
+    // 4️⃣ Doldurma Süresi Kontrolü - 2 saniyeden kısa sürede gönderilmişse bot
+    const timeTaken = Date.now() - Number(formStartTime || 0);
+    if (!formStartTime || timeTaken < 2000) {
+      console.warn('Spam detected: form submitted too quickly', { ip: clientIP, timeTaken });
+      return NextResponse.json(
+        { success: false, error: 'Lütfen formu doldurduktan sonra gönderin' },
+        { status: 400 }
+      );
+    }
+
+    // 5️⃣ n8n Webhook'a Forward Et
     const webhookUrl = process.env.NEXT_PUBLIC_N8N_CONTACT_WEBHOOK;
     if (!webhookUrl) {
       throw new Error('N8N webhook URL tanımlanmamış');
@@ -86,7 +71,6 @@ export async function POST(request: NextRequest) {
         ...formData,
         metadata: {
           ip: clientIP,
-          recaptchaScore: recaptchaScore,
           timestamp: new Date().toISOString(),
         },
       }),
@@ -96,7 +80,7 @@ export async function POST(request: NextRequest) {
       throw new Error('n8n webhook başarısız');
     }
 
-    // 5️⃣ Başarılı Yanıt
+    // 6️⃣ Başarılı Yanıt
     return NextResponse.json(
       { success: true, message: 'Form başarıyla gönderildi' },
       {

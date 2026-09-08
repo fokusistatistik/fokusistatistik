@@ -1,9 +1,13 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Gizlilik Politikası | FOKUS İstatistik',
   description: 'FOKUS İstatistik gizlilik politikası. Kişisel verilerinizin toplanması, işlenmesi, saklanması ve korunması hakkında detaylı bilgiler.',
   keywords: 'gizlilik politikası, veri koruma, kişisel veri işleme, veri güvenliği, KVKK, şeffaflık',
+  alternates: {
+    canonical: 'https://fokusistatistik.com/gizlilik-politikasi',
+  },
 };
 
 export default function GizlilikPolitikasi() {
@@ -156,7 +160,7 @@ export default function GizlilikPolitikasi() {
             <h2 className="text-2xl font-semibold text-[#860000] mt-8 mb-4">12. Uluslararası Veri Aktarımı</h2>
             <p>
               Kişisel verileriniz, hizmet sağlayıcılarımız aracılığıyla yurt dışına aktarılabilir.
-              Bu durumda, KVKK'nın 9. maddesi kapsamında gerekli güvenlik önlemleri alınır ve
+              Bu durumda, KVKK&apos;nın 9. maddesi kapsamında gerekli güvenlik önlemleri alınır ve
               uygun sözleşmeler yapılır.
             </p>
 
@@ -194,12 +198,12 @@ export default function GizlilikPolitikasi() {
 
         {/* Back to Home */}
         <div className="text-center mt-8">
-          <a
+          <Link
             href="/"
             className="inline-block bg-[#860000] hover:bg-[#b30000] text-white font-semibold py-3 px-8 rounded-lg transition-all transform hover:scale-105"
           >
             Ana Sayfaya Dön
-          </a>
+          </Link>
         </div>
       </div>
     </div>

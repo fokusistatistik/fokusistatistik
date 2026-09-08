@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: 'FOKUS İstatistik ve YZ Danışmanlığı referansları. İş ortaklarımız ve başarı hikayeleri.',
     images: [
       {
-        url: 'https://static.fokusistatistik.com/resimler/fokus-ekosistem-og.jpg',
+        url: '/assets/cdn/logolar/fokuslogo1.png',
         width: 1200,
         height: 630,
         alt: 'FOKUS Referanslar',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Referanslarımız | FOKUS İstatistik',
     description: 'FOKUS İstatistik ve YZ Danışmanlığı referansları.',
-    images: ['https://static.fokusistatistik.com/resimler/fokus-ekosistem-og.jpg'],
+    images: ['/assets/cdn/logolar/fokuslogo1.png'],
   },
   alternates: {
     canonical: 'https://fokusistatistik.com/referanslar',

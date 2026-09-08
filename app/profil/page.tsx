@@ -2,32 +2,32 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
+
+interface UserSession {
+  user: string;
+  email: string;
+}
 
 export default function Profil() {
   const router = useRouter();
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<UserSession | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    const sessionData = localStorage.getItem('fokus520Session');
-    if (!sessionData) {
-      router.push('/');
-      return;
-    }
-
-    try {
-      const parsed = JSON.parse(sessionData);
-      if (!parsed.isLoggedIn || !parsed.token) {
-        router.push('/');
-        return;
-      }
-      setSession(parsed);
-      setIsLoading(false);
-    } catch (e) {
-      console.error('Session parse error:', e);
-      router.push('/');
-    }
+    fetch('/api/auth/session')
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.authenticated) {
+          router.push('/giris');
+          return;
+        }
+        const email: string = data.user?.username || '';
+        setSession({ user: email.split('@')[0], email });
+        setIsLoading(false);
+      })
+      .catch(() => router.push('/giris'));
   }, [router]);
 
   if (isLoading) {
@@ -52,11 +52,11 @@ export default function Profil() {
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <div className="flex items-center gap-6">
             <div className="w-24 h-24 bg-gradient-to-br from-[#860000] to-[#a30000] rounded-full flex items-center justify-center text-white text-3xl font-bold">
-              {(session.user || session.name)?.charAt(0).toUpperCase() || 'U'}
+              {session.user?.charAt(0).toUpperCase() || 'U'}
             </div>
             <div className="flex-1">
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                {session.user || session.name || 'Kullanıcı'}
+                {session.user || 'Kullanıcı'}
               </h1>
               <p className="text-gray-600">{session.email}</p>
             </div>
@@ -81,7 +81,7 @@ export default function Profil() {
                 </label>
                 <input
                   type="text"
-                  value={session.user?.name || ''}
+                  value={session.user || ''}
                   disabled={!isEditing}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#860000] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                 />
@@ -93,7 +93,7 @@ export default function Profil() {
                 </label>
                 <input
                   type="email"
-                  value={session.user?.email || ''}
+                  value={session.email || ''}
                   disabled
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
                 />
@@ -154,12 +154,12 @@ export default function Profil() {
             </div>
             <h3 className="font-semibold text-gray-900 mb-2">Siparişlerim</h3>
             <p className="text-sm text-gray-600 mb-4">Aktif ve geçmiş siparişleriniz</p>
-            <a
+            <Link
               href="/siparisler"
               className="text-[#860000] hover:underline text-sm font-medium"
             >
               Görüntüle →
-            </a>
+            </Link>
           </div>
 
           <div className="bg-white rounded-xl shadow p-6 hover:shadow-lg transition-shadow">
@@ -168,12 +168,12 @@ export default function Profil() {
             </div>
             <h3 className="font-semibold text-gray-900 mb-2">Asistanlarım</h3>
             <p className="text-sm text-gray-600 mb-4">Aktif sanal asistanlarınız</p>
-            <a
+            <Link
               href="/sanalasistanlar"
               className="text-[#860000] hover:underline text-sm font-medium"
             >
               İncele →
-            </a>
+            </Link>
           </div>
 
           <div className="bg-white rounded-xl shadow p-6 hover:shadow-lg transition-shadow">

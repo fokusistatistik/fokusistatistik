@@ -2,7 +2,8 @@ import { CheckCircle2, X } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { assistantsData, type AssistantData, type AssistantPackage } from '@/lib/assistantsData';
+import { assistantsData } from '@/lib/assistantsData';
+import { BreadcrumbSchema } from '@/app/components/StructuredData';
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
@@ -90,6 +91,14 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
     : [];
 
   return (
+    <>
+    <BreadcrumbSchema
+      items={[
+        { name: 'Ana Sayfa', url: 'https://fokusistatistik.com' },
+        { name: 'Sanal Asistanlar', url: 'https://fokusistatistik.com/sanalasistanlar' },
+        { name: displayAssistant.name, url: `https://fokusistatistik.com/sanalasistanlar/${assistantId}` },
+      ]}
+    />
     <div className="min-h-screen flex flex-col">
 
       <main className="flex-grow">
@@ -305,6 +314,7 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
 
 
     </div>
+    </>
   );
 }
 

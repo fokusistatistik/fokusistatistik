@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ServiceSchema } from '@/app/components/StructuredData';
+import { ServiceSchema, BreadcrumbSchema } from '@/app/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Yapay Zeka Danışmanlığı | AI Stratejisi, ChatGPT Entegrasyonu, Dijital Dönüşüm',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     url: 'https://fokusistatistik.com/yapay-zeka-danismanligi',
     images: [
       {
-        url: 'https://static.fokusistatistik.com/resimler/fokus-ekosistem-og.jpg',
+        url: '/assets/cdn/logolar/fokuslogo1.png',
         width: 1200,
         height: 630,
         alt: 'FOKUS Yapay Zeka Danışmanlığı',
@@ -49,6 +49,12 @@ export default function YapayZekaDanismanligi() {
         description="22 yıllık deneyim ve akademik uzmanlıkla yapay zeka danışmanlığı hizmetleri. ChatGPT entegrasyonu, veri bilimi, machine learning stratejileri ve dijital dönüşüm çözümleri."
         url="https://fokusistatistik.com/yapay-zeka-danismanligi"
       />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Ana Sayfa', url: 'https://fokusistatistik.com' },
+          { name: 'Yapay Zeka Danışmanlığı', url: 'https://fokusistatistik.com/yapay-zeka-danismanligi' },
+        ]}
+      />
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Hero Section */}
@@ -57,7 +63,7 @@ export default function YapayZekaDanismanligi() {
             <div className="w-24 h-24 bg-gradient-to-br from-[#860000] to-[#a30000] rounded-full flex items-center justify-center shadow-xl p-4">
               <div className="relative w-full h-full">
                 <Image
-                  src="https://static.fokusistatistik.com/resimler/logobeyaz.png"
+                  src="/assets/cdn/resimler/logobeyaz.png"
                   alt="FOKUS Logo"
                   fill
                   className="object-contain"
@@ -376,7 +382,7 @@ export default function YapayZekaDanismanligi() {
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Ölçülebilir Sonuçlar</h3>
                 <p className="text-gray-600 text-sm">
-                  Her projede somut, ölçülebilir KPI'lar belirliyoruz ve raporluyoruz
+                  Her projede somut, ölçülebilir KPI&apos;lar belirliyoruz ve raporluyoruz
                 </p>
               </div>
             </div>

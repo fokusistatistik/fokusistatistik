@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import { Clock, ArrowRight } from 'lucide-react';
+import { BreadcrumbSchema } from '@/app/components/StructuredData';
 
 // Force dynamic rendering so new blogs appear immediately
 export const dynamic = 'force-dynamic';
@@ -69,6 +71,13 @@ async function getBlogs(): Promise<Blog[]> {
 export default async function BlogPage() {
   const blogPosts = await getBlogs();
   return (
+    <>
+    <BreadcrumbSchema
+      items={[
+        { name: 'Ana Sayfa', url: 'https://fokusistatistik.com' },
+        { name: 'Blog', url: 'https://fokusistatistik.com/blog' },
+      ]}
+    />
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section - Minimal & Clean */}
       <section className="bg-white border-b border-gray-200 py-12 px-4">
@@ -93,10 +102,12 @@ export default async function BlogPage() {
             >
               {/* Cover Image - 2:1 aspect ratio (1200x600 px önerilen) - Kompakt */}
               <div className="relative overflow-hidden bg-gray-100" style={{ aspectRatio: '2/1' }}>
-                <img
-                  src={post.coverImage || post.image || 'https://static.fokusistatistik.com/logolar/fokuslogo1.png'}
+                <Image
+                  src={post.coverImage || post.image || '/assets/cdn/logolar/fokuslogo1.png'}
                   alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  fill
+                  unoptimized
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
 
@@ -145,15 +156,18 @@ export default async function BlogPage() {
             >
               Ücretsiz Danışmanlık
             </Link>
+            {/* Analiz formu şimdilik aktif değil, sonradan aktif edilebilir
             <Link
               href="/analiz-formu"
               className="bg-white hover:bg-gray-50 text-gray-800 font-semibold py-4 px-8 rounded-lg transition-all border-2 border-gray-200"
             >
               İhtiyaç Analizi
             </Link>
+            */}
           </div>
         </div>
       </section>
     </div>
+    </>
   );
 }

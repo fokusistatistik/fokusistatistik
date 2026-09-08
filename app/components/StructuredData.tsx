@@ -1,4 +1,8 @@
-import Script from 'next/script';
+// Not: next/script'in Script bileşeni yerine bilinçli olarak düz <script> etiketi
+// kullanılıyor. Script bileşeni JSON-LD'yi ham SSR HTML'ine değil, RSC payload'ına
+// gömüyor ve sadece client-side hydration sonrası DOM'a ekliyor — bu da JavaScript
+// çalıştırmayan crawler'ların (GEO için kritik GPTBot, ClaudeBot, PerplexityBot vb.
+// ve Google'ın ilk tarama dalgası) structured data'yı hiç görememesine yol açıyor.
 
 interface OrganizationSchemaProps {
   type?: 'Organization' | 'LocalBusiness' | 'ProfessionalService';
@@ -13,8 +17,8 @@ export function OrganizationSchema({ type = 'ProfessionalService' }: Organizatio
     description:
       'Yapay zeka tabanlı sanal asistanlar, veri analizi, istatistiksel danışmanlık ve dijital dönüşüm çözümleri sunuyoruz. 9 farklı sanal asistan ile iş süreçlerinizi otomatikleştirin.',
     url: 'https://fokusistatistik.com',
-    logo: 'https://static.fokusistatistik.com/resimler/logobeyaz.png',
-    image: 'https://static.fokusistatistik.com/resimler/fokuslogo1.png',
+    logo: 'https://fokusistatistik.com/assets/cdn/resimler/logobeyaz.png',
+    image: 'https://fokusistatistik.com/assets/cdn/logolar/fokuslogo1.png',
     email: 'bilgi@fokusistatistik.com',
     telephone: '+905354040712',
     address: {
@@ -53,8 +57,30 @@ export function OrganizationSchema({ type = 'ProfessionalService' }: Organizatio
   };
 
   return (
-    <Script
+    <script
       id="organization-schema"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export function WebsiteSchema() {
+  // Not: potentialAction/SearchAction eklenmedi çünkü site içi bir arama
+  // sayfası yok (Header'daki arama, Google'a yönlendiren harici bir link) —
+  // Google'ın Sitelinks Arama Kutusu şartı site içi arama sonucu döndürmeyi
+  // gerektirir, harici yönlendirme bu şartı sağlamaz.
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'FOKUS İstatistik ve YZ Danışmanlığı',
+    url: 'https://fokusistatistik.com',
+    inLanguage: 'tr-TR',
+  };
+
+  return (
+    <script
+      id="website-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
@@ -78,7 +104,7 @@ export function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
   };
 
   return (
-    <Script
+    <script
       id="breadcrumb-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -106,7 +132,7 @@ export function ServiceSchema({ name, description, url, image }: ServiceSchemaPr
     },
     serviceType: name,
     url,
-    image: image || 'https://static.fokusistatistik.com/resimler/fokuslogo1.png',
+    image: image || 'https://fokusistatistik.com/assets/cdn/logolar/fokuslogo1.png',
     areaServed: {
       '@type': 'Country',
       name: 'Türkiye',
@@ -114,7 +140,7 @@ export function ServiceSchema({ name, description, url, image }: ServiceSchemaPr
   };
 
   return (
-    <Script
+    <script
       id="service-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -141,7 +167,7 @@ export function FAQSchema({ faqs }: FAQSchemaProps) {
   };
 
   return (
-    <Script
+    <script
       id="faq-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -186,7 +212,7 @@ export function SoftwareAppSchema({
   };
 
   return (
-    <Script
+    <script
       id="software-app-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}

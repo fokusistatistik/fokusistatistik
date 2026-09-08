@@ -8,54 +8,54 @@ export default function Footer() {
     {
       name: 'Instagram',
       url: 'https://www.instagram.com/fokusistatistik/',
-      icon: 'https://static.fokusistatistik.com/resimler/instagram.png',
+      icon: '/assets/cdn/resimler/instagram.png',
     },
     {
       name: 'E-posta',
       url: 'mailto:bilgi@fokusistatistik.com',
-      icon: 'https://static.fokusistatistik.com/resimler/eposta.png',
+      icon: '/assets/cdn/resimler/eposta.png',
     },
     {
       name: 'Facebook',
       url: 'https://www.facebook.com/profile.php?id=61577855105088',
-      icon: 'https://static.fokusistatistik.com/resimler/facebook.png',
+      icon: '/assets/cdn/resimler/facebook.png',
     },
     {
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/company/fokusistatistik',
-      icon: 'https://static.fokusistatistik.com/resimler/ln.png',
+      icon: '/assets/cdn/resimler/ln.png',
     },
     {
       name: 'Twitter',
       url: 'https://twitter.com/fokusistatistik',
-      icon: 'https://static.fokusistatistik.com/resimler/twitter.png',
+      icon: '/assets/cdn/resimler/twitter.png',
     },
     {
       name: 'Telegram',
       url: 'https://t.me/fokusistatistikbot',
-      icon: 'https://static.fokusistatistik.com/resimler/telegram.png',
+      icon: '/assets/cdn/resimler/telegram.png',
     },
     /*
     {
       name: 'Asistanlar',
       url: 'https://asistan.fokusistatistik.com/',
-      icon: 'https://static.fokusistatistik.com/resimler/asistanfokus.png',
+      icon: '/assets/cdn/resimler/asistanfokus.png',
     },
     */
     {
       name: 'WhatsApp',
       url: 'https://wa.me/905354040712?text=merhaba%20fokusistatistik',
-      icon: 'https://static.fokusistatistik.com/resimler/whatsapp.png',
+      icon: '/assets/cdn/resimler/whatsapp.png',
     },
     {
       name: 'YouTube',
       url: 'https://www.youtube.com/@fokusistatistik',
-      icon: 'https://static.fokusistatistik.com/resimler/youtube.png',
+      icon: '/assets/cdn/resimler/youtube.png',
     },
     {
       name: 'GitHub',
       url: 'https://github.com/fokusistatistik',
-      icon: 'https://static.fokusistatistik.com/resimler/github.png',
+      icon: '/assets/cdn/resimler/github.png',
     },
   ];
 

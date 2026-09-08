@@ -1,10 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkRateLimit, getClientIP } from '@/lib/rateLimiter';
+import { getJwtSecret } from '@/lib/jwt';
 import { SignJWT } from 'jose';
+import { timingSafeEqual } from 'crypto';
+
+function safeCompare(a: string, b: string): boolean {
+  const bufA = Buffer.from(a);
+  const bufB = Buffer.from(b);
+  if (bufA.length !== bufB.length) {
+    // Sabit zamanlı karşılaştırma için uzunluk kaçsa bile bir compare çalıştır
+    timingSafeEqual(bufA, bufA);
+    return false;
+  }
+  return timingSafeEqual(bufA, bufB);
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const { username, password } = await request.json();
+    const { username: email, password } = await request.json();
 
     // Güvenlik: IP bazlı rate limiting (5 deneme / 15 dakika)
     const clientIP = getClientIP(request);
@@ -20,9 +33,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Güvenlik: Username bazlı rate limiting (10 deneme / saat)
-    if (username) {
-      const userRateLimit = checkRateLimit(`login:user:${username}`, {
+    // Güvenlik: Email bazlı rate limiting (10 deneme / saat)
+    if (email) {
+      const userRateLimit = checkRateLimit(`login:user:${email}`, {
         maxRequests: 10,
         windowMs: 60 * 60 * 1000,
       });
@@ -36,7 +49,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Güvenlik: Input validation
-    if (!username || !password || typeof username !== 'string' || typeof password !== 'string') {
+    if (!email || !password || typeof email !== 'string' || typeof password !== 'string') {
       return NextResponse.json(
         { success: false, message: 'Geçersiz giriş bilgileri' },
         { status: 400 }
@@ -46,19 +59,18 @@ export async function POST(request: NextRequest) {
     // Güvenlik: 1 saniye gecikme (brute force zorlaştırma)
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    // n8n webhook'a istek gönder
-    const webhookUrl = 'https://n8n.fokusistatistik.com/webhook/fokusistatistikblog';
+    // Env tabanlı admin doğrulaması (n8n bypass)
+    const adminEmail = process.env.ADMIN_EMAIL;
+    const adminPassword = process.env.ADMIN_PASSWORD;
 
-    const response = await fetch(webhookUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-    });
+    if (!adminEmail || !adminPassword) {
+      throw new Error('ADMIN_EMAIL / ADMIN_PASSWORD tanımlı değil');
+    }
 
-    // 200 response kontrolü - başka status kodlarında giriş başarısız
-    if (response.status !== 200) {
+    const emailMatches = safeCompare(email, adminEmail);
+    const passwordMatches = safeCompare(password, adminPassword);
+
+    if (!emailMatches || !passwordMatches) {
       return NextResponse.json(
         { success: false, message: 'Giriş başarısız' },
         { status: 401 }
@@ -66,11 +78,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Güvenlik: Güçlü JWT token oluştur
-    const secret = new TextEncoder().encode(
-      process.env.JWT_SECRET || 'default-secret-change-in-production-12345678901234567890'
-    );
+    const secret = getJwtSecret();
 
-    const sessionToken = await new SignJWT({ username, role: 'admin' })
+    const sessionToken = await new SignJWT({ username: email, role: 'admin' })
       .setProtectedHeader({ alg: 'HS256' })
       .setIssuedAt()
       .setExpirationTime('7d')
@@ -81,7 +91,7 @@ export async function POST(request: NextRequest) {
     const res = NextResponse.json({
       success: true,
       message: 'Giriş başarılı',
-      user: { username },
+      user: { username: email },
     });
 
     // HttpOnly cookie ile session token'ı sakla

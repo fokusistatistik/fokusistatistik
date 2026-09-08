@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     description: '9 farklı FOKUS sanal asistan ile iş süreçlerinizi otomatikleştirin. Yapay zeka destekli dijital asistanlar ile verimliliği artırın, maliyeti azaltın.',
     images: [
       {
-        url: 'https://static.fokusistatistik.com/resimler/fokus-ekosistem-og.jpg',
+        url: '/assets/cdn/logolar/fokuslogo1.png',
         width: 1200,
         height: 630,
         alt: 'FOKUS Sanal Asistanlar Ekosistemi',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'FOKUS Sanal Asistanlar - 9 Farklı AI Asistan',
     description: '9 farklı FOKUS sanal asistan ile iş süreçlerinizi otomatikleştirin.',
-    images: ['https://static.fokusistatistik.com/resimler/fokus-ekosistem-og.jpg'],
+    images: ['/assets/cdn/logolar/fokuslogo1.png'],
   },
   alternates: {
     canonical: 'https://fokusistatistik.com/sanalasistanlar',

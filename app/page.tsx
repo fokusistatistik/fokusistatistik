@@ -2,20 +2,16 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
 import {
   TrendingUp,
   Users,
-  Shield,
   Zap,
   BarChart3,
-  CheckCircle2,
   ArrowRight,
   Star,
   Clock,
   Target,
 } from 'lucide-react';
-// import RandevuToast from './components/RandevuToast';
 
 // Note: metadata is handled in layout.tsx for this page
 
@@ -27,55 +23,55 @@ export default function Home() {
       code: 'fokus001',
       name: 'FOKUS001',
       title: 'Yönetici Asistanı',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus001.png',
+      image: '/assets/cdn/asistanlar/fokus001.png',
     },
     {
       code: 'fokus216',
       name: 'FOKUS216',
       title: 'Müşteri Hizmetleri',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus216.png',
+      image: '/assets/cdn/asistanlar/fokus216.png',
     },
     {
       code: 'fokus314',
       name: 'FOKUS314',
       title: 'Veri Analisti',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus314.png',
+      image: '/assets/cdn/asistanlar/fokus314.png',
     },
     {
       code: 'fokus520',
       name: 'FOKUS520',
       title: 'Pazarlama & Lead',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus520.png',
+      image: '/assets/cdn/asistanlar/fokus520.png',
     },
     {
       code: 'fokus618',
       name: 'FOKUS618',
       title: 'Finans & Fatura',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus618.png',
+      image: '/assets/cdn/asistanlar/fokus618.png',
     },
     {
       code: 'fokus707',
       name: 'FOKUS707',
       title: 'İnsan Kaynakları',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus707.png',
+      image: '/assets/cdn/asistanlar/fokus707.png',
     },
     {
       code: 'fokus717',
       name: 'FOKUS717',
       title: 'İçerik Tasarımı',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus717.png',
+      image: '/assets/cdn/asistanlar/fokus717.png',
     },
     {
       code: 'fokus808',
       name: 'FOKUS808',
       title: 'Sosyal Medya & İletişim',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus808.png',
+      image: '/assets/cdn/asistanlar/fokus808.png',
     },
     {
       code: 'fokus999',
       name: 'FOKUS999',
       title: 'Joker Asistan',
-      image: 'https://static.fokusistatistik.com/asistanlar/fokus999.png',
+      image: '/assets/cdn/asistanlar/fokus999.png',
     },
   ];
 
@@ -120,9 +116,9 @@ export default function Home() {
         {/* Assistants Section */}
         <section className="pt-12 pb-8 bg-white mt-4">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl lg:text-4xl font-bold text-center mb-10 text-gray-800">
+            <h1 className="text-3xl lg:text-4xl font-bold text-center mb-10 text-gray-800">
               FOKUS Ekosistemi | <span className="text-[#860000]">Modüler Sanal Asistanlar Çağı</span>
-            </h2>
+            </h1>
 
             <div className="flex flex-wrap justify-center items-center gap-5 max-w-5xl mx-auto">
               {assistants.map((assistant) => (
@@ -131,7 +127,7 @@ export default function Home() {
                   href={`/sanalasistanlar/${assistant.code}`}
                   className="flex flex-col items-center text-center group"
                 >
-                  <div className="relative w-[115px] h-[115px] mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <div className="relative w-[99px] h-[99px] mb-3 group-hover:scale-110 transition-transform duration-300">
                     <Image
                       src={assistant.image}
                       alt={assistant.title}
@@ -139,7 +135,7 @@ export default function Home() {
                       className="object-contain rounded-[50%]"
                     />
                   </div>
-                  <span className="font-semibold text-gray-700 group-hover:text-[#860000] transition text-sm">
+                  <span className="font-semibold text-gray-700 group-hover:text-[#860000] transition text-[13px]">
                     {assistant.title}
                   </span>
                   <span className="text-xs text-gray-500 italic mt-1">{assistant.name}</span>
@@ -149,7 +145,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Hero CTA Section */}
+        {/* Hero CTA Section - kullanıcı isteğiyle gizlendi (2026-09-08), sonradan aktif edilebilir
         <section className="relative bg-gradient-to-br from-[#860000] via-[#a03333] to-[#6b0000] text-white py-12 lg:py-14 my-6 mx-4 lg:mx-auto max-w-7xl rounded-3xl shadow-2xl overflow-hidden">
           <div className="absolute inset-0 bg-black/10"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -164,20 +160,6 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-                {/* 
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 shadow-xl flex-1 max-w-md border border-white/20">
-                  <Link
-                    href="/analiz-formu"
-                    className="block bg-white text-[#860000] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-200 mb-3 shadow-lg"
-                  >
-                    Ücretsiz İhtiyaç Analizi
-                  </Link>
-                  <p className="text-sm text-gray-100">
-                    Hangi sanal asistana ihtiyacınız olduğunu anında analiz edelim.
-                  </p>
-                </div>
-                */}
-
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 shadow-xl flex-1 max-w-md border border-white/20 w-full">
                   <a
                     href="https://asistan.fokusistatistik.com/ucretsiz.html"
@@ -195,6 +177,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        */}
 
         {/* Impact Section */}
         <section className="py-16 bg-white">
@@ -238,7 +221,7 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-6">
               <h2 className="text-2xl lg:text-3xl font-semibold mb-3 text-gray-800">
-                FOKUS Ekosistemi'ni <span className="text-[#860000]">Keşfedin</span>
+                FOKUS Ekosistemi&apos;ni <span className="text-[#860000]">Keşfedin</span>
               </h2>
               <p className="text-base text-gray-600">İşletmenizi dijitale taşıyan sanal asistanları tanıyın</p>
             </div>

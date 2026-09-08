@@ -2,6 +2,7 @@
 
 import { Suspense, useState, FormEvent, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 
 
 // Force dynamic rendering to avoid pre-render issues with useSearchParams
@@ -229,9 +230,11 @@ function SurveyContent() {
             rel="noopener noreferrer"
             className="inline-block opacity-75 hover:opacity-100 transition-opacity"
           >
-            <img
-              src="https://static.fokusistatistik.com/logolar/fokuslogo1.png"
+            <Image
+              src="/assets/cdn/logolar/fokuslogo1.png"
               alt="FOKUS İstatistik"
+              width={55}
+              height={24}
               className="h-6 w-auto"
             />
           </a>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import AuthGuard from '@/components/admin/AuthGuard';
 import {
   Plus,
@@ -83,7 +84,7 @@ export default function AdminDashboard() {
       });
       const data = await response.json();
       alert(data.message || 'Yedekleme başarılı!');
-    } catch (error) {
+    } catch {
       alert('Yedekleme başarısız oldu');
     }
   };
@@ -107,7 +108,7 @@ export default function AdminDashboard() {
       a.download = `blogs-backup-${new Date().toISOString().split('T')[0]}.json`;
       a.click();
       URL.revokeObjectURL(url);
-    } catch (error) {
+    } catch {
       alert('Dışa aktarma başarısız oldu');
     }
   };
@@ -116,8 +117,8 @@ export default function AdminDashboard() {
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = 'application/json';
-    input.onchange = async (e: any) => {
-      const file = e.target.files[0];
+    input.onchange = async (e: Event) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
       if (!file) return;
 
       try {
@@ -137,7 +138,7 @@ export default function AdminDashboard() {
         } else {
           alert(data.error || 'Geri yükleme başarısız');
         }
-      } catch (error) {
+      } catch {
         alert('Dosya okunamadı veya geçersiz format');
       }
     };
@@ -324,9 +325,12 @@ export default function AdminDashboard() {
                     <div className="flex items-start gap-4">
                       {/* Cover Image */}
                       {blog.coverImage && (
-                        <img
+                        <Image
                           src={blog.coverImage}
                           alt={blog.title}
+                          width={96}
+                          height={96}
+                          unoptimized
                           className="w-24 h-24 object-cover rounded-lg flex-shrink-0"
                         />
                       )}

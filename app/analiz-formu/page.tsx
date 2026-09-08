@@ -142,7 +142,7 @@ export default function AnalizFormu() {
     }
   ];
 
-  const handleCheckboxChange = (categoryIdx: number, itemIdx: number, value: string) => {
+  const handleCheckboxChange = (categoryIdx: number, itemIdx: number) => {
     const uniqueId = `${categoryIdx}-${itemIdx}`;
     setFormData(prev => ({
       ...prev,
@@ -188,10 +188,9 @@ export default function AnalizFormu() {
       }
 
       // 3. reCAPTCHA v3 kontrolü (Opsiyonel - Graceful Degradation)
-      let recaptchaToken = null;
       if (executeRecaptcha) {
         try {
-          recaptchaToken = await executeRecaptcha('analysis_form');
+          await executeRecaptcha('analysis_form');
         } catch (error) {
           console.warn('⚠️ reCAPTCHA kullanılamıyor - Güvenliksiz modda devam ediliyor', error);
         }
@@ -270,7 +269,7 @@ export default function AnalizFormu() {
           <div className="text-center">
             <div className="mb-6 flex justify-center">
               <Image
-                src="https://static.fokusistatistik.com/resimler/favicon.png"
+                src="/assets/cdn/resimler/favicon.png"
                 alt="FOKUS Logo"
                 width={96}
                 height={96}
@@ -319,7 +318,7 @@ export default function AnalizFormu() {
                         <input
                           type="checkbox"
                           checked={formData.secilenler.includes(uniqueId)}
-                          onChange={() => handleCheckboxChange(idx, itemIdx, item.value)}
+                          onChange={() => handleCheckboxChange(idx, itemIdx)}
                           className="mt-1 w-4 h-4 text-[#860000] border-gray-300 rounded focus:ring-[#860000]"
                         />
                         <span className="text-gray-700 text-sm">{item.label}</span>

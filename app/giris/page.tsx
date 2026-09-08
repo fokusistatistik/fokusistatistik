@@ -1,112 +1,41 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState, Suspense } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { Chrome, Mail, Lock, ArrowRight, Shield, Zap, User } from 'lucide-react';
+import { Lock, ArrowRight, Shield, Zap, Mail, AlertCircle } from 'lucide-react';
 
-function GirisContent() {
+export default function GirisPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [statusMessage, setStatusMessage] = useState('');
 
-  useEffect(() => {
-    // URL'den hata ve success mesajlarını kontrol et
-    const error = searchParams?.get('error');
-    const authSuccess = searchParams?.get('auth');
-    const sessionData = searchParams?.get('session');
-
-    if (error) {
-      setStatusMessage(`❌ Giriş hatası: ${error}`);
-      console.error('❌ Login error:', error);
-    } else if (authSuccess === 'success' && sessionData) {
-      try {
-        const decoded = JSON.parse(decodeURIComponent(sessionData));
-
-        // Session'ı localStorage'a kaydet
-        const fullSessionData = {
-          ...decoded.userInfo,
-          user: decoded.user,
-          email: decoded.email,
-          userId: decoded.userId,
-          picture: decoded.picture,
-          isNewUser: decoded.isNewUser,
-          token: generateSecureToken(),
-          timestamp: Date.now(),
-          isLoggedIn: true,
-          authMethod: 'google'
-        };
-
-        localStorage.setItem('fokus520Session', JSON.stringify(fullSessionData));
-
-        // Yeni kullanıcı mı kontrol et
-        const isNewUser = decoded.isNewUser === true;
-
-        if (isNewUser) {
-          setStatusMessage(`✅ Hoş geldiniz ${decoded.user.split(' ')[0]}! Hesabınız oluşturuldu.`);
-          // Yeni kullanıcılar dashboard'a yönlendirilir
-          setTimeout(() => {
-            router.push('/dashboard');
-          }, 1500);
-        } else {
-          setStatusMessage(`✅ Tekrar hoş geldiniz ${decoded.user.split(' ')[0]}!`);
-          // Eski kullanıcılar anasayfaya yönlendirilir
-          setTimeout(() => {
-            router.push('/');
-          }, 1500);
-        }
-
-      } catch (e) {
-        console.error('❌ Session parse error:', e);
-        setStatusMessage('❌ Session verisi işlenemedi');
-      }
-    }
-
-    // Check if already logged in
-    const session = localStorage.getItem('fokus520Session');
-    if (session) {
-      try {
-        const parsed = JSON.parse(session);
-        if (parsed.isLoggedIn && parsed.token) {
-          router.push('/dashboard');
-        }
-      } catch (e) {
-        localStorage.removeItem('fokus520Session');
-      }
-    }
-  }, [searchParams, router]);
-
-  const handleGoogleSignIn = () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
     setIsLoading(true);
-    setStatusMessage('Google ile giriş başlatılıyor...');
 
-    // API route'a yönlendir
-    window.location.href = '/api/auth/google';
-  };
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: email, password }),
+      });
 
-  const handleAdminLogin = () => {
-    setIsLoading(true);
-    setStatusMessage('✅ Admin olarak giriş yapılıyor...');
+      const data = await response.json();
 
-    // Create temporary admin session
-    const adminSession = {
-      user: 'Admin User',
-      email: 'admin@fokusistatistik.com',
-      userId: 'admin-temp-001',
-      picture: 'https://static.fokusistatistik.com/resimler/logobeyaz.png',
-      isNewUser: false,
-      token: generateSecureToken(),
-      timestamp: Date.now(),
-      isLoggedIn: true,
-      authMethod: 'admin-bypass'
-    };
-
-    localStorage.setItem('fokus520Session', JSON.stringify(adminSession));
-    setTimeout(() => {
-      router.push('/dashboard');
-    }, 1000);
+      if (data.success) {
+        router.push('/dashboard');
+      } else {
+        setError(data.message || 'Giriş başarısız');
+      }
+    } catch {
+      setError('Bir hata oluştu. Lütfen tekrar deneyin.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -131,7 +60,7 @@ function GirisContent() {
                 <div>
                   <h3 className="font-bold text-lg text-gray-800 mb-1">Hızlı Başlangıç</h3>
                   <p className="text-gray-600">
-                    Google hesabınızla giriş yapın, 30 saniyede kullanmaya başlayın.
+                    Hesabınızla giriş yapın, hemen kullanmaya başlayın.
                   </p>
                 </div>
               </div>
@@ -173,48 +102,62 @@ function GirisContent() {
                 <p className="text-gray-600">Giriş yaparak devam edin</p>
               </div>
 
-              {/* Status Message */}
-              {statusMessage && (
-                <div className={`mb-4 p-4 rounded-lg text-center ${statusMessage.startsWith('✅') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                  }`}>
-                  {statusMessage}
+              {error && (
+                <div className="mb-4 p-4 rounded-lg bg-red-50 border border-red-200 flex items-start gap-3">
+                  <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-red-800">{error}</p>
                 </div>
               )}
 
-              <div className="space-y-4">
-                {/* Google Login */}
-                <button
-                  onClick={handleGoogleSignIn}
-                  disabled={isLoading}
-                  className="w-full flex items-center justify-center space-x-3 bg-white border-2 border-gray-300 hover:border-[#860000] text-gray-700 font-semibold py-4 px-6 rounded-xl transition group disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isLoading ? (
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#860000]"></div>
-                  ) : (
-                    <>
-                      <div className="relative w-5 h-5">
-                        <Image
-                          src="https://static.fokusistatistik.com/resimler/google.png"
-                          alt="Google"
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                      <span>Google ile Giriş Yap</span>
-                    </>
-                  )}
-                </button>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    E-posta
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Mail className="h-5 w-5 text-gray-400" />
+                    </div>
+                    <input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#860000] focus:border-transparent outline-none transition"
+                      placeholder="ornek@fokusistatistik.com"
+                    />
+                  </div>
+                </div>
 
-                {/* Admin Login (Temporary) */}
+                <div>
+                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                    Şifre
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Lock className="h-5 w-5 text-gray-400" />
+                    </div>
+                    <input
+                      id="password"
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#860000] focus:border-transparent outline-none transition"
+                      placeholder="••••••••"
+                    />
+                  </div>
+                </div>
+
                 <button
-                  onClick={handleAdminLogin}
+                  type="submit"
                   disabled={isLoading}
-                  className="w-full flex items-center justify-center space-x-3 bg-gray-100 border-2 border-gray-400 hover:border-gray-600 text-gray-700 font-semibold py-4 px-6 rounded-xl transition group disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-[#860000] text-white py-3 px-4 rounded-lg font-semibold hover:bg-[#a30000] transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <User className="w-5 h-5 text-gray-600" />
-                  <span>Admin Girişi (Geçici)</span>
+                  {isLoading ? 'Giriş yapılıyor...' : 'Giriş Yap'}
                 </button>
-              </div>
+              </form>
 
               <div className="mt-8 text-center">
                 <p className="text-sm text-gray-600">
@@ -227,19 +170,6 @@ function GirisContent() {
                     Gizlilik Politikası
                   </Link>
                   &apos;nı kabul etmiş olursunuz.
-                </p>
-              </div>
-
-              <div className="mt-6 pt-6 border-t border-gray-200 text-center">
-                <p className="text-sm text-gray-600">
-                  Hesabınız yok mu?{' '}
-                  <button
-                    onClick={handleGoogleSignIn}
-                    disabled={isLoading}
-                    className="text-[#860000] font-semibold hover:underline disabled:opacity-50"
-                  >
-                    Hemen Kaydolun
-                  </button>
                 </p>
               </div>
             </div>
@@ -262,30 +192,4 @@ function GirisContent() {
       </main>
     </div>
   );
-}
-
-// Suspense wrapper for the page
-export default function GirisPage() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#860000] mx-auto"></div>
-          <p className="mt-4 text-gray-600">Yükleniyor...</p>
-        </div>
-      </div>
-    }>
-      <GirisContent />
-    </Suspense>
-  );
-}
-
-// Helper function
-function generateSecureToken(): string {
-  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
-    return Array.from(crypto.getRandomValues(new Uint8Array(32)), byte =>
-      byte.toString(16).padStart(2, '0')).join('');
-  } else {
-    return Date.now().toString(36) + Math.random().toString(36).substr(2);
-  }
 }

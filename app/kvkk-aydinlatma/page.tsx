@@ -1,9 +1,13 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'KVKK Aydınlatma Metni | FOKUS İstatistik',
   description: 'FOKUS İstatistik olarak kişisel verilerinizi KVKK ve gizlilik ilkelerine uygun olarak işliyor, şeffaf ve güvenli bir veri yönetimi sağlıyoruz.',
   keywords: 'KVKK, aydınlatma metni, kişisel veri koruma, veri sorumlusu, gizlilik, veri güvenliği',
+  alternates: {
+    canonical: 'https://fokusistatistik.com/kvkk-aydinlatma',
+  },
 };
 
 export default function KVKKAydinlatma() {
@@ -17,7 +21,7 @@ export default function KVKKAydinlatma() {
 
           <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
             <p>
-              FOKUS İstatistik olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca,
+              FOKUS İstatistik olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu (&quot;KVKK&quot;) uyarınca,
               veri sorumlusu sıfatıyla kişisel verilerinizi ilgili mevzuata uygun şekilde işliyor ve koruyoruz.
             </p>
 
@@ -55,7 +59,7 @@ export default function KVKKAydinlatma() {
 
             <h2 className="text-2xl font-semibold text-[#860000] mt-8 mb-4">4. Hukuki Dayanak</h2>
             <p>
-              Verileriniz, KVKK'nın 5. ve 6. maddelerinde belirtilen açık rızanız, sözleşme kurulması/ifası,
+              Verileriniz, KVKK&apos;nın 5. ve 6. maddelerinde belirtilen açık rızanız, sözleşme kurulması/ifası,
               meşru menfaat, hukuki yükümlülüklerin yerine getirilmesi gibi nedenlerle işlenebilir.
             </p>
 
@@ -73,7 +77,7 @@ export default function KVKKAydinlatma() {
             </p>
 
             <h2 className="text-2xl font-semibold text-[#860000] mt-8 mb-4">7. KVKK Kapsamındaki Haklarınız</h2>
-            <p>KVKK'nın 11. maddesi uyarınca;</p>
+            <p>KVKK&apos;nın 11. maddesi uyarınca;</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li>Verinizin işlenip işlenmediğini öğrenme,</li>
               <li>Toplanan veriye erişim ve bilgi isteme,</li>
@@ -91,7 +95,7 @@ export default function KVKKAydinlatma() {
               <a href="mailto:bilgi@fokusistatistik.com" className="text-[#860000] hover:underline">
                 bilgi@fokusistatistik.com
               </a>{' '}
-              adresine e-posta gönderebilir veya KVKK Başvuru Formu'nu doldurup imzalayarak iletebilirsiniz.
+              adresine e-posta gönderebilir veya KVKK Başvuru Formu&apos;nu doldurup imzalayarak iletebilirsiniz.
             </p>
 
             <blockquote className="border-l-4 border-[#860000] pl-6 py-4 my-8 bg-gray-50 rounded-r-lg italic text-gray-600">
@@ -102,12 +106,12 @@ export default function KVKKAydinlatma() {
 
         {/* Back to Home */}
         <div className="text-center mt-8">
-          <a
+          <Link
             href="/"
             className="inline-block bg-[#860000] hover:bg-[#b30000] text-white font-semibold py-3 px-8 rounded-lg transition-all transform hover:scale-105"
           >
             Ana Sayfaya Dön
-          </a>
+          </Link>
         </div>
       </div>
     </div>

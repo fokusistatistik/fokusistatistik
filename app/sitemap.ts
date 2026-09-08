@@ -63,12 +63,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
-    {
-      url: `${baseUrl}/analiz-formu`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.75,
-    },
+    // Analiz formu şimdilik aktif değil, sonradan aktif edilip sitemap'e eklenebilir
+    // {
+    //   url: `${baseUrl}/analiz-formu`,
+    //   lastModified: currentDate,
+    //   changeFrequency: 'monthly' as const,
+    //   priority: 0.75,
+    // },
     {
       url: `${baseUrl}/sss`,
       lastModified: currentDate,
@@ -112,6 +113,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'yearly' as const,
       priority: 0.5,
     },
+    {
+      url: `${baseUrl}/abonelik-yonetimi`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly' as const,
+      priority: 0.3,
+    },
   ];
 
   // Sanal asistan sayfaları
@@ -144,6 +151,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  // Statik (dosya bazlı) blog yazıları - dinamik [slug] sisteminden önce eklenmiş sayfalar
+  const staticBlogSlugs = [
+    'sanal-asistan-vs-gercek-personel',
+    'whatsapp-musteri-hizmetleri-botu',
+    'yapay-zeka-ile-kazanc',
+    'yapay-zeka-maliyet-dusurme',
+  ];
+
+  const staticBlogPages = staticBlogSlugs.map((slug) => ({
+    url: `${baseUrl}/blog/${slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.85,
+  }));
+
   // Dinamik blog yazıları
   let dynamicBlogPages: MetadataRoute.Sitemap = [];
   try {
@@ -161,5 +183,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Error reading blogs for sitemap:', error);
   }
 
-  return [...staticPages, ...assistantPages, ...blogPages, ...dynamicBlogPages];
+  return [...staticPages, ...assistantPages, ...blogPages, ...staticBlogPages, ...dynamicBlogPages];
 }

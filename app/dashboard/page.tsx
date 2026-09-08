@@ -13,39 +13,36 @@ import {
   Bell,
   ChevronRight,
   TrendingUp,
-  Users,
   Clock,
   Star,
   Sparkles,
 } from 'lucide-react';
 
+interface UserSession {
+  user: string;
+  email: string;
+}
+
 export default function Dashboard() {
   const router = useRouter();
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<UserSession | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [activeAssistants, setActiveAssistants] = useState(0);
   const [totalUsage, setTotalUsage] = useState(0);
 
   useEffect(() => {
-    // Check localStorage for session
-    const sessionData = localStorage.getItem('fokus520Session');
-    if (!sessionData) {
-      router.push('/giris');
-      return;
-    }
-
-    try {
-      const parsed = JSON.parse(sessionData);
-      if (!parsed.isLoggedIn || !parsed.token) {
-        router.push('/giris');
-        return;
-      }
-      setSession(parsed);
-      setIsLoading(false);
-    } catch (e) {
-      console.error('Session parse error:', e);
-      router.push('/giris');
-    }
+    fetch('/api/auth/session')
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.authenticated) {
+          router.push('/giris');
+          return;
+        }
+        const email: string = data.user?.username || '';
+        setSession({ user: email.split('@')[0], email });
+        setIsLoading(false);
+      })
+      .catch(() => router.push('/giris'));
   }, [router]);
 
   useEffect(() => {
@@ -170,8 +167,8 @@ export default function Dashboard() {
     },
   ];
 
-  const handleLogout = () => {
-    localStorage.removeItem('fokus520Session');
+  const handleLogout = async () => {
+    await fetch('/api/auth/logout', { method: 'POST' });
     router.push('/');
   };
 
@@ -198,13 +195,13 @@ export default function Dashboard() {
 
               <div className="flex items-center space-x-3">
                 <div className="hidden md:block text-right">
-                  <p className="text-sm font-semibold text-gray-800">{session?.user || session?.name}</p>
+                  <p className="text-sm font-semibold text-gray-800">{session?.user}</p>
                   <p className="text-xs text-gray-500">{session?.email}</p>
                 </div>
 
                 <div className="relative group">
                   <button className="w-10 h-10 rounded-full bg-[#860000] flex items-center justify-center text-white font-bold">
-                    {(session?.user || session?.name)?.charAt(0).toUpperCase()}
+                    {session?.user?.charAt(0).toUpperCase()}
                   </button>
 
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 hidden group-hover:block">
@@ -244,7 +241,7 @@ export default function Dashboard() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold mb-2">
-                Hoş geldiniz, {(session?.user || session?.name)?.split(' ')[0]}! 👋
+                Hoş geldiniz, {session?.user}! 👋
               </h1>
               <p className="text-white/90">
                 Bugün iş süreçlerinizi optimize etmek için hangi asistanı kullanmak istersiniz?

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, DollarSign, Clock, TrendingUp, Users, Calendar, CheckCircle2, XCircle, Zap } from 'lucide-react';
+import { ArrowLeft, Clock, TrendingUp, Users, Calendar, CheckCircle2, Zap } from 'lucide-react';
+import { BreadcrumbSchema } from '@/app/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Sanal Asistan vs Gerçek Personel: 12 Aylık Maliyet Karşılaştırması [2025]',
@@ -33,14 +34,56 @@ export const metadata: Metadata = {
 };
 
 export default function SanalAsistanVsPersonelPage() {
+  const canonicalUrl = 'https://fokusistatistik.com/blog/sanal-asistan-vs-gercek-personel';
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: 'Sanal Asistan vs Gerçek Personel: 12 Aylık Maliyet Karşılaştırması [2025]',
+    description: 'Sanal asistan mı yoksa gerçek personel mi? Detaylı maliyet analizi, verimlilik karşılaştırması ve işletmeniz için doğru seçim rehberi. Gerçek rakamlarla.',
+    image: 'https://fokusistatistik.com/assets/cdn/logolar/fokuslogo1.png',
+    datePublished: '2025-01-17T09:00:00Z',
+    dateModified: '2025-01-17T09:00:00Z',
+    author: {
+      '@type': 'Organization',
+      name: 'FOKUS İstatistik',
+      url: 'https://fokusistatistik.com',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'FOKUS İstatistik',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://fokusistatistik.com/assets/cdn/logolar/fokuslogo1.png',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+    },
+    articleSection: 'Karşılaştırma',
+    timeRequired: 'PT12M',
+    inLanguage: 'tr-TR',
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Ana Sayfa', url: 'https://fokusistatistik.com' },
+          { name: 'Blog', url: 'https://fokusistatistik.com/blog' },
+          { name: 'Sanal Asistan vs Gerçek Personel', url: canonicalUrl },
+        ]}
+      />
       {/* Breadcrumb */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <Link href="/blog" className="inline-flex items-center text-[#860000] hover:text-[#b30000] font-medium">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Blog'a Dön
+            Blog&apos;a Dön
           </Link>
         </div>
       </div>
@@ -440,7 +483,7 @@ export default function SanalAsistanVsPersonelPage() {
                     <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="font-semibold">Maliyet Optimizasyonu Önceliği</p>
-                      <p className="text-sm text-gray-600">Startup'lar, KOBİ'ler, sınırlı bütçe</p>
+                      <p className="text-sm text-gray-600">Startup&apos;lar, KOBİ&apos;ler, sınırlı bütçe</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-2">
@@ -520,7 +563,7 @@ export default function SanalAsistanVsPersonelPage() {
               <ul className="text-gray-700 space-y-2 text-sm">
                 <li>✓ <strong>1. Seviye Destek:</strong> Sanal asistan (SSS, basit talepler) → %70-80 sorguları çözer</li>
                 <li>✓ <strong>2. Seviye Destek:</strong> Gerçek personel (karmaşık sorunlar, özel talepler) → %20-30 sorguları çözer</li>
-                <li>✓ <strong>Sonuç:</strong> Personel sayısını 10'dan 2-3'e düşürme, maliyetlerde %75 azalma, müşteri memnuniyetinde artış</li>
+                <li>✓ <strong>Sonuç:</strong> Personel sayısını 10&apos;dan 2-3&apos;e düşürme, maliyetlerde %75 azalma, müşteri memnuniyetinde artış</li>
               </ul>
             </div>
           </section>
@@ -596,16 +639,16 @@ export default function SanalAsistanVsPersonelPage() {
                 <div>
                   <h4 className="font-semibold text-blue-900 mb-2">Operasyonel</h4>
                   <ul className="text-sm text-blue-800 space-y-2">
-                    <li>📊 Sorguların %76'sı sanal asistan tarafından çözülüyor</li>
+                    <li>📊 Sorguların %76&apos;sı sanal asistan tarafından çözülüyor</li>
                     <li>📊 Ortalama yanıt süresi: 8 dakikadan 45 saniyeye düştü</li>
-                    <li>📊 Müşteri memnuniyeti: %68'den %89'a yükseldi</li>
-                    <li>📊 Personel devir hızı: %40'tan %5'e düştü (daha az stres)</li>
+                    <li>📊 Müşteri memnuniyeti: %68&apos;den %89&apos;a yükseldi</li>
+                    <li>📊 Personel devir hızı: %40&apos;tan %5&apos;e düştü (daha az stres)</li>
                   </ul>
                 </div>
               </div>
               <div className="border-t border-blue-200 pt-4">
                 <p className="text-sm text-gray-700 italic">
-                  <strong>Şirket Sahibi Yorumu:</strong> "Başta sanal asistanın gerçek personelin yerini alamayacağını düşünüyordum. Ancak hibrit model sayesinde hem maliyetleri ciddi şekilde düşürdük hem de müşteri memnuniyetini artırdık. Geriye kalan 2 personelimiz artık gerçekten değer katan işlere odaklanabiliyor ve işlerinden çok daha memnunlar."
+                  <strong>Şirket Sahibi Yorumu:</strong> &quot;Başta sanal asistanın gerçek personelin yerini alamayacağını düşünüyordum. Ancak hibrit model sayesinde hem maliyetleri ciddi şekilde düşürdük hem de müşteri memnuniyetini artırdık. Geriye kalan 2 personelimiz artık gerçekten değer katan işlere odaklanabiliyor ve işlerinden çok daha memnunlar.&quot;
                 </p>
               </div>
             </div>
@@ -687,7 +730,7 @@ export default function SanalAsistanVsPersonelPage() {
                     <li>• Sanal asistan + personel tam uyumlu çalışıyor</li>
                     <li>• Müşteri memnuniyeti ve maliyet metriklerini düzenli takip edin</li>
                     <li>• Yeni ürün/hizmetlerde sanal asistanı güncelleyin</li>
-                    <li>• ROI'yi ölçün ve paydaşlarla paylaşın</li>
+                    <li>• ROI&apos;yi ölçün ve paydaşlarla paylaşın</li>
                   </ul>
                 </div>
               </div>
@@ -721,7 +764,7 @@ export default function SanalAsistanVsPersonelPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Sonuç: Geleceğin İşgücü Hibrit</h2>
 
             <p className="text-gray-700 leading-relaxed mb-4">
-              Sanal asistan vs gerçek personel karşılaştırması, "ya hep ya hiç" sorusu değil. En başarılı strateji, her iki çözümün güçlü yönlerini birleştiren <strong>hibrit model</strong>dir.
+              Sanal asistan vs gerçek personel karşılaştırması, &quot;ya hep ya hiç&quot; sorusu değil. En başarılı strateji, her iki çözümün güçlü yönlerini birleştiren <strong>hibrit model</strong>dir.
             </p>
 
             <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-xl my-6">
@@ -743,7 +786,7 @@ export default function SanalAsistanVsPersonelPage() {
             </div>
 
             <p className="text-gray-700 leading-relaxed">
-              2025'te rekabette öne geçmek isteyen işletmeler, bu hibrit modeli benimsemeye başladı. Siz de geride kalmayın.
+              2025&apos;te rekabette öne geçmek isteyen işletmeler, bu hibrit modeli benimsemeye başladı. Siz de geride kalmayın.
             </p>
 
             <div className="bg-[#860000]/10 border-2 border-[#860000]/20 p-6 rounded-xl mt-6">

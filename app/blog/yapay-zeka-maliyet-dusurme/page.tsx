@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, DollarSign, TrendingDown, Users, Calendar, CheckCircle2, Zap, Target, BarChart3 } from 'lucide-react';
+import { ArrowLeft, TrendingDown, Users, Calendar, CheckCircle2, Target, BarChart3 } from 'lucide-react';
+import { BreadcrumbSchema } from '@/app/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Yapay Zeka ile İşletme Maliyetlerini Düşürme: Gerçek Rakamlarla Analiz [2025]',
@@ -33,14 +34,56 @@ export const metadata: Metadata = {
 };
 
 export default function MaliyetDusurmePage() {
+  const canonicalUrl = 'https://fokusistatistik.com/blog/yapay-zeka-maliyet-dusurme';
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: 'Yapay Zeka ile İşletme Maliyetlerini Düşürme: Gerçek Rakamlarla Analiz [2025]',
+    description: 'Dijital işçi ile işletme maliyetlerini %40-80 düşürün. 8 farklı sektörde gerçek örnekler, ROI hesaplamaları ve adım adım maliyet düşürme stratejileri.',
+    image: 'https://fokusistatistik.com/assets/cdn/logolar/fokuslogo1.png',
+    datePublished: '2025-01-18T09:00:00Z',
+    dateModified: '2025-01-18T09:00:00Z',
+    author: {
+      '@type': 'Organization',
+      name: 'FOKUS İstatistik',
+      url: 'https://fokusistatistik.com',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'FOKUS İstatistik',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://fokusistatistik.com/assets/cdn/logolar/fokuslogo1.png',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+    },
+    articleSection: 'Maliyet Optimizasyonu',
+    timeRequired: 'PT14M',
+    inLanguage: 'tr-TR',
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Ana Sayfa', url: 'https://fokusistatistik.com' },
+          { name: 'Blog', url: 'https://fokusistatistik.com/blog' },
+          { name: 'Yapay Zeka ile Maliyet Düşürme', url: canonicalUrl },
+        ]}
+      />
       {/* Breadcrumb */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <Link href="/blog" className="inline-flex items-center text-[#860000] hover:text-[#b30000] font-medium">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Blog'a Dön
+            Blog&apos;a Dön
           </Link>
         </div>
       </div>
@@ -65,7 +108,7 @@ export default function MaliyetDusurmePage() {
           </h1>
 
           <p className="text-xl text-gray-600 leading-relaxed">
-            2025'te işletmeler için en kritik soru: "Kaliteden ödün vermeden maliyetleri nasıl düşürebiliriz?" Cevap: <strong>Dijital işçiler</strong>. Bu kapsamlı analizde, yapay zeka destekli dijital işçilerin 8 farklı sektörde gerçek maliyet tasarrufu sağladığı örnekleri, ROI hesaplamalarını ve adım adım uygulama stratejilerini bulacaksınız.
+            2025&apos;te işletmeler için en kritik soru: &quot;Kaliteden ödün vermeden maliyetleri nasıl düşürebiliriz?&quot; Cevap: <strong>Dijital işçiler</strong>. Bu kapsamlı analizde, yapay zeka destekli dijital işçilerin 8 farklı sektörde gerçek maliyet tasarrufu sağladığı örnekleri, ROI hesaplamalarını ve adım adım uygulama stratejilerini bulacaksınız.
           </p>
         </header>
 
@@ -152,7 +195,7 @@ export default function MaliyetDusurmePage() {
             <div className="mt-6 bg-yellow-100 p-5 rounded-lg">
               <p className="font-bold text-yellow-900 mb-2">💡 2025 Gartner Araştırması:</p>
               <p className="text-gray-800 text-sm">
-                "Dijital işçi kullanan işletmeler, kullanmayanlara göre <strong>%23 daha yüksek karlılık</strong> ve <strong>%31 daha düşük operasyonel maliyet</strong> raporladı."
+                &quot;Dijital işçi kullanan işletmeler, kullanmayanlara göre <strong>%23 daha yüksek karlılık</strong> ve <strong>%31 daha düşük operasyonel maliyet</strong> raporladı.&quot;
               </p>
             </div>
           </section>
@@ -353,7 +396,7 @@ export default function MaliyetDusurmePage() {
                   <p className="text-sm text-gray-700">
                     İnsan hatasından kaynaklanan yanlış siparişler, hatalı faturalar, yanlış veri girişleri ciddi şekilde azalır.
                   </p>
-                  <p className="text-xs text-green-700 mt-1 font-semibold">Ortalama tasarruf: Cironun %2-3'ü</p>
+                  <p className="text-xs text-green-700 mt-1 font-semibold">Ortalama tasarruf: Cironun %2-3&apos;ü</p>
                 </div>
               </div>
 
@@ -364,7 +407,7 @@ export default function MaliyetDusurmePage() {
                 <div className="flex-1">
                   <h3 className="font-bold text-gray-900 mb-1">3. Kayıp Fırsat Maliyeti (Mesai Dışı)</h3>
                   <p className="text-sm text-gray-700">
-                    Gece, hafta sonu, tatil günlerinde müşteri kaybı önlenir. E-ticaret sitelerinde gece satışları toplam satışların %30-40'ını oluşturur.
+                    Gece, hafta sonu, tatil günlerinde müşteri kaybı önlenir. E-ticaret sitelerinde gece satışları toplam satışların %30-40&apos;ını oluşturur.
                   </p>
                   <p className="text-xs text-green-700 mt-1 font-semibold">Potansiyel gelir artışı: %15-40</p>
                 </div>
@@ -462,7 +505,7 @@ export default function MaliyetDusurmePage() {
                     Hangi işler tekrarlayan ve standart? Hangi departmanda en çok zaman harcanıyor? Günlük iş akışınızı analiz edin.
                   </p>
                   <ul className="text-xs text-gray-600 space-y-1 ml-4">
-                    <li>• Müşteri hizmetleri mesajlarının %80'i aynı 20 sorudan mı oluşuyor?</li>
+                    <li>• Müşteri hizmetleri mesajlarının %80&apos;i aynı 20 sorudan mı oluşuyor?</li>
                     <li>• Randevu almak için saatler mi harcıyorsunuz?</li>
                     <li>• Veri girişi ekibiniz var mı?</li>
                   </ul>
@@ -479,7 +522,7 @@ export default function MaliyetDusurmePage() {
                     Tüm işletmeyi birden dönüştürmeyin. En basit ve en yüksek hacimli işle başlayın.
                   </p>
                   <ul className="text-xs text-gray-600 space-y-1 ml-4">
-                    <li>✓ Örnek: İlk olarak sadece "sipariş takibi" sorularını dijital işçiye devredin</li>
+                    <li>✓ Örnek: İlk olarak sadece &quot;sipariş takibi&quot; sorularını dijital işçiye devredin</li>
                     <li>✓ 2-4 hafta test edin, sonuçları ölçün</li>
                     <li>✓ Başarılıysa diğer alanlara genişletin</li>
                   </ul>
@@ -569,7 +612,7 @@ export default function MaliyetDusurmePage() {
               </div>
 
               <div className="bg-white p-5 rounded-lg">
-                <h3 className="font-bold text-red-900 mb-2">2. "Kurdum Unuttum" Yaklaşımı</h3>
+                <h3 className="font-bold text-red-900 mb-2">2. &quot;Kurdum Unuttum&quot; Yaklaşımı</h3>
                 <p className="text-sm text-gray-700">
                   <strong>Yanlış:</strong> Dijital işçiyi kurduktan sonra hiç kontrol etmemek.<br/>
                   <strong>Doğru:</strong> İlk 3 ay yakından izlemek, müşteri geri bildirimlerine göre iyileştirmek.
@@ -579,8 +622,8 @@ export default function MaliyetDusurmePage() {
               <div className="bg-white p-5 rounded-lg">
                 <h3 className="font-bold text-red-900 mb-2">3. Personeli Bilgilendirmemek</h3>
                 <p className="text-sm text-gray-700">
-                  <strong>Yanlış:</strong> Personele "İşiniz tehlikede" mesajı vermek.<br/>
-                  <strong>Doğru:</strong> "Daha değerli işlere odaklanabileceksiniz" olumlu yaklaşım.
+                  <strong>Yanlış:</strong> Personele &quot;İşiniz tehlikede&quot; mesajı vermek.<br/>
+                  <strong>Doğru:</strong> &quot;Daha değerli işlere odaklanabileceksiniz&quot; olumlu yaklaşım.
                 </p>
               </div>
 
@@ -593,7 +636,7 @@ export default function MaliyetDusurmePage() {
               </div>
 
               <div className="bg-white p-5 rounded-lg">
-                <h3 className="font-bold text-red-900 mb-2">5. Müşteriye "Robot" Hissi Vermek</h3>
+                <h3 className="font-bold text-red-900 mb-2">5. Müşteriye &quot;Robot&quot; Hissi Vermek</h3>
                 <p className="text-sm text-gray-700">
                   <strong>Yanlış:</strong> Kuru, robotik, sıkıcı mesajlar.<br/>
                   <strong>Doğru:</strong> Samimi, marka kimliğinize uygun, insan gibi konuşan dijital işçi.
@@ -645,7 +688,7 @@ export default function MaliyetDusurmePage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Sonuç: Dijital İşçi ile Maliyet Düşürme Zorunluluk</h2>
 
             <p className="text-gray-700 leading-relaxed mb-4">
-              2025'te rakiplerinizin çoğu zaten dijital işçi kullanıyor. Yapay zeka ile maliyet düşürme artık bir seçenek değil, <strong>rekabette kalabilmenin ön koşulu</strong>. Bu makalede gördüğünüz gibi, her sektörde ortalama <strong>%40-80 maliyet düşüşü</strong> sağlanabiliyor ve yatırım <strong>3-6 ayda</strong> kendini amorti ediyor.
+              2025&apos;te rakiplerinizin çoğu zaten dijital işçi kullanıyor. Yapay zeka ile maliyet düşürme artık bir seçenek değil, <strong>rekabette kalabilmenin ön koşulu</strong>. Bu makalede gördüğünüz gibi, her sektörde ortalama <strong>%40-80 maliyet düşüşü</strong> sağlanabiliyor ve yatırım <strong>3-6 ayda</strong> kendini amorti ediyor.
             </p>
 
             <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-xl my-6">

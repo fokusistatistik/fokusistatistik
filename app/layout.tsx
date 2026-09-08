@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import ChatWidget from "@/app/components/ChatWidget";
-// import VapiWidget from "@/app/components/VapiWidget";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/app/components/CookieConsent";
 import GoogleAnalytics from "@/app/components/GoogleAnalytics";
-import { OrganizationSchema } from "@/app/components/StructuredData";
+import { OrganizationSchema, WebsiteSchema } from "@/app/components/StructuredData";
 import RecaptchaProvider from "@/app/components/RecaptchaProvider";
 import "./globals.css";
 
@@ -92,7 +91,7 @@ export const metadata: Metadata = {
     description: "Türkiye'nin en kapsamlı yapay zeka danışmanlık platformu. 9 farklı sanal asistan ile dijital dönüşümünüzü hızlandırın. ChatGPT, veri analizi, istatistik ve otomasyon çözümleri.",
     images: [
       {
-        url: "https://static.fokusistatistik.com/resimler/fokus-ekosistem-og.jpg",
+        url: "/assets/cdn/logolar/fokuslogo1.png",
         width: 1200,
         height: 630,
         alt: "FOKUS İstatistik - Yapay Zeka ve Sanal Asistan Ekosistemi",
@@ -103,7 +102,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FOKUS İstatistik | Yapay Zeka Danışmanlığı & Sanal Asistan",
     description: "9 farklı AI sanal asistan ile dijital dönüşümünüzü hızlandırın. ChatGPT, veri analizi ve otomasyon çözümleri.",
-    images: ["https://static.fokusistatistik.com/resimler/fokus-ekosistem-og.jpg"],
+    images: ["/assets/cdn/logolar/fokuslogo1.png"],
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
@@ -134,6 +133,7 @@ export default function RootLayout({
       <body className="antialiased pt-16">
         <RecaptchaProvider>
           <OrganizationSchema type="ProfessionalService" />
+          <WebsiteSchema />
           <GoogleAnalytics />
           <Header />
           <div className="w-full flex justify-center">
@@ -143,7 +143,6 @@ export default function RootLayout({
           </div>
           <Footer />
           <ChatWidget />
-          {/* <VapiWidget /> */}
           <CookieConsent />
         </RecaptchaProvider>
       </body>

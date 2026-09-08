@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: 'Fiyatlandırma | FOKUS Sanal Asistan Paketleri',
   description: 'FOKUS Sanal Asistanlar için uygun fiyatlı paketler. Standart, Pro ve Premium seçenekleri ile işletmenize en uygun planı seçin.',
   keywords: 'sanal asistan fiyat, yapay zeka fiyatlandırma, dijital asistan paket, FOKUS fiyat',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function Fiyatlandirma() {
@@ -196,7 +200,7 @@ export default function Fiyatlandirma() {
                     </span>
                     <span className="text-gray-600">TL</span>
                   </div>
-                  <p className="text-sm text-gray-500 mt-1">'den başlayan fiyatlarla</p>
+                  <p className="text-sm text-gray-500 mt-1">&apos;den başlayan fiyatlarla</p>
                 </div>
 
                 {/* CTA Button */}

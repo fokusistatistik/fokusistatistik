@@ -1,9 +1,13 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Kullanım Koşulları | FOKUS İstatistik',
   description: 'FOKUS İstatistik web sitesi ve hizmetlerinin kullanım koşulları, şartları ve kuralları.',
   keywords: 'kullanım koşulları, kullanım şartları, hizmet sözleşmesi, yasal şartlar',
+  alternates: {
+    canonical: 'https://fokusistatistik.com/kullanim-kosullari',
+  },
 };
 
 export default function KullanimKosullari() {
@@ -60,7 +64,7 @@ export default function KullanimKosullari() {
 
             <h2 className="text-2xl font-semibold text-[#860000] mt-8 mb-4">4. Fikri Mülkiyet Hakları</h2>
             <p>
-              Site üzerindeki tüm içerik, tasarım, logo, yazılım, kod ve materyaller FOKUS İstatistik'in
+              Site üzerindeki tüm içerik, tasarım, logo, yazılım, kod ve materyaller FOKUS İstatistik&apos;in
               münhasır mülkiyetindedir ve telif hakkı yasaları ile korunmaktadır. İzinsiz kullanım,
               çoğaltma, dağıtım veya ticari amaçla kullanım kesinlikle yasaktır.
             </p>
@@ -205,12 +209,12 @@ export default function KullanimKosullari() {
 
         {/* Back to Home */}
         <div className="text-center mt-8">
-          <a
+          <Link
             href="/"
             className="inline-block bg-[#860000] hover:bg-[#b30000] text-white font-semibold py-3 px-8 rounded-lg transition-all transform hover:scale-105"
           >
             Ana Sayfaya Dön
-          </a>
+          </Link>
         </div>
       </div>
     </div>

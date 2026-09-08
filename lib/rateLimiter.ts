@@ -78,17 +78,19 @@ export function checkRateLimit(
 
 /**
  * Request'ten IP adresini alır
+ * Not: X-Real-IP önceliklidir çünkü nginx bunu $remote_addr ile üzerine yazar
+ * (client tarafından sahtelenemez). X-Forwarded-For zincire eklenir, client
+ * kendi sahte IP'sini başa ekleyebileceği için tek başına güvenilmez.
  */
 export function getClientIP(request: Request): string {
-  // Vercel, Cloudflare gibi platformlarda proxy headers
+  const real = request.headers.get('x-real-ip');
+  if (real) {
+    return real.trim();
+  }
+
   const forwarded = request.headers.get('x-forwarded-for');
   if (forwarded) {
     return forwarded.split(',')[0].trim();
-  }
-
-  const real = request.headers.get('x-real-ip');
-  if (real) {
-    return real;
   }
 
   // Fallback

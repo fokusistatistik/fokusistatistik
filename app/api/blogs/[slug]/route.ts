@@ -2,9 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 import { jwtVerify } from 'jose';
+import { getJwtSecret } from '@/lib/jwt';
 
 const BLOGS_FILE = path.join(process.cwd(), 'content', 'blogs-metadata.json');
 const CONTENT_DIR = path.join(process.cwd(), 'content', 'blog');
+
+interface BlogMetadata {
+  slug: string;
+  [key: string]: unknown;
+}
 
 // Güvenlik: Path traversal saldırılarını önle
 function sanitizeSlug(slug: string): string {
@@ -31,9 +37,7 @@ async function checkAuth(request: NextRequest): Promise<boolean> {
   }
 
   try {
-    const secret = new TextEncoder().encode(
-      process.env.JWT_SECRET || 'default-secret-change-in-production-12345678901234567890'
-    );
+    const secret = getJwtSecret();
 
     const { payload } = await jwtVerify(sessionCookie.value, secret);
 
@@ -62,8 +66,8 @@ export async function GET(
 
     // Metadata oku
     const data = await fs.readFile(BLOGS_FILE, 'utf-8');
-    const blogs = JSON.parse(data);
-    const blog = blogs.find((b: any) => b.slug === safeSlug);
+    const blogs: BlogMetadata[] = JSON.parse(data);
+    const blog = blogs.find((b) => b.slug === safeSlug);
 
     if (!blog) {
       return NextResponse.json({ error: 'Blog bulunamadı' }, { status: 404 });
@@ -76,12 +80,12 @@ export async function GET(
         path.join(CONTENT_DIR, `${safeSlug}.html`),
         'utf-8'
       );
-    } catch (error) {
+    } catch {
       content = '';
     }
 
     return NextResponse.json({ ...blog, content });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Blog okunamadı' }, { status: 500 });
   }
 }
@@ -105,8 +109,8 @@ export async function PUT(
 
     // Metadata oku
     const data = await fs.readFile(BLOGS_FILE, 'utf-8');
-    const blogs = JSON.parse(data);
-    const blogIndex = blogs.findIndex((b: any) => b.slug === safeSlug);
+    const blogs: BlogMetadata[] = JSON.parse(data);
+    const blogIndex = blogs.findIndex((b) => b.slug === safeSlug);
 
     if (blogIndex === -1) {
       return NextResponse.json({ error: 'Blog bulunamadı' }, { status: 404 });
@@ -127,7 +131,7 @@ export async function PUT(
     if (newSafeSlug !== safeSlug) {
       try {
         await fs.unlink(path.join(CONTENT_DIR, `${safeSlug}.html`));
-      } catch (error) {
+      } catch {
         // Eski dosya yoksa devam et
       }
     }
@@ -167,8 +171,8 @@ export async function DELETE(
 
     // Metadata oku
     const data = await fs.readFile(BLOGS_FILE, 'utf-8');
-    const blogs = JSON.parse(data);
-    const filteredBlogs = blogs.filter((b: any) => b.slug !== safeSlug);
+    const blogs: BlogMetadata[] = JSON.parse(data);
+    const filteredBlogs = blogs.filter((b) => b.slug !== safeSlug);
 
     if (blogs.length === filteredBlogs.length) {
       return NextResponse.json({ error: 'Blog bulunamadı' }, { status: 404 });
@@ -180,7 +184,7 @@ export async function DELETE(
     // İçerik dosyasını sil
     try {
       await fs.unlink(path.join(CONTENT_DIR, `${safeSlug}.html`));
-    } catch (error) {
+    } catch {
       // Dosya yoksa devam et
     }
 

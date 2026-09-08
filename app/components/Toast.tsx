@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { CheckCircle, XCircle, AlertCircle, X } from 'lucide-react';
 
 export interface ToastProps {
@@ -14,6 +14,21 @@ export default function Toast({ message, type, duration = 5000, onClose }: Toast
   const [isVisible, setIsVisible] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
 
+  // onClose her render'da yeniden oluşan bir inline fonksiyon olabileceği için
+  // (bkz. useToast.tsx), ref üzerinden okunuyor ki handleClose referansı sabit kalsın
+  // ve auto-dismiss efekti başka bir toast eklendiğinde/kaldırıldığında sıfırlanmasın.
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  const handleClose = useCallback(() => {
+    setIsExiting(true);
+    setTimeout(() => {
+      onCloseRef.current();
+    }, 300);
+  }, []);
+
   useEffect(() => {
     // Slide in animation
     setTimeout(() => setIsVisible(true), 10);
@@ -24,14 +39,7 @@ export default function Toast({ message, type, duration = 5000, onClose }: Toast
     }, duration);
 
     return () => clearTimeout(timer);
-  }, [duration]);
-
-  const handleClose = () => {
-    setIsExiting(true);
-    setTimeout(() => {
-      onClose();
-    }, 300);
-  };
+  }, [duration, handleClose]);
 
   const icons = {
     success: <CheckCircle className="w-6 h-6 text-green-500" />,

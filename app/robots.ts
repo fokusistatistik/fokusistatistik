@@ -19,6 +19,8 @@ export default function robots(): MetadataRoute.Robots {
           '/*.json$',
           '/private/',
           '/content/',
+          '/memnuniyet-anketi',
+          '/analiz-formu',
           '/fiyat-teklifi-ozel-x7932kd-2025',
           '/fiyat-teklifi-ozel-x7932kd-2025/',
         ],
@@ -26,7 +28,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: 'Googlebot',
         allow: '/',
-        disallow: ['/api/', '/admin/', '/dashboard', '/profil', '/siparisler', '/giris', '/content/'],
+        disallow: ['/api/', '/admin/', '/dashboard', '/profil', '/siparisler', '/giris', '/content/', '/memnuniyet-anketi', '/analiz-formu'],
       },
       {
         userAgent: 'Googlebot-Image',

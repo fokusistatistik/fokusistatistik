@@ -19,7 +19,7 @@ export default function AdminPage() {
           // Session yoksa login'e yönlendir
           router.replace('/admin/login');
         }
-      } catch (error) {
+      } catch {
         // Hata durumunda login'e yönlendir
         router.replace('/admin/login');
       }

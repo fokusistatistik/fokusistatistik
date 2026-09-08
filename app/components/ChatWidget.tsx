@@ -1,16 +1,17 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 // Basit markdown formatlaması
 function formatMessage(text: string): string {
   if (!text) return '';
 
   // Temizleme
-  let cleanText = text.replace(/\\n/g, '\n').replace(/\\t/g, ' ').trim();
+  const cleanText = text.replace(/\\n/g, '\n').replace(/\\t/g, ' ').trim();
 
   // Markdown formatlaması
-  let formatted = cleanText
+  const formatted = cleanText
     // Başlıklar
     .replace(/^#### (.*$)/gm, '<strong>$1</strong>')
     .replace(/^### (.*$)/gm, '<strong>$1</strong>')
@@ -505,9 +506,11 @@ export default function ChatWidget() {
             '✕'
           ) : (
             <div className="relative">
-              <img
-                src="https://static.fokusistatistik.com/resimler/fokus216kare.png"
+              <Image
+                src="/assets/cdn/resimler/fokus216kare.png"
                 alt="FOKUS216"
+                width={48}
+                height={48}
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
@@ -519,9 +522,11 @@ export default function ChatWidget() {
           <div className="chat-window">
             <div className="chat-header">
               <div className="relative">
-                <img
-                  src="https://static.fokusistatistik.com/resimler/fokus216kare.png"
+                <Image
+                  src="/assets/cdn/resimler/fokus216kare.png"
                   alt="FOKUS216"
+                  width={48}
+                  height={48}
                   className="w-12 h-12 rounded-full object-cover border-2 border-white"
                 />
                 <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>

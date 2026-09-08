@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'FOKUS Admin Panel',
+  title: {
+    default: 'FOKUS Admin Panel',
+    template: '%s | FOKUS Admin Panel',
+  },
   description: 'Blog Yönetim Sistemi',
   robots: 'noindex, nofollow',
 };

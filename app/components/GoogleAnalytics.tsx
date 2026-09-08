@@ -4,10 +4,12 @@ import Script from 'next/script';
 import { useEffect, useState } from 'react';
 
 // Google Analytics için TypeScript tip tanımlamaları
+type GtagArgs = [command: string, ...rest: unknown[]];
+
 declare global {
   interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
+    dataLayer: unknown[];
+    gtag: (...args: GtagArgs) => void;
   }
 }
 

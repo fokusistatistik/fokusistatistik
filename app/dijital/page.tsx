@@ -8,7 +8,7 @@ import {
   CheckCircle2,
   Sparkles,
 } from 'lucide-react';
-import { ServiceSchema } from '@/app/components/StructuredData';
+import { ServiceSchema, BreadcrumbSchema } from '@/app/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Dijital Çözümler | İş Süreçleri Otomasyonu, Veri Analizi, Dijital Dönüşüm',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     url: 'https://fokusistatistik.com/dijital',
     images: [
       {
-        url: 'https://static.fokusistatistik.com/resimler/fokus-ekosistem-og.jpg',
+        url: '/assets/cdn/logolar/fokuslogo1.png',
         width: 1200,
         height: 630,
         alt: 'FOKUS Dijital Çözümler',
@@ -163,6 +163,12 @@ export default function DijitalCozumler() {
         name="Dijital Çözümler"
         description="Sağlık, eğitim, kamu, ticaret ve girişimler için dijital dönüşüm çözümleri. İş süreçleri otomasyonu, veri analizi ve performans takibi sistemleri."
         url="https://fokusistatistik.com/dijital"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Ana Sayfa', url: 'https://fokusistatistik.com' },
+          { name: 'Dijital Çözümler', url: 'https://fokusistatistik.com/dijital' },
+        ]}
       />
       <div className="min-h-screen flex flex-col">
         <main className="flex-grow">

@@ -1,9 +1,13 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Çerez Politikamız | FOKUS İstatistik',
   description: 'FOKUS İstatistik olarak çerez politikamıza uygun olarak kullanıcı gizliliğine önem veriyor, verilerinizi yasal çerçevede koruyoruz.',
   keywords: 'çerez politikası, cookie policy, kvkk, gizlilik, veri koruma, web sitesi çerezleri',
+  alternates: {
+    canonical: 'https://fokusistatistik.com/cerez-politikasi',
+  },
 };
 
 export default function CerezPolitikasi() {
@@ -107,12 +111,12 @@ export default function CerezPolitikasi() {
 
         {/* Back to Home */}
         <div className="text-center mt-8">
-          <a
+          <Link
             href="/"
             className="inline-block bg-[#860000] hover:bg-[#b30000] text-white font-semibold py-3 px-8 rounded-lg transition-all transform hover:scale-105"
           >
             Ana Sayfaya Dön
-          </a>
+          </Link>
         </div>
       </div>
     </div>

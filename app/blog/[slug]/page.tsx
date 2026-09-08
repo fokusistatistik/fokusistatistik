@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import fs from 'fs/promises';
 import path from 'path';
 import BlogContent from '@/components/blog/BlogContent';
+import { BreadcrumbSchema } from '@/app/components/StructuredData';
 
 // Force dynamic rendering so new blogs appear immediately
 export const dynamic = 'force-dynamic';
@@ -33,8 +34,8 @@ async function getBlog(slug: string): Promise<Blog | null> {
 
     // Read metadata
     const data = await fs.readFile(BLOGS_FILE, 'utf-8');
-    const blogs = JSON.parse(data);
-    const blog = blogs.find((b: any) => b.slug === slug);
+    const blogs: Blog[] = JSON.parse(data);
+    const blog = blogs.find((b) => b.slug === slug);
 
     if (!blog) {
       return null;
@@ -47,7 +48,7 @@ async function getBlog(slug: string): Promise<Blog | null> {
         path.join(CONTENT_DIR, `${slug}.html`),
         'utf-8'
       );
-    } catch (error) {
+    } catch {
       content = '';
     }
 
@@ -120,6 +121,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const baseUrl = 'https://fokusistatistik.com';
   const canonicalUrl = `${baseUrl}/blog/${slug}`;
+  const absoluteCoverImage = blog.coverImage?.startsWith('http')
+    ? blog.coverImage
+    : `${baseUrl}${blog.coverImage}`;
 
   // BlogPosting Schema Markup
   const schemaData = {
@@ -127,7 +131,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     '@type': 'BlogPosting',
     headline: blog.title,
     description: blog.description,
-    image: blog.coverImage,
+    image: absoluteCoverImage,
     datePublished: blog.publishedDate,
     dateModified: blog.updatedDate,
     author: {
@@ -140,7 +144,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       name: 'FOKUS İstatistik',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://static.fokusistatistik.com/logolar/fokuslogo1.png',
+        url: `${baseUrl}/assets/cdn/logolar/fokuslogo1.png`,
       },
     },
     mainEntityOfPage: {
@@ -160,6 +164,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Ana Sayfa', url: baseUrl },
+          { name: 'Blog', url: `${baseUrl}/blog` },
+          { name: blog.title, url: canonicalUrl },
+        ]}
       />
 
       {/* Back Button */}
@@ -245,12 +256,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             >
               Ücretsiz Danışmanlık
             </Link>
+            {/* Analiz formu şimdilik aktif değil, sonradan aktif edilebilir
             <Link
               href="/analiz-formu"
               className="bg-transparent border-2 border-white hover:bg-white/10 text-white font-semibold py-3 px-8 rounded-lg transition-all"
             >
               İhtiyaç Analizi
             </Link>
+            */}
           </div>
         </div>
       </article>

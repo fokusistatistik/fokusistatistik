@@ -2,31 +2,31 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
+
+interface UserSession {
+  user: string;
+  email: string;
+}
 
 export default function Siparisler() {
   const router = useRouter();
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<UserSession | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const sessionData = localStorage.getItem('fokus520Session');
-    if (!sessionData) {
-      router.push('/');
-      return;
-    }
-
-    try {
-      const parsed = JSON.parse(sessionData);
-      if (!parsed.isLoggedIn || !parsed.token) {
-        router.push('/');
-        return;
-      }
-      setSession(parsed);
-      setIsLoading(false);
-    } catch (e) {
-      console.error('Session parse error:', e);
-      router.push('/');
-    }
+    fetch('/api/auth/session')
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.authenticated) {
+          router.push('/giris');
+          return;
+        }
+        const email: string = data.user?.username || '';
+        setSession({ user: email.split('@')[0], email });
+        setIsLoading(false);
+      })
+      .catch(() => router.push('/giris'));
   }, [router]);
 
   if (isLoading) {
@@ -196,12 +196,12 @@ export default function Siparisler() {
             9 farklı alana özel sanal asistanlarımızla işletmenizi güçlendirin
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <Link
               href="/sanalasistanlar"
               className="bg-white text-[#860000] hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-all inline-block"
             >
               Asistanları İncele
-            </a>
+            </Link>
             <a
               href="https://asistan.fokusistatistik.com/ucretsiz.html"
               className="bg-transparent border-2 border-white hover:bg-white hover:text-[#860000] font-semibold py-3 px-8 rounded-lg transition-all inline-block"

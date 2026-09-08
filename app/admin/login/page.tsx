@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { User, Lock, AlertCircle } from 'lucide-react';
 
 export default function AdminLoginPage() {
@@ -32,7 +33,7 @@ export default function AdminLoginPage() {
       } else {
         setError(data.message || 'Giriş başarısız');
       }
-    } catch (error) {
+    } catch {
       setError('Bir hata oluştu. Lütfen tekrar deneyin.');
     } finally {
       setLoading(false);
@@ -45,9 +46,11 @@ export default function AdminLoginPage() {
         {/* Logo ve Başlık */}
         <div className="text-center mb-8">
           <div className="inline-block bg-white p-4 rounded-2xl mb-4">
-            <img
-              src="https://static.fokusistatistik.com/logolar/fokuslogo1.png"
+            <Image
+              src="/assets/cdn/logolar/fokuslogo1.png"
               alt="FOKUS Logo"
+              width={64}
+              height={64}
               className="w-16 h-16 object-contain"
             />
           </div>

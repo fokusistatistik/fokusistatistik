@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import { CheckCircle2 } from 'lucide-react';
 
 function AbonelikYonetimiContent() {
@@ -75,9 +76,11 @@ function AbonelikYonetimiContent() {
         {/* Header */}
         <div className="bg-white p-6 text-center border-b border-gray-200">
           <div className="inline-block bg-white p-4 rounded-2xl mb-3">
-            <img
-              src="https://static.fokusistatistik.com/logolar/fokuslogo1.png"
+            <Image
+              src="/assets/cdn/logolar/fokuslogo1.png"
               alt="FOKUS İstatistik Logo"
+              width={148}
+              height={64}
               className="h-16 w-auto object-contain"
             />
           </div>
@@ -233,9 +236,11 @@ export default function AbonelikYonetimiPage() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block bg-white p-4 rounded-2xl mb-3">
-            <img
-              src="https://static.fokusistatistik.com/logolar/fokuslogo1.png"
+            <Image
+              src="/assets/cdn/logolar/fokuslogo1.png"
               alt="FOKUS Logo"
+              width={148}
+              height={64}
               className="h-16 w-auto object-contain"
             />
           </div>

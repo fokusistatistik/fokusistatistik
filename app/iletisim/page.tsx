@@ -3,11 +3,10 @@
 import { useState, FormEvent, useEffect } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useToast } from '@/app/hooks/useToast';
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { BreadcrumbSchema } from '@/app/components/StructuredData';
 
 export default function Iletisim() {
   const { showToast, ToastContainer } = useToast();
-  const { executeRecaptcha } = useGoogleReCaptcha();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -30,50 +29,19 @@ export default function Iletisim() {
     setIsSubmitting(true);
 
     try {
-      // 🛡️ SPAM KORUMALARI
-
-      // 1. Honeypot kontrolü - Bot görünmez alanı doldurmuşsa engelle
-      if (honeypot) {
-        console.warn('Spam detected: honeypot filled');
-        showToast('Form gönderimi başarısız oldu. Lütfen tekrar deneyin.', 'error', 6000);
-        setIsSubmitting(false);
-        return;
-      }
-
-      // 2. Timestamp kontrolü - 2 saniyeden kısa sürede gönderilmişse bot
-      const timeTaken = Date.now() - formStartTime;
-      if (timeTaken < 2000) {
-        console.warn('Spam detected: form submitted too quickly');
-        showToast('Lütfen formu doldurduktan sonra gönderin.', 'error', 6000);
-        setIsSubmitting(false);
-        return;
-      }
-
-      // 3. reCAPTCHA v3 kontrolü (Opsiyonel - Graceful Degradation)
-      let recaptchaToken = null;
-      if (executeRecaptcha) {
-        try {
-          recaptchaToken = await executeRecaptcha('contact_form');
-        } catch (error) {
-          console.warn('⚠️ reCAPTCHA kullanılamıyor - Güvenliksiz modda devam ediliyor', error);
-        }
-      } else {
-        console.warn('⚠️ reCAPTCHA kullanılamıyor - Güvenliksiz modda devam ediliyor');
-      }
-
-      // Direkt n8n webhook'a gönder (statik HTML ile uyumlu)
-      const response = await fetch('https://n8n.fokusistatistik.com/webhook/form1', {
+      // Spam koruması (honeypot + doldurma süresi) sunucu tarafında (/api/contact) doğrulanıyor
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, honeypot, formStartTime }),
       });
 
       const result = await response.json();
 
-      if (!response.ok) {
-        throw new Error(result.message || 'Form gönderilemedi');
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || result.message || 'Form gönderilemedi');
       }
 
       showToast(result.message || 'Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.', 'success', 6000);
@@ -87,13 +55,21 @@ export default function Iletisim() {
       setFormStartTime(Date.now()); // Reset timestamp
     } catch (error) {
       console.error('Form submission error:', error);
-      showToast('Bir hata oluştu. Lütfen daha sonra tekrar deneyin.', 'error', 6000);
+      const message = error instanceof Error ? error.message : 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.';
+      showToast(message, 'error', 6000);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
+    <>
+    <BreadcrumbSchema
+      items={[
+        { name: 'Ana Sayfa', url: 'https://fokusistatistik.com' },
+        { name: 'İletişim', url: 'https://fokusistatistik.com/iletisim' },
+      ]}
+    />
     <div className="min-h-screen flex flex-col">
       <ToastContainer />
       <main className="flex-grow">
@@ -289,7 +265,8 @@ export default function Iletisim() {
         </section>
       </main>
 
-      
+
     </div>
+    </>
   );
 }
