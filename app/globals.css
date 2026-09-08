@@ -179,6 +179,33 @@ nextjs-portal {
 }
 .blog-content-wrapper .cta-box { padding: 1.75rem; border-radius: 1rem; margin: 2rem 0; }
 
+/* Assistant cards sit on a white background even inside the maroon
+   fokus-ecosystem/fokus-solution blocks, so they need to opt out of
+   the blanket white-text rule above. */
+.blog-content-wrapper .assistant-card {
+  background: #fff;
+  border-radius: 0.75rem;
+  text-align: center;
+}
+.blog-content-wrapper .assistant-card * {
+  color: inherit !important;
+}
+.blog-content-wrapper .assistant-icon {
+  display: inline-block;
+  background: linear-gradient(135deg, #860000, #a30000);
+  color: #fff !important;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+}
+.blog-content-wrapper .assistant-card p {
+  color: #374151 !important;
+  font-weight: 600;
+  margin: 0;
+}
+
 .blog-content-wrapper .warning-box {
   background: #fef2f2;
   border-left: 4px solid #ef4444;
@@ -325,7 +352,6 @@ nextjs-portal {
 .blog-content-wrapper .investment-tier,
 .blog-content-wrapper .value-box,
 .blog-content-wrapper .pricing-tier,
-.blog-content-wrapper .assistant-card,
 .blog-content-wrapper .scenario-category,
 .blog-content-wrapper .column,
 .blog-content-wrapper .before,

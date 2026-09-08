@@ -96,7 +96,7 @@ export default async function BlogPage() {
 
       {/* Featured Post */}
       {blogPosts.length > 0 && (
-        <section className="max-w-7xl mx-auto px-4 -mt-8 relative z-10">
+        <section className="max-w-7xl mx-auto px-4 pt-10">
           <Link
             href={`/blog/${blogPosts[0].slug}`}
             className="group grid grid-cols-1 md:grid-cols-2 bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden hover:shadow-2xl transition-shadow duration-300"
