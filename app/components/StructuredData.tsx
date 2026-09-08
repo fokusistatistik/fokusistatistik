@@ -87,6 +87,42 @@ export function WebsiteSchema() {
   );
 }
 
+interface VideoSchemaProps {
+  name: string;
+  description: string;
+  embedUrl: string;
+  uploadDate: string;
+  thumbnailUrl: string;
+}
+
+export function VideoSchema({ name, description, embedUrl, uploadDate, thumbnailUrl }: VideoSchemaProps) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name,
+    description,
+    embedUrl,
+    uploadDate,
+    thumbnailUrl,
+    publisher: {
+      '@type': 'Organization',
+      name: 'FOKUS İstatistik ve YZ Danışmanlığı',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://fokusistatistik.com/assets/cdn/resimler/logobeyaz.png',
+      },
+    },
+  };
+
+  return (
+    <script
+      id={`video-schema-${embedUrl.split('/').pop()}`}
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 interface BreadcrumbSchemaProps {
   items: { name: string; url: string }[];
 }

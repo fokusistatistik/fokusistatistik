@@ -12,6 +12,7 @@ import {
   Clock,
   Target,
 } from 'lucide-react';
+import { urunler } from '@/lib/urunlerimiz';
 
 // Note: metadata is handled in layout.tsx for this page
 
@@ -78,12 +79,12 @@ export default function Home() {
   const impactItems = [
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      title: 'Personel giderlerini azaltır',
+      title: 'Maliyeti azaltır',
       description: 'Sanal asistanlar SSK, yemek, yol gibi yükleri ortadan kaldırır.',
     },
     {
       icon: <Zap className="w-8 h-8" />,
-      title: 'Tekrarlayan işleri otomatikleştirir',
+      title: 'İşleri otomatikleştirir',
       description: 'Randevu, form, raporlama, veri işleme gibi görevler otomasyona geçer.',
     },
     {
@@ -103,7 +104,7 @@ export default function Home() {
     },
     {
       icon: <Users className="w-8 h-8" />,
-      title: 'Şirketinizin kârlılığını yükseltir',
+      title: 'Kârlılığı artırır',
       description: 'Daha az giderle daha çok üretkenlik sağlar.',
     },
   ];
@@ -198,10 +199,12 @@ export default function Home() {
                     key={index}
                     className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-[#860000] transition group"
                   >
-                    <div className="text-[#860000] mb-4 group-hover:scale-110 transition">
-                      {item.icon}
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="text-[#860000] group-hover:scale-110 transition flex-shrink-0">
+                        {item.icon}
+                      </div>
+                      <h3 className="font-bold text-[17px] text-gray-800">{item.title}</h3>
                     </div>
-                    <h3 className="font-bold text-lg mb-2 text-gray-800">{item.title}</h3>
                     <p className="text-gray-600 text-sm">{item.description}</p>
                   </div>
                 ))}
@@ -246,6 +249,58 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FOKUS Ürün Ailesi Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto mb-8 bg-[#2b2b2b] rounded-2xl px-6 py-4 flex items-center gap-4 shadow-md">
+              <div className="relative h-10 w-10 flex-shrink-0">
+                <Image
+                  src="/assets/cdn/resimler/favicon.png"
+                  alt="FOKUS logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="w-px self-stretch bg-white/25" aria-hidden="true" />
+              <div>
+                <h2 className="text-lg lg:text-xl font-bold text-white leading-tight">
+                  FOKUS İstatistik Ürün Ailesi
+                </h2>
+                <p className="text-xs lg:text-sm text-white/80">
+                  Sanal asistanlarımızın yanı sıra, farklı sektörlere özel geliştirdiğimiz bağımsız SaaS ürünlerimiz
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {urunler.map((urun) => (
+                <div
+                  key={urun.slug}
+                  className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-[#860000]/30 p-6"
+                >
+                  <div className="flex items-start justify-between gap-3 mb-4">
+                    <div className="relative h-9 w-32 flex-shrink-0">
+                      <Image
+                        src={urun.logo}
+                        alt={`${urun.name} logo`}
+                        fill
+                        className="object-contain object-left"
+                      />
+                    </div>
+                    <Link
+                      href="/urunlerimiz"
+                      className="inline-flex items-center gap-1 text-[#860000] hover:text-[#a30000] font-semibold text-sm transition flex-shrink-0 mt-1"
+                    >
+                      İncele
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                  <p className="text-sm text-gray-600">{urun.tagline}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

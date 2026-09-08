@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { urunler } from '@/lib/urunlerimiz';
 
 export default function Footer() {
   const socialLinks = [
@@ -85,7 +86,7 @@ export default function Footer() {
         </div>
 
         {/* Quick Links */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-4 md:w-[80%] md:mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-4 md:w-[90%] md:mx-auto px-6">
           {/* Kurumsal - Sol tarafa dayalı */}
           <div className="text-center md:text-left">
             <h3 className="font-bold text-[#ffc107] mb-3">Kurumsal</h3>
@@ -148,6 +149,34 @@ export default function Footer() {
                   S.S.S.
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          {/* Ürünlerimiz - Ortada */}
+          <div className="text-center">
+            <h3 className="font-bold text-[#ffc107] mb-3">Ürünlerimiz</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/urunlerimiz" className="hover:text-[#ffc107] transition">
+                  Tüm Ürünler
+                </Link>
+              </li>
+              {urunler.map((urun) => (
+                <li key={urun.slug}>
+                  <a
+                    href={
+                      urun.primaryCta.external
+                        ? urun.primaryCta.href
+                        : urun.secondaryCta?.href || `/urunlerimiz`
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[#ffc107] transition"
+                  >
+                    {urun.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
