@@ -404,9 +404,7 @@ export default function SanalAsistanlar() {
           */}
           <div className="flex flex-col items-center">
             <a
-              href="https://asistan.fokusistatistik.com/ucretsiz.html"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/iletisim"
               className="bg-[#860000] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-[#a30000] transition shadow-lg hover:shadow-xl hover:-translate-y-1"
             >
               Demo Talep Et

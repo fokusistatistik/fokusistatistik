@@ -669,7 +669,7 @@ export default function MaliyetDusurmePage() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="https://asistan.fokusistatistik.com/ucretsiz.html"
+                href="/iletisim"
                 className="bg-white text-[#860000] font-bold py-4 px-8 rounded-lg hover:bg-gray-100 transition text-center"
               >
                 Ücretsiz Maliyet Analizi
@@ -731,7 +731,7 @@ export default function MaliyetDusurmePage() {
                 İşletmeniz için özel bir maliyet-fayda analizi hazırlayalım. Hangi dijital işçinin size en uygun olduğunu, ne kadar tasarruf sağlayabileceğinizi ve ROI sürenizi birlikte hesaplayalım.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link href="https://asistan.fokusistatistik.com/ucretsiz.html" className="text-[#860000] font-semibold hover:text-[#b30000] underline">
+                <Link href="/iletisim" className="text-[#860000] font-semibold hover:text-[#b30000] underline">
                   Ücretsiz Maliyet Analizi Talep Et →
                 </Link>
                 <Link href="/sanalasistanlar" className="text-[#860000] font-semibold hover:text-[#b30000] underline">

@@ -67,3 +67,373 @@ body {
 nextjs-portal {
   display: none !important;
 }
+
+/* ==========================================================
+   Blog article content (rendered from content/blog/*.html)
+   A single unified design system so every legacy article's
+   markup — regardless of which custom class names it used —
+   renders as consistent, modern cards, grids and callouts.
+   ========================================================== */
+.blog-content-wrapper {
+  display: block;
+  line-height: 1.7;
+  color: #1f2937;
+}
+
+.blog-content-wrapper * {
+  box-sizing: border-box;
+}
+
+.blog-content-wrapper h1 { font-size: 2.25rem; font-weight: 800; margin: 2.5rem 0 1.25rem; color: #111827; line-height: 1.25; }
+.blog-content-wrapper h2 { font-size: 1.85rem; font-weight: 800; margin: 3rem 0 1.25rem; color: #111827; line-height: 1.3; scroll-margin-top: 6rem; }
+.blog-content-wrapper h3 { font-size: 1.4rem; font-weight: 700; margin: 2rem 0 0.875rem; color: #1f2937; }
+.blog-content-wrapper h4 { font-size: 1.15rem; font-weight: 700; margin: 1.5rem 0 0.75rem; color: #1f2937; }
+.blog-content-wrapper h5 { font-size: 1rem; font-weight: 700; margin: 1.25rem 0 0.5rem; color: #374151; }
+.blog-content-wrapper p { margin: 1rem 0; line-height: 1.8; color: #374151; }
+.blog-content-wrapper ul, .blog-content-wrapper ol { margin: 1rem 0; padding-left: 1.5rem; color: #374151; }
+.blog-content-wrapper li { margin: 0.5rem 0; line-height: 1.7; }
+.blog-content-wrapper a { color: #860000; text-decoration: underline; text-underline-offset: 2px; }
+.blog-content-wrapper a:hover { color: #a30000; }
+.blog-content-wrapper strong { font-weight: 700; color: #111827; }
+.blog-content-wrapper em { font-style: italic; }
+.blog-content-wrapper code { background: #f3f4f6; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875rem; }
+.blog-content-wrapper pre { background: #1f2937; color: #f3f4f6; padding: 1rem; border-radius: 0.75rem; overflow-x: auto; }
+.blog-content-wrapper img { max-width: 100%; height: auto; border-radius: 0.75rem; margin: 1.5rem 0; }
+.blog-content-wrapper hr { border: none; border-top: 1px solid #e5e7eb; margin: 2rem 0; }
+
+.blog-content-wrapper .lead {
+  font-size: 1.25rem;
+  line-height: 1.75;
+  color: #374151;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.blog-content-wrapper blockquote {
+  border-left: 4px solid #860000;
+  background: linear-gradient(135deg, #fff5f5, #ffffff);
+  padding: 1.25rem 1.5rem;
+  font-style: italic;
+  margin: 1.75rem 0;
+  border-radius: 0 0.75rem 0.75rem 0;
+  color: #374151;
+}
+.blog-content-wrapper .testimonial,
+.blog-content-wrapper .research-note {
+  background: #faf5ff;
+  border-left-color: #7c3aed;
+  font-style: italic;
+}
+
+.blog-content-wrapper table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.blog-content-wrapper th, .blog-content-wrapper td { border-bottom: 1px solid #e5e7eb; padding: 0.85rem 1rem; text-align: left; }
+.blog-content-wrapper th { background: #860000; color: #fff; font-weight: 700; }
+.blog-content-wrapper tr:hover td { background: #fafafa; }
+.blog-content-wrapper .free { color: #059669; font-weight: 700; }
+.blog-content-wrapper .paid { color: #6b7280; font-weight: 600; }
+.blog-content-wrapper .benefit { color: #059669; font-weight: 700; }
+.blog-content-wrapper .traditional { color: #dc2626; font-weight: 600; }
+.blog-content-wrapper .digital { color: #059669; font-weight: 700; }
+
+.blog-content-wrapper .features-box,
+.blog-content-wrapper .stats-box,
+.blog-content-wrapper .impact-stats,
+.blog-content-wrapper .case-study,
+.blog-content-wrapper .real-case-study,
+.blog-content-wrapper .real-case,
+.blog-content-wrapper .roadmap,
+.blog-content-wrapper .roi-section,
+.blog-content-wrapper .quick-comparison,
+.blog-content-wrapper .hidden-costs,
+.blog-content-wrapper .optimal-strategy,
+.blog-content-wrapper .strategic-principle,
+.blog-content-wrapper .action-plan,
+.blog-content-wrapper .action-steps,
+.blog-content-wrapper .summary-box,
+.blog-content-wrapper .transition-roadmap,
+.blog-content-wrapper .scenario-box,
+.blog-content-wrapper .fokus-ecosystem,
+.blog-content-wrapper .fokus-solution,
+.blog-content-wrapper .investment-section,
+.blog-content-wrapper .cost-category {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1.75rem;
+  margin: 2rem 0;
+}
+
+.blog-content-wrapper .fokus-ecosystem,
+.blog-content-wrapper .fokus-solution,
+.blog-content-wrapper .cta-box {
+  background: linear-gradient(135deg, #860000, #a30000);
+  color: #fff;
+  border: none;
+}
+.blog-content-wrapper .fokus-ecosystem *,
+.blog-content-wrapper .fokus-solution *,
+.blog-content-wrapper .cta-box * {
+  color: #fff !important;
+}
+.blog-content-wrapper .cta-box { padding: 1.75rem; border-radius: 1rem; margin: 2rem 0; }
+
+.blog-content-wrapper .warning-box {
+  background: #fef2f2;
+  border-left: 4px solid #ef4444;
+  border-radius: 0 0.75rem 0.75rem 0;
+  padding: 1.5rem;
+  margin: 1.75rem 0;
+}
+.blog-content-wrapper .warning-box h4,
+.blog-content-wrapper .hidden-costs h3 { color: #dc2626; }
+
+.blog-content-wrapper .tip-box {
+  background: #fffbeb;
+  border-left: 4px solid #f59e0b;
+  border-radius: 0 0.75rem 0.75rem 0;
+  padding: 1.5rem;
+  margin: 1.75rem 0;
+}
+
+.blog-content-wrapper .case-study,
+.blog-content-wrapper .real-case-study,
+.blog-content-wrapper .real-case {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-left: 4px solid #10b981;
+}
+.blog-content-wrapper .case-study h3,
+.blog-content-wrapper .case-study h4,
+.blog-content-wrapper .real-case-study h3,
+.blog-content-wrapper .real-case h2,
+.blog-content-wrapper .real-case h3 { color: #059669; }
+.blog-content-wrapper .real-case-study > div,
+.blog-content-wrapper .real-case > div {
+  background: #fff;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.blog-content-wrapper .real-case-study > div:last-child,
+.blog-content-wrapper .real-case > div:last-child { margin-bottom: 0; }
+
+.blog-content-wrapper .summary-box,
+.blog-content-wrapper .roi-section,
+.blog-content-wrapper .optimal-strategy {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+}
+.blog-content-wrapper .summary-box h3,
+.blog-content-wrapper .roi-section h3,
+.blog-content-wrapper .optimal-strategy h2 { color: #92400e; }
+
+.blog-content-wrapper .strategic-principle {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.blog-content-wrapper .action-plan,
+.blog-content-wrapper .action-steps,
+.blog-content-wrapper .timeline-box {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+.blog-content-wrapper .action-plan h4,
+.blog-content-wrapper .action-steps h3 { color: #1e40af; }
+
+.blog-content-wrapper .results,
+.blog-content-wrapper .net-impact,
+.blog-content-wrapper .total-impact,
+.blog-content-wrapper .roi-summary,
+.blog-content-wrapper .overall-assessment {
+  background: #f0fdf4;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.25rem;
+}
+.blog-content-wrapper .results p,
+.blog-content-wrapper .roi-summary p { color: #065f46; font-weight: 600; }
+
+.blog-content-wrapper .final-cta {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #860000;
+  margin: 2.5rem 0 1.5rem;
+  padding: 1.75rem;
+  background: linear-gradient(135deg, #fff5f5, #ffffff);
+  border-radius: 1rem;
+  border: 1px solid #fecaca;
+}
+
+.blog-content-wrapper .area-grid,
+.blog-content-wrapper .capabilities-grid,
+.blog-content-wrapper .comparison-grid,
+.blog-content-wrapper .summary-grid,
+.blog-content-wrapper .stats-grid,
+.blog-content-wrapper .hidden-cost-grid,
+.blog-content-wrapper .investment-grid,
+.blog-content-wrapper .value-grid,
+.blog-content-wrapper .pricing-grid,
+.blog-content-wrapper .assistants-grid,
+.blog-content-wrapper .scenarios-section,
+.blog-content-wrapper .comparison-columns,
+.blog-content-wrapper .before-after,
+.blog-content-wrapper .cost-comparison {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+@media (min-width: 640px) {
+  .blog-content-wrapper .area-grid,
+  .blog-content-wrapper .capabilities-grid,
+  .blog-content-wrapper .comparison-grid,
+  .blog-content-wrapper .summary-grid,
+  .blog-content-wrapper .stats-grid,
+  .blog-content-wrapper .hidden-cost-grid,
+  .blog-content-wrapper .investment-grid,
+  .blog-content-wrapper .value-grid,
+  .blog-content-wrapper .pricing-grid,
+  .blog-content-wrapper .assistants-grid,
+  .blog-content-wrapper .scenarios-section,
+  .blog-content-wrapper .comparison-columns,
+  .blog-content-wrapper .before-after,
+  .blog-content-wrapper .cost-comparison {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .blog-content-wrapper .area-grid,
+  .blog-content-wrapper .capabilities-grid,
+  .blog-content-wrapper .stats-grid,
+  .blog-content-wrapper .pricing-grid,
+  .blog-content-wrapper .assistants-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.blog-content-wrapper .area-item,
+.blog-content-wrapper .capability-card,
+.blog-content-wrapper .comparison-box,
+.blog-content-wrapper .summary-item,
+.blog-content-wrapper .stat-card,
+.blog-content-wrapper .cost-item,
+.blog-content-wrapper .investment-box,
+.blog-content-wrapper .investment-tier,
+.blog-content-wrapper .value-box,
+.blog-content-wrapper .pricing-tier,
+.blog-content-wrapper .assistant-card,
+.blog-content-wrapper .scenario-category,
+.blog-content-wrapper .column,
+.blog-content-wrapper .before,
+.blog-content-wrapper .after,
+.blog-content-wrapper .traditional-costs,
+.blog-content-wrapper .digital-costs,
+.blog-content-wrapper .tier,
+.blog-content-wrapper .before-section,
+.blog-content-wrapper .after-section {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.85rem;
+  padding: 1.25rem;
+}
+
+.blog-content-wrapper .comparison-box.highlight,
+.blog-content-wrapper .comparison-box.ai-solution,
+.blog-content-wrapper .after,
+.blog-content-wrapper .after-section,
+.blog-content-wrapper .digital-costs,
+.blog-content-wrapper .column.digital,
+.blog-content-wrapper .scenario-box.digital-ideal,
+.blog-content-wrapper .new-model,
+.blog-content-wrapper .pricing-tier.popular {
+  background: linear-gradient(135deg, #f0fdf4, #ffffff);
+  border-color: #86efac;
+}
+.blog-content-wrapper .comparison-box.traditional,
+.blog-content-wrapper .before,
+.blog-content-wrapper .before-section,
+.blog-content-wrapper .before-model,
+.blog-content-wrapper .traditional-costs,
+.blog-content-wrapper .column.traditional,
+.blog-content-wrapper .scenario-box.traditional-needed {
+  background: linear-gradient(135deg, #fef2f2, #ffffff);
+  border-color: #fecaca;
+}
+
+.blog-content-wrapper .area-item h4,
+.blog-content-wrapper .capability-card h4,
+.blog-content-wrapper .after h4,
+.blog-content-wrapper .after-section h4,
+.blog-content-wrapper .digital-costs h4,
+.blog-content-wrapper .column.digital h4 { color: #059669; }
+.blog-content-wrapper .before h4,
+.blog-content-wrapper .before-section h4,
+.blog-content-wrapper .traditional-costs h4,
+.blog-content-wrapper .column.traditional h4 { color: #dc2626; }
+
+.blog-content-wrapper .roadmap-phase,
+.blog-content-wrapper .strategy-phase,
+.blog-content-wrapper .phase,
+.blog-content-wrapper .roadmap-step,
+.blog-content-wrapper .process-step {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.85rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.blog-content-wrapper .phase-number,
+.blog-content-wrapper .step-number,
+.blog-content-wrapper .sector-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #860000, #a30000);
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.blog-content-wrapper .sector-card,
+.blog-content-wrapper .challenge-item,
+.blog-content-wrapper .feature-item {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.blog-content-wrapper .sector-card.featured { border-color: #fecaca; box-shadow: 0 4px 12px rgba(134,0,0,0.08); }
+
+.blog-content-wrapper .solution {
+  background: #f0fdf4;
+  border-left: 4px solid #10b981;
+  border-radius: 0 0.75rem 0.75rem 0;
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+
+.blog-content-wrapper .badge {
+  display: inline-block;
+  background: #860000;
+  color: #fff;
+  padding: 0.2rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.blog-content-wrapper .plus,
+.blog-content-wrapper .equals {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #860000;
+}

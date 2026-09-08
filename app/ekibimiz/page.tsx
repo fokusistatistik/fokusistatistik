@@ -257,9 +257,7 @@ export default function Ekibimiz() {
             </Link>
             */}
             <a
-              href="https://asistan.fokusistatistik.com/ucretsiz.html"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/iletisim"
               className="bg-[#860000] hover:bg-[#b30000] text-white font-semibold py-4 px-8 rounded-lg transition-all transform hover:scale-105 shadow-lg"
             >
               Demo Talep Edin

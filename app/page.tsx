@@ -163,9 +163,7 @@ export default function Home() {
               <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 shadow-xl flex-1 max-w-md border border-white/20 w-full">
                   <a
-                    href="https://asistan.fokusistatistik.com/ucretsiz.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/iletisim"
                     className="block bg-white text-[#860000] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-200 mb-3 shadow-lg"
                   >
                     Ücretsiz Danışmanlık
@@ -321,7 +319,7 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  href="https://asistan.fokusistatistik.com/ucretsiz.html" target="_blank" rel="noopener noreferrer"
+                  href="/iletisim"
                   className="inline-flex items-center bg-[#860000] text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-[#6b0000] transition shadow-2xl group"
                 >
                   Hemen Başlayın

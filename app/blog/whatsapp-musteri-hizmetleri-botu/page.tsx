@@ -708,7 +708,7 @@ export default function WhatsAppBotPage() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="https://asistan.fokusistatistik.com/ucretsiz.html"
+                href="/iletisim"
                 className="bg-white text-[#860000] font-bold py-4 px-8 rounded-lg hover:bg-gray-100 transition text-center"
               >
                 Ücretsiz Demo Talep Et
@@ -782,7 +782,7 @@ export default function WhatsAppBotPage() {
                 FOKUS ekibi olarak işletmeniz için ücretsiz bir WhatsApp bot potansiyel analizi hazırlayabiliriz. Sektörünüze, müşteri profilinize ve iş süreçlerinize özel bir rapor ile ne kadar tasarruf ve ek gelir sağlayabileceğinizi öğrenin.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link href="https://asistan.fokusistatistik.com/ucretsiz.html" className="text-[#860000] font-semibold hover:text-[#b30000] underline">
+                <Link href="/iletisim" className="text-[#860000] font-semibold hover:text-[#b30000] underline">
                   Ücretsiz Analiz Talep Et →
                 </Link>
                 <Link href="/sanalasistanlar" className="text-[#860000] font-semibold hover:text-[#b30000] underline">

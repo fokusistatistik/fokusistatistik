@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Calendar, Clock, ArrowLeft, Tag } from 'lucide-react';
 import type { Metadata } from 'next';
 import fs from 'fs/promises';
@@ -213,8 +214,22 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
 
+        {/* Cover Image */}
+        {blog.coverImage && (
+          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-lg mb-10">
+            <Image
+              src={blog.coverImage}
+              alt={blog.title}
+              fill
+              unoptimized
+              priority
+              className="object-cover"
+            />
+          </div>
+        )}
+
         {/* Description */}
-        <div className="text-xl text-gray-700 mb-8 leading-relaxed italic bg-gray-50 p-6 rounded-lg border-l-4 border-[#860000]">
+        <div className="text-xl text-gray-700 mb-10 leading-relaxed italic bg-gray-50 p-6 rounded-xl border-l-4 border-[#860000]">
           {blog.description}
         </div>
 
@@ -251,7 +266,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="https://asistan.fokusistatistik.com/ucretsiz.html"
+              href="/iletisim"
               className="bg-white text-[#860000] hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-all transform hover:scale-105"
             >
               Ücretsiz Danışmanlık

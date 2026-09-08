@@ -81,7 +81,7 @@ export default function YapayZekaDanismanligi() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="https://asistan.fokusistatistik.com/ucretsiz.html"
+              href="/iletisim"
               className="bg-[#860000] hover:bg-[#b30000] text-white font-semibold py-4 px-8 rounded-lg transition-all transform hover:scale-105"
             >
               Ücretsiz Danışmanlık Talep Edin
@@ -413,7 +413,7 @@ export default function YapayZekaDanismanligi() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="https://asistan.fokusistatistik.com/ucretsiz.html"
+              href="/iletisim"
               className="bg-[#860000] hover:bg-[#b30000] text-white font-semibold py-4 px-8 rounded-lg transition-all transform hover:scale-105 shadow-lg"
             >
               Hemen Başvur

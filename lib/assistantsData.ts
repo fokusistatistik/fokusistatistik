@@ -93,7 +93,7 @@ const assistantsData: Record<string, AssistantData> = {
     image: '/assets/cdn/asistanlar/fokus001.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus001/',
     testQrImage: '/assets/cdn/resimler/testet001.png',
-    requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrUrl: '/iletisim',
     requestQrImage: '/assets/cdn/resimler/talepet.png',
     packages: [
       {
@@ -275,7 +275,7 @@ const assistantsData: Record<string, AssistantData> = {
     image: '/assets/cdn/asistanlar/fokus216.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus216/',
     testQrImage: '/assets/cdn/resimler/testet216.png',
-    requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrUrl: '/iletisim',
     requestQrImage: '/assets/cdn/resimler/talepet.png',
     packages: [
       {
@@ -439,7 +439,7 @@ const assistantsData: Record<string, AssistantData> = {
     image: '/assets/cdn/asistanlar/fokus314.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus314/',
     testQrImage: '/assets/cdn/resimler/testet314.png',
-    requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrUrl: '/iletisim',
     requestQrImage: '/assets/cdn/resimler/talepet.png',
     packages: [
       {
@@ -621,7 +621,7 @@ const assistantsData: Record<string, AssistantData> = {
     image: '/assets/cdn/asistanlar/fokus520.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus520/',
     testQrImage: '/assets/cdn/resimler/testet520.png',
-    requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrUrl: '/iletisim',
     requestQrImage: '/assets/cdn/resimler/talepet.png',
     packages: [
       {
@@ -788,7 +788,7 @@ const assistantsData: Record<string, AssistantData> = {
     image: '/assets/cdn/asistanlar/fokus618.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus618/',
     testQrImage: '/assets/cdn/resimler/testet618.png',
-    requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrUrl: '/iletisim',
     requestQrImage: '/assets/cdn/resimler/talepet.png',
     packages: [
       {
@@ -974,7 +974,7 @@ const assistantsData: Record<string, AssistantData> = {
     image: '/assets/cdn/asistanlar/fokus707.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus707/',
     testQrImage: '/assets/cdn/resimler/testet707.png',
-    requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrUrl: '/iletisim',
     requestQrImage: '/assets/cdn/resimler/talepet.png',
     packages: [
       {
@@ -1175,7 +1175,7 @@ const assistantsData: Record<string, AssistantData> = {
     image: '/assets/cdn/asistanlar/fokus717.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus717/',
     testQrImage: '/assets/cdn/resimler/testet717.png',
-    requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrUrl: '/iletisim',
     requestQrImage: '/assets/cdn/resimler/talepet.png',
     packages: [
       {
@@ -1356,7 +1356,7 @@ const assistantsData: Record<string, AssistantData> = {
     image: '/assets/cdn/asistanlar/fokus808.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus808/',
     testQrImage: '/assets/cdn/resimler/testet808.png',
-    requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrUrl: '/iletisim',
     requestQrImage: '/assets/cdn/resimler/talepet.png',
     packages: [
       {
@@ -1536,7 +1536,7 @@ const assistantsData: Record<string, AssistantData> = {
     image: '/assets/cdn/asistanlar/fokus999.png',
     testQrUrl: 'https://asistan.fokusistatistik.com/fokus999/',
     testQrImage: '/assets/cdn/resimler/testet999.png',
-    requestQrUrl: 'https://asistan.fokusistatistik.com/ucretsiz.html',
+    requestQrUrl: '/iletisim',
     requestQrImage: '/assets/cdn/resimler/talepet.png',
     packages: [],
     priceNote:

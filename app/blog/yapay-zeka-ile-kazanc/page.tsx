@@ -908,7 +908,7 @@ export default function YapayZekaIleKazancPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="https://asistan.fokusistatistik.com/ucretsiz.html"
+                href="/iletisim"
                 className="bg-white text-[#860000] font-bold py-4 px-8 rounded-lg hover:bg-gray-100 transition text-center"
               >
                 Ücretsiz Danışmanlık Al

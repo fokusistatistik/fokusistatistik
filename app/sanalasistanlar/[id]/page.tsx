@@ -201,10 +201,8 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
 
               {/* QR Codes */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <a
+                <Link
                   href={displayAssistant.requestQrUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition border-2 border-[#860000]"
                 >
                   <div className="w-40 h-40 mx-auto rounded-lg relative">
@@ -215,7 +213,7 @@ export default async function AssistantDetail({ params }: { params: Promise<{ id
                       className="object-contain"
                     />
                   </div>
-                </a>
+                </Link>
 
                 <a
                   href={displayAssistant.testQrUrl}
